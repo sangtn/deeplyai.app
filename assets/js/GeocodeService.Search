@@ -1,0 +1,148 @@
+/**/_xdc_._vrnmn8 && _xdc_._vrnmn8( {
+   "results" : 
+   [
+      {
+         "address_components" : 
+         [
+            {
+               "long_name" : "7420",
+               "short_name" : "7420",
+               "types" : 
+               [
+                  "street_number"
+               ]
+            },
+            {
+               "long_name" : "Shore Road",
+               "short_name" : "Shore Rd",
+               "types" : 
+               [
+                  "route"
+               ]
+            },
+            {
+               "long_name" : "Fort Hamilton",
+               "short_name" : "Fort Hamilton",
+               "types" : 
+               [
+                  "neighborhood",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Brooklyn",
+               "short_name" : "Brooklyn",
+               "types" : 
+               [
+                  "political",
+                  "sublocality",
+                  "sublocality_level_1"
+               ]
+            },
+            {
+               "long_name" : "Kings County",
+               "short_name" : "Kings County",
+               "types" : 
+               [
+                  "administrative_area_level_2",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "New York",
+               "short_name" : "NY",
+               "types" : 
+               [
+                  "administrative_area_level_1",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : 
+               [
+                  "country",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "11209",
+               "short_name" : "11209",
+               "types" : 
+               [
+                  "postal_code"
+               ]
+            }
+         ],
+         "formatted_address" : "7420 Shore Rd, Brooklyn, NY 11209, USA",
+         "geometry" : 
+         {
+            "bounds" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 40.6162917,
+                  "lng" : -74.0392671
+               },
+               "southwest" : 
+               {
+                  "lat" : 40.6161031,
+                  "lng" : -74.03969169999999
+               }
+            },
+            "location" : 
+            {
+               "lat" : 40.6161968,
+               "lng" : -74.03947939999999
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 40.61766908029149,
+                  "lng" : -74.03776931970849
+               },
+               "southwest" : 
+               {
+                  "lat" : 40.61497111970849,
+                  "lng" : -74.04046728029149
+               }
+            }
+         },
+         "navigation_points" : 
+         [
+            {
+               "location" : 
+               {
+                  "latitude" : 40.6165099,
+                  "longitude" : -74.0386197
+               },
+               "restricted_travel_modes" : 
+               [
+                  "WALK"
+               ]
+            },
+            {
+               "location" : 
+               {
+                  "latitude" : 40.61616960000001,
+                  "longitude" : -74.03946569999999
+               },
+               "restricted_travel_modes" : 
+               [
+                  "DRIVE"
+               ]
+            }
+         ],
+         "place_id" : "ChIJ9RVqo49PwokRXMzYwLQOeeI",
+         "types" : 
+         [
+            "premise",
+            "street_address"
+         ]
+      }
+   ],
+   "status" : "OK"
+} )
