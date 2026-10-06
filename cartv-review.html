@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — Car.TV: Cast &amp; M3U IPTV Player</title>
-<meta name="description" content="How Car.TV handles your data: nothing is collected, there is no account, and your playlists and history stay on your devices.">
+<title>Sample playlist — Car.TV: Cast &amp; M3U IPTV Player</title>
+<meta name="description" content="The public test streams and open movies used to try Car.TV, and how to add them.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F3F7F4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0E110F" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://deeplyai.app/cartv-privacy.html">
+<link rel="canonical" href="https://deeplyai.app/cartv-review.html">
 <link rel="icon" type="image/png" href="./assets/images/cartv/icon.png">
 <link rel="apple-touch-icon" href="./assets/images/cartv/icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DeeplyAi">
-<meta property="og:title" content="Privacy Policy — Car.TV: Cast &amp; M3U IPTV Player">
-<meta property="og:description" content="How Car.TV handles your data: nothing is collected, there is no account, and your playlists and history stay on your devices.">
-<meta property="og:url" content="https://deeplyai.app/cartv-privacy.html">
+<meta property="og:title" content="Sample playlist — Car.TV: Cast &amp; M3U IPTV Player">
+<meta property="og:description" content="The public test streams and open movies used to try Car.TV, and how to add them.">
+<meta property="og:url" content="https://deeplyai.app/cartv-review.html">
 <meta property="og:image" content="https://deeplyai.app/assets/images/cartv/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -105,79 +105,40 @@ footer .copy{color:var(--foot-line);font-size:12.5px;margin:0}
     <nav aria-label="Car.TV">
       <a class="hide-s" href="./index.html">DeeplyAi</a>
       <a class="hide-s" href="./cartv-support.html">Support</a>
-      <a class="hide-s" href="./cartv-privacy.html" aria-current="page">Privacy Policy</a>
+      <a class="hide-s" href="./cartv-privacy.html">Privacy Policy</a>
     </nav>
   </div>
 </header>
 <main id="main" class="doc">
 <p class="back"><a href="./index.html">&larr; DeeplyAi</a></p>
 <div class="appid"><img src="./assets/images/cartv/icon.png" width="60" height="60" alt=""><div><b>Car.TV: Cast &amp; M3U IPTV Player</b><span>iPhone &middot; iPad &middot; Apple Watch &middot; CarPlay</span></div></div>
-<h1>Privacy Policy</h1>
-<p class="meta">Effective date: <time datetime="2026-10-06">October 6, 2026</time></p>
-<p>This policy explains how Car.TV: Cast &amp; M3U IPTV Player (&ldquo;Car.TV&rdquo;), made by DeeplyAi (&ldquo;we&rdquo;), handles information on iPhone, iPad, Apple Watch and CarPlay.</p>
+<h1>Car.TV sample playlist</h1>
+<p class="meta">For App Review and anyone trying Car.TV. Every stream below is published by its owner for testing video players, or is a Blender open movie (CC BY).</p>
 
 <div class="box info">
-<h2>The short version</h2>
-<ul>
-<li>Car.TV does not collect any data. There is no account, no sign-in, no analytics, no advertising, no tracking and no third-party SDK.</li>
-<li>We have no servers that receive your information. Your playlists, servers, favourites and watch history stay on your devices.</li>
-<li>Car.TV talks only to the playlists and media servers <b>you</b> add, and to Apple for purchases.</li>
-<li>iCloud sync is optional and uses your own private iCloud, which we cannot read.</li>
-</ul>
+<h2>Fastest way to test</h2>
+<ol>
+<li>Open Car.TV and tap the blue <b>+</b> at the top of any screen.</li>
+<li>Tap <b>Sample &amp; free channels</b> &rsaquo; <b>Add sample playlist</b>.</li>
+<li>Open <b>Live TV</b> and play <b>Live Test Channel 1</b>, or <b>Library</b> &rsaquo; <b>Movies</b> &rsaquo; <b>Big Buck Bunny</b>.</li>
+</ol>
 </div>
 
-<h2>1. What we collect</h2>
-<p>Nothing. Car.TV&rsquo;s App Store privacy label reads &ldquo;Data Not Collected&rdquo;. We do not ask for your name, email address or phone number, we do not use advertising identifiers, and we do not sell or share personal information.</p>
+<h2>Or add it by link</h2>
+<p>In Car.TV: <b>+</b> &rsaquo; <b>M3U / M3U8 URL</b>, and paste:</p>
+<p><code id="m3u">https://deeplyai.app/review-playlist.m3u</code></p>
+<p><button class="button" onclick="navigator.clipboard.writeText(document.getElementById('m3u').textContent).then(()=>{this.textContent='Copied'})">Copy link</button></p>
+<p class="meta">This is a playlist file for a video player. Opened in a web browser it does not play &mdash; paste it into Car.TV instead.</p>
 
-<h2>2. What stays on your device</h2>
-<p>The playlists, Xtream Codes portals, media servers and video files you add, your favourites, watch progress, downloads and settings are stored on your device. Passwords and access tokens for the servers you add are kept in the iOS Keychain. They are never written to logs or diagnostics, and a token is always sent in a request header, never in a web address.</p>
-
-<h2>3. Who Car.TV connects to</h2>
+<h2>What it contains</h2>
 <ul>
-<li><b>Your sources.</b> Car.TV connects to the playlists, portals and media servers (Plex, Jellyfin, Emby, WebDAV) that you add, to fetch the channels, guide and videos you choose. Those services see a normal request from your device, including your IP address, and have their own privacy policies.</li>
-<li><b>The sample playlist.</b> If you add the sample playlist in Settings, Car.TV downloads it from <code>deeplyai.app</code> and plays its streams from the organisations that publish them for testing (Apple, Unified Streaming and Mux). Like any web request, those servers see your IP address. Nothing else is sent, and nothing at all unless you add it.</li>
-<li><b>The Free-TV list.</b> If you add it, Car.TV downloads the community-maintained list from <code>github.com</code> and plays each channel from its broadcaster&rsquo;s own server, which sees your IP address like any web request.</li>
-<li><b>Apple.</b> The App Store, to show prices and handle purchases.</li>
+<li><b>Live Test Channel 1</b> &mdash; Unified Streaming live demo (with ad markers)</li>
+<li><b>Live Test Channel 2</b> &mdash; Unified Streaming live demo</li>
+<li><b>Apple HLS Sample</b>, <b>(TS)</b> and <b>16x9</b> &mdash; Apple&rsquo;s developer HLS examples</li>
+<li><b>Big Buck Bunny</b> &mdash; Blender Foundation (CC BY), via Mux test streams</li>
+<li><b>Tears of Steel</b> &mdash; Blender Foundation (CC BY), via Unified Streaming</li>
 </ul>
-
-<h2>4. Casting, the local network and the car</h2>
-<ul>
-<li><b>Local network.</b> To play on a Chromecast, Google TV or smart TV, Car.TV looks for those devices on your Wi-Fi and, when you cast a video saved on your device, serves it to the TV you picked. This stays on your local network.</li>
-<li><b>AirPlay and CarPlay</b> are provided by iOS. Car.TV hands the video or audio to the system; Apple&rsquo;s privacy policy applies.</li>
-<li><b>Show iPhone on car display.</b> Screen sharing uses Apple&rsquo;s system broadcast, which only you can start and which shows a red recording indicator while it runs. The picture goes from your iPhone straight to your car&rsquo;s CarPlay display. It is not recorded, saved or sent anywhere else, and the microphone is never used.</li>
-</ul>
-
-<h2>5. Permissions</h2>
-<p>Each permission is asked for only when you first use the feature that needs it, and you can change it at any time in Settings.</p>
-<ul>
-<li><b>Camera</b> &mdash; only to scan a playlist QR code. No image is stored.</li>
-<li><b>Photos</b> &mdash; only to play a video you choose from your library.</li>
-<li><b>Local network</b> &mdash; only to find and play on TVs, as described above.</li>
-</ul>
-
-<h2>6. iCloud sync</h2>
-<p>iCloud sync is off by default and is part of Car.TV Pro. If you turn it on, your library and progress sync through your own private iCloud database (Apple CloudKit), which belongs to your Apple Account. We cannot access it. Passwords are never synced.</p>
-
-<h2>7. Apple Watch, widgets and Siri</h2>
-<p>The Apple Watch app, widgets, Live Activities and Shortcuts read the same on-device data as the app and send it nowhere.</p>
-
-<h2>8. Purchases</h2>
-<p>Car.TV Pro is sold through the App Store. Apple handles the payment; we never receive your payment details or your Apple Account. The app only asks Apple whether a valid purchase exists.</p>
-
-<h2>9. Children</h2>
-<p>Car.TV is not directed at children and collects no data from anyone. The parental lock can hide adult categories.</p>
-
-<h2>10. Your rights</h2>
-<p>Laws such as the GDPR and CCPA give you the right to access, correct, export or delete the personal data a company holds about you. We hold none, so there is no record of you to produce or erase.</p>
-
-<h2>11. Deleting your data</h2>
-<p>Remove a source in Car.TV, use Settings &rsaquo; Reset all data, or delete the app, and that data is gone from the device. If you used iCloud sync, you can also manage Car.TV&rsquo;s data in your device&rsquo;s iCloud settings.</p>
-
-<h2>12. Changes</h2>
-<p>If this policy changes, we will post the new version here and update the effective date. If a change ever means Car.TV starts collecting something, we will say so plainly.</p>
-
-<h2>13. Contact</h2>
-<p>DeeplyAi &middot; <a href="mailto:info@deeplyai.app">info@deeplyai.app</a> &middot; <a href="https://deeplyai.app">deeplyai.app</a></p>
+<p class="meta">All streams checked on October 6, 2026. Car.TV does not provide, host or recommend any other content. <a href="./cartv-support.html">Support</a> &middot; <a href="./cartv-privacy.html">Privacy Policy</a></p>
 
 </main>
 <footer>
