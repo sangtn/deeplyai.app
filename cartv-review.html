@@ -54,7 +54,6 @@ a:hover{text-decoration:underline}
 .top .wrap{display:flex;align-items:center;gap:20px;min-height:66px;flex-wrap:wrap}
 .top .logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
 .top .logo img{height:28px;width:auto}
-@media (prefers-color-scheme:dark){.logo img{filter:invert(1) hue-rotate(180deg)}}
 .top nav{margin-left:auto;display:flex;gap:20px;font-size:15px;font-weight:500;align-items:center}
 .top nav a{color:var(--ink-soft)}
 .top nav a:hover{color:var(--ink);text-decoration:none}
@@ -101,7 +100,7 @@ footer .copy{color:var(--foot-line);font-size:12.5px;margin:0}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="./index.html"><img src="./assets/images/logo.svg" width="104" height="28" alt="DeeplyAi"></a>
+    <a class="logo" href="./index.html"><picture><source srcset="./assets/images/brand/logo-white.svg" media="(prefers-color-scheme: dark)"><img src="./assets/images/brand/logo-black.svg" width="129" height="28" alt="DeeplyAi"></picture></a>
     <nav aria-label="Car.TV">
       <a class="hide-s" href="./index.html">DeeplyAi</a>
       <a class="hide-s" href="./cartv-support.html">Support</a>
@@ -145,7 +144,7 @@ footer .copy{color:var(--foot-line);font-size:12.5px;margin:0}
 <footer>
   <div class="wrap">
     <div class="cols">
-      <a class="logo" href="./index.html"><img src="./assets/images/logo.svg" width="130" height="35" alt="DeeplyAi"></a>
+      <a class="logo" href="./index.html"><picture><source srcset="./assets/images/brand/logo-white.svg" media="(prefers-color-scheme: dark)"><img src="./assets/images/brand/logo-black.svg" width="161" height="35" alt="DeeplyAi"></picture></a>
       <nav aria-label="DeeplyAi">
         <a href="./about.html">About</a>
         <a href="./contact.html">Contact</a>
