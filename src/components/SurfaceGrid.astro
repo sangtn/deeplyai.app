@@ -10,7 +10,7 @@ const vi = lang === 'vi';
     const apps = surfaceApps(surface);
     return (
       <li class="reveal">
-        <a class="surface" href={`/platforms/${surface.slug}/`}>
+        <a class="surface" href={vi ? `/vi/apps/?surface=${surface.slug}` : `/platforms/${surface.slug}/`}>
           <span class="surface-count">{apps.length}</span>
           <h3>{vi ? surface.nameVi : surface.name}</h3>
           <p>{vi ? surface.lineVi : surface.line}</p>

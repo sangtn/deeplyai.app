@@ -89,7 +89,7 @@ const current = (href: string) => (path === href || ((href.endsWith('/apps/') ||
           </div>
           <div>
             <h2>{vi ? 'Ứng dụng' : 'Apps'}</h2>
-            <ul>{GROUP_SLUGS.map((g) => <li><a href={`/apps/${g}/`}>{vi ? GROUPS[g].nameVi : GROUPS[g].name}</a></li>)}</ul>
+            <ul>{GROUP_SLUGS.map((g) => <li><a href={vi ? `/vi/apps/?group=${g}` : `/apps/${g}/`}>{vi ? GROUPS[g].nameVi : GROUPS[g].name}</a></li>)}</ul>
           </div>
           <div>
             <h2>{vi ? 'Công ty' : 'Company'}</h2>
@@ -98,14 +98,14 @@ const current = (href: string) => (path === href || ((href.endsWith('/apps/') ||
           <div>
             <h2>{vi ? 'Hỗ trợ' : 'Support'}</h2>
             <ul>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
-              <li><a href="/terms.html">Terms of Service</a></li>
-              <li><a href="/cartv-support.html">Car.TV Support</a></li>
+              <li><a href="/privacy.html">{vi ? 'Chính sách riêng tư' : 'Privacy Policy'}</a></li>
+              <li><a href="/terms.html">{vi ? 'Điều khoản dịch vụ' : 'Terms of Service'}</a></li>
+              <li><a href="/cartv-support.html">{vi ? 'Hỗ trợ Car.TV' : 'Car.TV Support'}</a></li>
               <li><a href="mailto:info@deeplyai.app">info@deeplyai.app</a></li>
             </ul>
           </div>
         </div>
-        <div class="foot-base"><small>Copyright © {new Date().getFullYear()} DeeplyAi. All rights reserved. Apple, the Apple logo, iPhone, iPad, Mac, Apple Watch, Apple Vision, CarPlay, Siri, iCloud and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. DeeplyAi is not affiliated with Apple or Google.</small></div>
+        <div class="foot-base"><small>Copyright © {new Date().getFullYear()} DeeplyAi. {vi ? 'Đã đăng ký bản quyền. Apple, logo Apple, iPhone, iPad, Mac, Apple Watch, Apple Vision, CarPlay, Siri, iCloud và App Store là nhãn hiệu của Apple Inc. Google Play và logo Google Play là nhãn hiệu của Google LLC. DeeplyAi không liên kết với Apple hay Google.' : 'All rights reserved. Apple, the Apple logo, iPhone, iPad, Mac, Apple Watch, Apple Vision, CarPlay, Siri, iCloud and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. DeeplyAi is not affiliated with Apple or Google.'}</small></div>
       </div>
     </footer>
   </body>

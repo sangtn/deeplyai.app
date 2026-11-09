@@ -2,12 +2,50 @@
 import Base from '../../../../layouts/Base.astro';
 import StoreBadge from '../../../../components/StoreBadge.astro';
 import { byId, hasRating } from '../../../../data/catalog';
+import { surfacesOf } from '../../../../data/surfaces';
 
 const app = byId.get(6749473194)!;
 const site = 'https://deeplyai.app';
 const path = '/vi/apps/lich-van-nien/';
 const showRating = hasRating(app);
-const description = 'Lịch Vạn Niên là ứng dụng lịch âm Việt Nam cho iPhone, iPad, Apple Watch và CarPlay, có giờ Hoàng Đạo, sự kiện âm lịch và kinh Phật.';
+const surfaces = surfacesOf(app);
+const description = 'Lịch Vạn Niên: lịch âm Việt Nam, xem ngày tốt, giờ Hoàng Đạo, la bàn phong thủy, kinh Phật và widget cho iPhone, iPad, Apple Watch, CarPlay.';
+const updated = new Date(app.updated).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const highlights = [
+  ['Âm lịch & Dương lịch', 'Chuyển đổi nhanh giữa ngày âm và ngày dương, xem lịch liền mạch theo tháng và năm, có đánh dấu ngày lễ và sự kiện.'],
+  ['Tìm ngày tốt', 'Cưới hỏi, khai trương, động thổ, xuất hành, nhập trạch: mỗi ngày được chấm điểm theo Hoàng Đạo, 12 Trực và 28 Sao, lọc theo tuổi của bạn.'],
+  ['Sự kiện âm lịch', 'Tạo và phân loại đám cưới, ngày giỗ, kỷ niệm theo giờ, ngày, tháng, năm âm lịch, có hỗ trợ tháng nhuận.'],
+  ['Nhắc ngày quan trọng', 'Nhắc mùng 1, ngày rằm, ngày chay và các lễ lớn. Vòng đếm ngược cho 3 ngày lễ sắp tới, có thể ghim và sắp xếp lại.'],
+];
+
+const sections = [
+  { title: 'Phong thủy và tâm linh', items: [
+    '**La bàn phong thủy** tự xoay theo hướng điện thoại, giúp xác định hướng nhà, cửa và bếp.',
+    'Gợi ý hướng xây dựng, màu sắc, con số và tuổi hợp theo năm sinh.',
+    '**Thần số học** giải mã các con số của cuộc đời.',
+    '**Trình phát kinh Phật** với thư viện được chọn lọc, giúp tâm an và thực hành chánh niệm.',
+    'Widget **lời Thiền mỗi ngày** ngay trên Màn hình chính.',
+  ] },
+  { title: 'Tiện ích hằng ngày', items: [
+    '**Dự báo thời tiết** theo vị trí: nhiệt độ, độ ẩm, gió, chỉ số UV, chất lượng không khí, dự báo 7 ngày và cảnh báo thời tiết cực đoan.',
+    '**Thẻ thị trường:** VN-Index, USD, vàng SJC và bạc.',
+    '**Ghi chú và nhật ký:** danh sách việc, ảnh, tâm trạng, “ngày này năm xưa” và khóa Face ID.',
+    '**Sổ thu chi** theo danh mục, tổng kết tháng và xuất CSV.',
+    '**Lịch thai kỳ và tiêm chủng** có nhắc nhở.',
+    '**Đếm ngày** giữa hai mốc, kể cả khi một mốc là âm lịch và mốc kia là dương lịch.',
+  ] },
+  { title: 'Luôn ở trong tầm mắt', items: [
+    '**Widget** Màn hình chính và Màn hình khóa, tự thiết kế để hiện ngày âm, giờ tốt và thông tin phong thủy.',
+    '**Live Activity** đếm ngược trên Dynamic Island.',
+    '**Apple Watch:** ngày tốt và tiết khí ngay trên cổ tay.',
+    '**CarPlay** và **Siri & Phím tắt**.',
+    '**Đồng bộ iCloud** (Premium) cho sự kiện, ghi chú, nhật ký, chi tiêu và ngày lễ đã ghim.',
+    'Tự đặt và đổi **ảnh nền** theo ý thích.',
+  ] },
+];
+const bold = (text: string) => text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -37,18 +75,18 @@ const jsonLd = [
   },
 ];
 ---
-<Base lang="vi" path={path} alternates={{ en: '/apps/lich-van-nien/', vi: path }} jsonLd={jsonLd} title="Lịch Vạn Niên – Ứng dụng lịch âm Việt Nam | DeeplyAi" description={description}>
+<Base lang="vi" path={path} alternates={{ en: '/apps/lich-van-nien/', vi: path }} jsonLd={jsonLd} title="Lịch Vạn Niên – Lịch âm, xem ngày tốt | DeeplyAi" description={description}>
   <div class="wrap">
     <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/apps/">Ứng dụng</a><span>/</span><span>Lịch Vạn Niên</span></nav>
     <header class="app-hero">
       <img src={app.iconLarge} width="176" height="176" alt="Biểu tượng ứng dụng Lịch Vạn Niên" />
       <div>
         <h1>Lịch Vạn Niên</h1>
-        <p class="lead">Lịch âm Việt Nam đồng bộ trên mọi thiết bị Apple của bạn.</p>
+        <p class="lead">Lịch âm Việt Nam đồng hành cùng gia đình bạn, từ ngày rằm, ngày giỗ đến những dịp trọng đại.</p>
         <p class="app-meta">
-          {showRating && <span>{app.rating.toFixed(1)}/5 từ {app.ratingCount} đánh giá</span>}
+          {showRating && <span>{app.rating.toFixed(1).replace('.', ',')}/5 từ {app.ratingCount} đánh giá</span>}
           <span>Yêu cầu iOS {app.minimumOs} trở lên</span>
-          <span>Phiên bản {app.version}</span>
+          <span>Phiên bản {app.version}, cập nhật {updated}</span>
         </p>
         <div class="actions"><StoreBadge href={app.url} lang="vi" /></div>
       </div>
@@ -57,18 +95,32 @@ const jsonLd = [
   <div class="shots" tabindex="0" role="group" aria-label="Ảnh chụp màn hình Lịch Vạn Niên">
     {app.screenshots.map((src, i) => <img src={src} width="392" height="850" alt={`Ảnh chụp màn hình Lịch Vạn Niên ${i + 1}`} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
   </div>
-  <div class="wrap section" style="padding-top:48px">
-    <article class="prose">
-      <h2>Xem ngày âm ở bất cứ đâu</h2>
-      <p>Lịch Vạn Niên chuyển đổi chính xác giữa lịch âm Việt Nam và lịch dương, hoạt động mượt mà trên iPhone, iPad, Apple Watch và CarPlay.</p>
-      <h2>Dành cho những ngày quan trọng của gia đình</h2>
-      <ul>
-        <li>Xem giờ và ngày <strong>Hoàng Đạo</strong>, tránh <strong>Hắc Đạo</strong> khi chọn thời điểm cho việc lớn.</li>
-        <li>Lên kế hoạch cưới hỏi, giỗ chạp và các dịp kỷ niệm với giờ, ngày, tháng, năm âm lịch, được phân loại rõ ràng.</li>
-        <li>Đếm số ngày giữa hai mốc thời gian, kể cả khi một mốc là ngày âm và mốc kia là ngày dương.</li>
-      </ul>
-      <h2>Khoảnh khắc tĩnh tại</h2>
-      <p>Trình phát âm thanh tích hợp có thư viện kinh Phật được chọn lọc, giúp bạn thư thái và thực hành chánh niệm.</p>
-    </article>
+  <div class="wrap" style="padding-top:32px">
+    <h2 class="surface-label">Có trên</h2>
+    <ul class="chips">{surfaces.map((s) => <li><a href={`/vi/apps/?surface=${s.slug}`}>{s.nameVi}</a></li>)}</ul>
   </div>
+  <div class="wrap section" style="padding-top:64px">
+    <h2 class="h-lg" style="margin-bottom:32px;max-width:14em">Mọi điều bạn cần để xem ngày.</h2>
+    <div class="steps">
+      {highlights.map(([name, text]) => <div class="step reveal"><b>{name}</b><p>{text}</p></div>)}
+    </div>
+    <div class="split" style="margin-top:48px">
+      <h2 class="h-lg">Nhiều hơn một cuốn lịch.</h2>
+      <article class="prose">
+        {sections.map((section) => (
+          <Fragment>
+            <h3>{section.title}</h3>
+            <ul>{section.items.map((item) => <li set:html={bold(item)} />)}</ul>
+          </Fragment>
+        ))}
+        <p class="note">Các thông tin về ngày giờ, phong thủy và thần số học trong ứng dụng chỉ mang tính tham khảo. Một số tính năng cần gói Premium.</p>
+      </article>
+    </div>
+  </div>
+  <section class="band section">
+    <div class="wrap band-in">
+      <h2 class="h-lg" style="max-width:11em">Mang lịch Việt theo bên mình.</h2>
+      <StoreBadge href={app.url} lang="vi" />
+    </div>
+  </section>
 </Base>

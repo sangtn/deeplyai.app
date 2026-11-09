@@ -24,6 +24,8 @@ const stories = [
   { id: 6762106958, slug: 'wristnet', kicker: 'Apple Watch', title: vi ? 'Nghe web ngay trên cổ tay.' : 'The web, read aloud on your wrist.', body: vi ? 'WristNet đọc bài viết thành tiếng và phát video ngoại tuyến trên Apple Watch.' : 'WristNet turns articles into clean spoken audio and plays your videos offline on Apple Watch.' },
 ].map((s) => ({ ...s, shot: byId.get(s.id)?.screenshots[0] ?? '' }));
 
+const lich = byId.get(6749473194);
+
 const steps = vi
   ? [['Khám phá', 'Tìm hiểu nhu cầu thật qua nghiên cứu kỹ lưỡng trước khi chọn giải pháp.'], ['Phát triển', 'Thiết kế và xây dựng sản phẩm đẹp, dễ dùng, phù hợp với tầm nhìn.'], ['Ra mắt', 'Phát hành suôn sẻ và tiếp tục hỗ trợ, cải tiến sau khi ra mắt.']]
   : [['Discovery', 'We start with in-depth research into the real need before choosing a solution.'], ['Development', 'We design and build products that are visually appealing and easy to use.'], ['Launch', 'We ship carefully, then keep supporting and improving what we released.']];
@@ -63,6 +65,20 @@ const jsonLd = {
     </div>
   </section>
 
+  {vi && lich && (
+    <section class="lich" aria-labelledby="lich-title">
+      <div class="wrap lich-in">
+        <img src={lich.iconLarge} width="140" height="140" alt="" loading="lazy" decoding="async" />
+        <div>
+          <p class="eyebrow">Dành cho người Việt</p>
+          <h2 id="lich-title" class="h-lg">Lịch Vạn Niên</h2>
+          <p class="lead">Lịch âm, xem ngày tốt, giờ Hoàng Đạo, la bàn phong thủy và kinh Phật, trên iPhone, iPad, Apple Watch và CarPlay.</p>
+          <div class="actions"><a class="btn" href="/vi/apps/lich-van-nien/">Khám phá ứng dụng</a><StoreBadge href={lich.url} lang="vi" /></div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="section wrap" aria-labelledby="index-title">
     <div class="index-head">
       <h2 id="index-title" class="h-lg reveal">{vi ? 'Sáu kệ. Mỗi ứng dụng một việc.' : 'Six shelves. Each app does a job.'}</h2>
@@ -71,7 +87,7 @@ const jsonLd = {
     <ul>
       {GROUP_SLUGS.map((g, i) => (
         <li class="index-row reveal">
-          <a href={`/apps/${g}/`}>
+          <a href={vi ? `/vi/apps/?group=${g}` : `/apps/${g}/`}>
             <span class="index-num">{String(i + 1).padStart(2, '0')}</span>
             <span class="index-name">{vi ? GROUPS[g].nameVi : GROUPS[g].name}</span>
             <span class="index-blurb">{vi ? GROUPS[g].blurbVi : GROUPS[g].blurb}</span>
@@ -122,7 +138,7 @@ const jsonLd = {
         const app = byId.get(entry.data.id)!;
         return (
           <a class="spec reveal" href={`/apps/${entry.id}/`}>
-            <span class="spec-top"><img class="icon" src={app.icon} width="64" height="64" alt="" loading="lazy" style={`view-transition-name:app-${app.id}`} /><span>No. {String(i + 1).padStart(2, '0')}</span></span>
+            <span class="spec-top"><img class="icon" src={app.icon} width="64" height="64" alt="" loading="lazy" style={`view-transition-name:app-${app.id}`} /><span>{vi ? 'Số' : 'No.'} {String(i + 1).padStart(2, '0')}</span></span>
             <h3>{entry.data.name}</h3>
             <p>{vi ? entry.data.taglineVi : entry.data.tagline}</p>
             <span class="shot"><img src={app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
@@ -137,6 +153,16 @@ const jsonLd = {
     <h2 id="how-title" class="h-lg reveal" style="margin-bottom:48px">{vi ? 'Cách chúng tôi làm.' : 'How we work.'}</h2>
     <div class="steps">
       {steps.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="quote-wrap" aria-labelledby="quote-title">
+    <div class="wrap">
+      <h2 id="quote-title" class="eyebrow">{vi ? 'Người dùng nói gì' : 'From our users'}</h2>
+      <blockquote class="quote reveal">
+        <p lang="en">I wonder who kinder created this app!! I really like this app. Thank for your useful app, hope it no any updates of change( pay when remove) 🥰🫶🏻</p>
+        <footer>Mark Rob</footer>
+      </blockquote>
     </div>
   </section>
 

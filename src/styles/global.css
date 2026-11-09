@@ -247,6 +247,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 .gp { width: auto; height: 76px; margin: auto 0 -10px -12px; }
 .fine { margin-top: 24px; color: var(--on-night-2); font-size: 14px; }
 
+/* Vietnamese lunar calendar spotlight */
+.lich { padding-block: clamp(56px, 7vw, 96px); background: var(--paper-2); }
+.lich-in { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.lich img { width: clamp(96px, 12vw, 140px); height: auto; border-radius: 22.5%; }
+.lich h2 { margin: 8px 0 12px; }
+.lich .actions { align-items: center; margin-top: 22px; }
+.lich .store-badge img { height: 52px; border-radius: 0; width: auto; }
+@media (max-width: 620px) { .lich-in { grid-template-columns: 1fr; } }
+
+/* Testimonial */
+.quote-wrap { padding-bottom: clamp(72px, 10vw, 140px); }
+.quote { max-width: 26em; margin: 16px 0 0; font-family: var(--display); font-size: clamp(26px, 3.4vw, 46px); font-weight: 600; line-height: 1.18; letter-spacing: -.02em; }
+.quote footer { margin-top: 20px; color: var(--ink-2); font-family: var(--body); font-size: 16px; font-weight: 600; letter-spacing: 0; }
+
+.surface-filter { padding-block: 8px; font-weight: 600; }
+.surface-filter a { margin-left: 8px; color: var(--signal); font-weight: 400; }
+
 /* Motion layered on content that is already visible without it. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {

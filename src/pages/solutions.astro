@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-const areas = ['Search engine optimization', 'Social media', 'eCommerce solutions', 'Pay per click', 'Branding strategy', 'Marketing copywriting'];
 const flow = [['Consultation', 'We begin with a comprehensive consultation to understand your business and objectives.'], ['Strategy and planning', 'Based on that discovery, we develop a tailored AI strategy and implementation plan.'], ['Integration', 'We integrate the AI models into your existing systems and workflows.']];
 const audience = ['Developers', 'Agencies', 'Businesses', 'Designers', 'eCommerce', 'Freelancers', 'People managers'];
 ---
@@ -14,10 +13,6 @@ const audience = ['Developers', 'Agencies', 'Businesses', 'Designers', 'eCommerc
     <section class="section split" style="padding-top:32px">
       <h2 class="h-lg">How it works</h2>
       <div class="steps" style="grid-template-columns:1fr">{flow.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}</div>
-    </section>
-    <section class="section split" style="padding-top:0">
-      <h2 class="h-lg">Where we help</h2>
-      <div class="prose"><ul>{areas.map((a) => <li>{a}</li>)}</ul></div>
     </section>
     <section class="section split" style="padding-top:0">
       <h2 class="h-lg">Who it is for</h2>
