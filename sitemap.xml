@@ -5,6 +5,8 @@
   <url><loc>https://deeplyai.app/vi/apps/</loc></url>
   <url><loc>https://deeplyai.app/vi/apps/lich-van-nien/</loc></url>
   <url><loc>https://deeplyai.app/apps/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/</loc></url>
+  <url><loc>https://deeplyai.app/vi/platforms/</loc></url>
   <url><loc>https://deeplyai.app/about.html</loc></url>
   <url><loc>https://deeplyai.app/services.html</loc></url>
   <url><loc>https://deeplyai.app/solutions.html</loc></url>
@@ -20,41 +22,38 @@
   <url><loc>https://deeplyai.app/apps/work-planning/</loc></url>
   <url><loc>https://deeplyai.app/apps/create-make/</loc></url>
   <url><loc>https://deeplyai.app/apps/life-travel/</loc></url>
-  <url><loc>https://deeplyai.app/apps/carwidget/</loc></url>
-  <url><loc>https://deeplyai.app/apps/drive-weather/</loc></url>
-  <url><loc>https://deeplyai.app/apps/evpeek/</loc></url>
-  <url><loc>https://deeplyai.app/apps/roadcam/</loc></url>
-  <url><loc>https://deeplyai.app/apps/car-play-connect/</loc></url>
-  <url><loc>https://deeplyai.app/apps/lich-van-nien/</loc></url>
-  <url><loc>https://deeplyai.app/apps/fuel-finder/</loc></url>
-  <url><loc>https://deeplyai.app/apps/sky-map/</loc></url>
-  <url><loc>https://deeplyai.app/apps/truck-gps/</loc></url>
-  <url><loc>https://deeplyai.app/apps/weather-widgets/</loc></url>
-  <url><loc>https://deeplyai.app/apps/wristnet/</loc></url>
   <url><loc>https://deeplyai.app/apps/ai-contract-maker/</loc></url>
   <url><loc>https://deeplyai.app/apps/artbox/</loc></url>
   <url><loc>https://deeplyai.app/apps/aviation-weather/</loc></url>
   <url><loc>https://deeplyai.app/apps/boating-navigation/</loc></url>
-  <url><loc>https://deeplyai.app/apps/car-manager/</loc></url>
   <url><loc>https://deeplyai.app/apps/buildwise/</loc></url>
+  <url><loc>https://deeplyai.app/apps/car-manager/</loc></url>
   <url><loc>https://deeplyai.app/apps/car-paint-studio/</loc></url>
+  <url><loc>https://deeplyai.app/apps/car-play-connect/</loc></url>
+  <url><loc>https://deeplyai.app/apps/carwidget/</loc></url>
   <url><loc>https://deeplyai.app/apps/chory/</loc></url>
+  <url><loc>https://deeplyai.app/apps/dayli/</loc></url>
   <url><loc>https://deeplyai.app/apps/days/</loc></url>
   <url><loc>https://deeplyai.app/apps/dately/</loc></url>
-  <url><loc>https://deeplyai.app/apps/dayli/</loc></url>
+  <url><loc>https://deeplyai.app/apps/drive-weather/</loc></url>
+  <url><loc>https://deeplyai.app/apps/evpeek/</loc></url>
   <url><loc>https://deeplyai.app/apps/gapmeter/</loc></url>
   <url><loc>https://deeplyai.app/apps/gardenio/</loc></url>
+  <url><loc>https://deeplyai.app/apps/fuel-finder/</loc></url>
   <url><loc>https://deeplyai.app/apps/headphones-connect/</loc></url>
   <url><loc>https://deeplyai.app/apps/home-maintenance/</loc></url>
   <url><loc>https://deeplyai.app/apps/hours-tracker/</loc></url>
   <url><loc>https://deeplyai.app/apps/hueva/</loc></url>
   <url><loc>https://deeplyai.app/apps/hueza/</loc></url>
   <url><loc>https://deeplyai.app/apps/kerve/</loc></url>
-  <url><loc>https://deeplyai.app/apps/rv-camping-planner/</loc></url>
+  <url><loc>https://deeplyai.app/apps/lich-van-nien/</loc></url>
   <url><loc>https://deeplyai.app/apps/loc-saver/</loc></url>
+  <url><loc>https://deeplyai.app/apps/roadcam/</loc></url>
+  <url><loc>https://deeplyai.app/apps/rv-camping-planner/</loc></url>
   <url><loc>https://deeplyai.app/apps/satellite-tracker/</loc></url>
   <url><loc>https://deeplyai.app/apps/sendra/</loc></url>
   <url><loc>https://deeplyai.app/apps/sewingtut/</loc></url>
+  <url><loc>https://deeplyai.app/apps/sky-map/</loc></url>
   <url><loc>https://deeplyai.app/apps/solara/</loc></url>
   <url><loc>https://deeplyai.app/apps/sportventure/</loc></url>
   <url><loc>https://deeplyai.app/apps/stayy/</loc></url>
@@ -65,10 +64,24 @@
   <url><loc>https://deeplyai.app/apps/text-export/</loc></url>
   <url><loc>https://deeplyai.app/apps/tourly/</loc></url>
   <url><loc>https://deeplyai.app/apps/travel-spend/</loc></url>
+  <url><loc>https://deeplyai.app/apps/truck-gps/</loc></url>
   <url><loc>https://deeplyai.app/apps/vibe-reset/</loc></url>
+  <url><loc>https://deeplyai.app/apps/weather-widgets/</loc></url>
   <url><loc>https://deeplyai.app/apps/whocall/</loc></url>
   <url><loc>https://deeplyai.app/apps/windglance/</loc></url>
+  <url><loc>https://deeplyai.app/apps/wristnet/</loc></url>
   <url><loc>https://deeplyai.app/apps/wristview/</loc></url>
   <url><loc>https://deeplyai.app/apps/yarnflow/</loc></url>
   <url><loc>https://deeplyai.app/apps/zenblock/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/iphone/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/ipad/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/apple-watch/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/carplay/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/mac/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/apple-vision/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/widgets/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/live-activities/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/standby/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/siri-shortcuts/</loc></url>
+  <url><loc>https://deeplyai.app/platforms/icloud/</loc></url>
 </urlset>
