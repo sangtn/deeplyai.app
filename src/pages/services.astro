@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+const services = [
+  ['Developing AI applications', 'We combine technical knowledge with creative thinking to turn an idea into a working AI-powered product.'],
+  ['Strategic AI advisory', 'We help you decide where AI can improve efficiency and growth, and where it will not.'],
+  ['Bespoke AI solutions', 'We partner with you to understand your challenges and craft custom solutions that fit your specific needs.'],
+  ['Mobile apps for Apple platforms', 'iPhone, iPad, Apple Watch, CarPlay, widgets and Live Activities, drawing on our own catalogue of released apps.'],
+];
+const process = [['Discovery', 'Understand the need through in-depth research so the solution fits.'], ['Development', 'Craft visually appealing, user-friendly designs and build them.'], ['Launch', 'Launch smoothly and provide post-launch support.']];
+---
+<Base path="/services.html" title="AI & App Development Services – DeeplyAi" description="DeeplyAi develops custom AI solutions and mobile apps, from early strategy and design through launch and ongoing support.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Services</p>
+      <h1 class="display">Custom AI, built to your needs.</h1>
+      <p class="lead">Whether you are a startup or a large enterprise, we develop AI solutions designed around your specific business needs.</p>
+    </header>
+    <section class="section" style="padding-top:32px" aria-label="What we offer">
+      <div class="steps">{services.map(([name, text]) => <div class="step reveal"><b>{name}</b><p>{text}</p></div>)}</div>
+    </section>
+    <section class="section split" style="padding-top:0">
+      <h2 class="h-lg">Our approach</h2>
+      <div class="steps" style="grid-template-columns:1fr">{process.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}</div>
+    </section>
+  </div>
+  <section class="band section"><div class="wrap band-in"><h2 class="h-lg" style="max-width:11em">Have a project in mind?</h2><a class="btn" href="/contact.html">Send a message</a></div></section>
+</Base>

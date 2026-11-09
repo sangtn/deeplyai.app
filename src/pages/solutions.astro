@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+const areas = ['Search engine optimization', 'Social media', 'eCommerce solutions', 'Pay per click', 'Branding strategy', 'Marketing copywriting'];
+const flow = [['Consultation', 'We begin with a comprehensive consultation to understand your business and objectives.'], ['Strategy and planning', 'Based on that discovery, we develop a tailored AI strategy and implementation plan.'], ['Integration', 'We integrate the AI models into your existing systems and workflows.']];
+const audience = ['Developers', 'Agencies', 'Businesses', 'Designers', 'eCommerce', 'Freelancers', 'People managers'];
+---
+<Base path="/solutions.html" title="AI Solutions for Business – DeeplyAi" description="Custom AI solutions from DeeplyAi: consultation, strategy, planning and integration with your existing systems and workflows.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Solutions</p>
+      <h1 class="display">AI that fits how you already work.</h1>
+      <p class="lead">We develop custom AI solutions designed to meet your specific business needs and improve your operations.</p>
+    </header>
+    <section class="section split" style="padding-top:32px">
+      <h2 class="h-lg">How it works</h2>
+      <div class="steps" style="grid-template-columns:1fr">{flow.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}</div>
+    </section>
+    <section class="section split" style="padding-top:0">
+      <h2 class="h-lg">Where we help</h2>
+      <div class="prose"><ul>{areas.map((a) => <li>{a}</li>)}</ul></div>
+    </section>
+    <section class="section split" style="padding-top:0">
+      <h2 class="h-lg">Who it is for</h2>
+      <div class="prose"><ul>{audience.map((a) => <li>{a}</li>)}</ul></div>
+    </section>
+  </div>
+  <section class="band section"><div class="wrap band-in"><h2 class="h-lg" style="max-width:11em">Tell us what you need.</h2><a class="btn" href="/contact.html">Get in touch</a></div></section>
+</Base>

@@ -1,0 +1,16 @@
+{
+  "name": "deeplyai-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "apps:refresh": "node scripts/fetch-apps.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/be-vietnam-pro": "^5.3.0",
+    "astro": "^5.18.2"
+  }
+}

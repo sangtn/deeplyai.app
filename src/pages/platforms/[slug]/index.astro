@@ -1,0 +1,39 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AppCard from '../../../components/AppCard.astro';
+import StoreBadge from '../../../components/StoreBadge.astro';
+import { SURFACES, surfaceApps, type Surface } from '../../../data/surfaces';
+
+export function getStaticPaths() {
+  return SURFACES.map((surface) => ({ params: { slug: surface.slug }, props: { surface } }));
+}
+
+interface Props { surface: Surface }
+const { surface } = Astro.props;
+const apps = surfaceApps(surface);
+const site = 'https://deeplyai.app';
+const path = `/platforms/${surface.slug}/`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+    { '@type': 'ListItem', position: 2, name: 'Platforms', item: `${site}/platforms/` },
+    { '@type': 'ListItem', position: 3, name: surface.name, item: `${site}${path}` },
+  ],
+};
+---
+<Base path={path} title={surface.title} description={surface.description} jsonLd={jsonLd}>
+  <div class="wrap" style="padding-bottom:96px">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/platforms/">Platforms</a><span>/</span><span>{surface.name}</span></nav>
+    <header class="page-head" style="padding-top:40px">
+      <p class="eyebrow">{apps.length} apps</p>
+      <h1 class="display">{surface.name}</h1>
+      <p class="lead">{surface.intro}</p>
+      <p class="lead" style="margin-top:12px">{surface.detail}</p>
+      {surface.note && <p class="note" style="margin-top:20px;max-width:36em">{surface.note}</p>}
+      <div class="actions" style="margin-top:24px"><StoreBadge /></div>
+    </header>
+    <ul class="app-grid">{apps.map((app) => <li><AppCard app={app} /></li>)}</ul>
+  </div>
+</Base>

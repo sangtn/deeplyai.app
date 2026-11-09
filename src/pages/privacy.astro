@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import body from '../content/legal/privacy.html?raw';
+---
+<Base path="/privacy.html" title="Privacy Policy – DeeplyAi" description="How DeeplyAi collects, uses and protects your data across our apps, and the rights and choices you have.">
+  <div class="wrap section" style="padding-top:64px">
+    <h1 class="h-lg" style="margin-bottom:40px">Privacy Policy</h1>
+    <article class="prose" set:html={body} />
+  </div>
+</Base>

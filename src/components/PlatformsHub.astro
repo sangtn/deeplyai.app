@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import SurfaceGrid from './SurfaceGrid.astro';
+import Roadmap from './Roadmap.astro';
+import StoreBadge from './StoreBadge.astro';
+import { APPS } from '../data/catalog';
+
+interface Props { lang: 'en' | 'vi' }
+const { lang } = Astro.props;
+const vi = lang === 'vi';
+const path = vi ? '/vi/platforms/' : '/platforms/';
+const site = 'https://deeplyai.app';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: vi ? 'Trang chủ' : 'Home', item: `${site}${vi ? '/vi/' : '/'}` },
+    { '@type': 'ListItem', position: 2, name: vi ? 'Nền tảng' : 'Platforms', item: `${site}${path}` },
+  ],
+};
+---
+<Base
+  lang={lang}
+  path={path}
+  alternates={{ en: '/platforms/', vi: '/vi/platforms/' }}
+  jsonLd={jsonLd}
+  title={vi ? 'Nền tảng – Ứng dụng DeeplyAi trên hệ sinh thái Apple' : 'Platforms – DeeplyAi Across the Apple Ecosystem'}
+  description={vi ? `${APPS.length} ứng dụng DeeplyAi trên iPhone, iPad, Apple Watch, CarPlay, Mac và Apple Vision, cùng widget, Live Activities, Siri và iCloud.` : `${APPS.length} DeeplyAi apps across iPhone, iPad, Apple Watch, CarPlay, Mac and Apple Vision, with widgets, Live Activities, Siri and iCloud.`}
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{vi ? 'Nền tảng' : 'Platforms'}</p>
+      <h1 class="display">{vi ? 'Một danh mục. Mọi màn hình Apple.' : 'One catalogue. Every Apple screen.'}</h1>
+      <p class="lead">{vi ? 'Từ cổ tay đến bảng điều khiển xe, đây là nơi các ứng dụng của chúng tôi xuất hiện. Số liệu lấy từ thông tin trên App Store.' : 'From your wrist to your dashboard, this is where our apps show up. Availability comes from each app’s App Store listing.'}</p>
+      <div class="actions" style="margin-top:24px"><StoreBadge lang={lang} /></div>
+    </header>
+    <section aria-labelledby="devices-title" style="padding-bottom:72px">
+      <h2 id="devices-title" class="h-lg" style="margin-bottom:28px">{vi ? 'Thiết bị' : 'Devices'}</h2>
+      <SurfaceGrid kind="device" lang={lang} />
+    </section>
+    <section aria-labelledby="exp-title" style="padding-bottom:96px">
+      <h2 id="exp-title" class="h-lg" style="margin-bottom:28px">{vi ? 'Trải nghiệm hệ thống' : 'System experiences'}</h2>
+      <SurfaceGrid kind="experience" lang={lang} />
+    </section>
+  </div>
+  <Roadmap lang={lang} />
+</Base>

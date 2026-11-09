@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { APPS, GROUPS, GROUP_SLUGS, inGroup } from '../data/catalog';
+---
+<Base path="/about.html" title="About DeeplyAi – The Studio Behind 50+ iOS Apps" description={`DeeplyAi is the studio behind ${APPS.length} apps on the App Store for iPhone, iPad, Apple Watch and CarPlay.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">About</p>
+      <h1 class="display">We have a passion for useful software.</h1>
+      <p class="lead">We build products that are powerful and super easy to use for everyone.</p>
+    </header>
+    <section class="section split" style="padding-top:32px">
+      <h2 class="h-lg">What we make</h2>
+      <div class="prose">
+        <p>DeeplyAi publishes {APPS.length} apps on the App Store, designed for iPhone, iPad, Apple Watch and CarPlay. Some help drivers, pilots and boaters get where they are going. Others live quietly on a Home Screen or Lock Screen, or help someone plan a day, a garden or a family occasion on the Vietnamese lunar calendar.</p>
+        <p>Where it fits the problem, we use AI and on-device processing. Several of our apps run their core features entirely on the phone, so people’s data stays with them.</p>
+        <h3>Our shelves</h3>
+        <ul>{GROUP_SLUGS.map((g) => <li><a href={`/apps/${g}/`}>{GROUPS[g].name}</a> ({inGroup(g).length} apps): {GROUPS[g].blurb}</li>)}</ul>
+        <h3>Where to find us</h3>
+        <p>DeeplyAi is based in Mai Dich, Ha Noi, Vietnam. You can reach us at <a href="mailto:info@deeplyai.app">info@deeplyai.app</a>.</p>
+      </div>
+    </section>
+  </div>
+  <section class="band section"><div class="wrap band-in"><h2 class="h-lg" style="max-width:11em">See everything we have built.</h2><a class="btn" href="/apps/">Browse all apps</a></div></section>
+</Base>

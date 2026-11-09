@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import displayFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import { GROUPS, GROUP_SLUGS, APPS } from '../data/catalog';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  lang?: 'en' | 'vi';
+  alternates?: { en: string; vi: string };
+  ogImage?: string;
+  jsonLd?: object | object[];
+}
+
+const { title, description, path, lang = 'en', alternates, ogImage = '/assets/images/og-default.jpg', jsonLd } = Astro.props;
+const site = 'https://deeplyai.app';
+const canonical = new URL(path, site).href;
+const image = new URL(ogImage, site).href;
+const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const vi = lang === 'vi';
+const links = [
+  { href: vi ? '/vi/apps/' : '/apps/', label: vi ? 'Ứng dụng' : 'Apps' },
+  { href: vi ? '/vi/platforms/' : '/platforms/', label: vi ? 'Nền tảng' : 'Platforms' },
+  { href: '/services.html', label: vi ? 'Dịch vụ' : 'Services' },
+  { href: '/solutions.html', label: vi ? 'Giải pháp' : 'Solutions' },
+  { href: '/about.html', label: vi ? 'Giới thiệu' : 'About' },
+  { href: '/contact.html', label: vi ? 'Liên hệ' : 'Contact' },
+];
+const switcher = alternates ? (vi ? { href: alternates.en, label: 'EN' } : { href: alternates.vi, label: 'VI' }) : null;
+const home = vi ? '/vi/' : '/';
+const current = (href: string) => (path === href || ((href.endsWith('/apps/') || href.endsWith('/platforms/')) && path.startsWith(href)) ? 'page' : undefined);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates && (
+      <Fragment>
+        <link rel="alternate" hreflang="en" href={new URL(alternates.en, site).href} />
+        <link rel="alternate" hreflang="vi" href={new URL(alternates.vi, site).href} />
+        <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, site).href} />
+      </Fragment>
+    )}
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="theme-color" content="#f3efe6" />
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DeeplyAi" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#main">{vi ? 'Đến nội dung chính' : 'Skip to content'}</a>
+    <header class="head">
+      <div class="wrap head-in">
+        <a class="logo" href={home} aria-label="DeeplyAi"><img src="/assets/images/brand/logo-black.svg" width="132" height="29" alt="DeeplyAi" /></a>
+        <nav class="nav" aria-label={vi ? 'Điều hướng chính' : 'Primary'}>
+          {links.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
+          {switcher && <a href={switcher.href} hreflang={vi ? 'en' : 'vi'}>{switcher.label}</a>}
+        </nav>
+        <details class="menu">
+          <summary>{vi ? 'Menu' : 'Menu'}</summary>
+          <nav aria-label={vi ? 'Điều hướng di động' : 'Mobile'}>
+            {links.map((l) => <a href={l.href}>{l.label}</a>)}
+            {switcher && <a href={switcher.href} hreflang={vi ? 'en' : 'vi'}>{switcher.label}</a>}
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <img src="/assets/images/brand/logo-white.svg" width="150" height="33" alt="DeeplyAi" loading="lazy" />
+            <p>{vi ? `${APPS.length} ứng dụng cho iPhone, iPad, Apple Watch và CarPlay.` : `${APPS.length} apps for iPhone, iPad, Apple Watch and CarPlay.`}</p>
+          </div>
+          <div>
+            <h2>{vi ? 'Ứng dụng' : 'Apps'}</h2>
+            <ul>{GROUP_SLUGS.map((g) => <li><a href={`/apps/${g}/`}>{vi ? GROUPS[g].nameVi : GROUPS[g].name}</a></li>)}</ul>
+          </div>
+          <div>
+            <h2>{vi ? 'Công ty' : 'Company'}</h2>
+            <ul>{links.slice(1).map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+          </div>
+          <div>
+            <h2>{vi ? 'Hỗ trợ' : 'Support'}</h2>
+            <ul>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/terms.html">Terms of Service</a></li>
+              <li><a href="/cartv-support.html">Car.TV Support</a></li>
+              <li><a href="mailto:info@deeplyai.app">info@deeplyai.app</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-base"><small>Copyright © {new Date().getFullYear()} DeeplyAi. All rights reserved. Apple, the Apple logo, iPhone, iPad, Mac, Apple Watch, Apple Vision, CarPlay, Siri, iCloud and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. DeeplyAi is not affiliated with Apple or Google.</small></div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import AppCard from './AppCard.astro';
+import StoreBadge from './StoreBadge.astro';
+import { APPS, GROUPS, GROUP_SLUGS } from '../data/catalog';
+
+interface Props { lang: 'en' | 'vi' }
+const { lang } = Astro.props;
+const vi = lang === 'vi';
+const site = 'https://deeplyai.app';
+const path = vi ? '/vi/apps/' : '/apps/';
+const entries = await getCollection('apps');
+const taglines = new Map(entries.map((e) => [e.data.id, e.data.taglineVi]));
+const viFallback: Record<number, string> = { 6752650705: 'Tìm hiểu các chủ đề trên web với phân tích AI.' };
+const lineFor = (app: (typeof APPS)[number]) => (vi ? (taglines.get(app.id) ?? viFallback[app.id] ?? app.line) : app.line);
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: vi ? 'Trang chủ' : 'Home', item: `${site}${vi ? '/vi/' : '/'}` },
+    { '@type': 'ListItem', position: 2, name: vi ? 'Ứng dụng' : 'Apps', item: `${site}${path}` },
+  ],
+};
+---
+<Base
+  lang={lang}
+  path={path}
+  alternates={{ en: '/apps/', vi: '/vi/apps/' }}
+  jsonLd={breadcrumb}
+  title={vi ? `${APPS.length} ứng dụng DeeplyAi cho iPhone, Apple Watch & CarPlay` : `All ${APPS.length} DeeplyAi Apps for iPhone, Apple Watch & CarPlay`}
+  description={vi ? `Khám phá ${APPS.length} ứng dụng của DeeplyAi trên App Store: công cụ lái xe và CarPlay, thời tiết, Apple Watch, lịch kế hoạch và nhiều hơn nữa.` : `Browse all ${APPS.length} DeeplyAi apps on the App Store: driving and CarPlay tools, weather and sky apps, Apple Watch utilities, planners and more.`}
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{vi ? 'Ứng dụng' : 'Apps'}</p>
+      <h1 class="display">{vi ? 'Toàn bộ danh mục.' : 'The full catalogue.'}</h1>
+      <p class="lead">{vi ? `${APPS.length} ứng dụng trên sáu kệ, tất cả đều có trên App Store.` : `${APPS.length} apps across six shelves, all available on the App Store.`}</p>
+      <div class="actions" style="margin-top:24px"><StoreBadge lang={lang} /></div>
+    </header>
+    <div class="filters" data-filters hidden>
+      <input class="search" type="search" placeholder={vi ? 'Tìm ứng dụng' : 'Search apps'} aria-label={vi ? 'Tìm ứng dụng' : 'Search apps'} data-search />
+      <button class="chip" type="button" aria-pressed="true" data-chip="">{vi ? 'Tất cả' : 'All'}</button>
+      {GROUP_SLUGS.map((g) => <button class="chip" type="button" aria-pressed="false" data-chip={g}>{vi ? GROUPS[g].nameVi : GROUPS[g].name}</button>)}
+    </div>
+    <p class="empty" data-empty hidden>{vi ? 'Không có ứng dụng phù hợp.' : 'No apps match that search.'}</p>
+    <ul class="app-grid" style="padding-bottom:96px">
+      {APPS.map((app) => <li data-group={app.group}><AppCard app={app} line={lineFor(app)} href={vi && app.id === 6749473194 ? '/vi/apps/lich-van-nien/' : undefined} /></li>)}
+    </ul>
+  </div>
+</Base>
+
+<script>
+  // Without JavaScript the whole catalogue simply stays visible.
+  const bar = document.querySelector<HTMLElement>('[data-filters]')!;
+  const search = document.querySelector<HTMLInputElement>('[data-search]')!;
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  const items = [...document.querySelectorAll<HTMLElement>('li[data-group]')];
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-chip]')];
+  let group = '';
+  bar.hidden = false;
+
+  const apply = () => {
+    const query = search.value.trim().toLowerCase();
+    let shown = 0;
+    items.forEach((item) => {
+      const name = item.querySelector<HTMLElement>('[data-name]')!.dataset.name!;
+      const visible = (!group || item.dataset.group === group) && name.includes(query);
+      item.hidden = !visible;
+      if (visible) shown += 1;
+    });
+    empty.hidden = shown > 0;
+  };
+
+  search.addEventListener('input', apply);
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    group = chip.dataset.chip!;
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+    apply();
+  }));
+</script>
