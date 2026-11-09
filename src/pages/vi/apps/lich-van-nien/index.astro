@@ -1,5 +1,6 @@
 ---
 import Base from '../../../../layouts/Base.astro';
+import StoreBadge from '../../../../components/StoreBadge.astro';
 import { byId, hasRating } from '../../../../data/catalog';
 
 const app = byId.get(6749473194)!;
@@ -15,7 +16,7 @@ const jsonLd = [
     description,
     inLanguage: 'vi',
     url: `${site}${path}`,
-    image: `${site}${app.icon}`,
+    image: `${site}${app.iconLarge}`,
     screenshot: app.screenshots.map((s) => `${site}${s}`),
     operatingSystem: `iOS ${app.minimumOs} or later`,
     applicationCategory: `${app.genre}Application`,
@@ -40,7 +41,7 @@ const jsonLd = [
   <div class="wrap">
     <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/apps/">Ứng dụng</a><span>/</span><span>Lịch Vạn Niên</span></nav>
     <header class="app-hero">
-      <img src={app.icon} width="144" height="144" alt="Biểu tượng ứng dụng Lịch Vạn Niên" />
+      <img src={app.iconLarge} width="176" height="176" alt="Biểu tượng ứng dụng Lịch Vạn Niên" />
       <div>
         <h1>Lịch Vạn Niên</h1>
         <p class="lead">Lịch âm Việt Nam đồng bộ trên mọi thiết bị Apple của bạn.</p>
@@ -49,7 +50,7 @@ const jsonLd = [
           <span>Yêu cầu iOS {app.minimumOs} trở lên</span>
           <span>Phiên bản {app.version}</span>
         </p>
-        <div class="actions"><a class="btn" href={app.url} rel="noopener">Tải miễn phí trên App Store</a></div>
+        <div class="actions"><StoreBadge href={app.url} lang="vi" /></div>
       </div>
     </header>
   </div>

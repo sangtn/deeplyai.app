@@ -1,0 +1,22 @@
+---
+import { SURFACES, surfaceApps } from '../data/surfaces';
+
+interface Props { lang?: 'en' | 'vi'; kind: 'device' | 'experience' }
+const { lang = 'en', kind } = Astro.props;
+const vi = lang === 'vi';
+---
+<ul class="surface-grid">
+  {SURFACES.filter((s) => s.kind === kind).map((surface) => {
+    const apps = surfaceApps(surface);
+    return (
+      <li class="reveal">
+        <a class="surface" href={`/platforms/${surface.slug}/`}>
+          <span class="surface-count">{apps.length}</span>
+          <h3>{vi ? surface.nameVi : surface.name}</h3>
+          <p>{vi ? surface.lineVi : surface.line}</p>
+          <span class="surface-icons" aria-hidden="true">{apps.slice(0, 5).map((a) => <img src={a.icon} width="40" height="40" alt="" loading="lazy" decoding="async" />)}</span>
+        </a>
+      </li>
+    );
+  })}
+</ul>

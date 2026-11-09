@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import StoreBadge from './StoreBadge.astro';
+import SurfaceGrid from './SurfaceGrid.astro';
+import Roadmap from './Roadmap.astro';
 import { APPS, GROUPS, GROUP_SLUGS, byId, inGroup } from '../data/catalog';
 
 interface Props { lang: 'en' | 'vi' }
@@ -55,7 +58,7 @@ const jsonLd = {
       <p class="lead">{vi ? 'Từ con đường phía trước đến bầu trời đêm, chúng tôi xây dựng ứng dụng cho iPhone, iPad, Apple Watch và CarPlay.' : 'From the road ahead to the night sky, we build apps for iPhone, iPad, Apple Watch and CarPlay.'}</p>
       <div class="actions">
         <a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'Browse all apps'}</a>
-        <a class="btn ghost" href="https://apps.apple.com/us/developer/deeply-ai/id1809787876" rel="noopener">App Store</a>
+        <StoreBadge lang={lang} />
       </div>
     </div>
   </section>
@@ -101,6 +104,15 @@ const jsonLd = {
     </div>
   </section>
 
+  <section class="section wrap" aria-labelledby="surfaces-title">
+    <div class="index-head">
+      <h2 id="surfaces-title" class="h-lg reveal">{vi ? 'Một hệ sinh thái, nhiều bề mặt.' : 'One ecosystem, many surfaces.'}</h2>
+      <p class="lead reveal">{vi ? 'Số ứng dụng DeeplyAi trên từng thiết bị Apple, theo thông tin App Store.' : 'How many DeeplyAi apps reach each Apple device, according to the App Store.'}</p>
+    </div>
+    <SurfaceGrid kind="device" lang={lang} />
+    <div class="center-cta"><a class="btn ghost" href={vi ? '/vi/platforms/' : '/platforms/'}>{vi ? 'Xem tất cả nền tảng' : 'Explore all platforms'}</a></div>
+  </section>
+
   <section class="section wrap" aria-labelledby="featured-title">
     <div class="index-head">
       <h2 id="featured-title" class="h-lg reveal">{vi ? 'Từ danh mục của chúng tôi.' : 'From the catalogue.'}</h2>
@@ -127,6 +139,8 @@ const jsonLd = {
       {steps.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}
     </div>
   </section>
+
+  <Roadmap lang={lang} />
 
   <section class="band section">
     <div class="wrap band-in">

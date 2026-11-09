@@ -21,6 +21,7 @@ const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const vi = lang === 'vi';
 const links = [
   { href: vi ? '/vi/apps/' : '/apps/', label: vi ? 'Ứng dụng' : 'Apps' },
+  { href: vi ? '/vi/platforms/' : '/platforms/', label: vi ? 'Nền tảng' : 'Platforms' },
   { href: '/services.html', label: vi ? 'Dịch vụ' : 'Services' },
   { href: '/solutions.html', label: vi ? 'Giải pháp' : 'Solutions' },
   { href: '/about.html', label: vi ? 'Giới thiệu' : 'About' },
@@ -28,7 +29,7 @@ const links = [
 ];
 const switcher = alternates ? (vi ? { href: alternates.en, label: 'EN' } : { href: alternates.vi, label: 'VI' }) : null;
 const home = vi ? '/vi/' : '/';
-const current = (href: string) => (path === href || (href.endsWith('/apps/') && path.startsWith(href)) ? 'page' : undefined);
+const current = (href: string) => (path === href || ((href.endsWith('/apps/') || href.endsWith('/platforms/')) && path.startsWith(href)) ? 'page' : undefined);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -104,7 +105,7 @@ const current = (href: string) => (path === href || (href.endsWith('/apps/') && 
             </ul>
           </div>
         </div>
-        <div class="foot-base"><small>Copyright © {new Date().getFullYear()} DeeplyAi. All rights reserved.</small></div>
+        <div class="foot-base"><small>Copyright © {new Date().getFullYear()} DeeplyAi. All rights reserved. Apple, the Apple logo, iPhone, iPad, Mac, Apple Watch, Apple Vision, CarPlay, Siri, iCloud and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. DeeplyAi is not affiliated with Apple or Google.</small></div>
       </div>
     </footer>
   </body>

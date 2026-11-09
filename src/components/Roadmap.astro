@@ -1,0 +1,26 @@
+---
+interface Props { lang?: 'en' | 'vi' }
+const { lang = 'en' } = Astro.props;
+const vi = lang === 'vi';
+---
+<section class="roadmap" aria-labelledby="roadmap-title">
+  <div class="wrap">
+    <p class="eyebrow">{vi ? 'Sắp ra mắt' : 'Coming next'}</p>
+    <h2 id="roadmap-title" class="h-lg">{vi ? 'Vượt ra ngoài hệ sinh thái Apple.' : 'Beyond the Apple ecosystem.'}</h2>
+    <p class="lead">{vi ? 'Chúng tôi đang phát triển cho những môi trường mới để nhiều người hơn có thể dùng ứng dụng của DeeplyAi.' : 'We are building for new environments so more people can use DeeplyAi apps.'}</p>
+    <div class="roadmap-grid">
+      <article class="road">
+        <span class="status">{vi ? 'Đang phát triển' : 'In development'}</span>
+        <h3>Android</h3>
+        <p>{vi ? 'Đưa ứng dụng của chúng tôi đến người dùng điện thoại Android thông qua Google Play.' : 'Bringing our apps to Android phones through Google Play.'}</p>
+        <img class="gp" src={`/assets/images/stores/google-play-${vi ? 'vi' : 'en'}.png`} width="646" height="250" loading="lazy" alt={vi ? 'Google Play, sắp ra mắt' : 'Google Play, coming soon'} />
+      </article>
+      <article class="road">
+        <span class="status">{vi ? 'Đang phát triển' : 'In development'}</span>
+        <h3>Web</h3>
+        <p>{vi ? 'Trải nghiệm ngay trên trình duyệt, không cần cài đặt.' : 'Experiences that open right in your browser, with nothing to install.'}</p>
+      </article>
+    </div>
+    <p class="fine">{vi ? 'Đây là kế hoạch đang thực hiện; phạm vi và thời gian có thể thay đổi. Chưa có ứng dụng DeeplyAi nào phát hành trên các nền tảng này.' : 'These plans are in progress, and scope and timing may change. No DeeplyAi apps are available on these platforms yet.'}</p>
+  </div>
+</section>

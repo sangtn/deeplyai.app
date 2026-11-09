@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import AppCard from './AppCard.astro';
+import StoreBadge from './StoreBadge.astro';
 import { APPS, GROUPS, GROUP_SLUGS } from '../data/catalog';
 
 interface Props { lang: 'en' | 'vi' }
@@ -35,6 +36,7 @@ const breadcrumb = {
       <p class="eyebrow">{vi ? 'Ứng dụng' : 'Apps'}</p>
       <h1 class="display">{vi ? 'Toàn bộ danh mục.' : 'The full catalogue.'}</h1>
       <p class="lead">{vi ? `${APPS.length} ứng dụng trên sáu kệ, tất cả đều có trên App Store.` : `${APPS.length} apps across six shelves, all available on the App Store.`}</p>
+      <div class="actions" style="margin-top:24px"><StoreBadge lang={lang} /></div>
     </header>
     <div class="filters" data-filters hidden>
       <input class="search" type="search" placeholder={vi ? 'Tìm ứng dụng' : 'Search apps'} aria-label={vi ? 'Tìm ứng dụng' : 'Search apps'} data-search />

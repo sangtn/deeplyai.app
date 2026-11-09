@@ -2,6 +2,8 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import AppCard from '../../../components/AppCard.astro';
+import StoreBadge from '../../../components/StoreBadge.astro';
+import { surfacesOf } from '../../../data/surfaces';
 import { GROUPS, GROUP_SLUGS, byId, hasRating, inGroup, type GroupSlug } from '../../../data/catalog';
 
 export async function getStaticPaths() {
@@ -27,6 +29,7 @@ const info = group ? GROUPS[group] : GROUPS[app!.group];
 const parent = group ?? app!.group;
 const related = app ? inGroup(app.group).filter((a) => a.id !== app.id).slice(0, 3) : [];
 const showRating = app ? hasRating(app) : false;
+const surfaces = app ? surfacesOf(app) : [];
 
 const appLd = app && entry && {
   '@context': 'https://schema.org',
@@ -34,7 +37,7 @@ const appLd = app && entry && {
   name: entry.data.name,
   description: entry.data.description,
   url: `${site}/apps/${entry.id}/`,
-  image: `${site}${app.icon}`,
+  image: `${site}${app.iconLarge}`,
   screenshot: app.screenshots.map((s) => `${site}${s}`),
   operatingSystem: `iOS ${app.minimumOs} or later`,
   applicationCategory: `${app.genre}Application`,
@@ -64,7 +67,7 @@ const updated = app && new Date(app.updated).toLocaleDateString('en-US', { year:
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/apps/">Apps</a><span>/</span><a href={`/apps/${parent}/`}>{info.name}</a><span>/</span><span>{entry.data.name}</span></nav>
       <header class="app-hero">
-        <img src={app.icon} width="144" height="144" alt={`${entry.data.name} app icon`} style={`view-transition-name:app-${app.id}`} />
+        <img src={app.iconLarge} width="176" height="176" alt={`${entry.data.name} app icon`} style={`view-transition-name:app-${app.id}`} />
         <div>
           <h1>{entry.data.name}</h1>
           <p class="lead">{entry.data.tagline}</p>
@@ -73,12 +76,16 @@ const updated = app && new Date(app.updated).toLocaleDateString('en-US', { year:
             <span>Requires iOS {app.minimumOs}+</span>
             <span>Version {app.version}, updated {updated}</span>
           </p>
-          <div class="actions"><a class="btn" href={app.url} rel="noopener">{app.price === 0 ? 'Get it free on the App Store' : 'View on the App Store'}</a></div>
+          <div class="actions"><StoreBadge href={app.url} /></div>
         </div>
       </header>
     </div>
     <div class="shots" tabindex="0" role="group" aria-label={`${entry.data.name} screenshots`}>
       {app.screenshots.map((src, i) => <img src={src} width="392" height="850" alt={`${entry.data.name} screenshot ${i + 1}`} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+    </div>
+    <div class="wrap" style="padding-top:32px">
+      <h2 class="surface-label">Available on</h2>
+      <ul class="chips">{surfaces.map((s) => <li><a href={`/platforms/${s.slug}/`}>{s.name}</a></li>)}</ul>
     </div>
     <div class="wrap section" style="padding-top:48px">
       <article class="prose"><Content /></article>

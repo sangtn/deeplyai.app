@@ -9,15 +9,21 @@
     "updated": "2026-08-21",
     "minimumOs": "18.0",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/days-digital-planner-event/id6744894638",
+    "url": "https://apps.apple.com/app/id6744894638?itscg=30200&itsct=apps_box_badge&mttnsubad=6744894638",
     "icon": "/assets/apps/icons/6744894638.webp",
+    "iconLarge": "/assets/apps/icons/6744894638@512.webp",
     "screenshots": [
       "/assets/apps/shots/6744894638-1.webp",
       "/assets/apps/shots/6744894638-2.webp",
       "/assets/apps/shots/6744894638-3.webp",
       "/assets/apps/shots/6744894638-4.webp",
       "/assets/apps/shots/6744894638-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.0",
+      "visionOS": null,
+      "watchOS": "11.0"
+    }
   },
   {
     "id": 6749473194,
@@ -29,15 +35,21 @@
     "updated": "2026-08-26",
     "minimumOs": "16.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/l%E1%BB%8Bch-v%E1%BA%A1n-ni%C3%AAn-2026-l%E1%BB%8Bch-vi%E1%BB%87t/id6749473194",
+    "url": "https://apps.apple.com/app/id6749473194?itscg=30200&itsct=apps_box_badge&mttnsubad=6749473194",
     "icon": "/assets/apps/icons/6749473194.webp",
+    "iconLarge": "/assets/apps/icons/6749473194@512.webp",
     "screenshots": [
       "/assets/apps/shots/6749473194-1.webp",
       "/assets/apps/shots/6749473194-2.webp",
       "/assets/apps/shots/6749473194-3.webp",
       "/assets/apps/shots/6749473194-4.webp",
       "/assets/apps/shots/6749473194-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "13.5",
+      "visionOS": "1.0",
+      "watchOS": "11.5"
+    }
   },
   {
     "id": 6751200315,
@@ -49,14 +61,20 @@
     "updated": "2026-08-20",
     "minimumOs": "15.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/whocall-caller-id-block/id6751200315",
+    "url": "https://apps.apple.com/app/id6751200315?itscg=30200&itsct=apps_box_badge&mttnsubad=6751200315",
     "icon": "/assets/apps/icons/6751200315.webp",
+    "iconLarge": "/assets/apps/icons/6751200315@512.webp",
     "screenshots": [
       "/assets/apps/shots/6751200315-1.webp",
       "/assets/apps/shots/6751200315-2.webp",
       "/assets/apps/shots/6751200315-3.webp",
       "/assets/apps/shots/6751200315-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "12.5",
+      "visionOS": null,
+      "watchOS": null
+    }
   },
   {
     "id": 6752650705,
@@ -68,13 +86,19 @@
     "updated": "2026-08-18",
     "minimumOs": "15.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/deeply-ai-search-assistant/id6752650705",
+    "url": "https://apps.apple.com/app/id6752650705?itscg=30200&itsct=apps_box_badge&mttnsubad=6752650705",
     "icon": "/assets/apps/icons/6752650705.webp",
+    "iconLarge": "/assets/apps/icons/6752650705@512.webp",
     "screenshots": [
       "/assets/apps/shots/6752650705-1.webp",
       "/assets/apps/shots/6752650705-2.webp",
       "/assets/apps/shots/6752650705-3.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "12.5",
+      "visionOS": null,
+      "watchOS": null
+    }
   },
   {
     "id": 6753096857,
@@ -86,14 +110,20 @@
     "updated": "2026-08-19",
     "minimumOs": "15.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/subscription-manager-submate/id6753096857",
+    "url": "https://apps.apple.com/app/id6753096857?itscg=30200&itsct=apps_box_badge&mttnsubad=6753096857",
     "icon": "/assets/apps/icons/6753096857.webp",
+    "iconLarge": "/assets/apps/icons/6753096857@512.webp",
     "screenshots": [
       "/assets/apps/shots/6753096857-1.webp",
       "/assets/apps/shots/6753096857-2.webp",
       "/assets/apps/shots/6753096857-3.webp",
       "/assets/apps/shots/6753096857-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "12.5",
+      "visionOS": "1.0",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6755303976,
@@ -105,15 +135,21 @@
     "updated": "2026-08-14",
     "minimumOs": "16.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/car-play-connect-auto-sync/id6755303976",
+    "url": "https://apps.apple.com/app/id6755303976?itscg=30200&itsct=apps_box_badge&mttnsubad=6755303976",
     "icon": "/assets/apps/icons/6755303976.webp",
+    "iconLarge": "/assets/apps/icons/6755303976@512.webp",
     "screenshots": [
       "/assets/apps/shots/6755303976-1.webp",
       "/assets/apps/shots/6755303976-2.webp",
       "/assets/apps/shots/6755303976-3.webp",
       "/assets/apps/shots/6755303976-4.webp",
       "/assets/apps/shots/6755303976-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "13.5",
+      "visionOS": "1.0",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6756883155,
@@ -125,15 +161,21 @@
     "updated": "2026-05-05",
     "minimumOs": "16.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/speaker-headphones-connect/id6756883155",
+    "url": "https://apps.apple.com/app/id6756883155?itscg=30200&itsct=apps_box_badge&mttnsubad=6756883155",
     "icon": "/assets/apps/icons/6756883155.webp",
+    "iconLarge": "/assets/apps/icons/6756883155@512.webp",
     "screenshots": [
       "/assets/apps/shots/6756883155-1.webp",
       "/assets/apps/shots/6756883155-2.webp",
       "/assets/apps/shots/6756883155-3.webp",
       "/assets/apps/shots/6756883155-4.webp",
       "/assets/apps/shots/6756883155-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "13.5",
+      "visionOS": "1.0",
+      "watchOS": null
+    }
   },
   {
     "id": 6757487560,
@@ -145,15 +187,21 @@
     "updated": "2026-11-01",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/carwidget-car-widget-studio/id6757487560",
+    "url": "https://apps.apple.com/app/id6757487560?itscg=30200&itsct=apps_box_badge&mttnsubad=6757487560",
     "icon": "/assets/apps/icons/6757487560.webp",
+    "iconLarge": "/assets/apps/icons/6757487560@512.webp",
     "screenshots": [
       "/assets/apps/shots/6757487560-1.webp",
       "/assets/apps/shots/6757487560-2.webp",
       "/assets/apps/shots/6757487560-3.webp",
       "/assets/apps/shots/6757487560-4.webp",
       "/assets/apps/shots/6757487560-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6758051740,
@@ -165,14 +213,20 @@
     "updated": "2026-08-17",
     "minimumOs": "16.0",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/location-changer-loc-saver/id6758051740",
+    "url": "https://apps.apple.com/app/id6758051740?itscg=30200&itsct=apps_box_badge&mttnsubad=6758051740",
     "icon": "/assets/apps/icons/6758051740.webp",
+    "iconLarge": "/assets/apps/icons/6758051740@512.webp",
     "screenshots": [
       "/assets/apps/shots/6758051740-1.webp",
       "/assets/apps/shots/6758051740-2.webp",
       "/assets/apps/shots/6758051740-3.webp",
       "/assets/apps/shots/6758051740-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "13.0",
+      "visionOS": "1.0",
+      "watchOS": null
+    }
   },
   {
     "id": 6759792594,
@@ -184,14 +238,20 @@
     "updated": "2026-11-02",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/weather-widgets-clock-widget/id6759792594",
+    "url": "https://apps.apple.com/app/id6759792594?itscg=30200&itsct=apps_box_badge&mttnsubad=6759792594",
     "icon": "/assets/apps/icons/6759792594.webp",
+    "iconLarge": "/assets/apps/icons/6759792594@512.webp",
     "screenshots": [
       "/assets/apps/shots/6759792594-1.webp",
       "/assets/apps/shots/6759792594-2.webp",
       "/assets/apps/shots/6759792594-3.webp",
       "/assets/apps/shots/6759792594-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": "10.0"
+    }
   },
   {
     "id": 6760746720,
@@ -203,15 +263,21 @@
     "updated": "2026-08-14",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/text-export-messages-to-pdf/id6760746720",
+    "url": "https://apps.apple.com/app/id6760746720?itscg=30200&itsct=apps_box_badge&mttnsubad=6760746720",
     "icon": "/assets/apps/icons/6760746720.webp",
+    "iconLarge": "/assets/apps/icons/6760746720@512.webp",
     "screenshots": [
       "/assets/apps/shots/6760746720-1.webp",
       "/assets/apps/shots/6760746720-2.webp",
       "/assets/apps/shots/6760746720-3.webp",
       "/assets/apps/shots/6760746720-4.webp",
       "/assets/apps/shots/6760746720-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": null
+    }
   },
   {
     "id": 6761090999,
@@ -223,14 +289,20 @@
     "updated": "2026-03-29",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/fuel-finder-petrol-diesel/id6761090999",
+    "url": "https://apps.apple.com/app/id6761090999?itscg=30200&itsct=apps_box_badge&mttnsubad=6761090999",
     "icon": "/assets/apps/icons/6761090999.webp",
+    "iconLarge": "/assets/apps/icons/6761090999@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761090999-1.webp",
       "/assets/apps/shots/6761090999-2.webp",
       "/assets/apps/shots/6761090999-3.webp",
       "/assets/apps/shots/6761090999-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": "26.0"
+    }
   },
   {
     "id": 6761172396,
@@ -242,14 +314,20 @@
     "updated": "2026-03-27",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/vibe-reset-daily-rituals/id6761172396",
+    "url": "https://apps.apple.com/app/id6761172396?itscg=30200&itsct=apps_box_badge&mttnsubad=6761172396",
     "icon": "/assets/apps/icons/6761172396.webp",
+    "iconLarge": "/assets/apps/icons/6761172396@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761172396-1.webp",
       "/assets/apps/shots/6761172396-2.webp",
       "/assets/apps/shots/6761172396-3.webp",
       "/assets/apps/shots/6761172396-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": null
+    }
   },
   {
     "id": 6761303975,
@@ -261,15 +339,21 @@
     "updated": "2026-07-13",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/travel-spend-trip-budget/id6761303975",
+    "url": "https://apps.apple.com/app/id6761303975?itscg=30200&itsct=apps_box_badge&mttnsubad=6761303975",
     "icon": "/assets/apps/icons/6761303975.webp",
+    "iconLarge": "/assets/apps/icons/6761303975@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761303975-1.webp",
       "/assets/apps/shots/6761303975-2.webp",
       "/assets/apps/shots/6761303975-3.webp",
       "/assets/apps/shots/6761303975-4.webp",
       "/assets/apps/shots/6761303975-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6761453914,
@@ -281,15 +365,21 @@
     "updated": "2026-08-17",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/sewingtut-sewing-for-beginners/id6761453914",
+    "url": "https://apps.apple.com/app/id6761453914?itscg=30200&itsct=apps_box_badge&mttnsubad=6761453914",
     "icon": "/assets/apps/icons/6761453914.webp",
+    "iconLarge": "/assets/apps/icons/6761453914@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761453914-1.webp",
       "/assets/apps/shots/6761453914-2.webp",
       "/assets/apps/shots/6761453914-3.webp",
       "/assets/apps/shots/6761453914-4.webp",
       "/assets/apps/shots/6761453914-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": null
+    }
   },
   {
     "id": 6761654564,
@@ -301,15 +391,21 @@
     "updated": "2026-08-24",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/pdf-watch-viewer-wristview/id6761654564",
+    "url": "https://apps.apple.com/app/id6761654564?itscg=30200&itsct=apps_box_badge&mttnsubad=6761654564",
     "icon": "/assets/apps/icons/6761654564.webp",
+    "iconLarge": "/assets/apps/icons/6761654564@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761654564-1.webp",
       "/assets/apps/shots/6761654564-2.webp",
       "/assets/apps/shots/6761654564-3.webp",
       "/assets/apps/shots/6761654564-4.webp",
       "/assets/apps/shots/6761654564-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "26.0"
+    }
   },
   {
     "id": 6761701772,
@@ -321,14 +417,20 @@
     "updated": "2026-04-09",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/boating-navigation-gps-offline/id6761701772",
+    "url": "https://apps.apple.com/app/id6761701772?itscg=30200&itsct=apps_box_badge&mttnsubad=6761701772",
     "icon": "/assets/apps/icons/6761701772.webp",
+    "iconLarge": "/assets/apps/icons/6761701772@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761701772-1.webp",
       "/assets/apps/shots/6761701772-2.webp",
       "/assets/apps/shots/6761701772-3.webp",
       "/assets/apps/shots/6761701772-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": null
+    }
   },
   {
     "id": 6761839487,
@@ -340,14 +442,20 @@
     "updated": "2026-08-26",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/car-key-connect-car-manager/id6761839487",
+    "url": "https://apps.apple.com/app/id6761839487?itscg=30200&itsct=apps_box_badge&mttnsubad=6761839487",
     "icon": "/assets/apps/icons/6761839487.webp",
+    "iconLarge": "/assets/apps/icons/6761839487@512.webp",
     "screenshots": [
       "/assets/apps/shots/6761839487-1.webp",
       "/assets/apps/shots/6761839487-2.webp",
       "/assets/apps/shots/6761839487-3.webp",
       "/assets/apps/shots/6761839487-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6762106958,
@@ -359,15 +467,21 @@
     "updated": "2026-07-24",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/watch-video-player-wristnet/id6762106958",
+    "url": "https://apps.apple.com/app/id6762106958?itscg=30200&itsct=apps_box_badge&mttnsubad=6762106958",
     "icon": "/assets/apps/icons/6762106958.webp",
+    "iconLarge": "/assets/apps/icons/6762106958@512.webp",
     "screenshots": [
       "/assets/apps/shots/6762106958-1.webp",
       "/assets/apps/shots/6762106958-2.webp",
       "/assets/apps/shots/6762106958-3.webp",
       "/assets/apps/shots/6762106958-4.webp",
       "/assets/apps/shots/6762106958-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": "10.6"
+    }
   },
   {
     "id": 6762453773,
@@ -379,14 +493,20 @@
     "updated": "2026-08-27",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/hours-tracker-pay-calculator/id6762453773",
+    "url": "https://apps.apple.com/app/id6762453773?itscg=30200&itsct=apps_box_badge&mttnsubad=6762453773",
     "icon": "/assets/apps/icons/6762453773.webp",
+    "iconLarge": "/assets/apps/icons/6762453773@512.webp",
     "screenshots": [
       "/assets/apps/shots/6762453773-1.webp",
       "/assets/apps/shots/6762453773-2.webp",
       "/assets/apps/shots/6762453773-3.webp",
       "/assets/apps/shots/6762453773-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6762716650,
@@ -398,14 +518,20 @@
     "updated": "2026-04-26",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/artbox-save-your-kids-art/id6762716650",
+    "url": "https://apps.apple.com/app/id6762716650?itscg=30200&itsct=apps_box_badge&mttnsubad=6762716650",
     "icon": "/assets/apps/icons/6762716650.webp",
+    "iconLarge": "/assets/apps/icons/6762716650@512.webp",
     "screenshots": [
       "/assets/apps/shots/6762716650-1.webp",
       "/assets/apps/shots/6762716650-2.webp",
       "/assets/apps/shots/6762716650-3.webp",
       "/assets/apps/shots/6762716650-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6763552611,
@@ -417,15 +543,21 @@
     "updated": "2026-05-23",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/zenblock-screen-time-control/id6763552611",
+    "url": "https://apps.apple.com/app/id6763552611?itscg=30200&itsct=apps_box_badge&mttnsubad=6763552611",
     "icon": "/assets/apps/icons/6763552611.webp",
+    "iconLarge": "/assets/apps/icons/6763552611@512.webp",
     "screenshots": [
       "/assets/apps/shots/6763552611-1.webp",
       "/assets/apps/shots/6763552611-2.webp",
       "/assets/apps/shots/6763552611-3.webp",
       "/assets/apps/shots/6763552611-4.webp",
       "/assets/apps/shots/6763552611-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": null
+    }
   },
   {
     "id": 6764017994,
@@ -437,15 +569,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/schedule-text-messages-sendra/id6764017994",
+    "url": "https://apps.apple.com/app/id6764017994?itscg=30200&itsct=apps_box_badge&mttnsubad=6764017994",
     "icon": "/assets/apps/icons/6764017994.webp",
+    "iconLarge": "/assets/apps/icons/6764017994@512.webp",
     "screenshots": [
       "/assets/apps/shots/6764017994-1.webp",
       "/assets/apps/shots/6764017994-2.webp",
       "/assets/apps/shots/6764017994-3.webp",
       "/assets/apps/shots/6764017994-4.webp",
       "/assets/apps/shots/6764017994-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6766157300,
@@ -457,15 +595,21 @@
     "updated": "2026-08-15",
     "minimumOs": "17.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/sunset-predictions-solara/id6766157300",
+    "url": "https://apps.apple.com/app/id6766157300?itscg=30200&itsct=apps_box_badge&mttnsubad=6766157300",
     "icon": "/assets/apps/icons/6766157300.webp",
+    "iconLarge": "/assets/apps/icons/6766157300@512.webp",
     "screenshots": [
       "/assets/apps/shots/6766157300-1.webp",
       "/assets/apps/shots/6766157300-2.webp",
       "/assets/apps/shots/6766157300-3.webp",
       "/assets/apps/shots/6766157300-4.webp",
       "/assets/apps/shots/6766157300-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.6",
+      "visionOS": "1.3",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6767432019,
@@ -477,15 +621,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/garden-planner-ai-gardenio/id6767432019",
+    "url": "https://apps.apple.com/app/id6767432019?itscg=30200&itsct=apps_box_badge&mttnsubad=6767432019",
     "icon": "/assets/apps/icons/6767432019.webp",
+    "iconLarge": "/assets/apps/icons/6767432019@512.webp",
     "screenshots": [
       "/assets/apps/shots/6767432019-1.webp",
       "/assets/apps/shots/6767432019-2.webp",
       "/assets/apps/shots/6767432019-3.webp",
       "/assets/apps/shots/6767432019-4.webp",
       "/assets/apps/shots/6767432019-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6768212643,
@@ -497,15 +647,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/paint-color-visualizer-hueza/id6768212643",
+    "url": "https://apps.apple.com/app/id6768212643?itscg=30200&itsct=apps_box_badge&mttnsubad=6768212643",
     "icon": "/assets/apps/icons/6768212643.webp",
+    "iconLarge": "/assets/apps/icons/6768212643@512.webp",
     "screenshots": [
       "/assets/apps/shots/6768212643-1.webp",
       "/assets/apps/shots/6768212643-2.webp",
       "/assets/apps/shots/6768212643-3.webp",
       "/assets/apps/shots/6768212643-4.webp",
       "/assets/apps/shots/6768212643-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6768527600,
@@ -517,15 +673,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/teleprompter-ai-read-script/id6768527600",
+    "url": "https://apps.apple.com/app/id6768527600?itscg=30200&itsct=apps_box_badge&mttnsubad=6768527600",
     "icon": "/assets/apps/icons/6768527600.webp",
+    "iconLarge": "/assets/apps/icons/6768527600@512.webp",
     "screenshots": [
       "/assets/apps/shots/6768527600-1.webp",
       "/assets/apps/shots/6768527600-2.webp",
       "/assets/apps/shots/6768527600-3.webp",
       "/assets/apps/shots/6768527600-4.webp",
       "/assets/apps/shots/6768527600-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6769697833,
@@ -537,15 +699,21 @@
     "updated": "2026-05-28",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/cost-estimator-buildwise/id6769697833",
+    "url": "https://apps.apple.com/app/id6769697833?itscg=30200&itsct=apps_box_badge&mttnsubad=6769697833",
     "icon": "/assets/apps/icons/6769697833.webp",
+    "iconLarge": "/assets/apps/icons/6769697833@512.webp",
     "screenshots": [
       "/assets/apps/shots/6769697833-1.webp",
       "/assets/apps/shots/6769697833-2.webp",
       "/assets/apps/shots/6769697833-3.webp",
       "/assets/apps/shots/6769697833-4.webp",
       "/assets/apps/shots/6769697833-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6771234038,
@@ -557,15 +725,21 @@
     "updated": "2026-05-21",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/ai-contract-maker-legal-docs/id6771234038",
+    "url": "https://apps.apple.com/app/id6771234038?itscg=30200&itsct=apps_box_badge&mttnsubad=6771234038",
     "icon": "/assets/apps/icons/6771234038.webp",
+    "iconLarge": "/assets/apps/icons/6771234038@512.webp",
     "screenshots": [
       "/assets/apps/shots/6771234038-1.webp",
       "/assets/apps/shots/6771234038-2.webp",
       "/assets/apps/shots/6771234038-3.webp",
       "/assets/apps/shots/6771234038-4.webp",
       "/assets/apps/shots/6771234038-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6773634164,
@@ -577,15 +751,21 @@
     "updated": "2026-05-28",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/tanning-uv-tracker-tanly/id6773634164",
+    "url": "https://apps.apple.com/app/id6773634164?itscg=30200&itsct=apps_box_badge&mttnsubad=6773634164",
     "icon": "/assets/apps/icons/6773634164.webp",
+    "iconLarge": "/assets/apps/icons/6773634164@512.webp",
     "screenshots": [
       "/assets/apps/shots/6773634164-1.webp",
       "/assets/apps/shots/6773634164-2.webp",
       "/assets/apps/shots/6773634164-3.webp",
       "/assets/apps/shots/6773634164-4.webp",
       "/assets/apps/shots/6773634164-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6774539735,
@@ -597,15 +777,21 @@
     "updated": "2026-06-02",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/crochet-knitting-yarnflow/id6774539735",
+    "url": "https://apps.apple.com/app/id6774539735?itscg=30200&itsct=apps_box_badge&mttnsubad=6774539735",
     "icon": "/assets/apps/icons/6774539735.webp",
+    "iconLarge": "/assets/apps/icons/6774539735@512.webp",
     "screenshots": [
       "/assets/apps/shots/6774539735-1.webp",
       "/assets/apps/shots/6774539735-2.webp",
       "/assets/apps/shots/6774539735-3.webp",
       "/assets/apps/shots/6774539735-4.webp",
       "/assets/apps/shots/6774539735-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6775489025,
@@ -617,15 +803,21 @@
     "updated": "2026-06-05",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/country-days-tracker-stayy/id6775489025",
+    "url": "https://apps.apple.com/app/id6775489025?itscg=30200&itsct=apps_box_badge&mttnsubad=6775489025",
     "icon": "/assets/apps/icons/6775489025.webp",
+    "iconLarge": "/assets/apps/icons/6775489025@512.webp",
     "screenshots": [
       "/assets/apps/shots/6775489025-1.webp",
       "/assets/apps/shots/6775489025-2.webp",
       "/assets/apps/shots/6775489025-3.webp",
       "/assets/apps/shots/6775489025-4.webp",
       "/assets/apps/shots/6775489025-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6776571050,
@@ -637,15 +829,21 @@
     "updated": "2026-06-23",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/sportventure-matchday-travel/id6776571050",
+    "url": "https://apps.apple.com/app/id6776571050?itscg=30200&itsct=apps_box_badge&mttnsubad=6776571050",
     "icon": "/assets/apps/icons/6776571050.webp",
+    "iconLarge": "/assets/apps/icons/6776571050@512.webp",
     "screenshots": [
       "/assets/apps/shots/6776571050-1.webp",
       "/assets/apps/shots/6776571050-2.webp",
       "/assets/apps/shots/6776571050-3.webp",
       "/assets/apps/shots/6776571050-4.webp",
       "/assets/apps/shots/6776571050-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6777743758,
@@ -657,15 +855,21 @@
     "updated": "2026-08-15",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/lockscreen-calendar-dately/id6777743758",
+    "url": "https://apps.apple.com/app/id6777743758?itscg=30200&itsct=apps_box_badge&mttnsubad=6777743758",
     "icon": "/assets/apps/icons/6777743758.webp",
+    "iconLarge": "/assets/apps/icons/6777743758@512.webp",
     "screenshots": [
       "/assets/apps/shots/6777743758-1.webp",
       "/assets/apps/shots/6777743758-2.webp",
       "/assets/apps/shots/6777743758-3.webp",
       "/assets/apps/shots/6777743758-4.webp",
       "/assets/apps/shots/6777743758-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6779493286,
@@ -677,15 +881,21 @@
     "updated": "2026-06-16",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/home-maintenance-warranty/id6779493286",
+    "url": "https://apps.apple.com/app/id6779493286?itscg=30200&itsct=apps_box_badge&mttnsubad=6779493286",
     "icon": "/assets/apps/icons/6779493286.webp",
+    "iconLarge": "/assets/apps/icons/6779493286@512.webp",
     "screenshots": [
       "/assets/apps/shots/6779493286-1.webp",
       "/assets/apps/shots/6779493286-2.webp",
       "/assets/apps/shots/6779493286-3.webp",
       "/assets/apps/shots/6779493286-4.webp",
       "/assets/apps/shots/6779493286-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6779925086,
@@ -697,15 +907,21 @@
     "updated": "2026-06-16",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/color-analysis-skincare-hueva/id6779925086",
+    "url": "https://apps.apple.com/app/id6779925086?itscg=30200&itsct=apps_box_badge&mttnsubad=6779925086",
     "icon": "/assets/apps/icons/6779925086.webp",
+    "iconLarge": "/assets/apps/icons/6779925086@512.webp",
     "screenshots": [
       "/assets/apps/shots/6779925086-1.webp",
       "/assets/apps/shots/6779925086-2.webp",
       "/assets/apps/shots/6779925086-3.webp",
       "/assets/apps/shots/6779925086-4.webp",
       "/assets/apps/shots/6779925086-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6780729603,
@@ -717,15 +933,21 @@
     "updated": "2026-06-19",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/chats-analyzer-recap-chory/id6780729603",
+    "url": "https://apps.apple.com/app/id6780729603?itscg=30200&itsct=apps_box_badge&mttnsubad=6780729603",
     "icon": "/assets/apps/icons/6780729603.webp",
+    "iconLarge": "/assets/apps/icons/6780729603@512.webp",
     "screenshots": [
       "/assets/apps/shots/6780729603-1.webp",
       "/assets/apps/shots/6780729603-2.webp",
       "/assets/apps/shots/6780729603-3.webp",
       "/assets/apps/shots/6780729603-4.webp",
       "/assets/apps/shots/6780729603-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6782777113,
@@ -737,15 +959,21 @@
     "updated": "2026-06-29",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/satellite-tracker-3d-sky-radar/id6782777113",
+    "url": "https://apps.apple.com/app/id6782777113?itscg=30200&itsct=apps_box_badge&mttnsubad=6782777113",
     "icon": "/assets/apps/icons/6782777113.webp",
+    "iconLarge": "/assets/apps/icons/6782777113@512.webp",
     "screenshots": [
       "/assets/apps/shots/6782777113-1.webp",
       "/assets/apps/shots/6782777113-2.webp",
       "/assets/apps/shots/6782777113-3.webp",
       "/assets/apps/shots/6782777113-4.webp",
       "/assets/apps/shots/6782777113-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6783215742,
@@ -757,14 +985,20 @@
     "updated": "2026-06-25",
     "minimumOs": "18.0",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/dayli-grid-planner-widget/id6783215742",
+    "url": "https://apps.apple.com/app/id6783215742?itscg=30200&itsct=apps_box_badge&mttnsubad=6783215742",
     "icon": "/assets/apps/icons/6783215742.webp",
+    "iconLarge": "/assets/apps/icons/6783215742@512.webp",
     "screenshots": [
       "/assets/apps/shots/6783215742-1.webp",
       "/assets/apps/shots/6783215742-2.webp",
       "/assets/apps/shots/6783215742-3.webp",
       "/assets/apps/shots/6783215742-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.0",
+      "visionOS": "2.0",
+      "watchOS": "11.0"
+    }
   },
   {
     "id": 6785721075,
@@ -776,15 +1010,21 @@
     "updated": "2026-07-02",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/college-search-tracker-tourly/id6785721075",
+    "url": "https://apps.apple.com/app/id6785721075?itscg=30200&itsct=apps_box_badge&mttnsubad=6785721075",
     "icon": "/assets/apps/icons/6785721075.webp",
+    "iconLarge": "/assets/apps/icons/6785721075@512.webp",
     "screenshots": [
       "/assets/apps/shots/6785721075-1.webp",
       "/assets/apps/shots/6785721075-2.webp",
       "/assets/apps/shots/6785721075-3.webp",
       "/assets/apps/shots/6785721075-4.webp",
       "/assets/apps/shots/6785721075-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6786546016,
@@ -796,15 +1036,21 @@
     "updated": "2026-07-07",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/taskcam-resume-any-task/id6786546016",
+    "url": "https://apps.apple.com/app/id6786546016?itscg=30200&itsct=apps_box_badge&mttnsubad=6786546016",
     "icon": "/assets/apps/icons/6786546016.webp",
+    "iconLarge": "/assets/apps/icons/6786546016@512.webp",
     "screenshots": [
       "/assets/apps/shots/6786546016-1.webp",
       "/assets/apps/shots/6786546016-2.webp",
       "/assets/apps/shots/6786546016-3.webp",
       "/assets/apps/shots/6786546016-4.webp",
       "/assets/apps/shots/6786546016-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.0"
+    }
   },
   {
     "id": 6788231631,
@@ -816,14 +1062,20 @@
     "updated": "2026-11-02",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/dual-dashcam-recorder-roadcam/id6788231631",
+    "url": "https://apps.apple.com/app/id6788231631?itscg=30200&itsct=apps_box_badge&mttnsubad=6788231631",
     "icon": "/assets/apps/icons/6788231631.webp",
+    "iconLarge": "/assets/apps/icons/6788231631@512.webp",
     "screenshots": [
       "/assets/apps/shots/6788231631-1.webp",
       "/assets/apps/shots/6788231631-2.webp",
       "/assets/apps/shots/6788231631-3.webp",
       "/assets/apps/shots/6788231631-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6789012110,
@@ -835,15 +1087,21 @@
     "updated": "2026-07-16",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/wind-compass-windglance/id6789012110",
+    "url": "https://apps.apple.com/app/id6789012110?itscg=30200&itsct=apps_box_badge&mttnsubad=6789012110",
     "icon": "/assets/apps/icons/6789012110.webp",
+    "iconLarge": "/assets/apps/icons/6789012110@512.webp",
     "screenshots": [
       "/assets/apps/shots/6789012110-1.webp",
       "/assets/apps/shots/6789012110-2.webp",
       "/assets/apps/shots/6789012110-3.webp",
       "/assets/apps/shots/6789012110-4.webp",
       "/assets/apps/shots/6789012110-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6790243989,
@@ -855,15 +1113,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/sky-map-live-star-tracker/id6790243989",
+    "url": "https://apps.apple.com/app/id6790243989?itscg=30200&itsct=apps_box_badge&mttnsubad=6790243989",
     "icon": "/assets/apps/icons/6790243989.webp",
+    "iconLarge": "/assets/apps/icons/6790243989@512.webp",
     "screenshots": [
       "/assets/apps/shots/6790243989-1.webp",
       "/assets/apps/shots/6790243989-2.webp",
       "/assets/apps/shots/6790243989-3.webp",
       "/assets/apps/shots/6790243989-4.webp",
       "/assets/apps/shots/6790243989-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6790693691,
@@ -875,15 +1139,21 @@
     "updated": "2026-08-17",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/car-designer-car-paint-studio/id6790693691",
+    "url": "https://apps.apple.com/app/id6790693691?itscg=30200&itsct=apps_box_badge&mttnsubad=6790693691",
     "icon": "/assets/apps/icons/6790693691.webp",
+    "iconLarge": "/assets/apps/icons/6790693691@512.webp",
     "screenshots": [
       "/assets/apps/shots/6790693691-1.webp",
       "/assets/apps/shots/6790693691-2.webp",
       "/assets/apps/shots/6790693691-3.webp",
       "/assets/apps/shots/6790693691-4.webp",
       "/assets/apps/shots/6790693691-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   },
   {
     "id": 6793785085,
@@ -895,15 +1165,21 @@
     "updated": "2026-07-28",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/rv-camping-planner-trip-maps/id6793785085",
+    "url": "https://apps.apple.com/app/id6793785085?itscg=30200&itsct=apps_box_badge&mttnsubad=6793785085",
     "icon": "/assets/apps/icons/6793785085.webp",
+    "iconLarge": "/assets/apps/icons/6793785085@512.webp",
     "screenshots": [
       "/assets/apps/shots/6793785085-1.webp",
       "/assets/apps/shots/6793785085-2.webp",
       "/assets/apps/shots/6793785085-3.webp",
       "/assets/apps/shots/6793785085-4.webp",
       "/assets/apps/shots/6793785085-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "26.4"
+    }
   },
   {
     "id": 6796565605,
@@ -915,14 +1191,20 @@
     "updated": "2026-08-14",
     "minimumOs": "17.0",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/photo-video-text-kerve/id6796565605",
+    "url": "https://apps.apple.com/app/id6796565605?itscg=30200&itsct=apps_box_badge&mttnsubad=6796565605",
     "icon": "/assets/apps/icons/6796565605.webp",
+    "iconLarge": "/assets/apps/icons/6796565605@512.webp",
     "screenshots": [
       "/assets/apps/shots/6796565605-1.webp",
       "/assets/apps/shots/6796565605-2.webp",
       "/assets/apps/shots/6796565605-3.webp",
       "/assets/apps/shots/6796565605-4.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.0",
+      "visionOS": "1.0",
+      "watchOS": null
+    }
   },
   {
     "id": 6796624138,
@@ -934,15 +1216,21 @@
     "updated": "2026-08-21",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/drive-weather-navigation-radar/id6796624138",
+    "url": "https://apps.apple.com/app/id6796624138?itscg=30200&itsct=apps_box_badge&mttnsubad=6796624138",
     "icon": "/assets/apps/icons/6796624138.webp",
+    "iconLarge": "/assets/apps/icons/6796624138@512.webp",
     "screenshots": [
       "/assets/apps/shots/6796624138-1.webp",
       "/assets/apps/shots/6796624138-2.webp",
       "/assets/apps/shots/6796624138-3.webp",
       "/assets/apps/shots/6796624138-4.webp",
       "/assets/apps/shots/6796624138-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6798993599,
@@ -954,15 +1242,21 @@
     "updated": "2026-08-22",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/truck-gps-routes-truck-maps/id6798993599",
+    "url": "https://apps.apple.com/app/id6798993599?itscg=30200&itsct=apps_box_badge&mttnsubad=6798993599",
     "icon": "/assets/apps/icons/6798993599.webp",
+    "iconLarge": "/assets/apps/icons/6798993599@512.webp",
     "screenshots": [
       "/assets/apps/shots/6798993599-1.webp",
       "/assets/apps/shots/6798993599-2.webp",
       "/assets/apps/shots/6798993599-3.webp",
       "/assets/apps/shots/6798993599-4.webp",
       "/assets/apps/shots/6798993599-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.6"
+    }
   },
   {
     "id": 6804917488,
@@ -974,15 +1268,21 @@
     "updated": "2026-10-02",
     "minimumOs": "17.0",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/aviation-weather-pilot-wx/id6804917488",
+    "url": "https://apps.apple.com/app/id6804917488?itscg=30200&itsct=apps_box_badge&mttnsubad=6804917488",
     "icon": "/assets/apps/icons/6804917488.webp",
+    "iconLarge": "/assets/apps/icons/6804917488@512.webp",
     "screenshots": [
       "/assets/apps/shots/6804917488-1.webp",
       "/assets/apps/shots/6804917488-2.webp",
       "/assets/apps/shots/6804917488-3.webp",
       "/assets/apps/shots/6804917488-4.webp",
       "/assets/apps/shots/6804917488-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "14.0",
+      "visionOS": "1.0",
+      "watchOS": "10.0"
+    }
   },
   {
     "id": 6813466991,
@@ -994,15 +1294,21 @@
     "updated": "2026-09-19",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/ev-dashboard-evpeek/id6813466991",
+    "url": "https://apps.apple.com/app/id6813466991?itscg=30200&itsct=apps_box_badge&mttnsubad=6813466991",
     "icon": "/assets/apps/icons/6813466991.webp",
+    "iconLarge": "/assets/apps/icons/6813466991@512.webp",
     "screenshots": [
       "/assets/apps/shots/6813466991-1.webp",
       "/assets/apps/shots/6813466991-2.webp",
       "/assets/apps/shots/6813466991-3.webp",
       "/assets/apps/shots/6813466991-4.webp",
       "/assets/apps/shots/6813466991-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": "11.0"
+    }
   },
   {
     "id": 6814069808,
@@ -1014,14 +1320,20 @@
     "updated": "2026-10-05",
     "minimumOs": "18.6",
     "price": 0,
-    "url": "https://apps.apple.com/us/app/gapmeter-following-distance/id6814069808",
+    "url": "https://apps.apple.com/app/id6814069808?itscg=30200&itsct=apps_box_badge&mttnsubad=6814069808",
     "icon": "/assets/apps/icons/6814069808.webp",
+    "iconLarge": "/assets/apps/icons/6814069808@512.webp",
     "screenshots": [
       "/assets/apps/shots/6814069808-1.webp",
       "/assets/apps/shots/6814069808-2.webp",
       "/assets/apps/shots/6814069808-3.webp",
       "/assets/apps/shots/6814069808-4.webp",
       "/assets/apps/shots/6814069808-5.webp"
-    ]
+    ],
+    "compatibility": {
+      "macOS": "15.6",
+      "visionOS": "2.6",
+      "watchOS": null
+    }
   }
 ]
