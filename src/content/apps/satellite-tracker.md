@@ -14,7 +14,7 @@ Thousands of tracked satellites orbit a photoreal Earth at their true positions,
 
 ## Then go outside
 
-Personalised pass predictions show rise, peak and set times and direction for where you are standing, so you can find the ISS, a Starlink train or Hubble yourself.
+Personalized pass predictions show rise, peak and set times and direction for where you are standing, so you can find the ISS, a Starlink train or Hubble yourself.
 
 ## Where the data comes from
 

@@ -115,7 +115,7 @@ const ENTRIES: Record<number, [GroupSlug, string, string]> = {
 
 export type CatalogApp = (typeof storeData)[number] & { group: GroupSlug; name: string; line: string };
 
-// Newly released apps appear automatically, under their App Store name, until catalogued above.
+// Newly released apps appear automatically, under their App Store name, until catalogd above.
 export const APPS: CatalogApp[] = storeData.map((app) => {
   const [group, name, line] = ENTRIES[app.id] ?? (['life-travel', app.storeName, `${app.genre} app for iPhone.`] as const);
   return { ...app, group, name, line };

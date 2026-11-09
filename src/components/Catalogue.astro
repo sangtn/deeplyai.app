@@ -34,7 +34,7 @@ const breadcrumb = {
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow">{vi ? 'Ứng dụng' : 'Apps'}</p>
-      <h1 class="display">{vi ? 'Toàn bộ danh mục.' : 'The full catalogue.'}</h1>
+      <h1 class="display">{vi ? 'Toàn bộ danh mục.' : 'The full catalog.'}</h1>
       <p class="lead">{vi ? `${APPS.length} ứng dụng trên sáu kệ, tất cả đều có trên App Store.` : `${APPS.length} apps across six shelves, all available on the App Store.`}</p>
       <div class="actions" style="margin-top:24px"><StoreBadge lang={lang} /></div>
     </header>
@@ -51,7 +51,7 @@ const breadcrumb = {
 </Base>
 
 <script>
-  // Without JavaScript the whole catalogue simply stays visible.
+  // Without JavaScript the whole catalog simply stays visible.
   const bar = document.querySelector<HTMLElement>('[data-filters]')!;
   const search = document.querySelector<HTMLInputElement>('[data-search]')!;
   const empty = document.querySelector<HTMLElement>('[data-empty]')!;

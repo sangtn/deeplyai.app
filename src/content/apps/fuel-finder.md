@@ -10,14 +10,14 @@ taglineVi: "Tìm trạm nhiên liệu rẻ nhất gần bạn chỉ trong vài g
 
 ## See every nearby price at a glance
 
-Fuel Finder colours nearby stations by price level on a live map, or lists them cheapest first with the distance alongside. Filter with one tap by Diesel, SP95, SP98, E10, E85, LPG, AdBlue, Regular, Midgrade or Premium.
+Fuel Finder colors nearby stations by price level on a live map, or lists them cheapest first with the distance alongside. Filter with one tap by Diesel, SP95, SP98, E10, E85, LPG, AdBlue, Regular, Midgrade or Premium.
 
 ## Where the price shows up
 
 - **Widgets:** small, medium and Lock Screen widgets show the cheapest station near you, refreshed automatically every 30 minutes.
 - **CarPlay:** a native experience shows the cheapest station, and you can start navigation directly from the car screen.
-- **Apple Watch:** price, fuel type, station name and distance on your wrist, colour-coded green, orange or red.
+- **Apple Watch:** price, fuel type, station name and distance on your wrist, color-coded green, orange or red.
 
 ## Make it look like yours
 
-Widgets can be customised with 20 bundled fonts, 10 background presets or any colour you choose for the background, text and fuel label.
+Widgets can be customized with 20 bundled fonts, 10 background presets or any color you choose for the background, text and fuel label.

@@ -9,6 +9,8 @@ const templates = [
   { topic: 'Partnership or project', body: `Hello DeeplyAi team,\n\nI would like to talk about working together.\n\nCompany:\nProject summary:\nTimeline:\n\nThank you.` },
   { topic: 'General question', body: `Hello DeeplyAi team,\n\n${NEEDS}\n\nThank you.` },
 ];
+const mailto = (t: (typeof templates)[number]) =>
+  `mailto:info@deeplyai.app?subject=${encodeURIComponent(`[DeeplyAi] ${t.topic}`)}&body=${encodeURIComponent(t.body)}`;
 ---
 <Base path="/contact.html" title="Contact DeeplyAi – Support & App Enquiries" description="Contact DeeplyAi for app support, feature requests or partnership enquiries. Email info@deeplyai.app and we will get back to you.">
   <div class="wrap">
@@ -37,6 +39,13 @@ const templates = [
         <div class="actions"><button class="btn" type="submit" style="cursor:pointer">Open email to send</button></div>
         <p style="color:var(--ink-2);font-size:14px">This opens your email app with the message filled in, ready for you to send. See our <a href="/privacy.html">Privacy Policy</a>.</p>
       </form>
+    </section>
+    <section class="section" style="padding-top:0" aria-labelledby="ready-title">
+      <h2 id="ready-title" class="h-lg" style="margin-bottom:12px">Ready-made emails</h2>
+      <p class="lead" style="margin-bottom:28px">Prefer your own email app? Pick one and the message opens already written.</p>
+      <ul class="app-grid">
+        {templates.map((t) => <li><a class="app-card" href={mailto(t)}><div><strong>{t.topic}</strong><span>{t.body.split('\n')[2]}</span></div></a></li>)}
+      </ul>
     </section>
   </div>
 </Base>

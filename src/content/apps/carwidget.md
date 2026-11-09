@@ -10,11 +10,11 @@ taglineVi: "Cá nhân hóa màn hình CarPlay theo phong cách của bạn."
 
 ## Widgets designed for a glance
 
-CarWidget brings customisable widgets to CarPlay and your iPhone Home Screen. Start from one of 316 templates or design your own.
+CarWidget brings customizable widgets to CarPlay and your iPhone Home Screen. Start from one of 316 templates or design your own.
 
 ## A library worth browsing
 
-Templates cover clocks, calendars, weather, countdowns, neon, retro and racing styles, alongside seasonal and cute collections. Search the full library and save favourites. Many templates are animated inside the app.
+Templates cover clocks, calendars, weather, countdowns, neon, retro and racing styles, alongside seasonal and cute collections. Search the full library and save favorites. Many templates are animated inside the app.
 
 ## Widget rotation
 

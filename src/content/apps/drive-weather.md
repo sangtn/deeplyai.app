@@ -18,7 +18,7 @@ Drag the Departure Dial up to 7 days forward or back. The weather along your who
 
 ## Radar that is honest about itself
 
-Radar draws on multiple sources, so coverage does not silently go stale mid-trip. Scrub recent frames with a clear timestamp on each one, and see plain labelling when short-term nowcasts are not available in your region.
+Radar draws on multiple sources, so coverage does not silently go stale mid-trip. Scrub recent frames with a clear timestamp on each one, and see plain labeling when short-term nowcasts are not available in your region.
 
 ## Warnings for what you drive
 
