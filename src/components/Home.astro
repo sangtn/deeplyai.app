@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { APPS, GROUPS, GROUP_SLUGS, byId, inGroup } from '../data/catalog';
+
+interface Props { lang: 'en' | 'vi' }
+const { lang } = Astro.props;
+const vi = lang === 'vi';
+const count = APPS.length;
+const site = 'https://deeplyai.app/';
+
+const featured = (await getCollection('apps')).sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+
+// Spread hero icons across three columns; each list is doubled for a seamless loop.
+const columns = [0, 1, 2, 3].map((c) => APPS.filter((_, i) => i % 4 === c).slice(0, 7));
+
+const stories = [
+  { id: 6759792594, slug: 'weather-widgets', kicker: vi ? 'Màn hình chính' : 'Home Screen', title: vi ? 'Xem thời tiết mà không cần mở ứng dụng.' : 'Weather without opening an app.', body: vi ? 'Weather Widgets có hơn 50 kiểu widget, tự động cập nhật nhiệt độ và dự báo theo giờ.' : 'Weather Widgets offers more than 50 widget styles that keep temperature and hourly forecasts up to date.' },
+  { id: 6790243989, slug: 'sky-map', kicker: vi ? 'Màn hình khóa' : 'Lock Screen', title: vi ? 'Không bỏ lỡ trạm vũ trụ bay qua.' : 'Never miss the station flying over.', body: vi ? 'Sky Map đưa đồng hồ đếm ngược ISS lên Màn hình khóa và Dynamic Island.' : 'Sky Map puts an ISS pass countdown on your Lock Screen and in the Dynamic Island.' },
+  { id: 6761090999, slug: 'fuel-finder', kicker: 'CarPlay', title: vi ? 'Trạm rẻ nhất, ngay trên màn hình xe.' : 'The cheapest station, on the dash.', body: vi ? 'Fuel Finder hiển thị trạm giá tốt nhất trên CarPlay và dẫn đường trực tiếp từ đó.' : 'Fuel Finder shows the cheapest station on CarPlay and starts navigation from the same screen.' },
+  { id: 6762106958, slug: 'wristnet', kicker: 'Apple Watch', title: vi ? 'Nghe web ngay trên cổ tay.' : 'The web, read aloud on your wrist.', body: vi ? 'WristNet đọc bài viết thành tiếng và phát video ngoại tuyến trên Apple Watch.' : 'WristNet turns articles into clean spoken audio and plays your videos offline on Apple Watch.' },
+].map((s) => ({ ...s, shot: byId.get(s.id)?.screenshots[0] ?? '' }));
+
+const steps = vi
+  ? [['Khám phá', 'Tìm hiểu nhu cầu thật qua nghiên cứu kỹ lưỡng trước khi chọn giải pháp.'], ['Phát triển', 'Thiết kế và xây dựng sản phẩm đẹp, dễ dùng, phù hợp với tầm nhìn.'], ['Ra mắt', 'Phát hành suôn sẻ và tiếp tục hỗ trợ, cải tiến sau khi ra mắt.']]
+  : [['Discovery', 'We start with in-depth research into the real need before choosing a solution.'], ['Development', 'We design and build products that are visually appealing and easy to use.'], ['Launch', 'We ship carefully, then keep supporting and improving what we released.']];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': `${site}#organization`, name: 'DeeplyAi', url: site, logo: `${site}assets/images/apple-touch-icon.png`, email: 'info@deeplyai.app', sameAs: ['https://apps.apple.com/us/developer/deeply-ai/id1809787876'] },
+    { '@type': 'WebSite', '@id': `${site}#website`, name: 'DeeplyAi', url: site, inLanguage: lang, publisher: { '@id': `${site}#organization` } },
+  ],
+};
+---
+<Base
+  lang={lang}
+  path={vi ? '/vi/' : '/'}
+  alternates={{ en: '/', vi: '/vi/' }}
+  jsonLd={jsonLd}
+  title={vi ? 'DeeplyAi – Ứng dụng cho iPhone, Apple Watch & CarPlay' : 'DeeplyAi – Apps for iPhone, Apple Watch & CarPlay'}
+  description={vi ? `DeeplyAi phát triển ${count} ứng dụng cho iPhone, iPad, Apple Watch và CarPlay: camera hành trình, định tuyến xe tải, widget thời tiết, lịch âm và nhiều hơn nữa.` : `DeeplyAi makes ${count} apps for iPhone, iPad, Apple Watch and CarPlay, from dash cams and truck GPS to weather widgets, planners and AI tools.`}
+>
+  <section class="hero">
+    <div class="wall" aria-hidden="true">
+      {columns.map((col) => (
+        <div class="wall-col">
+          {[...col, ...col].map((app) => <img src={app.icon} width="124" height="124" alt="" decoding="async" />)}
+        </div>
+      ))}
+    </div>
+    <div class="wrap hero-in">
+      <p class="eyebrow">DeeplyAi</p>
+      <h1 class="display">{vi ? <Fragment><em>{count}</em> ứng dụng cho những việc bạn làm mỗi ngày.</Fragment> : <Fragment><em>{count}</em> apps for the things you do every day.</Fragment>}</h1>
+      <p class="lead">{vi ? 'Từ con đường phía trước đến bầu trời đêm, chúng tôi xây dựng ứng dụng cho iPhone, iPad, Apple Watch và CarPlay.' : 'From the road ahead to the night sky, we build apps for iPhone, iPad, Apple Watch and CarPlay.'}</p>
+      <div class="actions">
+        <a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'Browse all apps'}</a>
+        <a class="btn ghost" href="https://apps.apple.com/us/developer/deeply-ai/id1809787876" rel="noopener">App Store</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="index-title">
+    <div class="index-head">
+      <h2 id="index-title" class="h-lg reveal">{vi ? 'Sáu kệ. Mỗi ứng dụng một việc.' : 'Six shelves. Each app does a job.'}</h2>
+      <p class="lead reveal">{vi ? 'Chọn lĩnh vực bạn quan tâm để xem các ứng dụng liên quan.' : 'Pick the part of life you care about and see what we have made for it.'}</p>
+    </div>
+    <ul>
+      {GROUP_SLUGS.map((g, i) => (
+        <li class="index-row reveal">
+          <a href={`/apps/${g}/`}>
+            <span class="index-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="index-name">{vi ? GROUPS[g].nameVi : GROUPS[g].name}</span>
+            <span class="index-blurb">{vi ? GROUPS[g].blurbVi : GROUPS[g].blurb}</span>
+            <span class="index-icons" aria-hidden="true">{inGroup(g).slice(0, 4).map((a) => <img src={a.icon} width="48" height="48" alt="" loading="lazy" decoding="async" />)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="story section" aria-labelledby="story-title">
+    <div class="wrap">
+      <p class="eyebrow">{vi ? 'Mọi màn hình Apple' : 'Every Apple surface'}</p>
+      <h2 id="story-title" class="h-lg" style="margin-top:12px;max-width:14em">{vi ? 'Xuất hiện đúng nơi bạn đang nhìn.' : 'Built for wherever you are already looking.'}</h2>
+      <div class="story-grid" data-story>
+        <div>
+          {stories.map((s, i) => (
+            <article class="story-step" class:list={[{ on: i === 0 }]} data-step={i}>
+              <p class="eyebrow">{s.kicker}</p>
+              <h3>{s.title}</h3>
+              <p>{s.body} <a href={`/apps/${s.slug}/`}>{vi ? 'Xem ứng dụng' : 'See the app'}</a></p>
+              <img class="story-inline" src={s.shot} width="392" height="850" alt="" loading="lazy" decoding="async" />
+            </article>
+          ))}
+        </div>
+        <div class="phone" aria-hidden="true">
+          {stories.map((s, i) => <img class:list={[{ on: i === 0 }]} src={s.shot} width="392" height="850" alt="" loading="lazy" decoding="async" />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="featured-title">
+    <div class="index-head">
+      <h2 id="featured-title" class="h-lg reveal">{vi ? 'Từ danh mục của chúng tôi.' : 'From the catalogue.'}</h2>
+    </div>
+    <div class="feature-grid">
+      {featured.map((entry, i) => {
+        const app = byId.get(entry.data.id)!;
+        return (
+          <a class="spec reveal" href={`/apps/${entry.id}/`}>
+            <span class="spec-top"><img class="icon" src={app.icon} width="64" height="64" alt="" loading="lazy" style={`view-transition-name:app-${app.id}`} /><span>No. {String(i + 1).padStart(2, '0')}</span></span>
+            <h3>{entry.data.name}</h3>
+            <p>{vi ? entry.data.taglineVi : entry.data.tagline}</p>
+            <span class="shot"><img src={app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
+          </a>
+        );
+      })}
+    </div>
+    <div class="center-cta"><a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? `Xem cả ${count} ứng dụng` : `See all ${count} apps`}</a></div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="how-title" style="padding-top:0">
+    <h2 id="how-title" class="h-lg reveal" style="margin-bottom:48px">{vi ? 'Cách chúng tôi làm.' : 'How we work.'}</h2>
+    <div class="steps">
+      {steps.map(([name, text], i) => <div class="step reveal"><span class="index-num">{i + 1}</span><b>{name}</b><p>{text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="band section">
+    <div class="wrap band-in">
+      <div>
+        <h2 class="h-lg" style="max-width:12em">{vi ? 'Có ý tưởng cần biến thành sản phẩm?' : 'Have an idea worth building?'}</h2>
+        <p class="lead" style="margin-top:16px">{vi ? 'Góp ý, báo lỗi hoặc hợp tác, chúng tôi đều muốn nghe.' : 'Feedback, bug reports or a project, we would like to hear from you.'}</p>
+      </div>
+      <a class="btn" href="/contact.html">{vi ? 'Liên hệ' : 'Get in touch'}</a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // The icon wall starts after the first paint work is done and rests while off-screen.
+  const wall = document.querySelector('.wall');
+  if (wall) {
+    const start = () => new IntersectionObserver(([entry]) => {
+      wall.classList.toggle('run', entry.isIntersecting);
+    }).observe(wall);
+    if ('requestIdleCallback' in window) window.addEventListener('load', () => setTimeout(() => requestIdleCallback(start), 1500));
+    else setTimeout(start, 3000);
+  }
+
+  // Swaps the sticky phone screen as each story step reaches the middle of the viewport.
+  const root = document.querySelector('[data-story]');
+  if (root) {
+    const steps = [...root.querySelectorAll<HTMLElement>('[data-step]')];
+    const screens = [...root.querySelectorAll<HTMLImageElement>('.phone img')];
+    screens.forEach((image) => { image.loading = 'eager'; });
+    const observer = new IntersectionObserver((entries) => {
+      entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
+        const active = steps.indexOf(entry.target as HTMLElement);
+        steps.forEach((step, i) => step.classList.toggle('on', i === active));
+        screens.forEach((screen, i) => screen.classList.toggle('on', i === active));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach((step) => observer.observe(step));
+  }
+</script>

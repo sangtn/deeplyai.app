@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import body from '../content/legal/terms.html?raw';
+---
+<Base path="/terms.html" title="Terms of Service – DeeplyAi" description="The terms that apply when you use DeeplyAi apps and services, including licensing, purchases and user content.">
+  <div class="wrap section" style="padding-top:64px">
+    <h1 class="h-lg" style="margin-bottom:40px">Terms of Service</h1>
+    <article class="prose" set:html={body} />
+  </div>
+</Base>

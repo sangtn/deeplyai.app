@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import type { CatalogApp } from '../data/catalog';
+
+interface Props { app: CatalogApp; line?: string; href?: string }
+const { app, line = app.line, href } = Astro.props;
+const entries = await getCollection('apps');
+const entry = entries.find((e) => e.data.id === app.id);
+const external = !entry && !href;
+---
+<a
+  class="app-card"
+  href={href ?? (entry ? `/apps/${entry.id}/` : app.url)}
+  rel={external ? 'noopener' : undefined}
+  data-name={`${app.name} ${line} ${app.line} ${app.storeName}`.toLowerCase()}
+>
+  <img src={app.icon} width="68" height="68" alt="" loading="lazy" decoding="async" style={entry ? `view-transition-name:app-${app.id}` : undefined} />
+  <div><strong>{app.name}</strong><span>{line}</span></div>
+</a>

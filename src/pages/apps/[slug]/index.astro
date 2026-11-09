@@ -1,0 +1,93 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import AppCard from '../../../components/AppCard.astro';
+import { GROUPS, GROUP_SLUGS, byId, hasRating, inGroup, type GroupSlug } from '../../../data/catalog';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('apps');
+  return [
+    ...GROUP_SLUGS.map((group) => ({ params: { slug: group }, props: { group } })),
+    ...entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } })),
+  ];
+}
+
+interface Props { group?: GroupSlug; entry?: CollectionEntry<'apps'> }
+const { group, entry } = Astro.props;
+const site = 'https://deeplyai.app';
+const crumb = (items: [string, string][]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: `${site}${path}` })),
+});
+
+const app = entry ? byId.get(entry.data.id)! : undefined;
+const Content = entry ? (await render(entry)).Content : undefined;
+const info = group ? GROUPS[group] : GROUPS[app!.group];
+const parent = group ?? app!.group;
+const related = app ? inGroup(app.group).filter((a) => a.id !== app.id).slice(0, 3) : [];
+const showRating = app ? hasRating(app) : false;
+
+const appLd = app && entry && {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: entry.data.name,
+  description: entry.data.description,
+  url: `${site}/apps/${entry.id}/`,
+  image: `${site}${app.icon}`,
+  screenshot: app.screenshots.map((s) => `${site}${s}`),
+  operatingSystem: `iOS ${app.minimumOs} or later`,
+  applicationCategory: `${app.genre}Application`,
+  softwareVersion: app.version,
+  installUrl: app.url,
+  author: { '@type': 'Organization', name: 'DeeplyAi', url: `${site}/` },
+  offers: { '@type': 'Offer', price: app.price, priceCurrency: 'USD' },
+  ...(showRating && { aggregateRating: { '@type': 'AggregateRating', ratingValue: app.rating, ratingCount: app.ratingCount, bestRating: 5, worstRating: 1 } }),
+};
+const updated = app && new Date(app.updated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+{group && (
+  <Base path={`/apps/${group}/`} title={info.title} description={info.description} jsonLd={crumb([['Home', '/'], ['Apps', '/apps/'], [info.name, `/apps/${group}/`]])}>
+    <div class="wrap" style="padding-bottom:96px">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/apps/">Apps</a><span>/</span><span>{info.name}</span></nav>
+      <header class="page-head" style="padding-top:40px">
+        <h1 class="display">{info.name}</h1>
+        <p class="lead">{info.intro}</p>
+      </header>
+      <ul class="app-grid">{inGroup(group).map((a) => <li><AppCard app={a} /></li>)}</ul>
+    </div>
+  </Base>
+)}
+
+{app && entry && Content && (
+  <Base path={`/apps/${entry.id}/`} alternates={entry.id === 'lich-van-nien' ? { en: '/apps/lich-van-nien/', vi: '/vi/apps/lich-van-nien/' } : undefined} title={entry.data.title} description={entry.data.description} jsonLd={[appLd!, crumb([['Home', '/'], ['Apps', '/apps/'], [info.name, `/apps/${parent}/`], [entry.data.name, `/apps/${entry.id}/`]])]}>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/apps/">Apps</a><span>/</span><a href={`/apps/${parent}/`}>{info.name}</a><span>/</span><span>{entry.data.name}</span></nav>
+      <header class="app-hero">
+        <img src={app.icon} width="144" height="144" alt={`${entry.data.name} app icon`} style={`view-transition-name:app-${app.id}`} />
+        <div>
+          <h1>{entry.data.name}</h1>
+          <p class="lead">{entry.data.tagline}</p>
+          <p class="app-meta">
+            {showRating && <span>{app.rating.toFixed(1)} out of 5 from {app.ratingCount} ratings (US App Store)</span>}
+            <span>Requires iOS {app.minimumOs}+</span>
+            <span>Version {app.version}, updated {updated}</span>
+          </p>
+          <div class="actions"><a class="btn" href={app.url} rel="noopener">{app.price === 0 ? 'Get it free on the App Store' : 'View on the App Store'}</a></div>
+        </div>
+      </header>
+    </div>
+    <div class="shots" tabindex="0" role="group" aria-label={`${entry.data.name} screenshots`}>
+      {app.screenshots.map((src, i) => <img src={src} width="392" height="850" alt={`${entry.data.name} screenshot ${i + 1}`} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+    </div>
+    <div class="wrap section" style="padding-top:48px">
+      <article class="prose"><Content /></article>
+    </div>
+    {related.length > 0 && (
+      <div class="wrap" style="padding-bottom:96px">
+        <h2 class="h-lg" style="font-size:clamp(28px,3vw,40px);margin-bottom:12px">More from {info.name.toLowerCase()}</h2>
+        <ul class="app-grid">{related.map((a) => <li><AppCard app={a} /></li>)}</ul>
+      </div>
+    )}
+  </Base>
+)}
