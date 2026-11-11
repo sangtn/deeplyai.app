@@ -179,14 +179,14 @@ const jsonLd = {
 </Base>
 
 <script>
-  // The icon wall starts after the first paint work is done and rests while off-screen.
+  // The icon wall starts once the page has painted and rests while it is off-screen.
   const wall = document.querySelector('.wall');
   if (wall) {
     const start = () => new IntersectionObserver(([entry]) => {
       wall.classList.toggle('run', entry.isIntersecting);
     }).observe(wall);
-    if ('requestIdleCallback' in window) window.addEventListener('load', () => setTimeout(() => requestIdleCallback(start), 1500));
-    else setTimeout(start, 3000);
+    if (document.readyState === 'complete') requestAnimationFrame(start);
+    else window.addEventListener('load', () => requestAnimationFrame(start), { once: true });
   }
 
   // Swaps the sticky phone screen as each story step reaches the middle of the viewport.
