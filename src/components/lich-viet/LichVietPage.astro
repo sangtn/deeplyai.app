@@ -97,7 +97,7 @@ const jsonLd = [
 >
   <div class="lv" data-lang={lang}>
     <section class="lv-hero">
-      <span class="lv-drum lv-drum-hero" aria-hidden="true"></span>
+      <canvas class="lv-drum-hero" width="800" height="800" aria-hidden="true" data-drum></canvas>
       <div class="wrap">
         <nav class="crumbs" aria-label={vi ? 'Đường dẫn' : 'Breadcrumb'}><a href={vi ? '/vi/apps/' : '/apps/'}>{t.crumbs[0]}</a><span>/</span><span>{t.crumbs[1]}</span></nav>
         <div class="lv-hero-grid">
@@ -119,8 +119,8 @@ const jsonLd = [
           </div>
           <div class="lv-hero-media">
             <div class="lv-stack">
-              <Pic class="lv-shot lv-stack-l" name={shot(1)} alt={alt(1)} sizes="(max-width: 900px) 40vw, 230px" />
-              <Pic class="lv-shot lv-stack-r" name={shot(8)} alt={alt(8)} sizes="(max-width: 900px) 40vw, 230px" />
+              <Pic class="lv-shot lv-stack-l" name={shot(1)} alt={alt(1)} sizes="(max-width: 900px) 30vw, 200px" />
+              <Pic class="lv-shot lv-stack-r" name={shot(8)} alt={alt(8)} sizes="(max-width: 900px) 30vw, 200px" />
               <Pic class="lv-shot lv-stack-c" name={shot(0)} alt={alt(0)} sizes="(max-width: 900px) 56vw, 300px" eager />
             </div>
           </div>
@@ -365,6 +365,18 @@ const jsonLd = [
   import { CHI, CHI_ICONS, LUNAR_MONTHS, dayInfo, vietnamToday } from './lunar';
   import { COPY, MONTHS_EN, type Lang } from './copy';
 
+  // Decorative artwork waits for the page to finish loading.
+  const root = document.querySelector('.lv');
+  const ready = () => setTimeout(() => {
+    root?.classList.add('is-loaded');
+    const canvas = document.querySelector<HTMLCanvasElement>('[data-drum]');
+    if (!canvas) return;
+    const art = new Image();
+    art.src = '/assets/apps/lich-viet/drum-gold.webp';
+    art.decode().then(() => canvas.getContext('2d')?.drawImage(art, 0, 0, canvas.width, canvas.height)).catch(() => {});
+  }, 300);
+  if (document.readyState === 'complete') ready(); else window.addEventListener('load', ready, { once: true });
+
   // Today's page: recomputed in the browser so it is right even if the build is a day old.
   const sheet = document.querySelector<HTMLElement>('[data-today]');
   if (sheet) {
@@ -484,12 +496,17 @@ const jsonLd = [
   }
 
   /* Decorative gold masks, drawn for the app */
-  .lv-drum, .lv-lotus { position: absolute; pointer-events: none; background: var(--lv-gold); -webkit-mask: url('/assets/apps/lich-viet/drum.svg') center / contain no-repeat; mask: url('/assets/apps/lich-viet/drum.svg') center / contain no-repeat; }
-  .lv-drum-hero { top: 50%; right: -18vw; width: min(120vw, 1100px); aspect-ratio: 1; translate: 0 -50%; opacity: .16; animation: lv-spin 240s linear infinite; }
+  /* Decorative only: images load after the page so they never delay the first render. */
+  .lv-drum, .lv-lotus { position: absolute; pointer-events: none; background: center / contain no-repeat; will-change: transform; visibility: hidden; transition: opacity 1.2s; }
+  .lv.is-loaded .lv-drum, .lv.is-loaded .lv-lotus { visibility: visible; background-image: url('/assets/apps/lich-viet/drum-gold.webp'); }
+  /* Drawn on a canvas after load, so this large artwork is never the page's LCP element. */
+  .lv-drum-hero { position: absolute; top: 50%; right: -18vw; width: min(120vw, 1100px); height: auto; aspect-ratio: 1; margin-top: max(-60vw, -550px); opacity: .16; pointer-events: none; will-change: transform; animation: lv-spin 240s linear infinite; }
   .lv-drum-side { top: -160px; left: -220px; width: 620px; aspect-ratio: 1; opacity: .09; animation: lv-spin 300s linear infinite reverse; }
-  .lv-drum-cta { top: 50%; right: -160px; width: 560px; aspect-ratio: 1; translate: 0 -50%; background: #fff; opacity: .1; animation: lv-spin 240s linear infinite; }
-  .lv-lotus { right: 4%; bottom: -30px; width: 260px; aspect-ratio: 400 / 440; background: var(--lv-gold-soft); opacity: .18; -webkit-mask-image: url('/assets/apps/lich-viet/lotus.svg'); mask-image: url('/assets/apps/lich-viet/lotus.svg'); }
-  @keyframes lv-spin { to { rotate: 360deg; } }
+  .lv-drum-cta { top: 50%; right: -160px; width: 560px; aspect-ratio: 1; margin-top: -280px; opacity: .1; animation: lv-spin 240s linear infinite; }
+  .lv-lotus { right: 4%; bottom: -30px; width: 260px; aspect-ratio: 400 / 440; opacity: .18; will-change: auto; }
+  .lv.is-loaded .lv-drum-cta { background-image: url('/assets/apps/lich-viet/drum-light.webp'); }
+  .lv.is-loaded .lv-lotus { background-image: url('/assets/apps/lich-viet/lotus-gold.webp'); }
+  @keyframes lv-spin { to { transform: rotate(360deg); } }
 
   /* Hero */
   .lv-hero { position: relative; overflow: hidden; padding-bottom: clamp(56px, 8vw, 110px); background: radial-gradient(120% 90% at 85% 40%, #3a1712 0%, var(--lv-lacquer) 55%); color: #f5ead6; }
@@ -534,8 +551,8 @@ const jsonLd = [
   .lv-tet-line { display: inline-block; margin-top: 24px; padding: 10px 18px; border-radius: 999px; background: var(--lv-red); color: #fff; font-weight: 600; }
   .lv-pad { position: relative; display: flex; justify-content: center; padding-top: 22px; }
   .lv-pad::before { content: ''; position: absolute; top: 0; left: 50%; width: 46%; height: 30px; translate: -50% 0; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, #5b2a1c, #3a1a11); box-shadow: 0 4px 10px #0004; }
-  .lv-sheet { position: relative; width: min(100%, 420px); padding: 0 22px 24px; border-radius: 6px; background: #fbf4e4 url('/assets/apps/lich-viet/drum.svg') center 46% / 92% no-repeat; background-blend-mode: soft-light; box-shadow: 0 2px 0 #e9dcc0, 0 4px 0 #f6ecd6, 0 6px 0 #e3d2b0, 0 30px 60px #2a1c1333; color: var(--lv-ink); text-align: center; }
-  .lv-sheet::after { content: ''; position: absolute; inset: 0; border-radius: 6px; background: #fbf4e4d9; z-index: 0; pointer-events: none; }
+  .lv-sheet { position: relative; width: min(100%, 420px); padding: 0 22px 24px; border-radius: 6px; background: #fbf4e4 url('/assets/apps/lich-viet/drum-red.webp') center 46% / 92% no-repeat; box-shadow: 0 2px 0 #e9dcc0, 0 4px 0 #f6ecd6, 0 6px 0 #e3d2b0, 0 30px 60px #2a1c1333; color: var(--lv-ink); text-align: center; }
+  .lv-sheet::after { content: ''; position: absolute; inset: 0; border-radius: 6px; background: #fbf4e4ea; z-index: 0; pointer-events: none; }
   .lv-sheet > :not(.lv-tear) { position: relative; z-index: 1; }
   .lv-sheet-top { display: flex; justify-content: space-between; gap: 12px; margin-inline: -22px; padding: 12px 22px; border-radius: 6px 6px 0 0; background: var(--lv-red); color: #fff3df; font-family: var(--lv-serif); font-size: 17px; font-weight: 700; }
   .lv-sheet-weekday { margin-top: 18px; color: var(--lv-red); font-family: var(--lv-serif); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }

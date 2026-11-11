@@ -56,8 +56,19 @@ for (const lang of ['vi', 'en']) {
 }
 
 // Traditional art drawn for the app, and the twelve zodiac icons the app already ships.
-copyFileSync(join(SRC, 'assets/art/drum.svg'), join(OUT, 'drum.svg'));
-copyFileSync(join(SRC, 'assets/art/lotus.svg'), join(OUT, 'lotus.svg'));
+// The artwork is pre-tinted to raster images: rotating an image is cheap for the GPU, while
+// masking with the complex SVG forces a full repaint on every animation frame.
+async function tinted(svg, name, width, [r, g, b]) {
+  const alpha = await sharp(join(SRC, svg), { density: 300 }).resize(width).ensureAlpha().extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
+  await sharp({ create: { width: alpha.info.width, height: alpha.info.height, channels: 3, background: { r, g, b } } })
+    .joinChannel(alpha.data, { raw: { width: alpha.info.width, height: alpha.info.height, channels: 1 } })
+    .webp({ quality: 55, alphaQuality: 55 })
+    .toFile(join(OUT, `${name}.webp`));
+}
+await tinted('assets/art/drum.svg', 'drum-gold', 800, [217, 164, 65]);
+await tinted('assets/art/drum.svg', 'drum-light', 600, [255, 255, 255]);
+await tinted('assets/art/drum.svg', 'drum-red', 560, [168, 35, 27]);
+await tinted('assets/art/lotus.svg', 'lotus-gold', 400, [236, 210, 155]);
 for (const chi of ['Ty', 'Suu', 'Dan', 'Mao', 'Thin', 'Tyj', 'Ngo', 'Mui', 'Than', 'Dau', 'Tuat', 'Hoi']) {
   copyFileSync(join(SRC, `assets/chi/${chi}.svg`), join(OUT, `chi/${chi}.svg`));
 }
