@@ -4,8 +4,8 @@
 // viewport, and stays still for people who prefer reduced motion.
 import media from '../../data/car-connect-media.json';
 
-interface Props { name: string; label: string; lang: 'en' | 'vi'; eager?: boolean; class?: string }
-const { name, label, lang, eager = false, class: className } = Astro.props;
+interface Props { name: string; label: string; i18n?: string; lang: 'en' | 'vi'; eager?: boolean; class?: string }
+const { name, label, i18n, lang, eager = false, class: className } = Astro.props;
 const pause = lang === 'vi' ? 'Tạm dừng video' : 'Pause video';
 const play = lang === 'vi' ? 'Phát video' : 'Play video';
 const info = (media.videos as Record<string, { width: number; height: number; poster: { width: number; height: number } }>)[name];
@@ -21,6 +21,7 @@ const base = `/assets/apps/car-connect/${name}`;
       width={info.poster.width}
       height={info.poster.height}
       alt={label}
+      data-i18n-alt={i18n}
       loading={eager ? 'eager' : 'lazy'}
       fetchpriority={eager ? 'high' : undefined}
       decoding={eager ? 'sync' : 'async'}

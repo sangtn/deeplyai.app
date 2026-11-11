@@ -2,8 +2,8 @@
 // Responsive AVIF/WebP picture with a JPEG fallback, from scripts/car-connect-media.mjs output.
 import media from '../../data/car-connect-media.json';
 
-interface Props { name: string; alt: string; sizes?: string; eager?: boolean; class?: string }
-const { name, alt, sizes = '100vw', eager = false, class: className } = Astro.props;
+interface Props { name: string; alt: string; i18n?: string; sizes?: string; eager?: boolean; class?: string }
+const { name, alt, i18n, sizes = '100vw', eager = false, class: className } = Astro.props;
 const info = (media.stills as Record<string, { width: number; height: number; widths: number[] }>)[name];
 if (!info) throw new Error(`Unknown Car Connect still: ${name}`);
 const base = `/assets/apps/car-connect/${name}`;
@@ -17,6 +17,7 @@ const set = (ext: string) => info.widths.map((w) => `${base}-${w}.${ext} ${w}w`)
     width={info.width}
     height={info.height}
     alt={alt}
+    data-i18n-alt={i18n}
     loading={eager ? 'eager' : 'lazy'}
     fetchpriority={eager ? 'high' : undefined}
     decoding={eager ? 'sync' : 'async'}

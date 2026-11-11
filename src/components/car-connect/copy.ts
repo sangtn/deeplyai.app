@@ -25,8 +25,8 @@ const en = {
   h1Sub: 'Your iPhone as a driving dashboard',
   lead: 'Speed, maps, music, radio, calls and trips on one landscape screen, with big controls you can read at a glance. It runs on your iPhone in any car, and shows a driving view on CarPlay in supported cars.',
   free: 'Free, with an optional Premium subscription',
-  ratingLine: (r: string, n: number) => `${r} out of 5 from ${n} ratings (US App Store)`,
-  requires: (v: string) => `Requires iOS ${v} or later`,
+  ratingLine: '{r} out of 5 from {n} ratings (US App Store)',
+  requires: 'Requires iOS {v} or later',
   compatLink: 'Will it work with my car?',
   heroVideo: 'Car Connect Driving Mode on an iPhone in landscape, cycling through the map, radio, music, phone, dash cam, custom theme, turn-by-turn and HUD screens.',
   jump: 'On this page',
@@ -182,7 +182,7 @@ const en = {
   related: 'More apps for the road',
 };
 
-type Copy = typeof en;
+export type Copy = typeof en;
 
 const vi: Copy = {
   title: 'Car Connect – Bảng điều khiển lái xe trên iPhone | DeeplyAi',
@@ -194,8 +194,8 @@ const vi: Copy = {
   h1Sub: 'Biến iPhone thành bảng điều khiển lái xe',
   lead: 'Tốc độ, bản đồ, nhạc, radio, cuộc gọi và chuyến đi trên một màn hình ngang, nút bấm lớn, nhìn là hiểu. App chạy trên iPhone ở mọi xe, và hiện màn hình lái xe trên CarPlay ở những xe hỗ trợ.',
   free: 'Miễn phí, có gói Premium tuỳ chọn',
-  ratingLine: (r: string, n: number) => `${r}/5 từ ${n} đánh giá (App Store Mỹ)`,
-  requires: (v: string) => `Yêu cầu iOS ${v} trở lên`,
+  ratingLine: '{r}/5 từ {n} đánh giá (App Store Mỹ)',
+  requires: 'Yêu cầu iOS {v} trở lên',
   compatLink: 'Xe của tôi dùng được không?',
   heroVideo: 'Chế độ lái xe của Car Connect trên iPhone xoay ngang, lần lượt các màn hình bản đồ, radio, nhạc, điện thoại, camera hành trình, giao diện tuỳ chỉnh, chỉ đường và HUD.',
   jump: 'Trên trang này',

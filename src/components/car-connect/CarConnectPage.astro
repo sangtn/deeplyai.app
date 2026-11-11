@@ -9,6 +9,7 @@ import Pic from './Pic.astro';
 import Clip from './Clip.astro';
 import media from '../../data/car-connect-media.json';
 import { COPY, LANGUAGES, type Lang } from './copy';
+import { LOCALES, CLIENT_LOCALES } from './locales';
 import { GROUPS, byId, hasRating, inGroup } from '../../data/catalog';
 
 interface Props { lang: Lang }
@@ -28,7 +29,13 @@ const group = GROUPS[app.group];
 const related = inGroup(app.group).filter((a) => a.id !== ID).slice(0, 3);
 const shotsAbs = media.shots.map((s) => `${site}/assets/apps/car-connect/${s}-560.jpg`);
 const feature = (id: string) => t.features.find((f) => f.id === id)!;
+const fi = (id: string) => t.features.findIndex((f) => f.id === id);
+// Marks text the language switcher can replace; keys are paths into the copy object.
+const k = (key: string) => ({ 'data-i18n': key });
+const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, name) => String(vars[name] ?? ''));
 const tour = media.videos['drive-tour'];
+const current = LOCALES.find((l) => l.code === lang)!;
+const switcherLabel = vi ? 'Chọn ngôn ngữ' : 'Choose language';
 
 const jsonLd = [
   {
@@ -99,71 +106,108 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <link slot="head" rel="preload" as="image" type="image/avif" href="/assets/apps/car-connect/drive-tour-poster.avif" fetchpriority="high" />
+  {/* Decide before first paint whether the page will switch to another language, so
+      visitors don't see a flash of English. The main script does the switching. */}
+  <script slot="head" is:inline define:vars={{ base: lang, codes: CLIENT_LOCALES }}>
+    (function () {
+      var want = new URLSearchParams(location.search).get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem('cc-lang'); } catch (e) {}
+      if (!want) want = saved;
+      if (!want && base === 'en') {
+        var prefs = navigator.languages || [navigator.language || ''];
+        for (var i = 0; i < prefs.length && !want; i++) {
+          var code = String(prefs[i]).toLowerCase().split('-')[0];
+          if (code === 'en' || code === 'vi') break;
+          if (codes.indexOf(code) >= 0) want = code;
+        }
+      }
+      if (want && codes.indexOf(want) >= 0) {
+        window.__ccLang = want;
+        document.documentElement.classList.add('cc-pending');
+        setTimeout(function () { document.documentElement.classList.remove('cc-pending'); }, 2500);
+      }
+    })();
+  </script>
 
   <div class="cc">
     <section class="cc-hero">
       <div class="wrap">
+        <div class="cc-topbar">
         <nav class="crumbs" aria-label={vi ? 'Đường dẫn' : 'Breadcrumb'}>
           {vi
             ? <Fragment><a href="/vi/apps/">{t.crumbs[1]}</a><span>/</span><span aria-current="page">Car Connect</span></Fragment>
             : <Fragment><a href="/apps/">Apps</a><span>/</span><a href={`/apps/${app.group}/`}>{group.name}</a><span>/</span><span aria-current="page">Car Connect</span></Fragment>}
         </nav>
+        <details class="cc-langs" data-cc-langs>
+          <summary aria-label={switcherLabel}><span class="cc-flag" aria-hidden="true" data-cc-flag>{current.flag}</span><span data-cc-lang-name>{current.name}</span></summary>
+          <ul role="list">
+            {LOCALES.map((l) => (
+              <li hidden={!l.href}>
+                {l.href
+                  ? <a href={l.href} hreflang={l.htmlLang} lang={l.htmlLang} data-cc-locale={l.code} aria-current={l.code === lang ? 'true' : undefined}><span class="cc-flag" aria-hidden="true">{l.flag}</span>{l.name}</a>
+                  : <button type="button" lang={l.htmlLang} data-cc-locale={l.code} data-flag={l.flag} data-name={l.name} data-html-lang={l.htmlLang}><span class="cc-flag" aria-hidden="true">{l.flag}</span>{l.name}</button>}
+              </li>
+            ))}
+          </ul>
+        </details>
+        </div>
         <div class="cc-hero-grid">
           <div class="cc-hero-copy">
             <img class="cc-icon" src={app.iconLarge} width="112" height="112" alt={vi ? 'Biểu tượng ứng dụng Car Connect' : 'Car Connect app icon'} style={`view-transition-name:app-${ID}`} />
-            <p class="eyebrow">{t.eyebrow}</p>
-            <h1>{t.h1}<span class="sr-only">: </span><span class="cc-h1-sub">{t.h1Sub}</span></h1>
-            <p class="lead">{t.lead}</p>
+            <p class="eyebrow" {...k('eyebrow')}>{t.eyebrow}</p>
+            <h1>{t.h1}<span class="sr-only">: </span><span class="cc-h1-sub" {...k('h1Sub')}>{t.h1Sub}</span></h1>
+            <p class="lead" {...k('lead')}>{t.lead}</p>
             <div class="actions">
               <StoreBadge href={app.url} lang={lang} tone="white" />
-              <a class="btn ghost" href="#compatibility">{t.compatLink}</a>
+              <a class="btn ghost" href="#compatibility" {...k('compatLink')}>{t.compatLink}</a>
             </div>
             <p class="app-meta">
-              {showRating && <span>{t.ratingLine(rating, app.ratingCount)}</span>}
-              <span>{t.free}</span>
-              <span>{t.requires(app.minimumOs)}</span>
+              {showRating && <span {...k('ratingLine')} data-i18n-vars={JSON.stringify({ r: rating, n: app.ratingCount })}>{fill(t.ratingLine, { r: rating, n: app.ratingCount })}</span>}
+              <span {...k('free')}>{t.free}</span>
+              <span {...k('requires')} data-i18n-vars={JSON.stringify({ v: app.minimumOs })}>{fill(t.requires, { v: app.minimumOs })}</span>
             </p>
           </div>
           <div class="cc-hero-media">
             <div class="cc-device cc-landscape">
-              <Clip name="drive-tour" label={t.heroVideo} lang={lang} eager />
+              <Clip name="drive-tour" label={t.heroVideo} i18n="heroVideo" lang={lang} eager />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <nav class="cc-jump" aria-label={t.jump}>
+    <nav class="cc-jump" aria-label={t.jump} data-i18n-label="jump">
       <ul class="wrap">
-        {t.jumpLinks.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+        {t.jumpLinks.map(([id, label], i) => <li><a href={`#${id}`} {...k(`jumpLinks.${i}.1`)}>{label}</a></li>)}
       </ul>
     </nav>
 
     <section class="wrap cc-new" aria-labelledby="cc-new-title">
-      <h2 id="cc-new-title" class="surface-label">{t.whatsNewKicker}</h2>
-      <ul class="cc-tags">{t.whatsNew.map((item) => <li>{item}</li>)}</ul>
+      <h2 id="cc-new-title" class="surface-label" {...k('whatsNewKicker')}>{t.whatsNewKicker}</h2>
+      <ul class="cc-tags">{t.whatsNew.map((item, i) => <li {...k(`whatsNew.${i}`)}>{item}</li>)}</ul>
     </section>
 
     <section aria-labelledby="cc-shots-title">
-      <h2 id="cc-shots-title" class="wrap surface-label">{t.shotsTitle}</h2>
-      <div class="shots cc-shots" tabindex="0" role="group" aria-label={t.shotsTitle}>
-        {media.shots.map((name, i) => <Pic name={name} alt={t.shots[i]} sizes="(max-width: 700px) 200px, 280px" />)}
+      <h2 id="cc-shots-title" class="wrap surface-label" {...k('shotsTitle')}>{t.shotsTitle}</h2>
+      <div class="shots cc-shots" tabindex="0" role="group" aria-label={t.shotsTitle} data-i18n-label="shotsTitle">
+        {media.shots.map((name, i) => <Pic name={name} alt={t.shots[i]} i18n={`shots.${i}`} sizes="(max-width: 700px) 200px, 280px" />)}
       </div>
     </section>
 
     {/* Driving Mode */}
     <section id="driving-mode" class="cc-feature wrap">
       <div class="cc-text">
-        <p class="eyebrow">{feature('driving-mode').kicker}</p>
-        <h2 class="h-lg">{feature('driving-mode').title}</h2>
-        <p class="lead">{feature('driving-mode').lead}</p>
-        <ul class="cc-points">{feature('driving-mode').points.map((p) => <li>{p}</li>)}</ul>
+        <p class="eyebrow" {...k(`features.${fi('driving-mode')}.kicker`)}>{feature('driving-mode').kicker}</p>
+        <h2 class="h-lg" {...k(`features.${fi('driving-mode')}.title`)}>{feature('driving-mode').title}</h2>
+        <p class="lead" {...k(`features.${fi('driving-mode')}.lead`)}>{feature('driving-mode').lead}</p>
+        <ul class="cc-points">{feature('driving-mode').points.map((p, i) => <li {...k(`features.${fi('driving-mode')}.points.${i}`)}>{p}</li>)}</ul>
       </div>
       <div class="cc-gallery">
-        {t.driveCaptions.map(([name, caption]) => (
+        {t.driveCaptions.map(([name, caption], i) => (
           <figure class="reveal">
-            <div class="cc-device cc-landscape"><Pic name={name} alt={caption} sizes="(max-width: 820px) 92vw, 34vw" /></div>
-            <figcaption>{caption}</figcaption>
+            <div class="cc-device cc-landscape"><Pic name={name} alt={caption} i18n={`driveCaptions.${i}.1`} sizes="(max-width: 820px) 92vw, 34vw" /></div>
+            <figcaption {...k(`driveCaptions.${i}.1`)}>{caption}</figcaption>
           </figure>
         ))}
       </div>
@@ -173,14 +217,14 @@ const jsonLd = [
     <section id="speedometer" class="cc-feature cc-night">
       <div class="wrap cc-split">
         <div class="cc-media cc-media-pair">
-          <div class="cc-device cc-portrait reveal"><Clip name="speed" label={t.alts.speed} lang={lang} /></div>
-          <div class="cc-device cc-landscape reveal"><Pic name="dm-hud" alt={t.alts.hud} sizes="(max-width: 820px) 92vw, 40vw" /></div>
+          <div class="cc-device cc-portrait reveal"><Clip name="speed" label={t.alts.speed} i18n="alts.speed" lang={lang} /></div>
+          <div class="cc-device cc-landscape reveal"><Pic name="dm-hud" alt={t.alts.hud} i18n="alts.hud" sizes="(max-width: 820px) 92vw, 40vw" /></div>
         </div>
         <div class="cc-text">
-          <p class="eyebrow">{feature('speedometer').kicker}</p>
-          <h2 class="h-lg">{feature('speedometer').title}</h2>
-          <p class="lead">{feature('speedometer').lead}</p>
-          <ul class="cc-points">{feature('speedometer').points.map((p) => <li>{p}</li>)}</ul>
+          <p class="eyebrow" {...k(`features.${fi('speedometer')}.kicker`)}>{feature('speedometer').kicker}</p>
+          <h2 class="h-lg" {...k(`features.${fi('speedometer')}.title`)}>{feature('speedometer').title}</h2>
+          <p class="lead" {...k(`features.${fi('speedometer')}.lead`)}>{feature('speedometer').lead}</p>
+          <ul class="cc-points">{feature('speedometer').points.map((p, i) => <li {...k(`features.${fi('speedometer')}.points.${i}`)}>{p}</li>)}</ul>
         </div>
       </div>
     </section>
@@ -188,14 +232,14 @@ const jsonLd = [
     {/* Radio */}
     <section id="radio" class="cc-feature wrap cc-split">
       <div class="cc-text">
-        <p class="eyebrow">{feature('radio').kicker}</p>
-        <h2 class="h-lg">{feature('radio').title}</h2>
-        <p class="lead">{feature('radio').lead}</p>
-        <ul class="cc-points">{feature('radio').points.map((p) => <li>{p}</li>)}</ul>
+        <p class="eyebrow" {...k(`features.${fi('radio')}.kicker`)}>{feature('radio').kicker}</p>
+        <h2 class="h-lg" {...k(`features.${fi('radio')}.title`)}>{feature('radio').title}</h2>
+        <p class="lead" {...k(`features.${fi('radio')}.lead`)}>{feature('radio').lead}</p>
+        <ul class="cc-points">{feature('radio').points.map((p, i) => <li {...k(`features.${fi('radio')}.points.${i}`)}>{p}</li>)}</ul>
       </div>
       <div class="cc-media cc-media-pair cc-media-pair-rev">
-        <div class="cc-device cc-landscape reveal"><Pic name="dm-radio" alt={t.alts.radio} sizes="(max-width: 820px) 92vw, 40vw" /></div>
-        <div class="cc-device cc-portrait reveal"><Pic name="radio-player" alt={t.alts.radioPlayer} sizes="(max-width: 820px) 46vw, 220px" /></div>
+        <div class="cc-device cc-landscape reveal"><Pic name="dm-radio" alt={t.alts.radio} i18n="alts.radio" sizes="(max-width: 820px) 92vw, 40vw" /></div>
+        <div class="cc-device cc-portrait reveal"><Pic name="radio-player" alt={t.alts.radioPlayer} i18n="alts.radioPlayer" sizes="(max-width: 820px) 46vw, 220px" /></div>
       </div>
     </section>
 
@@ -203,14 +247,14 @@ const jsonLd = [
     <section id="trips" class="cc-feature cc-tint">
       <div class="wrap cc-split">
         <div class="cc-media">
-          <div class="cc-device cc-portrait reveal"><Pic name="history" alt={t.alts.history} sizes="(max-width: 820px) 70vw, 300px" /></div>
+          <div class="cc-device cc-portrait reveal"><Pic name="history" alt={t.alts.history} i18n="alts.history" sizes="(max-width: 820px) 70vw, 300px" /></div>
         </div>
         <div class="cc-text">
-          <p class="eyebrow">{feature('trips').kicker}</p>
-          <h2 class="h-lg">{feature('trips').title}</h2>
-          <p class="lead">{feature('trips').lead}</p>
-          <ul class="cc-points">{feature('trips').points.map((p) => <li>{p}</li>)}</ul>
-          <p class="note">{feature('trips').note}</p>
+          <p class="eyebrow" {...k(`features.${fi('trips')}.kicker`)}>{feature('trips').kicker}</p>
+          <h2 class="h-lg" {...k(`features.${fi('trips')}.title`)}>{feature('trips').title}</h2>
+          <p class="lead" {...k(`features.${fi('trips')}.lead`)}>{feature('trips').lead}</p>
+          <ul class="cc-points">{feature('trips').points.map((p, i) => <li {...k(`features.${fi('trips')}.points.${i}`)}>{p}</li>)}</ul>
+          <p class="note" {...k(`features.${fi('trips')}.note`)}>{feature('trips').note}</p>
         </div>
       </div>
     </section>
@@ -218,14 +262,14 @@ const jsonLd = [
     {/* Dash cam */}
     <section id="dash-cam" class="cc-feature wrap cc-split">
       <div class="cc-text">
-        <p class="eyebrow">{feature('dash-cam').kicker}</p>
-        <h2 class="h-lg">{feature('dash-cam').title}</h2>
-        <p class="lead">{feature('dash-cam').lead}</p>
-        <ul class="cc-points">{feature('dash-cam').points.map((p) => <li>{p}</li>)}</ul>
-        <p class="note">{feature('dash-cam').note}</p>
+        <p class="eyebrow" {...k(`features.${fi('dash-cam')}.kicker`)}>{feature('dash-cam').kicker}</p>
+        <h2 class="h-lg" {...k(`features.${fi('dash-cam')}.title`)}>{feature('dash-cam').title}</h2>
+        <p class="lead" {...k(`features.${fi('dash-cam')}.lead`)}>{feature('dash-cam').lead}</p>
+        <ul class="cc-points">{feature('dash-cam').points.map((p, i) => <li {...k(`features.${fi('dash-cam')}.points.${i}`)}>{p}</li>)}</ul>
+        <p class="note" {...k(`features.${fi('dash-cam')}.note`)}>{feature('dash-cam').note}</p>
       </div>
       <div class="cc-media">
-        <div class="cc-device cc-landscape reveal"><Pic name="dm-dashcam" alt={t.alts.dashcam} sizes="(max-width: 820px) 92vw, 50vw" /></div>
+        <div class="cc-device cc-landscape reveal"><Pic name="dm-dashcam" alt={t.alts.dashcam} i18n="alts.dashcam" sizes="(max-width: 820px) 92vw, 50vw" /></div>
       </div>
     </section>
 
@@ -234,12 +278,12 @@ const jsonLd = [
       <div class="wrap cc-duo">
         {(['nearby', 'weather'] as const).map((id) => (
           <article id={id} class="cc-card">
-            <div class="cc-device cc-portrait reveal"><Clip name={id} label={t.alts[id]} lang={lang} /></div>
+            <div class="cc-device cc-portrait reveal"><Clip name={id} label={t.alts[id]} i18n={`alts.${id}`} lang={lang} /></div>
             <div>
-              <p class="eyebrow">{feature(id).kicker}</p>
-              <h2>{feature(id).title}</h2>
-              <p class="cc-card-lead">{feature(id).lead}</p>
-              <ul class="cc-points">{feature(id).points.map((p) => <li>{p}</li>)}</ul>
+              <p class="eyebrow" {...k(`features.${fi(id)}.kicker`)}>{feature(id).kicker}</p>
+              <h2 {...k(`features.${fi(id)}.title`)}>{feature(id).title}</h2>
+              <p class="cc-card-lead" {...k(`features.${fi(id)}.lead`)}>{feature(id).lead}</p>
+              <ul class="cc-points">{feature(id).points.map((p, i) => <li {...k(`features.${fi(id)}.points.${i}`)}>{p}</li>)}</ul>
             </div>
           </article>
         ))}
@@ -249,15 +293,15 @@ const jsonLd = [
     {/* Garage */}
     <section id="garage" class="cc-feature wrap cc-split">
       <div class="cc-media cc-phones">
-        <div class="cc-device cc-portrait reveal"><Pic name="garage" alt={t.alts.garage} sizes="(max-width: 820px) 44vw, 260px" /></div>
-        <div class="cc-device cc-portrait reveal"><Pic name="home" alt={t.alts.home} sizes="(max-width: 820px) 44vw, 260px" /></div>
+        <div class="cc-device cc-portrait reveal"><Pic name="garage" alt={t.alts.garage} i18n="alts.garage" sizes="(max-width: 820px) 44vw, 260px" /></div>
+        <div class="cc-device cc-portrait reveal"><Pic name="home" alt={t.alts.home} i18n="alts.home" sizes="(max-width: 820px) 44vw, 260px" /></div>
       </div>
       <div class="cc-text">
-        <p class="eyebrow">{feature('garage').kicker}</p>
-        <h2 class="h-lg">{feature('garage').title}</h2>
-        <p class="lead">{feature('garage').lead}</p>
-        <ul class="cc-points">{feature('garage').points.map((p) => <li>{p}</li>)}</ul>
-        <p class="note">{feature('garage').note}</p>
+        <p class="eyebrow" {...k(`features.${fi('garage')}.kicker`)}>{feature('garage').kicker}</p>
+        <h2 class="h-lg" {...k(`features.${fi('garage')}.title`)}>{feature('garage').title}</h2>
+        <p class="lead" {...k(`features.${fi('garage')}.lead`)}>{feature('garage').lead}</p>
+        <ul class="cc-points">{feature('garage').points.map((p, i) => <li {...k(`features.${fi('garage')}.points.${i}`)}>{p}</li>)}</ul>
+        <p class="note" {...k(`features.${fi('garage')}.note`)}>{feature('garage').note}</p>
       </div>
     </section>
 
@@ -265,13 +309,13 @@ const jsonLd = [
     <section id="carplay" class="cc-feature cc-tint">
       <div class="wrap cc-split">
         <div class="cc-text">
-          <p class="eyebrow">{t.carplay.kicker}</p>
-          <h2 class="h-lg">{t.carplay.title}</h2>
-          <p class="lead">{t.carplay.lead}</p>
+          <p class="eyebrow" {...k('carplay.kicker')}>{t.carplay.kicker}</p>
+          <h2 class="h-lg" {...k('carplay.title')}>{t.carplay.title}</h2>
+          <p class="lead" {...k('carplay.lead')}>{t.carplay.lead}</p>
         </div>
         <div>
-          <ul class="cc-checks">{t.carplay.points.map((p) => <li>{p}</li>)}</ul>
-          <p class="note">{t.carplay.note}</p>
+          <ul class="cc-checks">{t.carplay.points.map((p, i) => <li {...k(`carplay.points.${i}`)}>{p}</li>)}</ul>
+          <p class="note" {...k('carplay.note')}>{t.carplay.note}</p>
         </div>
       </div>
     </section>
@@ -279,41 +323,41 @@ const jsonLd = [
     {/* Compatibility */}
     <section id="compatibility" class="cc-feature wrap">
       <div class="cc-head">
-        <p class="eyebrow">{t.compat.kicker}</p>
-        <h2 class="h-lg">{t.compat.title}</h2>
-        <p class="lead">{t.compat.lead}</p>
+        <p class="eyebrow" {...k('compat.kicker')}>{t.compat.kicker}</p>
+        <h2 class="h-lg" {...k('compat.title')}>{t.compat.title}</h2>
+        <p class="lead" {...k('compat.lead')}>{t.compat.lead}</p>
       </div>
       <ul class="cc-compat">
-        {t.compat.cards.map((c) => (
+        {t.compat.cards.map((c, i) => (
           <li class="reveal">
-            <span class={`cc-status cc-${c.tone}`}>{c.status}</span>
-            <h3>{c.title}</h3>
-            <p>{c.body}</p>
+            <span class={`cc-status cc-${c.tone}`} {...k(`compat.cards.${i}.status`)}>{c.status}</span>
+            <h3 {...k(`compat.cards.${i}.title`)}>{c.title}</h3>
+            <p {...k(`compat.cards.${i}.body`)}>{c.body}</p>
           </li>
         ))}
       </ul>
-      <p class="note cc-howto">{t.compat.howTo}</p>
+      <p class="note cc-howto" {...k('compat.howTo')}>{t.compat.howTo}</p>
     </section>
 
     {/* Devices */}
     <section class="cc-feature cc-night" aria-labelledby="cc-devices-title">
       <div class="wrap">
         <div class="cc-head">
-          <p class="eyebrow">{t.devices.kicker}</p>
-          <h2 id="cc-devices-title" class="h-lg">{t.devices.title}</h2>
+          <p class="eyebrow" {...k('devices.kicker')}>{t.devices.kicker}</p>
+          <h2 id="cc-devices-title" class="h-lg" {...k('devices.title')}>{t.devices.title}</h2>
         </div>
         <div class="cc-devices">
           <figure class="cc-ipad reveal">
-            <div class="cc-device cc-tablet"><Pic name="ipad-dm" alt={t.alts.ipad} sizes="(max-width: 820px) 92vw, 52vw" /></div>
+            <div class="cc-device cc-tablet"><Pic name="ipad-dm" alt={t.alts.ipad} i18n="alts.ipad" sizes="(max-width: 820px) 92vw, 52vw" /></div>
           </figure>
           <figure class="cc-duo-shot reveal">
-            <div class="cc-device cc-fold"><Pic name="duo-home" alt={t.alts.duo} sizes="(max-width: 820px) 60vw, 300px" /></div>
+            <div class="cc-device cc-fold"><Pic name="duo-home" alt={t.alts.duo} i18n="alts.duo" sizes="(max-width: 820px) 60vw, 300px" /></div>
           </figure>
           <dl class="cc-device-list">
-            {t.devices.items.map(([name, text]) => <div><dt>{name}</dt><dd>{text}</dd></div>)}
+            {t.devices.items.map(([name, text], i) => <div><dt {...k(`devices.items.${i}.0`)}>{name}</dt><dd {...k(`devices.items.${i}.1`)}>{text}</dd></div>)}
           </dl>
         </div>
-        <h3 class="cc-lang-title">{t.devices.languages}</h3>
+        <h3 class="cc-lang-title" {...k('devices.languages')}>{t.devices.languages}</h3>
         <ul class="cc-tags cc-tags-night">{LANGUAGES.map((l) => <li>{l}</li>)}</ul>
       </div>
     </section>
@@ -321,47 +365,47 @@ const jsonLd = [
     {/* Privacy */}
     <section id="privacy" class="cc-feature wrap">
       <div class="cc-head">
-        <p class="eyebrow">{t.privacy.kicker}</p>
-        <h2 class="h-lg">{t.privacy.title}</h2>
-        <p class="lead">{t.privacy.lead}</p>
+        <p class="eyebrow" {...k('privacy.kicker')}>{t.privacy.kicker}</p>
+        <h2 class="h-lg" {...k('privacy.title')}>{t.privacy.title}</h2>
+        <p class="lead" {...k('privacy.lead')}>{t.privacy.lead}</p>
       </div>
       <div class="steps cc-privacy">
-        {t.privacy.items.map(([name, text]) => <div class="step reveal"><b>{name}</b><p>{text}</p></div>)}
+        {t.privacy.items.map(([name, text], i) => <div class="step reveal"><b {...k(`privacy.items.${i}.0`)}>{name}</b><p {...k(`privacy.items.${i}.1`)}>{text}</p></div>)}
       </div>
-      <p><a class="cc-link" href="/privacy.html">{t.privacy.link}</a></p>
+      <p><a class="cc-link" href="/privacy.html" {...k('privacy.link')}>{t.privacy.link}</a></p>
     </section>
 
     {/* Premium */}
     <section id="premium" class="cc-feature cc-tint">
       <div class="wrap cc-split">
         <div class="cc-text">
-          <p class="eyebrow">{t.premium.kicker}</p>
-          <h2 class="h-lg">{t.premium.title}</h2>
-          <p class="lead">{t.premium.lead}</p>
+          <p class="eyebrow" {...k('premium.kicker')}>{t.premium.kicker}</p>
+          <h2 class="h-lg" {...k('premium.title')}>{t.premium.title}</h2>
+          <p class="lead" {...k('premium.lead')}>{t.premium.lead}</p>
         </div>
         <div>
           <table class="cc-table">
-            <caption class="sr-only">{t.premium.kicker}</caption>
-            <thead><tr>{t.premium.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+            <caption class="sr-only" {...k('premium.kicker')}>{t.premium.kicker}</caption>
+            <thead><tr>{t.premium.head.map((h, i) => <th scope="col" {...k(`premium.head.${i}`)}>{h}</th>)}</tr></thead>
             <tbody>
-              {t.premium.rows.map(([name, free, premium]) => (
-                <tr><th scope="row">{name}</th><td>{free}</td><td class="cc-premium">{premium}</td></tr>
+              {t.premium.rows.map(([name, free, premium], i) => (
+                <tr><th scope="row" {...k(`premium.rows.${i}.0`)}>{name}</th><td {...k(`premium.rows.${i}.1`)}>{free}</td><td class="cc-premium" {...k(`premium.rows.${i}.2`)}>{premium}</td></tr>
               ))}
             </tbody>
           </table>
-          <p class="cc-fine">{t.premium.fine} <a href="/terms.html">{t.premium.terms}</a> · <a href="/privacy.html">{t.premium.policy}</a></p>
+          <p class="cc-fine"><span {...k('premium.fine')}>{t.premium.fine}</span> <a href="/terms.html" {...k('premium.terms')}>{t.premium.terms}</a> · <a href="/privacy.html" {...k('premium.policy')}>{t.premium.policy}</a></p>
         </div>
       </div>
     </section>
 
     {/* FAQ */}
     <section id="faq" class="cc-feature wrap cc-split">
-      <h2 class="h-lg">{t.faqTitle}</h2>
+      <h2 class="h-lg" {...k('faqTitle')}>{t.faqTitle}</h2>
       <div class="cc-faq">
-        {t.faq.map(([q, a]) => (
+        {t.faq.map(([q, a], i) => (
           <details>
-            <summary><h3>{q}</h3></summary>
-            <p>{a}</p>
+            <summary><h3 {...k(`faq.${i}.0`)}>{q}</h3></summary>
+            <p {...k(`faq.${i}.1`)}>{a}</p>
           </details>
         ))}
       </div>
@@ -370,18 +414,18 @@ const jsonLd = [
     <section class="band section">
       <div class="wrap band-in">
         <div>
-          <h2 class="h-lg" style="max-width:11em">{t.ctaTitle}</h2>
-          <p class="lead" style="margin-top:16px">{t.ctaLead}</p>
+          <h2 class="h-lg" style="max-width:11em" {...k('ctaTitle')}>{t.ctaTitle}</h2>
+          <p class="lead" style="margin-top:16px" {...k('ctaLead')}>{t.ctaLead}</p>
         </div>
         <StoreBadge href={app.url} lang={lang} tone="white" />
       </div>
     </section>
 
     <div class="wrap cc-foot">
-      <p class="cc-fine">{t.disclaimer}</p>
+      <p class="cc-fine" {...k('disclaimer')}>{t.disclaimer}</p>
       {related.length > 0 && (
         <Fragment>
-          <h2 class="h-lg cc-related">{t.related}</h2>
+          <h2 class="h-lg cc-related" {...k('related')}>{t.related}</h2>
           <ul class="app-grid">{related.map((a) => <li><AppCard app={a} /></li>)}</ul>
         </Fragment>
       )}
@@ -431,11 +475,105 @@ const jsonLd = [
 
   if (document.readyState === 'complete') setup();
   else addEventListener('load', setup, { once: true });
+
+  // In-page language switcher. EN and VI are real pages (links); the other app languages
+  // are swapped in from a JSON dictionary keyed by the data-i18n attributes.
+  const root = document.documentElement;
+  const menu = document.querySelector<HTMLDetailsElement>('[data-cc-langs]');
+  const store = (code: string | null) => { try { code ? localStorage.setItem('cc-lang', code) : localStorage.removeItem('cc-lang'); } catch {} };
+  const fill = (text: string, vars?: string) => {
+    const values = vars ? JSON.parse(vars) : {};
+    return text.replace(/\{(\w+)\}/g, (_, name) => String(values[name] ?? ''));
+  };
+
+  async function translate(code: string) {
+    const button = menu?.querySelector<HTMLButtonElement>(`button[data-cc-locale="${code}"]`);
+    if (!button) return;
+    try {
+      const response = await fetch(`/apps/car-play-connect/i18n/${code}.json`);
+      if (!response.ok) throw new Error(String(response.status));
+      const dict: Record<string, string> = await response.json();
+      document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+        const text = dict[el.dataset.i18n!];
+        if (text !== undefined) el.textContent = fill(text, el.dataset.i18nVars);
+      });
+      document.querySelectorAll<HTMLImageElement>('img[data-i18n-alt]').forEach((img) => {
+        const text = dict[img.dataset.i18nAlt!];
+        if (text !== undefined) img.alt = text;
+      });
+      document.querySelectorAll<HTMLElement>('[data-i18n-label]').forEach((el) => {
+        const text = dict[el.dataset.i18nLabel!];
+        if (text !== undefined) el.setAttribute('aria-label', text);
+      });
+      if (dict.title) document.title = dict.title;
+      if (dict.description) document.querySelector('meta[name="description"]')?.setAttribute('content', dict.description);
+      root.lang = button.dataset.htmlLang!;
+      menu!.querySelector('[data-cc-flag]')!.textContent = button.dataset.flag!;
+      menu!.querySelector('[data-cc-lang-name]')!.textContent = button.dataset.name!;
+      menu!.querySelectorAll('[aria-current]').forEach((el) => el.removeAttribute('aria-current'));
+      button.setAttribute('aria-current', 'true');
+      store(code);
+      const url = new URL(location.href);
+      url.searchParams.set('lang', code);
+      history.replaceState(history.state, '', url);
+    } catch {
+      // Keep the page in its own language if the dictionary can't be loaded.
+    } finally {
+      root.classList.remove('cc-pending');
+    }
+  }
+
+  if (menu) {
+    menu.querySelectorAll<HTMLLIElement>('li[hidden]').forEach((li) => { li.hidden = false; });
+    menu.addEventListener('click', (event) => {
+      const target = (event.target as HTMLElement).closest<HTMLElement>('[data-cc-locale]');
+      if (!target) return;
+      const code = target.dataset.ccLocale!;
+      if (target instanceof HTMLAnchorElement) {
+        // Real pages: drop any remembered in-page language before leaving.
+        store(null);
+        return;
+      }
+      menu.open = false;
+      translate(code);
+    });
+    document.addEventListener('click', (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary')?.focus(); }
+    });
+  }
+
+  const pending = (window as unknown as { __ccLang?: string }).__ccLang;
+  if (pending) translate(pending);
 </script>
 
 <style>
   .cc { --cc-night: var(--night); --cc-green: #34c759; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Language switcher */
+  :global(html.cc-pending) .cc { opacity: 0; }
+  .cc { font-family: var(--body); }
+  :global(html:lang(ja)) .cc { --display: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif; --body: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif; }
+  :global(html:lang(ko)) .cc { --display: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; --body: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; }
+  :global(html:lang(zh-Hans)) .cc { --display: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; --body: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
+  :global(html:lang(ru)) .cc { --display: 'Helvetica Neue', Arial, sans-serif; --body: 'Helvetica Neue', Arial, sans-serif; }
+  :global(html:lang(ja)) .cc h1, :global(html:lang(ja)) .cc h2, :global(html:lang(ko)) .cc h1, :global(html:lang(ko)) .cc h2, :global(html:lang(zh-Hans)) .cc h1, :global(html:lang(zh-Hans)) .cc h2 { letter-spacing: 0; line-height: 1.2; }
+  .cc-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; }
+  .cc-topbar .crumbs { padding-top: 0; }
+  .cc-langs { position: relative; z-index: 15; }
+  .cc-langs summary { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid #f3efe64d; border-radius: 999px; color: var(--on-night); font-size: 14px; cursor: pointer; list-style: none; }
+  .cc-langs summary::-webkit-details-marker { display: none; }
+  .cc-langs summary::after { content: ''; width: 7px; height: 7px; margin-left: 2px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .cc-langs summary:hover, .cc-langs[open] summary { border-color: var(--on-night); }
+  .cc-flag { font-size: 18px; line-height: 1; }
+  .cc-langs ul { position: absolute; right: 0; top: calc(100% + 8px); display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: max-content; min-width: 300px; padding: 8px; border-radius: 18px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 50px #0006; }
+  .cc-langs li a, .cc-langs li button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 0 12px; border: 0; border-radius: 12px; background: transparent; color: inherit; font: inherit; font-size: 15px; text-align: left; text-decoration: none; cursor: pointer; }
+  .cc-langs li a:hover, .cc-langs li button:hover { background: var(--paper-2); }
+  .cc-langs [aria-current] { background: var(--paper-2); font-weight: 600; }
+  @media (max-width: 520px) { .cc-langs ul { min-width: 0; width: min(320px, calc(100vw - 32px)); } }
 
   /* Hero */
   .cc-hero { background: var(--night); color: var(--on-night); padding-bottom: clamp(48px, 7vw, 96px); overflow: hidden; }
