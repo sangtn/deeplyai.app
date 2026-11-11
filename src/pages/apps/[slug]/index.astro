@@ -7,7 +7,9 @@ import { surfacesOf } from '../../../data/surfaces';
 import { GROUPS, GROUP_SLUGS, byId, hasRating, inGroup, type GroupSlug } from '../../../data/catalog';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('apps');
+  // Apps with a hand-built page of their own under src/pages/apps/<slug>/.
+  const DEDICATED = new Set(['car-play-connect']);
+  const entries = (await getCollection('apps')).filter((entry) => !DEDICATED.has(entry.id));
   return [
     ...GROUP_SLUGS.map((group) => ({ params: { slug: group }, props: { group } })),
     ...entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } })),

@@ -23,6 +23,8 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: vi ? 'Ứng dụng' : 'Apps', item: `${site}${path}` },
   ],
 };
+// Apps that have their own Vietnamese page.
+const VI_PAGES: Record<number, string> = { 6749473194: '/vi/apps/lich-van-nien/', 6755303976: '/vi/apps/car-play-connect/' };
 ---
 <Base
   lang={lang}
@@ -48,7 +50,7 @@ const breadcrumb = {
     <p class="surface-filter" data-surface-note hidden data-names={JSON.stringify(Object.fromEntries(SURFACES.map((s) => [s.slug, vi ? s.nameVi : s.name])))}><span data-surface-name></span> <a href={path}>{vi ? 'Bỏ lọc' : 'Clear filter'}</a></p>
     <p class="empty" data-empty hidden>{vi ? 'Không có ứng dụng phù hợp.' : 'No apps match that search.'}</p>
     <ul class="app-grid" style="padding-bottom:96px">
-      {APPS.map((app) => <li data-group={app.group} data-surfaces={surfacesOf(app).map((s) => s.slug).join(' ')}><AppCard app={app} line={lineFor(app)} href={vi && app.id === 6749473194 ? '/vi/apps/lich-van-nien/' : undefined} /></li>)}
+      {APPS.map((app) => <li data-group={app.group} data-surfaces={surfacesOf(app).map((s) => s.slug).join(' ')}><AppCard app={app} line={lineFor(app)} href={vi ? VI_PAGES[app.id] : undefined} /></li>)}
     </ul>
   </div>
 </Base>

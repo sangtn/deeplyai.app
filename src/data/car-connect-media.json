@@ -1,0 +1,269 @@
+{
+  "stills": {
+    "dm-map": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-radio": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-music": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-phone": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-dashcam": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-custom": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-nav": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "dm-hud": {
+      "width": 1280,
+      "height": 589,
+      "widths": [
+        1280,
+        720
+      ]
+    },
+    "home": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "history": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "radio-list": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "radio-player": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "nearby": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "weather": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "garage": {
+      "width": 600,
+      "height": 1304,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "ipad-dm": {
+      "width": 1200,
+      "height": 900,
+      "widths": [
+        1200,
+        720
+      ]
+    },
+    "duo-home": {
+      "width": 600,
+      "height": 853,
+      "widths": [
+        600,
+        400
+      ]
+    },
+    "store-02": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-03": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-04": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-05": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-06": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-07": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-08": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-09": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    },
+    "store-10": {
+      "width": 560,
+      "height": 1217,
+      "widths": [
+        560,
+        392
+      ]
+    }
+  },
+  "shots": [
+    "store-02",
+    "store-03",
+    "store-04",
+    "store-05",
+    "store-06",
+    "store-07",
+    "store-08",
+    "store-09",
+    "store-10"
+  ],
+  "videos": {
+    "drive-tour": {
+      "width": 1280,
+      "height": 590,
+      "duration": 17.3,
+      "mp4": 713744,
+      "webm": 800940,
+      "poster": {
+        "width": 1280,
+        "height": 590
+      }
+    },
+    "speed": {
+      "width": 480,
+      "height": 1042,
+      "duration": 6.5,
+      "mp4": 169217,
+      "webm": 172177,
+      "poster": {
+        "width": 480,
+        "height": 1042
+      }
+    },
+    "weather": {
+      "width": 480,
+      "height": 1042,
+      "duration": 3.4,
+      "mp4": 84385,
+      "webm": 76465,
+      "poster": {
+        "width": 480,
+        "height": 1042
+      }
+    },
+    "nearby": {
+      "width": 480,
+      "height": 1042,
+      "duration": 3.8,
+      "mp4": 71596,
+      "webm": 71624,
+      "poster": {
+        "width": 480,
+        "height": 1042
+      }
+    }
+  }
+}

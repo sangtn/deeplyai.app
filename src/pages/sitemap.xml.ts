@@ -3,7 +3,7 @@ import { GROUP_SLUGS } from '../data/catalog';
 import { SURFACES } from '../data/surfaces';
 
 const site = 'https://deeplyai.app';
-const STATIC_PAGES = ['/', '/vi/', '/vi/apps/', '/vi/apps/lich-van-nien/', '/apps/', '/platforms/', '/vi/platforms/', '/about.html', '/services.html', '/solutions.html', '/contact.html', '/privacy.html', '/terms.html', '/cartv-support.html', '/cartv-privacy.html', '/cartv-review.html'];
+const STATIC_PAGES = ['/', '/vi/', '/vi/apps/', '/vi/apps/lich-van-nien/', '/vi/apps/car-play-connect/', '/apps/', '/platforms/', '/vi/platforms/', '/about.html', '/services.html', '/solutions.html', '/contact.html', '/privacy.html', '/terms.html', '/cartv-support.html', '/cartv-privacy.html', '/cartv-review.html'];
 
 export async function GET() {
   const entries = await getCollection('apps');

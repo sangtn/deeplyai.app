@@ -137,11 +137,11 @@ const jsonLd = {
       {featured.map((entry, i) => {
         const app = byId.get(entry.data.id)!;
         return (
-          <a class="spec reveal" href={`/apps/${entry.id}/`}>
+          <a class="spec reveal" href={vi && entry.id === 'car-play-connect' ? '/vi/apps/car-play-connect/' : `/apps/${entry.id}/`}>
             <span class="spec-top"><img class="icon" src={app.icon} width="64" height="64" alt="" loading="lazy" style={`view-transition-name:app-${app.id}`} /><span>{vi ? 'Số' : 'No.'} {String(i + 1).padStart(2, '0')}</span></span>
             <h3>{entry.data.name}</h3>
             <p>{vi ? entry.data.taglineVi : entry.data.tagline}</p>
-            <span class="shot"><img src={app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
+            <span class="shot"><img src={app.id === 6755303976 ? '/assets/apps/car-connect/store-02-392.webp' : app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
           </a>
         );
       })}

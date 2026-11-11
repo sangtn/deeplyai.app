@@ -59,7 +59,7 @@ const G = {
 
 // id: [group, display name, one-line description]
 const ENTRIES: Record<number, [GroupSlug, string, string]> = {
-  6755303976: [G.c, 'Car Play Connect', 'Turn your iPhone or iPad into a smart car dashboard.'],
+  6755303976: [G.c, 'Car Connect', 'Speedometer, dash cam, radio and trips on one driving dashboard.'],
   6788231631: [G.c, 'RoadCam', 'A dual-camera dash cam with map and speed on one screen.'],
   6761090999: [G.c, 'Fuel Finder', 'The cheapest fuel near you, with widgets and CarPlay.'],
   6798993599: [G.c, 'Truck GPS', 'Truck routes that show which bridges they avoid and why.'],

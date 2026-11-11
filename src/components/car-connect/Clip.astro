@@ -1,0 +1,45 @@
+---
+// A muted, looping screen recording. The poster is a real <picture> (so it can be the LCP
+// element and never shifts layout); the video only gets its sources once it nears the
+// viewport, and stays still for people who prefer reduced motion.
+import media from '../../data/car-connect-media.json';
+
+interface Props { name: string; label: string; lang: 'en' | 'vi'; eager?: boolean; class?: string }
+const { name, label, lang, eager = false, class: className } = Astro.props;
+const pause = lang === 'vi' ? 'Tạm dừng video' : 'Pause video';
+const play = lang === 'vi' ? 'Phát video' : 'Play video';
+const info = (media.videos as Record<string, { width: number; height: number; poster: { width: number; height: number } }>)[name];
+if (!info) throw new Error(`Unknown Car Connect video: ${name}`);
+const base = `/assets/apps/car-connect/${name}`;
+---
+<div class:list={['clip', className]} style={`aspect-ratio:${info.width} / ${info.height}`}>
+  <picture>
+    <source type="image/avif" srcset={`${base}-poster.avif`} />
+    <source type="image/webp" srcset={`${base}-poster.webp`} />
+    <img
+      src={`${base}-poster.jpg`}
+      width={info.poster.width}
+      height={info.poster.height}
+      alt={label}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
+      decoding={eager ? 'sync' : 'async'}
+    />
+  </picture>
+  <video
+    data-clip
+    muted
+    loop
+    playsinline
+    preload="none"
+    width={info.width}
+    height={info.height}
+    aria-hidden="true"
+    tabindex="-1"
+    disablepictureinpicture
+  >
+    <source data-src={`${base}.webm`} type="video/webm" />
+    <source data-src={`${base}.mp4`} type="video/mp4" />
+  </video>
+  <button class="clip-toggle" type="button" hidden aria-label={pause} data-pause={pause} data-play={play}><span aria-hidden="true"></span></button>
+</div>
