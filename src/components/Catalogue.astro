@@ -31,14 +31,14 @@ const VI_PAGES: Record<number, string> = { 6749473194: '/vi/apps/lich-van-nien/'
   path={path}
   alternates={{ en: '/apps/', vi: '/vi/apps/' }}
   jsonLd={breadcrumb}
-  title={vi ? `${APPS.length} ứng dụng DeeplyAi cho iPhone, Apple Watch & CarPlay` : `All ${APPS.length} DeeplyAi Apps for iPhone, Apple Watch & CarPlay`}
-  description={vi ? `Khám phá ${APPS.length} ứng dụng của DeeplyAi trên App Store: công cụ lái xe và CarPlay, thời tiết, Apple Watch, lịch kế hoạch và nhiều hơn nữa.` : `Browse all ${APPS.length} DeeplyAi apps on the App Store: driving and CarPlay tools, weather and sky apps, Apple Watch utilities, planners and more.`}
+  title={vi ? 'Tất cả ứng dụng DeeplyAi cho iPhone, Apple Watch & CarPlay' : 'All DeeplyAi Apps for iPhone, Apple Watch & CarPlay'}
+  description={vi ? `Khám phá các ứng dụng của DeeplyAi trên App Store: công cụ lái xe và CarPlay, thời tiết, Apple Watch, lịch kế hoạch và nhiều hơn nữa.` : `Browse every DeeplyAi app on the App Store: driving and CarPlay tools, weather and sky apps, Apple Watch utilities, planners and more.`}
 >
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow">{vi ? 'Ứng dụng' : 'Apps'}</p>
       <h1 class="display">{vi ? 'Toàn bộ danh mục.' : 'The full catalog.'}</h1>
-      <p class="lead">{vi ? `${APPS.length} ứng dụng trên sáu kệ, tất cả đều có trên App Store.` : `${APPS.length} apps across six shelves, all available on the App Store.`}</p>
+      <p class="lead">{vi ? 'Mọi ứng dụng chúng tôi đã phát hành, xếp trên sáu kệ và đều có trên App Store. Danh mục này tiếp tục được bổ sung.' : 'Every app we have released, across six shelves and all on the App Store. New ones join as they launch.'}</p>
       <div class="actions" style="margin-top:24px"><StoreBadge lang={lang} /></div>
       {vi && <p style="margin-top:16px;color:var(--ink-2);font-size:14px">Trang chi tiết của phần lớn ứng dụng hiện bằng tiếng Anh, riêng Lịch Vạn Niên có đầy đủ tiếng Việt.</p>}
     </header>

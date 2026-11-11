@@ -9,7 +9,6 @@ import { APPS, GROUPS, GROUP_SLUGS, byId, inGroup } from '../data/catalog';
 interface Props { lang: 'en' | 'vi' }
 const { lang } = Astro.props;
 const vi = lang === 'vi';
-const count = APPS.length;
 const site = 'https://deeplyai.app/';
 
 const featured = (await getCollection('apps')).sort((a, b) => a.data.order - b.data.order).slice(0, 6);
@@ -44,7 +43,7 @@ const jsonLd = {
   alternates={{ en: '/', vi: '/vi/' }}
   jsonLd={jsonLd}
   title={vi ? 'DeeplyAi – Ứng dụng cho iPhone, Apple Watch & CarPlay' : 'DeeplyAi – Apps for iPhone, Apple Watch & CarPlay'}
-  description={vi ? `DeeplyAi phát triển ${count} ứng dụng cho iPhone, iPad, Apple Watch và CarPlay: camera hành trình, định tuyến xe tải, widget thời tiết, lịch âm và nhiều hơn nữa.` : `DeeplyAi makes ${count} apps for iPhone, iPad, Apple Watch and CarPlay, from dash cams and truck GPS to weather widgets, planners and AI tools.`}
+  description={vi ? 'DeeplyAi xây dựng một gia đình ứng dụng không ngừng lớn mạnh cho iPhone, iPad, Apple Watch và CarPlay, đã đến với hơn 2 triệu người dùng.' : 'DeeplyAi builds a growing family of apps for iPhone, iPad, Apple Watch and CarPlay, already used by more than 2 million people.'}
 >
   <section class="hero">
     <div class="wall" aria-hidden="true">
@@ -56,7 +55,7 @@ const jsonLd = {
     </div>
     <div class="wrap hero-in">
       <p class="eyebrow">DeeplyAi</p>
-      <h1 class="display">{vi ? <Fragment><em>{count}</em> ứng dụng cho những việc bạn làm mỗi ngày.</Fragment> : <Fragment><em>{count}</em> apps for the things you do every day.</Fragment>}</h1>
+      <h1 class="display">{vi ? <Fragment>Gia đình ứng dụng <em>không ngừng lớn mạnh</em> cho cuộc sống mỗi ngày.</Fragment> : <Fragment>A <em>growing</em> family of apps for everyday life.</Fragment>}</h1>
       <p class="lead">{vi ? 'Các ứng dụng của chúng tôi đã đến với hơn 2 triệu người dùng. Từ con đường phía trước đến bầu trời đêm, chúng tôi xây dựng cho iPhone, iPad, Apple Watch và CarPlay.' : 'Together, our apps have reached over 2 million users. From the road ahead to the night sky, we build for iPhone, iPad, Apple Watch and CarPlay.'}</p>
       <div class="actions">
         <a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'Browse all apps'}</a>
@@ -146,7 +145,7 @@ const jsonLd = {
         );
       })}
     </div>
-    <div class="center-cta"><a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? `Xem cả ${count} ứng dụng` : `See all ${count} apps`}</a></div>
+    <div class="center-cta"><a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'See all our apps'}</a></div>
   </section>
 
   <section class="section wrap" aria-labelledby="how-title" style="padding-top:0">

@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import SurfaceGrid from './SurfaceGrid.astro';
 import Roadmap from './Roadmap.astro';
 import StoreBadge from './StoreBadge.astro';
-import { APPS } from '../data/catalog';
 
 interface Props { lang: 'en' | 'vi' }
 const { lang } = Astro.props;
@@ -25,7 +24,7 @@ const jsonLd = {
   alternates={{ en: '/platforms/', vi: '/vi/platforms/' }}
   jsonLd={jsonLd}
   title={vi ? 'Nền tảng – Ứng dụng DeeplyAi trên hệ sinh thái Apple' : 'Platforms – DeeplyAi Across the Apple Ecosystem'}
-  description={vi ? `${APPS.length} ứng dụng DeeplyAi trên iPhone, iPad, Apple Watch, CarPlay, Mac và Apple Vision, cùng widget, Live Activities, Siri và iCloud.` : `${APPS.length} DeeplyAi apps across iPhone, iPad, Apple Watch, CarPlay, Mac and Apple Vision, with widgets, Live Activities, Siri and iCloud.`}
+  description={vi ? `Các ứng dụng DeeplyAi trên iPhone, iPad, Apple Watch, CarPlay, Mac và Apple Vision, cùng widget, Live Activities, Siri và iCloud.` : `DeeplyAi apps across iPhone, iPad, Apple Watch, CarPlay, Mac and Apple Vision, with widgets, Live Activities, Siri and iCloud.`}
 >
   <div class="wrap">
     <header class="page-head">

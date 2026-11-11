@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { APPS, GROUPS, GROUP_SLUGS, inGroup } from '../data/catalog';
 ---
-<Base path="/about.html" title="About DeeplyAi – The Studio Behind 50+ iOS Apps" description={`DeeplyAi is the studio behind ${APPS.length} apps on the App Store for iPhone, iPad, Apple Watch and CarPlay.`}>
+<Base path="/about.html" title="About DeeplyAi – The Studio Behind a Growing Family of Apps" description="DeeplyAi is the studio behind a growing family of App Store apps for iPhone, iPad, Apple Watch and CarPlay, used by more than 2 million people.">
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow">About</p>
@@ -12,7 +12,7 @@ import { APPS, GROUPS, GROUP_SLUGS, inGroup } from '../data/catalog';
     <section class="section split" style="padding-top:32px">
       <h2 class="h-lg">What we make</h2>
       <div class="prose">
-        <p>DeeplyAi publishes {APPS.length} apps on the App Store, designed for iPhone, iPad, Apple Watch and CarPlay. Some help drivers, pilots and boaters get where they are going. Others live quietly on a Home Screen or Lock Screen, or help someone plan a day, a garden or a family occasion on the Vietnamese lunar calendar.</p>
+        <p>DeeplyAi publishes a growing family of apps on the App Store, used by more than 2 million people and designed for iPhone, iPad, Apple Watch and CarPlay. Some help drivers, pilots and boaters get where they are going. Others live quietly on a Home Screen or Lock Screen, or help someone plan a day, a garden or a family occasion on the Vietnamese lunar calendar.</p>
         <p>Where it fits the problem, we use AI and on-device processing. Several of our apps run their core features entirely on the phone, so people’s data stays with them.</p>
         <h3>Our shelves</h3>
         <ul>{GROUP_SLUGS.map((g) => <li><a href={`/apps/${g}/`}>{GROUPS[g].name}</a> ({inGroup(g).length} apps): {GROUPS[g].blurb}</li>)}</ul>
