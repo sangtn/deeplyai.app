@@ -1,0 +1,24 @@
+---
+// Responsive AVIF/WebP picture with a JPEG fallback, from scripts/lich-viet-media.mjs output.
+import media from '../../data/lich-viet-media.json';
+
+interface Props { name: string; alt: string; sizes?: string; eager?: boolean; class?: string }
+const { name, alt, sizes = '100vw', eager = false, class: className } = Astro.props;
+const info = (media.stills as Record<string, { width: number; height: number; widths: number[] }>)[name];
+if (!info) throw new Error(`Unknown Lịch Việt still: ${name}`);
+const base = `/assets/apps/lich-viet/${name}`;
+const set = (ext: string) => info.widths.map((w) => `${base}-${w}.${ext} ${w}w`).join(', ');
+---
+<picture class={className}>
+  <source type="image/avif" srcset={set('avif')} sizes={sizes} />
+  <source type="image/webp" srcset={set('webp')} sizes={sizes} />
+  <img
+    src={`${base}-${info.widths[0]}.jpg`}
+    width={info.width}
+    height={info.height}
+    alt={alt}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : undefined}
+    decoding={eager ? 'sync' : 'async'}
+  />
+</picture>

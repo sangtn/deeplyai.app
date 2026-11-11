@@ -1,0 +1,657 @@
+---
+// Marketing page for Lịch Việt (App Store id 6749473194): VI at /vi/apps/lich-van-nien/ (the
+// app's main audience) and EN at /apps/lich-van-nien/. Copy in ./copy.ts, media from
+// scripts/lich-viet-media.mjs, lunar maths in ./lunar.ts.
+import '@fontsource/alegreya/700.css';
+import '@fontsource/alegreya/400-italic.css';
+import Base from '../../layouts/Base.astro';
+import StoreBadge from '../StoreBadge.astro';
+import AppCard from '../AppCard.astro';
+import Pic from './Pic.astro';
+import media from '../../data/lich-viet-media.json';
+import { COPY, MONTHS_EN, type Lang } from './copy';
+import { CHI, CHI_ICONS, LUNAR_MONTHS, dayInfo, vietnamToday } from './lunar';
+import { byId, hasRating, inGroup } from '../../data/catalog';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const vi = lang === 'vi';
+const t = COPY[lang];
+
+const ID = 6749473194;
+const app = byId.get(ID)!;
+const site = 'https://deeplyai.app';
+const paths = { vi: '/vi/apps/lich-van-nien/', en: '/apps/lich-van-nien/' };
+const path = paths[lang];
+const showRating = hasRating(app);
+const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+const related = inGroup(app.group).filter((a) => a.id !== ID).slice(0, 3);
+const shot = (i: number) => `store-${String(i + 1).padStart(2, '0')}`;
+const alt = (i: number) => t.shots[i];
+
+// The page ships with the build day; the script below swaps in the visitor's actual day.
+const now = vietnamToday();
+const info = dayInfo(now.day, now.month, now.year);
+const lunarMonthName = (m: number, leap: boolean) => (vi ? LUNAR_MONTHS[m - 1] : `Month ${m}`) + (leap ? ` (${t.today.leap})` : '');
+const solarMonth = vi ? fill(t.today.solarMonth, { m: now.month, y: now.year }) : fill(t.today.solarMonth, { month: MONTHS_EN[now.month - 1], y: now.year });
+const tetLine = info.tet.days === 0 ? fill(t.today.tetToday, { name: info.tet.name }) : fill(t.today.tet, { n: info.tet.days, name: info.tet.name });
+const zodiacYear = info.yearChi;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    '@id': `${site}/apps/lich-van-nien/#app`,
+    name: vi ? 'Lịch Việt – Lịch Vạn Niên' : 'Lich Viet – Vietnamese Lunar Calendar',
+    alternateName: ['Lịch Vạn Niên 2026 • Lịch Việt', 'Lịch Việt', 'Lich Van Nien'],
+    description: t.description,
+    url: `${site}${path}`,
+    inLanguage: lang,
+    image: `${site}${app.iconLarge}`,
+    screenshot: media.shots.map((s) => `${site}/assets/apps/lich-viet/${s}-560.jpg`),
+    operatingSystem: `iOS ${app.minimumOs} or later`,
+    applicationCategory: 'LifestyleApplication',
+    applicationSubCategory: vi ? 'Lịch âm' : 'Lunar calendar',
+    availableOnDevice: 'iPhone, iPad, Apple Watch',
+    softwareVersion: app.version,
+    installUrl: app.url,
+    downloadUrl: app.url,
+    featureList: t.jumpLinks.slice(1, -1).map(([, label]) => label),
+    author: { '@type': 'Organization', name: 'DeeplyAi', url: `${site}/` },
+    publisher: { '@type': 'Organization', name: 'DeeplyAi', url: `${site}/` },
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: app.url,
+      description: t.free,
+    },
+    ...(showRating && { aggregateRating: { '@type': 'AggregateRating', ratingValue: app.rating, ratingCount: app.ratingCount, bestRating: 5, worstRating: 1 } }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: vi ? 'Trang chủ' : 'Home', item: `${site}${vi ? '/vi/' : '/'}` },
+      { '@type': 'ListItem', position: 2, name: t.crumbs[0], item: `${site}${vi ? '/vi/apps/' : '/apps/'}` },
+      { '@type': 'ListItem', position: 3, name: t.crumbs[1], item: `${site}${path}` },
+    ],
+  },
+];
+---
+<Base
+  lang={lang}
+  path={path}
+  alternates={{ en: paths.en, vi: paths.vi }}
+  title={t.title}
+  description={t.description}
+  ogImage={`/assets/apps/lich-viet/og-${lang}.jpg`}
+  ogImageAlt={t.ogAlt}
+  jsonLd={jsonLd}
+>
+  <div class="lv" data-lang={lang}>
+    <section class="lv-hero">
+      <span class="lv-drum lv-drum-hero" aria-hidden="true"></span>
+      <div class="wrap">
+        <nav class="crumbs" aria-label={vi ? 'Đường dẫn' : 'Breadcrumb'}><a href={vi ? '/vi/apps/' : '/apps/'}>{t.crumbs[0]}</a><span>/</span><span>{t.crumbs[1]}</span></nav>
+        <div class="lv-hero-grid">
+          <div class="lv-hero-copy">
+            <img class="lv-icon" src={app.iconLarge} width="112" height="112" alt={vi ? 'Biểu tượng ứng dụng Lịch Việt' : 'Lich Viet app icon'} />
+            <p class="lv-eyebrow">{t.eyebrow}</p>
+            <h1>{t.h1}<span class="lv-h1-sub">{t.h1Sub}</span></h1>
+            <p class="lv-lead">{t.lead}</p>
+            <div class="lv-actions">
+              <StoreBadge href={app.url} lang={lang} tone="white" />
+              <a class="lv-btn-ghost" href="#hom-nay">{t.todayCta}</a>
+            </div>
+            <p class="lv-meta">
+              <span class="lv-new">{t.newIn}</span>
+              <span>{t.free}</span>
+              {showRating && <span>{fill(t.ratingLine, { r: vi ? app.rating.toFixed(1).replace('.', ',') : app.rating.toFixed(1), n: app.ratingCount })}</span>}
+              <span>{fill(t.requires, { v: app.minimumOs })}</span>
+            </p>
+          </div>
+          <div class="lv-hero-media">
+            <div class="lv-stack">
+              <Pic class="lv-shot lv-stack-l" name={shot(1)} alt={alt(1)} sizes="(max-width: 900px) 40vw, 230px" />
+              <Pic class="lv-shot lv-stack-r" name={shot(8)} alt={alt(8)} sizes="(max-width: 900px) 40vw, 230px" />
+              <Pic class="lv-shot lv-stack-c" name={shot(0)} alt={alt(0)} sizes="(max-width: 900px) 56vw, 300px" eager />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lv-jump" aria-label={t.jump}>
+      <ul class="wrap">{t.jumpLinks.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+    </nav>
+
+    {/* Today */}
+    <section id="hom-nay" class="lv-section lv-paper">
+      <div class="wrap lv-today">
+        <div class="lv-text">
+          <p class="lv-kicker">{t.today.kicker}</p>
+          <h2>{t.today.title}</h2>
+          <p class="lv-body">{t.today.lead}</p>
+          <p class="lv-tet-line" data-f="tet">{tetLine}</p>
+          <p class="lv-fine">{t.today.note}</p>
+        </div>
+        <div class="lv-pad">
+          <article class="lv-sheet" data-today data-lang={lang} aria-live="polite">
+            <span class="lv-tear" aria-hidden="true"></span>
+            <header class="lv-sheet-top"><span data-f="month">{solarMonth}</span><span data-f="yearcc">{info.yearCanChi}</span></header>
+            <p class="lv-sheet-weekday" data-f="weekday">{t.today.weekdays[info.solar.weekday]}</p>
+            <p class="lv-sheet-day" data-f="day">{info.solar.day}</p>
+            <div class="lv-sheet-lunar">
+              <span>{t.today.lunarLabel}</span>
+              <b data-f="lunarday">{info.lunar.day}</b>
+              <span data-f="lunarmonth">{lunarMonthName(info.lunar.month, info.lunar.leap)}</span>
+            </div>
+            <dl class="lv-sheet-cc">
+              <div><dt>{t.today.dayLabel}</dt><dd data-f="daycc">{info.dayCanChi}</dd></div>
+              <div><dt>{t.today.monthLabel}</dt><dd data-f="monthcc">{info.monthCanChi}</dd></div>
+              <div><dt>{t.today.yearLabel}</dt><dd data-f="yearcc2">{info.yearCanChi}</dd></div>
+              <div><dt>{t.today.termLabel}</dt><dd data-f="term">{info.solarTerm}</dd></div>
+            </dl>
+            <h3 class="lv-hours-title">{t.today.hoursLabel}</h3>
+            <ul class="lv-hours" data-f="hours">
+              {info.goodHours.map((i) => (
+                <li><img src={`/assets/apps/lich-viet/chi/${CHI_ICONS[i]}.svg`} width="34" height="33" alt="" loading="lazy" /><b>{CHI[i]}</b><small>{t.today.hourRanges[i]}</small></li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {/* Home styles */}
+    <section id="trang-chu" class="lv-section">
+      <div class="wrap">
+        <div class="lv-head">
+          <p class="lv-kicker">{t.homes.kicker} <span class="lv-tag">{t.newTag}</span></p>
+          <h2>{t.homes.title}</h2>
+          <p class="lv-body">{t.homes.lead}</p>
+        </div>
+        <ul class="lv-fan">
+          {t.homes.styles.map((s) => (
+            <li class="lv-fan-item reveal">
+              <Pic class="lv-shot" name={shot(s.shot)} alt={alt(s.shot)} sizes="(max-width: 700px) 64vw, 300px" />
+              <h3>{s.name}{s.isNew && <span class="lv-tag">{t.newTag}</span>}{s.premium && <span class="lv-tag lv-tag-gold">{t.premiumTag}</span>}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="lv-center lv-fine">{t.homes.backgrounds}</p>
+      </div>
+    </section>
+
+    {/* Family Calendar */}
+    <section id="lich-nha" class="lv-section lv-family">
+      <div class="lv-family-bg" aria-hidden="true"><Pic name="countryside" alt="" sizes="100vw" /></div>
+      <div class="wrap lv-split">
+        <div class="lv-text">
+          <p class="lv-kicker">{t.family.kicker} <span class="lv-tag">{t.newTag}</span> <span class="lv-tag lv-tag-gold">{t.premiumTag}</span></p>
+          <h2>{t.family.title}</h2>
+          <p class="lv-body">{t.family.lead}</p>
+          <ul class="lv-points">{t.family.points.map((p) => <li>{p}</li>)}</ul>
+          <p class="lv-fine">{t.family.note}</p>
+        </div>
+        <div class="lv-media-center"><Pic class="lv-shot lv-shot-md reveal" name={shot(5)} alt={alt(5)} sizes="(max-width: 820px) 70vw, 320px" /></div>
+      </div>
+    </section>
+
+    {/* Good days */}
+    <section id="ngay-tot" class="lv-section lv-paper">
+      <div class="wrap lv-split lv-split-rev">
+        <div class="lv-duo-phones">
+          <Pic class="lv-shot reveal" name={shot(4)} alt={alt(4)} sizes="(max-width: 820px) 44vw, 270px" />
+          <Pic class="lv-shot reveal" name={shot(3)} alt={alt(3)} sizes="(max-width: 820px) 44vw, 270px" />
+        </div>
+        <div class="lv-text">
+          <p class="lv-kicker">{t.goodDays.kicker}</p>
+          <h2>{t.goodDays.title}</h2>
+          <p class="lv-body">{t.goodDays.lead}</p>
+          <ul class="lv-points">{t.goodDays.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      </div>
+      <div class="wrap">
+        <h3 class="lv-zodiac-title">{t.goodDays.zodiac}</h3>
+        <ul class="lv-zodiac">
+          {CHI.map((name, i) => (
+            <li class:list={[{ 'is-year': i === zodiacYear }]}>
+              <img src={`/assets/apps/lich-viet/chi/${CHI_ICONS[i]}.svg`} width="34" height="33" alt="" loading="lazy" />
+              <span>{name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* Culture */}
+    <section id="van-hoa" class="lv-section lv-lacquer">
+      <span class="lv-drum lv-drum-side" aria-hidden="true"></span>
+      <div class="wrap lv-split">
+        <div class="lv-text">
+          <p class="lv-kicker">{t.culture.kicker}</p>
+          <h2>{t.culture.title}</h2>
+          <p class="lv-body">{t.culture.lead}</p>
+          <ul class="lv-points lv-points-gold">{t.culture.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+        <div class="lv-duo-phones">
+          <Pic class="lv-shot reveal" name={shot(6)} alt={alt(6)} sizes="(max-width: 820px) 44vw, 270px" />
+          <Pic class="lv-shot reveal" name={shot(9)} alt={alt(9)} sizes="(max-width: 820px) 44vw, 270px" />
+        </div>
+      </div>
+    </section>
+
+    {/* Holidays */}
+    <section id="tet" class="lv-section lv-red">
+      <span class="lv-lotus" aria-hidden="true"></span>
+      <div class="wrap lv-split">
+        <div class="lv-text">
+          <p class="lv-kicker">{t.tet.kicker}</p>
+          <h2>{t.tet.title}</h2>
+          <p class="lv-body">{t.tet.lead}</p>
+          <ul class="lv-points">{t.tet.points.map((p) => <li>{p}</li>)}</ul>
+          <p class="lv-tet-badge" data-f="tet">{tetLine}</p>
+        </div>
+        <div class="lv-duo-phones">
+          <Pic class="lv-shot reveal" name={shot(2)} alt={alt(2)} sizes="(max-width: 820px) 44vw, 270px" />
+          <Pic class="lv-shot reveal" name={shot(0)} alt={alt(0)} sizes="(max-width: 820px) 44vw, 270px" />
+        </div>
+      </div>
+    </section>
+
+    {/* Widgets */}
+    <section id="widget" class="lv-section">
+      <div class="wrap lv-split lv-split-rev">
+        <div class="lv-duo-phones">
+          <Pic class="lv-shot reveal" name={shot(7)} alt={alt(7)} sizes="(max-width: 820px) 44vw, 270px" />
+          <Pic class="lv-shot reveal" name={shot(9)} alt={alt(9)} sizes="(max-width: 820px) 44vw, 270px" />
+        </div>
+        <div class="lv-text">
+          <p class="lv-kicker">{t.widgets.kicker} <span class="lv-tag">{t.newTag}</span></p>
+          <h2>{t.widgets.title}</h2>
+          <p class="lv-body">{t.widgets.lead}</p>
+          <ul class="lv-points">{t.widgets.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    {/* Utilities */}
+    <section id="tien-ich" class="lv-section lv-paper">
+      <div class="wrap">
+        <div class="lv-head">
+          <p class="lv-kicker">{t.utilities.kicker}</p>
+          <h2>{t.utilities.title}</h2>
+        </div>
+        <ul class="lv-tools">
+          {t.utilities.items.map(([name, text]) => <li class="reveal"><h3>{name}</h3><p>{text}</p></li>)}
+        </ul>
+        <div class="lv-tools-media">
+          <Pic class="lv-shot lv-shot-md reveal" name={shot(8)} alt={alt(8)} sizes="(max-width: 820px) 70vw, 320px" />
+        </div>
+      </div>
+    </section>
+
+    {/* Devices */}
+    <section id="thiet-bi" class="lv-section lv-lacquer">
+      <div class="wrap">
+        <div class="lv-head">
+          <p class="lv-kicker">{t.devices.kicker}</p>
+          <h2>{t.devices.title}</h2>
+        </div>
+        <div class="lv-devices">
+          <dl class="lv-device-list">
+            {t.devices.items.map(([name, text, isNew]) => <div><dt>{name}{isNew && <span class="lv-tag lv-tag-light">{t.newTag}</span>}</dt><dd>{text}</dd></div>)}
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    {/* App Store screenshots */}
+    <section class="lv-section" aria-labelledby="lv-shots-title">
+      <div class="wrap"><h2 id="lv-shots-title" class="lv-shots-title">{t.shotsTitle}</h2></div>
+      <div class="lv-shots" tabindex="0" role="group" aria-label={t.shotsTitle}>
+        {media.shots.map((name, i) => <Pic name={name} alt={t.shots[i]} sizes="(max-width: 700px) 200px, 260px" />)}
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section id="hoi-dap" class="lv-section lv-paper">
+      <div class="wrap lv-split lv-faq-wrap">
+        <h2>{t.faqTitle}</h2>
+        <div class="lv-faq">
+          {t.faq.map(([q, a]) => (
+            <details>
+              <summary><h3>{q}</h3></summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lv-section lv-red lv-cta">
+      <span class="lv-drum lv-drum-cta" aria-hidden="true"></span>
+      <div class="wrap lv-cta-in">
+        <div>
+          <h2>{t.ctaTitle}</h2>
+          <p class="lv-body">{t.ctaLead}</p>
+        </div>
+        <StoreBadge href={app.url} lang={lang} tone="white" />
+      </div>
+    </section>
+
+    <div class="wrap lv-foot">
+      <p class="lv-fine">{t.disclaimer}</p>
+      {related.length > 0 && (
+        <Fragment>
+          <h2 class="lv-related">{t.related}</h2>
+          <ul class="app-grid">{related.map((a) => <li><AppCard app={a} /></li>)}</ul>
+        </Fragment>
+      )}
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { CHI, CHI_ICONS, LUNAR_MONTHS, dayInfo, vietnamToday } from './lunar';
+  import { COPY, MONTHS_EN, type Lang } from './copy';
+
+  // Today's page: recomputed in the browser so it is right even if the build is a day old.
+  const sheet = document.querySelector<HTMLElement>('[data-today]');
+  if (sheet) {
+    const lang = sheet.dataset.lang as Lang;
+    const t = COPY[lang].today;
+    const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+    const now = vietnamToday();
+    const info = dayInfo(now.day, now.month, now.year);
+    const set = (key: string, value: string) => document.querySelectorAll<HTMLElement>(`[data-f="${key}"]`).forEach((el) => { el.textContent = value; });
+    const lunarMonth = (lang === 'vi' ? LUNAR_MONTHS[info.lunar.month - 1] : `Month ${info.lunar.month}`) + (info.lunar.leap ? ` (${t.leap})` : '');
+    set('month', lang === 'vi' ? fill(t.solarMonth, { m: now.month, y: now.year }) : fill(t.solarMonth, { month: MONTHS_EN[now.month - 1], y: now.year }));
+    set('yearcc', info.yearCanChi);
+    set('yearcc2', info.yearCanChi);
+    set('weekday', t.weekdays[info.solar.weekday]);
+    set('day', String(info.solar.day));
+    set('lunarday', String(info.lunar.day));
+    set('lunarmonth', lunarMonth);
+    set('daycc', info.dayCanChi);
+    set('monthcc', info.monthCanChi);
+    set('term', info.solarTerm);
+    set('tet', info.tet.days === 0 ? fill(t.tetToday, { name: info.tet.name }) : fill(t.tet, { n: info.tet.days, name: info.tet.name }));
+    const hours = sheet.querySelector('[data-f="hours"]')!;
+    hours.replaceChildren(...info.goodHours.map((i) => {
+      const li = document.createElement('li');
+      const img = Object.assign(document.createElement('img'), { src: `/assets/apps/lich-viet/chi/${CHI_ICONS[i]}.svg`, width: 34, height: 33, alt: '' });
+      const name = Object.assign(document.createElement('b'), { textContent: CHI[i] });
+      const range = Object.assign(document.createElement('small'), { textContent: t.hourRanges[i] });
+      li.append(img, name, range);
+      return li;
+    }));
+
+    // Tear yesterday's page away once the calendar comes into view. The cover only exists
+    // while this script runs, so the page is never hidden if scripts fail.
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      sheet.classList.add('has-tear');
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          sheet.classList.add('is-torn');
+          observer.disconnect();
+        }
+      }, { threshold: 0.15 });
+      observer.observe(sheet);
+    }
+  }
+
+</script>
+
+<style>
+  .lv {
+    --lv-red: #a8231b;
+    --lv-red-deep: #7d150f;
+    --lv-gold: #d9a441;
+    --lv-gold-soft: #ecd29b;
+    --lv-lacquer: #17110d;
+    --lv-lacquer-2: #251a14;
+    --lv-paper: #f3e7cf;
+    --lv-paper-2: #ead9b8;
+    --lv-ink: #2a1c13;
+    --lv-ink-2: #6a5440;
+    --lv-serif: 'Alegreya', Georgia, serif;
+  }
+  .lv h1, .lv h2, .lv h3 { font-family: var(--lv-serif); font-weight: 700; letter-spacing: -.01em; }
+  .lv h2 { margin-top: 10px; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.04; }
+  .lv-section { position: relative; overflow: hidden; padding-block: clamp(64px, 9vw, 124px); }
+  .lv-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--lv-red); font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .lv-body { margin-top: 18px; max-width: 34em; color: var(--lv-ink-2); font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; }
+  .lv-fine { margin-top: 18px; max-width: 46em; color: var(--lv-ink-2); font-size: 14px; }
+  .lv-center { margin-inline: auto; text-align: center; }
+  .lv-head { max-width: 46em; margin-bottom: clamp(36px, 5vw, 64px); }
+  .lv-tag { display: inline-flex; align-items: center; min-height: 22px; padding: 0 9px; border-radius: 999px; background: var(--lv-red); color: #fff; font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: none; vertical-align: middle; }
+  .lv-tag-gold { background: var(--lv-gold); color: var(--lv-lacquer); }
+  .lv-tag-light { background: #ffffff26; color: #fff; }
+  .lv-points { display: grid; gap: 12px; margin-top: 26px; }
+  .lv-points li { position: relative; padding-left: 30px; font-size: 17px; line-height: 1.5; }
+  .lv-points li::before { content: ''; position: absolute; left: 4px; top: .45em; width: 12px; height: 12px; border: 2px solid var(--lv-red); transform: rotate(45deg); }
+  .lv-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .lv-split-rev > :first-child { order: 0; }
+  @media (max-width: 820px) { .lv-split { grid-template-columns: 1fr; } .lv-split-rev > .lv-text { order: -1; } }
+  .lv-media-center { display: flex; justify-content: center; }
+
+  /* Devices */
+  .lv-phone { position: relative; overflow: hidden; width: 100%; max-width: 280px; border: 7px solid #120c09; border-radius: 40px; background: #000; box-shadow: 0 24px 50px #2a1c1340, 0 0 0 1px #ffffff12; }
+  .lv-phone :global(picture), .lv-phone :global(img), .lv-phone :global(video) { display: block; width: 100%; height: auto; }
+  .lv-phone-hero { max-width: 330px; border-radius: 46px; }
+  .lv-phone-md { max-width: 300px; }
+  .lv-phone-sm { max-width: 250px; }
+  .lv-tablet { overflow: hidden; border: 8px solid #120c09; border-radius: 30px; background: #000; box-shadow: 0 26px 60px #00000055; }
+  .lv-tablet :global(img) { display: block; width: 100%; height: auto; }
+  .lv-duo-phones { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; justify-items: center; }
+  .lv-duo-phones > :global(:nth-child(2)) { margin-top: 56px; }
+  .lv :global(.clip) { position: relative; width: 100%; }
+  .lv :global(.clip picture), .lv :global(.clip img) { width: 100%; height: 100%; }
+  .lv :global(.clip video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s; }
+  .lv :global(.clip.is-playing video) { opacity: 1; }
+  .lv :global(.clip-toggle) { position: absolute; right: 12px; bottom: 12px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: #000a; color: #fff; cursor: pointer; opacity: .75; }
+  .lv :global(.clip-toggle:hover), .lv :global(.clip-toggle:focus-visible) { opacity: 1; }
+  .lv :global(.clip-toggle span) { width: 10px; height: 12px; border-inline: 3px solid currentColor; }
+  .lv :global(.clip-toggle.is-paused span) { width: 0; height: 0; border: 0; border-left: 11px solid currentColor; border-block: 7px solid transparent; margin-left: 3px; }
+
+  /* Approved App Store screenshots, shown as standalone cards */
+  .lv :global(.lv-shot) { display: block; width: 100%; max-width: 290px; }
+  .lv :global(.lv-shot img) { display: block; width: 100%; height: auto; border-radius: 26px; box-shadow: 0 24px 50px #2a1c1340, 0 0 0 1px #2a1c1314; }
+  .lv :global(.lv-shot-md) { max-width: 330px; }
+  .lv-stack { position: relative; display: grid; place-items: center; width: min(100%, 560px); aspect-ratio: 1.15; }
+  .lv-stack :global(.lv-shot) { position: absolute; }
+  .lv-stack :global(.lv-stack-c) { z-index: 2; width: 54%; max-width: 310px; }
+  .lv-stack :global(.lv-stack-l) { left: 2%; width: 42%; transform: rotate(-8deg) translateY(6%); opacity: .92; }
+  .lv-stack :global(.lv-stack-r) { right: 2%; width: 42%; transform: rotate(8deg) translateY(6%); opacity: .92; }
+  .lv-stack :global(img) { box-shadow: 0 30px 70px #000a, 0 0 0 1px #ffffff1a; }
+  @media (prefers-reduced-motion: no-preference) {
+    .lv-stack :global(.lv-stack-c) { animation: lv-float 7s ease-in-out infinite; }
+    .lv-stack :global(.lv-stack-l) { animation: lv-float-l 8s ease-in-out infinite; }
+    .lv-stack :global(.lv-stack-r) { animation: lv-float-r 9s ease-in-out infinite; }
+    @keyframes lv-float { 50% { translate: 0 -12px; } }
+    @keyframes lv-float-l { 50% { translate: -6px -8px; } }
+    @keyframes lv-float-r { 50% { translate: 6px -10px; } }
+  }
+
+  /* Decorative gold masks, drawn for the app */
+  .lv-drum, .lv-lotus { position: absolute; pointer-events: none; background: var(--lv-gold); -webkit-mask: url('/assets/apps/lich-viet/drum.svg') center / contain no-repeat; mask: url('/assets/apps/lich-viet/drum.svg') center / contain no-repeat; }
+  .lv-drum-hero { top: 50%; right: -18vw; width: min(120vw, 1100px); aspect-ratio: 1; translate: 0 -50%; opacity: .16; animation: lv-spin 240s linear infinite; }
+  .lv-drum-side { top: -160px; left: -220px; width: 620px; aspect-ratio: 1; opacity: .09; animation: lv-spin 300s linear infinite reverse; }
+  .lv-drum-cta { top: 50%; right: -160px; width: 560px; aspect-ratio: 1; translate: 0 -50%; background: #fff; opacity: .1; animation: lv-spin 240s linear infinite; }
+  .lv-lotus { right: 4%; bottom: -30px; width: 260px; aspect-ratio: 400 / 440; background: var(--lv-gold-soft); opacity: .18; -webkit-mask-image: url('/assets/apps/lich-viet/lotus.svg'); mask-image: url('/assets/apps/lich-viet/lotus.svg'); }
+  @keyframes lv-spin { to { rotate: 360deg; } }
+
+  /* Hero */
+  .lv-hero { position: relative; overflow: hidden; padding-bottom: clamp(56px, 8vw, 110px); background: radial-gradient(120% 90% at 85% 40%, #3a1712 0%, var(--lv-lacquer) 55%); color: #f5ead6; }
+  .lv-hero .crumbs { color: #c9b69a; }
+  .lv-hero .crumbs a:hover { color: var(--lv-gold); }
+  .lv-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-top: clamp(20px, 3vw, 40px); }
+  @media (max-width: 900px) { .lv-hero-grid { grid-template-columns: 1fr; } }
+  .lv-icon { width: 96px; height: auto; border-radius: 22.5%; box-shadow: 0 12px 30px #00000066; }
+  .lv-eyebrow { margin-top: 22px; color: var(--lv-gold); font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .lv-hero h1 { margin-top: 12px; font-size: clamp(52px, 7.4vw, 104px); line-height: .98; color: #fff6e6; }
+  .lv-h1-sub { display: block; margin-top: 12px; color: var(--lv-gold-soft); font-size: clamp(22px, 2.4vw, 32px); font-style: italic; font-weight: 400; line-height: 1.2; }
+  .lv-lead { margin-top: 22px; max-width: 32em; color: #d9c8ad; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; }
+  .lv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 30px; }
+  .lv-actions :global(.store-badge img) { height: 54px; }
+  .lv-btn-ghost { display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border: 1px solid #f5ead666; border-radius: 999px; color: #f5ead6; font-weight: 600; text-decoration: none; transition: background-color .2s, color .2s; }
+  .lv-btn-ghost:hover { background: var(--lv-gold); border-color: var(--lv-gold); color: var(--lv-lacquer); }
+  .lv-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-top: 24px; color: #c9b69a; font-size: 14px; }
+  .lv-new { padding: 4px 12px; border: 1px solid var(--lv-gold); border-radius: 999px; color: var(--lv-gold); font-weight: 600; }
+  .lv-hero-media { display: flex; justify-content: center; position: relative; }
+  .lv-hero-media::before { content: ''; position: absolute; inset: 8% -10% -6%; background: radial-gradient(closest-side, #c0392b55, transparent); }
+
+  /* Jump links */
+  .lv-jump { position: sticky; top: 73px; z-index: 10; border-bottom: 1px solid #2a1c1322; background: color-mix(in srgb, var(--lv-paper) 94%, transparent); backdrop-filter: blur(12px); }
+  .lv-jump ul { display: flex; gap: 4px; overflow-x: auto; padding-block: 8px; scrollbar-width: none; }
+  .lv-jump a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; color: var(--lv-ink); font-size: 14px; white-space: nowrap; text-decoration: none; }
+  .lv-jump a:hover { background: var(--lv-paper-2); color: var(--lv-red); }
+  @media (max-width: 760px) { .lv-jump { top: 72px; } }
+
+  /* Paper and lacquer sections */
+  .lv-paper { background: var(--lv-paper); color: var(--lv-ink); }
+  .lv-lacquer { background: linear-gradient(180deg, var(--lv-lacquer), var(--lv-lacquer-2)); color: #f5ead6; }
+  .lv-lacquer .lv-kicker { color: var(--lv-gold); }
+  .lv-lacquer .lv-body, .lv-lacquer .lv-fine { color: #cdbb9f; }
+  .lv-red { background: radial-gradient(120% 120% at 20% 0%, #c0392b, var(--lv-red) 45%, var(--lv-red-deep)); color: #fff4e3; }
+  .lv-red .lv-kicker { color: var(--lv-gold-soft); }
+  .lv-red .lv-body { color: #ffe1cf; }
+  .lv-red .lv-points li::before, .lv-lacquer .lv-points li::before { border-color: var(--lv-gold); }
+
+  /* Today's tear-off page */
+  .lv-today { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+  @media (max-width: 820px) { .lv-today { grid-template-columns: 1fr; } }
+  .lv-tet-line { display: inline-block; margin-top: 24px; padding: 10px 18px; border-radius: 999px; background: var(--lv-red); color: #fff; font-weight: 600; }
+  .lv-pad { position: relative; display: flex; justify-content: center; padding-top: 22px; }
+  .lv-pad::before { content: ''; position: absolute; top: 0; left: 50%; width: 46%; height: 30px; translate: -50% 0; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, #5b2a1c, #3a1a11); box-shadow: 0 4px 10px #0004; }
+  .lv-sheet { position: relative; width: min(100%, 420px); padding: 0 22px 24px; border-radius: 6px; background: #fbf4e4 url('/assets/apps/lich-viet/drum.svg') center 46% / 92% no-repeat; background-blend-mode: soft-light; box-shadow: 0 2px 0 #e9dcc0, 0 4px 0 #f6ecd6, 0 6px 0 #e3d2b0, 0 30px 60px #2a1c1333; color: var(--lv-ink); text-align: center; }
+  .lv-sheet::after { content: ''; position: absolute; inset: 0; border-radius: 6px; background: #fbf4e4d9; z-index: 0; pointer-events: none; }
+  .lv-sheet > :not(.lv-tear) { position: relative; z-index: 1; }
+  .lv-sheet-top { display: flex; justify-content: space-between; gap: 12px; margin-inline: -22px; padding: 12px 22px; border-radius: 6px 6px 0 0; background: var(--lv-red); color: #fff3df; font-family: var(--lv-serif); font-size: 17px; font-weight: 700; }
+  .lv-sheet-weekday { margin-top: 18px; color: var(--lv-red); font-family: var(--lv-serif); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  .lv-sheet-day { font-family: var(--lv-serif); font-size: clamp(120px, 16vw, 168px); font-weight: 700; line-height: .95; color: var(--lv-red); }
+  .lv-sheet-lunar { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px dashed #a8231b55; color: var(--lv-ink-2); font-size: 15px; }
+  .lv-sheet-lunar b { font-family: var(--lv-serif); font-size: 46px; line-height: 1; color: var(--lv-ink); }
+  .lv-sheet-cc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+  .lv-sheet-cc div { padding: 8px 4px; border-radius: 8px; background: #f2e3c3; }
+  .lv-sheet-cc dt { color: var(--lv-ink-2); font-size: 12px; }
+  .lv-sheet-cc dd { margin: 2px 0 0; font-family: var(--lv-serif); font-size: 16px; font-weight: 700; line-height: 1.15; }
+  @media (max-width: 420px) { .lv-sheet-cc { grid-template-columns: repeat(2, 1fr); } }
+  .lv-hours-title { margin-top: 18px; color: var(--lv-red); font-size: 16px; }
+  .lv-hours { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 10px; }
+  /* Hour items are rebuilt by the script, so they need unscoped selectors. */
+  .lv-hours :global(li) { display: grid; justify-items: center; gap: 2px; font-size: 12px; }
+  .lv-hours :global(img) { width: 34px; height: auto; border-radius: 50%; background: #e9d6b0; }
+  .lv-hours :global(b) { font-size: 14px; }
+  .lv-hours :global(small) { color: var(--lv-ink-2); font-size: 11px; white-space: nowrap; }
+  @media (max-width: 420px) { .lv-hours { grid-template-columns: repeat(3, 1fr); row-gap: 10px; } }
+  .lv-tear { position: absolute; inset: 0; z-index: 3; display: none; border-radius: 6px; background: #fbf4e4; box-shadow: 0 2px 8px #0002; transform-origin: 50% 0; pointer-events: none; }
+  .lv-tear::before { content: ''; position: absolute; inset: 0 0 auto; height: 44px; border-radius: 6px 6px 0 0; background: var(--lv-red); }
+
+  /* Home styles fan */
+  .lv-fan { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); align-items: end; }
+  .lv-fan-item { display: grid; justify-items: center; text-align: center; }
+  .lv-fan-item:nth-child(2) { translate: 0 -36px; }
+  .lv-fan-item :global(.lv-shot) { transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+  .lv-fan-item:nth-child(1) :global(.lv-shot) { transform: rotate(-4deg); }
+  .lv-fan-item:nth-child(3) :global(.lv-shot) { transform: rotate(4deg); }
+  .lv-fan-item:hover :global(.lv-shot) { transform: translateY(-10px) rotate(0); }
+  .lv-fan-item h3 { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 22px; font-size: 28px; }
+  .lv-fan-item p { margin-top: 4px; color: var(--lv-ink-2); }
+  @media (max-width: 760px) {
+    .lv-fan { display: flex; gap: 16px; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 8px var(--gutter) 24px; scroll-snap-type: x mandatory; }
+    .lv-fan-item { flex: 0 0 68%; scroll-snap-align: center; }
+    .lv-fan-item:nth-child(2) { translate: none; }
+    .lv-fan-item :global(.lv-shot) { transform: none !important; }
+  }
+
+  /* Family Calendar over the countryside photo */
+  .lv-family { color: #fff7ea; background: #2b1a10; }
+  .lv-family-bg { position: absolute; inset: 0; }
+  .lv-family-bg :global(picture), .lv-family-bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .lv-family-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #1b0f08f0 0%, #1b0f08c4 45%, #1b0f0855 100%); }
+  @media (max-width: 820px) { .lv-family-bg::after { background: linear-gradient(180deg, #1b0f08e8, #1b0f08b8); } }
+  .lv-family .wrap { position: relative; }
+  .lv-family .lv-kicker { color: var(--lv-gold-soft); }
+  .lv-family .lv-body, .lv-family .lv-fine { color: #ecdcc2; }
+  .lv-family .lv-points li::before { border-color: var(--lv-gold); }
+
+  /* Zodiac */
+  .lv-zodiac-title { margin-top: clamp(48px, 7vw, 88px); font-size: 24px; text-align: center; }
+  .lv-zodiac { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px; margin-top: 20px; }
+  .lv-zodiac li { display: grid; justify-items: center; gap: 6px; padding: 12px 4px; border-radius: 14px; background: var(--lv-paper-2); font-size: 14px; font-weight: 600; transition: transform .25s; }
+  .lv-zodiac li:hover { transform: translateY(-4px); }
+  .lv-zodiac img { width: 40px; height: auto; }
+  .lv-zodiac .is-year { background: var(--lv-red); color: #fff; }
+  @media (max-width: 760px) { .lv-zodiac { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+  .lv-points-gold li { color: #f5ead6; }
+
+  /* Tet */
+  .lv-tet-badge { display: inline-block; margin-top: 26px; padding: 12px 20px; border-radius: 999px; background: #fff4e3; color: var(--lv-red); font-family: var(--lv-serif); font-size: 20px; font-weight: 700; }
+
+  /* Tools */
+  .lv-tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 980px) { .lv-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .lv-tools { grid-template-columns: 1fr; } }
+  .lv-tools li { padding: 22px; border-radius: 18px; background: #fbf4e4; box-shadow: inset 0 0 0 1px #2a1c1314; }
+  .lv-tools h3 { font-size: 22px; line-height: 1.15; color: var(--lv-red); }
+  .lv-tools p { margin-top: 8px; color: var(--lv-ink-2); font-size: 15px; line-height: 1.45; }
+  .lv-tools-media { display: flex; justify-content: center; margin-top: clamp(40px, 6vw, 72px); }
+
+  /* Devices */
+  .lv-devices { display: block; }
+  @media (max-width: 820px) { .lv-devices { grid-template-columns: 1fr; } }
+  .lv-device-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+  .lv-device-list > div { padding: 24px; border: 1px solid #d9a44140; border-radius: 18px; background: #ffffff08; }
+  .lv-device-list dt { display: flex; gap: 8px; align-items: center; font-family: var(--lv-serif); font-size: 24px; font-weight: 700; color: var(--lv-gold-soft); }
+  .lv-device-list dd { margin: 4px 0 0; color: #cdbb9f; }
+  .lv-ipad { max-width: 680px; margin: clamp(40px, 6vw, 72px) auto 0; overflow: hidden; border: 9px solid #0b0806; border-radius: 28px; box-shadow: 0 30px 70px #000b; }
+  .lv-ipad :global(img) { display: block; width: 100%; height: auto; }
+
+  /* Screenshots */
+  .lv-shots-title { margin-bottom: 20px; font-size: clamp(28px, 3vw, 40px) !important; }
+  .lv-shots { display: flex; gap: 14px; overflow-x: auto; padding: 8px var(--gutter) 24px; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); }
+  .lv-shots :global(picture) { flex: none; scroll-snap-align: start; }
+  .lv-shots :global(img) { display: block; width: clamp(180px, 20vw, 260px); height: auto; border-radius: 24px; box-shadow: 0 12px 28px #2a1c1326; }
+
+  /* FAQ */
+  .lv-faq-wrap { align-items: start; }
+  .lv-faq details { border-bottom: 1px solid #2a1c1326; }
+  .lv-faq summary { display: flex; justify-content: space-between; gap: 16px; align-items: center; min-height: 64px; padding-block: 14px; cursor: pointer; list-style: none; }
+  .lv-faq summary::-webkit-details-marker { display: none; }
+  .lv-faq summary::after { content: '+'; flex: none; font-size: 28px; color: var(--lv-red); transition: rotate .2s; }
+  .lv-faq details[open] summary::after { rotate: 45deg; }
+  .lv-faq h3 { font-size: 21px; line-height: 1.25; }
+  .lv-faq p { padding-bottom: 18px; color: var(--lv-ink-2); }
+
+  /* CTA and footer */
+  .lv-cta-in { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+  .lv-cta h2 { max-width: 12em; }
+  .lv-cta :global(.store-badge img) { height: 56px; }
+  .lv-foot { padding-block: 40px 96px; }
+  .lv-related { margin: 48px 0 16px; font-size: clamp(26px, 3vw, 36px) !important; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lv-sheet.has-tear .lv-tear { display: block; }
+    .lv-sheet.is-torn .lv-tear { animation: lv-tear 1.1s .15s cubic-bezier(.5, 0, .7, .3) forwards; }
+    @keyframes lv-tear {
+      0% { transform: perspective(900px) rotateX(0) rotateZ(0); opacity: 1; }
+      35% { transform: perspective(900px) rotateX(-18deg) rotateZ(-2deg); }
+      100% { transform: perspective(900px) rotateX(-100deg) rotateZ(-8deg) translateY(-30px); opacity: 0; visibility: hidden; }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lv-drum, .lv-lotus { animation: none; }
+  }
+</style>

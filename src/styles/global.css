@@ -72,8 +72,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero .lead { max-width: 28em; }
 .wall { position: absolute; z-index: 1; top: -22%; right: -5%; display: flex; gap: 18px; height: 150%; transform: rotate(9deg); }
 .hero::after { content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(100deg, var(--paper) 42%, transparent 66%); }
-.wall-col { display: flex; flex-direction: column; gap: 18px; will-change: transform; animation: drift var(--drift, 32s) linear infinite paused; }
-.wall-col:nth-child(3n + 2) { --drift: 38s; }
+.wall-col { display: flex; flex-direction: column; gap: 18px; will-change: transform; animation: drift var(--drift, 22s) linear infinite paused; }
+.wall-col:nth-child(3n + 2) { --drift: 27s; }
 .wall.run .wall-col { animation-play-state: running; }
 .wall-col:nth-child(even) { animation-direction: reverse; }
 .wall img { width: clamp(84px, 8.5vw, 124px); height: auto; aspect-ratio: 1; border-radius: 22.5%; }
@@ -82,8 +82,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero-in { min-height: 0; padding-block: 48px 300px; }
   .wall { top: auto; bottom: -160px; right: 50%; height: 480px; translate: 50% 0; gap: 12px; }
   .hero::after { background: linear-gradient(180deg, var(--paper) calc(100% - 300px), transparent calc(100% - 200px)); }
-  .wall-col { gap: 12px; --drift: 22s; }
-  .wall-col:nth-child(3n + 2) { --drift: 26s; }
+  .wall-col { gap: 12px; --drift: 15s; }
+  .wall-col:nth-child(3n + 2) { --drift: 18s; }
   .wall img { width: 76px; }
 }
 

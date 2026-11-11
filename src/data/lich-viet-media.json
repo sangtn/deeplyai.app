@@ -1,0 +1,114 @@
+{
+  "stills": {
+    "countryside": {
+      "width": 1400,
+      "height": 933,
+      "widths": [
+        1400,
+        900
+      ]
+    },
+    "store-01": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-02": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-03": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-04": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-05": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-06": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-07": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-08": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-09": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    },
+    "store-10": {
+      "width": 720,
+      "height": 1564,
+      "widths": [
+        720,
+        560,
+        392
+      ]
+    }
+  },
+  "shots": [
+    "store-01",
+    "store-02",
+    "store-03",
+    "store-04",
+    "store-05",
+    "store-06",
+    "store-07",
+    "store-08",
+    "store-09",
+    "store-10"
+  ]
+}

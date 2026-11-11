@@ -8,7 +8,7 @@ import { GROUPS, GROUP_SLUGS, byId, hasRating, inGroup, type GroupSlug } from '.
 
 export async function getStaticPaths() {
   // Apps with a hand-built page of their own under src/pages/apps/<slug>/.
-  const DEDICATED = new Set(['car-play-connect']);
+  const DEDICATED = new Set(['car-play-connect', 'lich-van-nien']);
   const entries = (await getCollection('apps')).filter((entry) => !DEDICATED.has(entry.id));
   return [
     ...GROUP_SLUGS.map((group) => ({ params: { slug: group }, props: { group } })),
