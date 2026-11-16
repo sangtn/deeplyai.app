@@ -1,0 +1,43 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import WeatherAttribution from '../../../../components/lich/WeatherAttribution.astro';
+import { PLACES, allForecasts, describe } from '../../../../lib/lich/weather';
+import { WEATHER_URL, weatherUrl } from '../../../../lib/lich/urls';
+
+const all = await allForecasts();
+const rows = PLACES.map((p) => ({ p, f: all.get(p.slug) ?? null }));
+const provinces = rows.filter((r) => !r.p.tourist);
+const tourist = rows.filter((r) => r.p.tourist);
+const updated = rows.find((r) => r.f)?.f?.updatedAt;
+---
+<LichShell
+  title="Thời tiết hôm nay 34 tỉnh thành – Dự báo 7 ngày tới"
+  description="Dự báo thời tiết hôm nay và 7 ngày tới cho 34 tỉnh thành Việt Nam và các điểm du lịch Đà Lạt, Sa Pa, Nha Trang, Phú Quốc: nhiệt độ, mưa, gió, UV, kèm ngày âm lịch."
+  path={WEATHER_URL}
+  crumbs={[{ name: 'Thời tiết' }]}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Thời tiết hôm nay</h1>
+      <p>Nhiệt độ cao nhất, thấp nhất và thời tiết ban ngày hôm nay ở 34 tỉnh thành. Chọn một nơi để xem từng giờ và 7 ngày tới.</p>
+    </header>
+    {[['Tỉnh thành', provinces], ['Điểm du lịch', tourist]].map(([label, list]) => (
+      <section class="la-block" aria-label={label as string}>
+        <h2 class="la-h2">{label}</h2>
+        <ul class="la-wx-grid">
+          {(list as typeof rows).map(({ p, f }) => {
+            const d = f?.days[0];
+            return (
+              <li><a href={weatherUrl(p.slug)}>
+                <span><b>{p.name}</b><small>{d ? describe(d.symbol).text : 'Chưa có dữ liệu'}</small></span>
+                {d && <span class="la-wx-mini"><span aria-hidden="true">{describe(d.symbol).icon}</span> {d.min}–{d.max}°</span>}
+              </a></li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+    <WeatherAttribution updatedAt={updated} />
+  </div>
+</LichShell>

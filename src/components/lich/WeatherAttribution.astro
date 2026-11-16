@@ -1,0 +1,11 @@
+---
+interface Props { updatedAt?: string }
+const { updatedAt } = Astro.props;
+const when = updatedAt ? new Date(new Date(updatedAt).getTime() + 7 * 3600 * 1000) : null;
+const p2 = (n: number) => String(n).padStart(2, '0');
+---
+<p class="la-note la-wx-src">
+  Dữ liệu dự báo: <a href="https://www.met.no/en" rel="noopener">Viện Khí tượng Na Uy (MET Norway)</a>, giấy phép <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>.
+  {when && <Fragment> Bản tin phát hành lúc {p2(when.getUTCHours())}:{p2(when.getUTCMinutes())} ngày {p2(when.getUTCDate())}/{p2(when.getUTCMonth() + 1)}/{when.getUTCFullYear()} (giờ Việt Nam), trang cập nhật mỗi ngày.</Fragment>}
+  Dự báo mang tính tham khảo; khi có bão, áp thấp hãy theo dõi thông báo của Trung tâm Dự báo Khí tượng Thủy văn Quốc gia.
+</p>

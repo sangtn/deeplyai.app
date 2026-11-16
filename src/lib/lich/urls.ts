@@ -53,6 +53,10 @@ export const VACCINE_URL = `${TOOLS_URL}lich-tiem-chung/`;
 export const SHIFT_URL = `${TOOLS_URL}lich-ca/`;
 export const FEEDS_URL = `${TOOLS_URL}lich-am-google-calendar/`;
 
+// Services
+export const WEATHER_URL = `${BASE}thoi-tiet/`;
+export const weatherUrl = (slug: string) => `${WEATHER_URL}${slug}/`;
+
 export const hasDayPage = (y: number) => y >= DAY_FROM && y <= DAY_TO;
 export const hasMonthPage = (y: number) => y >= YEAR_FROM && y <= YEAR_TO;
 

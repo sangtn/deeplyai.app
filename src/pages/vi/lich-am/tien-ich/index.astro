@@ -1,9 +1,10 @@
 ---
 import LichShell from '../../../../components/lich/LichShell.astro';
-import { COUNT_URL, CONVERT_URL, EVENTS_URL, FEEDS_URL, FINANCE_URL, NOTES_URL, PREGNANCY_URL, SHIFT_URL, TOOLS_URL, VACCINE_URL } from '../../../../lib/lich/urls';
+import { WEATHER_URL, COUNT_URL, CONVERT_URL, EVENTS_URL, FEEDS_URL, FINANCE_URL, NOTES_URL, PREGNANCY_URL, SHIFT_URL, TOOLS_URL, VACCINE_URL } from '../../../../lib/lich/urls';
 const items = [
   { href: EVENTS_URL, title: 'Nhắc ngày giỗ âm lịch', text: 'Ngày giỗ, ngày cưới, sinh nhật âm lịch; đếm ngược và thêm nhắc vào lịch điện thoại.' },
   { href: FEEDS_URL, title: 'Lịch âm cho Google Calendar', text: 'Ngày âm mỗi ngày, rằm, mùng 1, ngày lễ ngay trong lịch điện thoại.' },
+  { href: WEATHER_URL, title: 'Thời tiết 34 tỉnh thành', text: 'Dự báo hôm nay, từng giờ và 7 ngày tới, kèm ngày âm lịch.' },
   { href: FINANCE_URL, title: 'Sổ thu chi', text: 'Ghi chi tiêu theo danh mục, tổng kết tháng, xuất Excel.' },
   { href: NOTES_URL, title: 'Ghi chú & nhật ký', text: 'Ghi chú có danh sách việc, nhật ký cảm xúc, “ngày này năm xưa”.' },
   { href: PREGNANCY_URL, title: 'Tính ngày dự sinh', text: 'Tuần thai, ngày dự sinh và lịch khám thai.' },

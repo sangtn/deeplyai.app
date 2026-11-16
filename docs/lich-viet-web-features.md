@@ -201,3 +201,20 @@ Mục `/vi/lich-am/` gồm:
 - Tử vi trọn đời: app chọn sao ngẫu nhiên mỗi lần, giờ âm lệch một giờ, ngũ hành dùng công thức rút gọn.
 - La bàn phong thủy.
 - Nghe kinh Phật: audio nằm trên host bên ngoài, cần xác nhận quyền phát.
+
+## Trạng thái: nhóm 4 (dịch vụ)
+
+**Đã làm: thời tiết.**
+- Trang `/vi/lich-am/thoi-tiet/` và 41 trang riêng: 34 tỉnh thành mới cùng 7 điểm du lịch.
+- Mỗi trang có thời tiết hôm nay, 24 giờ tới và 7 ngày tới, kèm ngày âm lịch.
+- Dữ liệu của MET Norway (CC BY 4.0, cho phép dùng thương mại, không cần khóa), lấy lúc build mỗi đêm. Lỗi mạng không làm hỏng build.
+- Trang hôm nay hiện thời tiết Hà Nội, TP.HCM và Đà Nẵng.
+
+**Chưa làm, cần chủ dự án quyết định hoặc cấp quyền:**
+
+| Việc | Cần gì |
+|---|---|
+| Đồng bộ iCloud, Lịch Nhà trên web | API token CloudKit cho `iCloud.com.deeplyai.LichViet`, schema đã deploy lên Production, và kiểm chứng chia sẻ giữa 2 Apple ID trên app trước. Web ghi vào cùng dữ liệu với app nên cần thử bằng Apple ID thử nghiệm. |
+| Giá vàng, tỷ giá, VN-Index | Nguồn dữ liệu được phép dùng, và một máy chủ trung gian (ví dụ Cloudflare Worker) vì trình duyệt bị chặn CORS. Khóa API BTMC trong app đã lộ, nên đổi. |
+| Thời tiết theo vị trí người dùng, chất lượng không khí, cảnh báo | Máy chủ trung gian, hoặc WeatherKit (khóa `.p8`). |
+| Nhắc thời tiết hằng ngày (Web Push) | Máy chủ có lịch chạy và nơi lưu đăng ký (ví dụ Cloudflare Workers + KV). |

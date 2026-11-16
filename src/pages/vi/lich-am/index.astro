@@ -4,7 +4,8 @@ import DayView from '../../../components/lich/DayView.astro';
 import MonthGrid from '../../../components/lich/MonthGrid.astro';
 import { WEEKDAYS, almanac, dayLite, lunarMonthName } from '../../../lib/lich/engine';
 import { fromJd, vietnamToday } from '../../../components/lich-viet/lunar';
-import { BASE, CONVERT_URL, COUNT_URL, DAY_FROM, DAY_TO, YEAR_FROM, YEAR_TO, dayUrl, dmy, monthUrl, yearUrl } from '../../../lib/lich/urls';
+import { BASE, CONVERT_URL, COUNT_URL, DAY_FROM, DAY_TO, WEATHER_URL, YEAR_FROM, YEAR_TO, dayUrl, dmy, monthUrl, weatherUrl, yearUrl } from '../../../lib/lich/urls';
+import { allForecasts, describe, placeBySlug } from '../../../lib/lich/weather';
 
 // Built every night just after midnight Vietnam time; the script below covers the gap.
 const t = vietnamToday();
@@ -28,6 +29,8 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
   { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Lịch âm hôm nay', url: 'https://deeplyai.app/vi/lich-am/', inLanguage: 'vi', isPartOf: { '@id': 'https://deeplyai.app/#website' } },
 ];
+const forecasts = await allForecasts();
+const weather = ['ha-noi', 'tp-ho-chi-minh', 'da-nang'].map((s) => ({ p: placeBySlug.get(s)!, d: forecasts.get(s)?.days[0] })).filter((w) => w.d);
 const years = Array.from({ length: YEAR_TO - YEAR_FROM + 1 }, (_, i) => YEAR_FROM + i);
 ---
 <LichShell
@@ -71,6 +74,15 @@ const years = Array.from({ length: YEAR_TO - YEAR_FROM + 1 }, (_, i) => YEAR_FRO
             </li>
           ))}
         </ul>
+        {weather.length > 0 && (
+          <Fragment>
+            <h2 class="la-h2 la-mt">Thời tiết hôm nay</h2>
+            <ul class="la-wx-grid">
+              {weather.map(({ p, d }) => <li><a href={weatherUrl(p.slug)}><span><b>{p.name}</b><small>{describe(d!.symbol).text}</small></span><span class="la-wx-mini"><span aria-hidden="true">{describe(d!.symbol).icon}</span> {d!.min}–{d!.max}°</span></a></li>)}
+            </ul>
+            <p class="la-more"><a href={WEATHER_URL}>Thời tiết 34 tỉnh thành</a></p>
+          </Fragment>
+        )}
         <h2 class="la-h2 la-mt">Công cụ</h2>
         <ul class="la-links">
           <li><a href={CONVERT_URL}>Đổi ngày âm sang dương, dương sang âm</a></li>

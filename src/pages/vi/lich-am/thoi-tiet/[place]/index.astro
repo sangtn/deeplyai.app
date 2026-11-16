@@ -1,0 +1,89 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import WeatherAttribution from '../../../../../components/lich/WeatherAttribution.astro';
+import { PLACES, allForecasts, describe, placeBySlug, uvLabel, windDirLabel } from '../../../../../lib/lich/weather';
+import { WEEKDAYS, solarToLunar } from '../../../../../lib/lich/engine';
+import { jdFromDate } from '../../../../../components/lich-viet/lunar';
+import { WEATHER_URL, dayUrl, dmy, hasDayPage, weatherUrl } from '../../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  return PLACES.map((p) => ({ params: { place: p.slug } }));
+}
+const place = placeBySlug.get(Astro.params.place!)!;
+const f = (await allForecasts()).get(place.slug) ?? null;
+const wd = (d: { day: number; month: number; year: number }) => WEEKDAYS[(jdFromDate(d.day, d.month, d.year) + 1) % 7];
+const today = f?.days[0];
+const tomorrow = f?.days[1];
+const where = place.city === place.name ? place.name : `${place.name} (${place.city})`;
+const title = `Thời tiết ${place.name} hôm nay và 7 ngày tới`;
+const description = f && today && tomorrow
+  ? `Dự báo thời tiết ${where}: hôm nay ${today.min}–${today.max}°C, ${describe(today.symbol).text.toLowerCase()}; ngày mai ${tomorrow.min}–${tomorrow.max}°C, ${describe(tomorrow.symbol).text.toLowerCase()}. Nhiệt độ, mưa, gió, UV từng giờ và 7 ngày, kèm ngày âm lịch.`
+  : `Dự báo thời tiết ${where} 7 ngày tới: nhiệt độ, lượng mưa, gió, chỉ số UV, kèm ngày âm lịch.`;
+const nearby = PLACES.filter((p) => p.slug !== place.slug).sort((a, b) => Math.hypot(a.lat - place.lat, a.lon - place.lon) - Math.hypot(b.lat - place.lat, b.lon - place.lon)).slice(0, 6);
+---
+<LichShell title={title} description={description} path={weatherUrl(place.slug)} crumbs={[{ name: 'Thời tiết', href: WEATHER_URL }, { name: place.name }]} active="tools">
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Thời tiết {place.name}</h1>
+      <p>Dự báo cho khu vực {place.city}{place.city !== place.name ? `, ${place.name}` : ''}: hôm nay, 24 giờ tới và 7 ngày tới, kèm ngày âm lịch.</p>
+    </header>
+    {!f ? (
+      <p class="la-stale">Chưa lấy được dự báo trong lần cập nhật gần nhất. Vui lòng quay lại sau.</p>
+    ) : (
+      <Fragment>
+        {today && (
+          <section class="la-wx-now" aria-label="Hôm nay">
+            <span class="la-wx-icon" aria-hidden="true">{describe(today.symbol).icon}</span>
+            <div>
+              <p class="la-wx-temp">{today.min}° – {today.max}°C</p>
+              <p><b>{describe(today.symbol).text}</b> · {wd(today.date)}, {dmy(today.date.day, today.date.month, today.date.year)}</p>
+              <p class="la-wx-meta">Mưa {today.rain} mm · Độ ẩm {today.humidity}% · Gió tới {today.windMax} km/h{today.uvMax ? ` · UV ${today.uvMax.toFixed(0)} (${uvLabel(today.uvMax)})` : ''}</p>
+            </div>
+          </section>
+        )}
+        <section class="la-block" aria-labelledby="theo-gio">
+          <h2 id="theo-gio" class="la-h2">24 giờ tới</h2>
+          <div class="la-wx-hours">
+            {f.hours.map((h) => (
+              <div class="la-wx-hour">
+                <span>{String(h.hour).padStart(2, '0')}h</span>
+                <span class="la-wx-hicon" aria-hidden="true">{describe(h.symbol).icon}</span>
+                <b>{Math.round(h.temp)}°</b>
+                <small>{h.rain > 0 ? `${h.rain} mm` : '–'}</small>
+                <small>{Math.round(h.wind * 3.6)} km/h {windDirLabel(h.windDir)}</small>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section class="la-block" aria-labelledby="bay-ngay">
+          <h2 id="bay-ngay" class="la-h2">Dự báo 7 ngày tới</h2>
+          <div class="la-table-wrap">
+            <table class="la-table">
+              <thead><tr><th scope="col">Ngày</th><th scope="col">Thời tiết</th><th scope="col">Nhiệt độ</th><th scope="col">Mưa</th><th scope="col">Gió, UV tối đa</th></tr></thead>
+              <tbody>
+                {f.days.map((d) => {
+                  const l = solarToLunar(d.date.day, d.date.month, d.date.year);
+                  const date = dmy(d.date.day, d.date.month, d.date.year);
+                  return (
+                    <tr>
+                      <td>{hasDayPage(d.date.year) ? <a href={dayUrl(d.date.day, d.date.month, d.date.year)}><b>{wd(d.date)}, {date}</b></a> : <b>{date}</b>}<br /><small>{l.day}/{l.month}{l.leap ? ' nhuận' : ''} âm lịch</small></td>
+                      <td>{describe(d.symbol).icon} {describe(d.symbol).text}</td>
+                      <td><b>{d.max}°</b> / {d.min}°</td>
+                      <td>{d.rain} mm</td>
+                      <td><small>Gió tới {d.windMax} km/h{d.uvMax ? `, UV ${d.uvMax.toFixed(0)}` : ''}</small></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </Fragment>
+    )}
+    <section class="la-block" aria-labelledby="lan-can">
+      <h2 id="lan-can" class="la-h2">Thời tiết nơi khác</h2>
+      <ul class="la-years la-months">{nearby.map((p) => <li><a href={weatherUrl(p.slug)}>{p.name}</a></li>)}</ul>
+    </section>
+    <WeatherAttribution updatedAt={f?.updatedAt} />
+  </div>
+</LichShell>

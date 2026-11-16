@@ -350,3 +350,20 @@ a.la-copy { display: inline-flex; align-items: center; text-decoration: none; }
 .la-sheet[data-style='lacquer'] .la-sheet-badge { background: #b8862b33; color: #f1d9a4; }
 .la-install { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; padding: 16px 18px; border-radius: 16px; background: var(--la-good-bg); }
 .la-install[hidden], [data-install-ios][hidden] { display: none; }
+
+/* Weather */
+.la-wx-now { display: flex; gap: 18px; align-items: center; margin-bottom: 8px; padding: 20px; border-radius: 20px; background: linear-gradient(135deg, #fdf3df, #e7f1e7); }
+.la-wx-icon { font-size: 64px; line-height: 1; }
+.la-wx-temp { font-family: var(--display); font-size: clamp(34px, 5vw, 48px); font-weight: 650; }
+.la-wx-meta { color: var(--ink-2); font-size: 15px; }
+.la-wx-hours { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.la-wx-hour { flex: none; display: grid; justify-items: center; gap: 2px; width: 84px; padding: 10px 6px; border: 1px solid var(--line); border-radius: 14px; background: var(--la-card); font-size: 14px; }
+.la-wx-hicon { font-size: 24px; }
+.la-wx-hour small { color: var(--ink-2); font-size: 12px; text-align: center; }
+.la-wx-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.la-wx-grid a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--la-card); text-decoration: none; }
+.la-wx-grid a:hover { border-color: var(--la-red); }
+.la-wx-grid a > span:first-child { display: grid; }
+.la-wx-grid small { color: var(--ink-2); font-size: 13px; }
+.la-wx-mini { font-weight: 600; white-space: nowrap; }
+.la-wx-src a { color: inherit; }
