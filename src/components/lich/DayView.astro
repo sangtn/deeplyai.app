@@ -36,7 +36,26 @@ const prayers = prayerSlugs.map((s) => prayerBySlug.get(s)).filter((x) => !!x);
 ---
 <div class="la-day">
   <section class="la-sheet-wrap" aria-label={`Tờ lịch ngày ${date}`}>
-    <article class:list={['la-sheet', { 'la-sheet-good': a.hoangDao }]}>
+    <div class="la-sheet-col">
+    <div class="la-style" data-sheet-style hidden>
+      <div class="la-style-row" role="radiogroup" aria-label="Kiểu tờ lịch">
+        <button type="button" data-style-pick="modern" aria-pressed="true">Hiện đại</button>
+        <button type="button" data-style-pick="paper" aria-pressed="false">Tờ lịch</button>
+        <button type="button" data-style-pick="lacquer" aria-pressed="false">Sơn mài</button>
+      </div>
+      <label class="la-style-art">Họa tiết
+        <select data-art-pick>
+          <option value="trong-dong">Họa tiết 1</option>
+          <option value="trong-dong-co">Họa tiết 2</option>
+          <option value="dong-ho-ca-chep">Họa tiết 3</option>
+          <option value="dong-ho-hoa-sen">Họa tiết 4</option>
+          <option value="dong-ho-dam-cuoi-chuot">Họa tiết 5</option>
+          <option value="dong-ho-ga">Họa tiết 6</option>
+        </select>
+      </label>
+    </div>
+    <article class:list={['la-sheet', { 'la-sheet-good': a.hoangDao }]} data-sheet data-style="modern">
+      <span class="la-sheet-art" aria-hidden="true"></span>
       <header><span>Tháng {a.month} năm {a.year}</span><span>{a.yearCanChi}</span></header>
       <p class="la-sheet-wd">{WEEKDAYS[a.weekday]}</p>
       <p class="la-sheet-day">{a.day}</p>
@@ -53,6 +72,7 @@ const prayers = prayerSlugs.map((s) => prayerBySlug.get(s)).filter((x) => !!x);
       </dl>
       <p class="la-sheet-badge"><img src={chiIcon(a.index60 % 12)} width="26" height="25" alt="" />{a.hoangDao ? 'Ngày hoàng đạo' : 'Ngày hắc đạo'} · {a.than}</p>
     </article>
+    </div>
 
     <div class="la-summary">
       <h2 class="la-h2">Tóm tắt ngày {label}</h2>
@@ -214,3 +234,25 @@ const prayers = prayerSlugs.map((s) => prayerBySlug.get(s)).filter((x) => !!x);
     </section>
   )}
 </div>
+
+<script>
+  // Sheet style (Hiện đại / Tờ lịch / Sơn mài) and background art, remembered per browser.
+  import { load, save } from '../../lib/lich/store';
+  const panel = document.querySelector<HTMLElement>('[data-sheet-style]');
+  const sheet = document.querySelector<HTMLElement>('[data-sheet]');
+  if (panel && sheet) {
+    let pref = load<{ style: string; art: string }>('sheet', { style: 'modern', art: 'trong-dong' });
+    const artSelect = panel.querySelector<HTMLSelectElement>('[data-art-pick]')!;
+    const apply = () => {
+      sheet.dataset.style = pref.style;
+      sheet.style.setProperty('--la-art', pref.style === 'modern' ? 'none' : `url('/assets/apps/lich-viet/nen/${pref.art}.webp')`);
+      panel.querySelectorAll<HTMLButtonElement>('[data-style-pick]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.stylePick === pref.style)));
+      artSelect.value = pref.art;
+      artSelect.closest('label')!.hidden = pref.style === 'modern';
+    };
+    panel.querySelectorAll<HTMLButtonElement>('[data-style-pick]').forEach((b) => b.addEventListener('click', () => { pref = { ...pref, style: b.dataset.stylePick! }; save('sheet', pref); apply(); }));
+    artSelect.addEventListener('change', () => { pref = { ...pref, art: artSelect.value }; save('sheet', pref); apply(); });
+    panel.hidden = false;
+    apply();
+  }
+</script>

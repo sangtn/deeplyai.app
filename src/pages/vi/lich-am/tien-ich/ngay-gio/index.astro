@@ -1,0 +1,208 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { WEEKDAYS } from '../../../../../lib/lich/engine';
+import { lunarToSolar, jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { EVENTS_URL, FEEDS_URL, TOOLS_URL, dayUrl, dmy, hasDayPage } from '../../../../../lib/lich/urls';
+import { KINDS, yearCanChi } from '../../../../../lib/lich/anniversary';
+
+// Worked example for the static page: a giỗ on 15/3 âm lịch over the next years.
+const t = vietnamToday();
+const example = Array.from({ length: 6 }, (_, i) => t.year + i).map((y) => ({ y, s: lunarToSolar(15, 3, y)! }));
+const faq = [
+  ['Ngày giỗ tính theo âm lịch hay dương lịch?', 'Theo phong tục, ngày giỗ tính theo ngày mất âm lịch. Vì vậy mỗi năm ngày giỗ rơi vào một ngày dương lịch khác nhau; công cụ tự đổi sang dương lịch cho từng năm.'],
+  ['Người mất vào ngày 30 âm lịch thì năm sau giỗ ngày nào?', 'Năm nào tháng đó chỉ có 29 ngày (tháng thiếu) thì làm giỗ vào ngày 29, tức ngày cuối của tháng. Công cụ ghi chú rõ những năm được điều chỉnh như vậy.'],
+  ['Mất vào tháng nhuận thì giỗ tháng nào?', 'Ngày giỗ của người mất trong tháng nhuận được làm vào tháng thường cùng số trong những năm sau, theo cách phổ biến ở Việt Nam.'],
+  ['Làm sao để điện thoại nhắc ngày giỗ?', 'Bấm “Thêm vào lịch điện thoại” để tải tệp .ics gồm 10 năm tới, rồi mở tệp trên điện thoại hoặc nhập vào Google Calendar. Mỗi ngày giỗ có nhắc lúc 12 giờ trưa hôm trước.'],
+  ['Dữ liệu của tôi được lưu ở đâu?', 'Chỉ trong trình duyệt trên máy của bạn, không gửi lên máy chủ. Hãy dùng nút Sao lưu để giữ một bản, và Khôi phục khi đổi máy.'],
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Nhắc ngày giỗ âm lịch', url: `https://deeplyai.app${EVENTS_URL}`, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
+];
+const wd = (s: { day: number; month: number; year: number }) => WEEKDAYS[(jdFromDate(s.day, s.month, s.year) + 1) % 7];
+---
+<LichShell
+  title="Nhắc ngày giỗ âm lịch – Tính ngày giỗ, kỷ niệm theo âm lịch mỗi năm"
+  description="Lưu ngày giỗ, ngày cưới, sinh nhật theo âm lịch, xem năm nay rơi vào ngày dương nào, đếm ngược và thêm nhắc nhở vào lịch điện thoại cho 10 năm. Miễn phí, dữ liệu ở trên máy bạn."
+  path={EVENTS_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Ngày giỗ & kỷ niệm' }]}
+  jsonLd={jsonLd}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Nhắc ngày giỗ âm lịch</h1>
+      <p>Ghi lại ngày giỗ ông bà, kỷ niệm ngày cưới, sinh nhật âm lịch của người thân. Trang tự đổi sang ngày dương mỗi năm, đếm ngược và tạo nhắc nhở cho lịch điện thoại.</p>
+    </header>
+
+    <p class="la-stale" data-ev-nostore hidden>Trình duyệt đang chặn lưu dữ liệu (có thể do chế độ ẩn danh). Bạn vẫn dùng được, nhưng danh sách sẽ mất khi đóng trang.</p>
+
+    <div class="la-tools">
+      <form class="la-tool" data-ev-form>
+        <h2 class="la-h2">Thêm ngày</h2>
+        <label>Tên<input name="title" type="text" required maxlength="80" placeholder="Ví dụ: Giỗ ông nội" /></label>
+        <label>Loại
+          <select name="kind">{KINDS.map((k) => <option value={k.id}>{k.emoji} {k.label}</option>)}</select>
+        </label>
+        <div class="la-seg" role="radiogroup" aria-label="Loại lịch">
+          <label><input type="radio" name="calendar" value="lunar" checked /> Âm lịch</label>
+          <label><input type="radio" name="calendar" value="solar" /> Dương lịch</label>
+        </div>
+        <div class="la-fields">
+          <label>Ngày<input name="day" type="number" min="1" max="31" required inputmode="numeric" /></label>
+          <label>Tháng<input name="month" type="number" min="1" max="12" required inputmode="numeric" /></label>
+          <label>Năm<input name="year" type="number" min="1800" max="2100" inputmode="numeric" placeholder="Không bắt buộc" /></label>
+        </div>
+        <label>Ghi chú<input name="note" type="text" maxlength="200" placeholder="Mâm cúng, người phụ trách…" /></label>
+        <input type="hidden" name="id" />
+        <button type="submit" data-ev-submit>Lưu</button>
+        <p class="la-age-note" data-ev-msg aria-live="polite"></p>
+      </form>
+
+      <div class="la-tool">
+        <h2 class="la-h2">Sắp tới</h2>
+        <ul class="la-upcoming" data-ev-list><li><span>Chưa có ngày nào. Thêm ngày đầu tiên ở bên cạnh.</span></li></ul>
+        <div class="la-ev-actions">
+          <button type="button" data-ev-ics>Thêm vào lịch điện thoại (.ics)</button>
+          <button type="button" class="la-copy" data-ev-backup>Sao lưu</button>
+          <label class="la-copy la-file">Khôi phục<input type="file" accept="application/json,.json" data-ev-restore hidden /></label>
+        </div>
+      </div>
+    </div>
+
+    <section class="la-block" aria-labelledby="vi-du">
+      <h2 id="vi-du" class="la-h2">Ví dụ: giỗ ngày 15/3 âm lịch rơi vào ngày nào?</h2>
+      <div class="la-table-wrap">
+        <table class="la-table">
+          <thead><tr><th scope="col">Năm âm lịch</th><th scope="col">Ngày dương lịch</th></tr></thead>
+          <tbody>{example.map(({ y, s }) => <tr><td>{y} ({yearCanChi(y)})</td><td>{hasDayPage(s.year) ? <a href={dayUrl(s.day, s.month, s.year)}>{wd(s)}, {dmy(s.day, s.month, s.year)}</a> : `${wd(s)}, ${dmy(s.day, s.month, s.year)}`}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="la-more">Muốn xem rằm, mùng một và ngày lễ ngay trong Google Calendar? <a href={FEEDS_URL}>Đăng ký lịch âm cho điện thoại</a>.</p>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { dateLabel, eventsToIcs, kindOf, nextOccurrences, type PersonalEvent } from '../../../../../lib/lich/anniversary';
+  import { buildIcs } from '../../../../../lib/lich/ics';
+  import { download, exportBackup, load, readBackup, save, storageAvailable, uid } from '../../../../../lib/lich/store';
+  import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+  import { dayUrl, hasDayPage } from '../../../../../lib/lich/urls';
+
+  const KEY = 'events';
+  const WD = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  let events = load<PersonalEvent[]>(KEY, []);
+  const form = document.querySelector<HTMLFormElement>('[data-ev-form]')!;
+  const list = document.querySelector<HTMLUListElement>('[data-ev-list]')!;
+  const msg = document.querySelector<HTMLElement>('[data-ev-msg]')!;
+  if (!storageAvailable()) document.querySelector<HTMLElement>('[data-ev-nostore]')!.hidden = false;
+  const field = (n: string) => form.elements.namedItem(n) as HTMLInputElement;
+  const todayJd = () => { const t = vietnamToday(); return jdFromDate(t.day, t.month, t.year); };
+
+  function render() {
+    const now = todayJd();
+    const rows = events
+      .map((e) => ({ e, o: nextOccurrences(e, now, 1)[0] }))
+      .filter((r) => r.o)
+      .sort((a, b) => a.o.jd - b.o.jd);
+    if (!rows.length) {
+      const li = document.createElement('li');
+      li.textContent = 'Chưa có ngày nào. Thêm ngày đầu tiên ở bên cạnh.';
+      list.replaceChildren(li);
+      return;
+    }
+    list.replaceChildren(...rows.map(({ e, o }) => {
+      const k = kindOf(e.kind);
+      const li = document.createElement('li');
+      const info = document.createElement('div');
+      const name = document.createElement('b');
+      name.textContent = `${k.emoji} ${e.title}`;
+      const when = document.createElement('span');
+      const sd = `${WD[(o.jd + 1) % 7]}, ${p2(o.date.day)}/${p2(o.date.month)}/${o.date.year}`;
+      when.textContent = `${dateLabel(e)} → ${sd}${o.nth && o.nth > 0 ? (e.kind === 'sinh-nhat' ? ` · ${o.nth} tuổi` : ` · năm thứ ${o.nth}`) : ''}${o.adjusted ? ` · ${o.adjusted}` : ''}${e.note ? ` · ${e.note}` : ''}`;
+      info.append(name, when);
+      if (hasDayPage(o.date.year)) {
+        const a = Object.assign(document.createElement('a'), { href: dayUrl(o.date.day, o.date.month, o.date.year), textContent: 'Xem ngày' });
+        info.append(a);
+      }
+      const side = document.createElement('div');
+      side.className = 'la-ev-side';
+      const days = o.jd - now;
+      const em = document.createElement('em');
+      em.textContent = days === 0 ? 'Hôm nay' : `Còn ${days} ngày`;
+      const edit = Object.assign(document.createElement('button'), { type: 'button', textContent: 'Sửa', className: 'la-link-btn' });
+      edit.addEventListener('click', () => fill(e));
+      const del = Object.assign(document.createElement('button'), { type: 'button', textContent: 'Xóa', className: 'la-link-btn' });
+      del.addEventListener('click', () => {
+        if (!confirm(`Xóa “${e.title}”?`)) return;
+        events = events.filter((x) => x.id !== e.id);
+        save(KEY, events);
+        render();
+      });
+      side.append(em, edit, del);
+      li.append(info, side);
+      return li;
+    }));
+  }
+
+  function fill(e: PersonalEvent) {
+    field('title').value = e.title;
+    (form.elements.namedItem('kind') as HTMLSelectElement).value = e.kind;
+    form.querySelector<HTMLInputElement>(`input[name="calendar"][value="${e.calendar}"]`)!.checked = true;
+    field('day').value = String(e.day);
+    field('month').value = String(e.month);
+    field('year').value = e.year ? String(e.year) : '';
+    field('note').value = e.note ?? '';
+    field('id').value = e.id;
+    form.querySelector<HTMLButtonElement>('[data-ev-submit]')!.textContent = 'Cập nhật';
+    field('title').focus();
+  }
+
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const calendar = (form.querySelector<HTMLInputElement>('input[name="calendar"]:checked')?.value ?? 'lunar') as 'lunar' | 'solar';
+    const day = Number(field('day').value);
+    const month = Number(field('month').value);
+    const year = field('year').value ? Number(field('year').value) : undefined;
+    if (calendar === 'lunar' && day > 30) { msg.textContent = 'Ngày âm lịch chỉ từ 1 đến 30.'; return; }
+    if (calendar === 'solar' && new Date(Date.UTC(2024, month - 1, day)).getUTCMonth() !== month - 1) { msg.textContent = 'Ngày dương lịch không hợp lệ.'; return; }
+    const id = field('id').value || uid();
+    const existing = events.find((x) => x.id === id);
+    const item: PersonalEvent = {
+      id, title: field('title').value.trim(), kind: (form.elements.namedItem('kind') as HTMLSelectElement).value as PersonalEvent['kind'],
+      calendar, day, month, year, note: field('note').value.trim() || undefined, createdAt: existing?.createdAt ?? new Date().toISOString(),
+    };
+    events = existing ? events.map((x) => (x.id === id ? item : x)) : [...events, item];
+    msg.textContent = save(KEY, events) ? (existing ? 'Đã cập nhật.' : 'Đã lưu.') : 'Đã thêm, nhưng trình duyệt không cho lưu lâu dài.';
+    form.reset();
+    field('id').value = '';
+    form.querySelector<HTMLButtonElement>('[data-ev-submit]')!.textContent = 'Lưu';
+    render();
+  });
+
+  document.querySelector('[data-ev-ics]')!.addEventListener('click', () => {
+    if (!events.length) { msg.textContent = 'Hãy thêm ít nhất một ngày trước.'; return; }
+    const ics = buildIcs({ name: 'Ngày giỗ & kỷ niệm (Lịch Việt)', events: eventsToIcs(events, todayJd(), 10) });
+    download('ngay-gio-ky-niem.ics', ics, 'text/calendar');
+  });
+  document.querySelector('[data-ev-backup]')!.addEventListener('click', () => exportBackup(KEY, events));
+  document.querySelector<HTMLInputElement>('[data-ev-restore]')!.addEventListener('change', async (ev) => {
+    const file = (ev.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    const data = await readBackup<PersonalEvent[]>(file, KEY);
+    if (!data || !Array.isArray(data)) { msg.textContent = 'Tệp không phải bản sao lưu ngày giỗ.'; return; }
+    const ids = new Set(events.map((e) => e.id));
+    events = [...events, ...data.filter((e) => !ids.has(e.id))];
+    save(KEY, events);
+    msg.textContent = `Đã khôi phục ${data.length} ngày.`;
+    render();
+  });
+  render();
+</script>

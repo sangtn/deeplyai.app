@@ -1,0 +1,64 @@
+{
+  "source": {
+    "app": "Lịch Việt (iOS)",
+    "file": "PregnancyViewController.swift + vi.lproj/Localizable.strings",
+    "version": "V1.2026.1",
+    "commit": "7afbcb7",
+    "takenOn": "2026-11-05",
+    "review": "Nội dung y khoa giữ nguyên từ ứng dụng, chưa được chuyên gia y tế thẩm định."
+  },
+  "heading": "Mốc khám thai quan trọng",
+  "footer": "Thông tin tham khảo theo hướng dẫn Bộ Y tế; hãy tuân theo chỉ định của bác sĩ. Nhắc trước 1 ngày cho 6 mốc gần nhất.",
+  "milestones": [
+    {
+      "week": 6,
+      "title": "Khám thai lần đầu",
+      "desc": "Siêu âm xác định tim thai, tuổi thai, tư vấn dinh dưỡng & bổ sung axit folic"
+    },
+    {
+      "week": 12,
+      "title": "Siêu âm đo độ mờ da gáy",
+      "desc": "Tuần 11–13: sàng lọc dị tật, Double test, xét nghiệm máu cơ bản"
+    },
+    {
+      "week": 16,
+      "title": "Triple test",
+      "desc": "Tuần 15–20: sàng lọc bất thường nhiễm sắc thể (nếu chưa làm NIPT)"
+    },
+    {
+      "week": 22,
+      "title": "Siêu âm hình thái học",
+      "desc": "Tuần 20–24: khảo sát hình thái thai nhi chi tiết"
+    },
+    {
+      "week": 26,
+      "title": "Nghiệm pháp dung nạp glucose",
+      "desc": "Tuần 24–28: tầm soát tiểu đường thai kỳ; tiêm uốn ván mũi 1"
+    },
+    {
+      "week": 30,
+      "title": "Tiêm uốn ván mũi 2",
+      "desc": "Cách mũi 1 tối thiểu 1 tháng, trước sinh ≥ 1 tháng"
+    },
+    {
+      "week": 32,
+      "title": "Siêu âm 3 tháng cuối",
+      "desc": "Tuần 30–34: đánh giá tăng trưởng, nước ối, ngôi thai"
+    },
+    {
+      "week": 36,
+      "title": "Khám hằng tuần",
+      "desc": "Từ tuần 36: theo dõi tim thai, cổ tử cung, chuẩn bị đồ đi sinh"
+    },
+    {
+      "week": 38,
+      "title": "Sẵn sàng sinh",
+      "desc": "Theo dõi dấu hiệu chuyển dạ; thai đủ tháng từ tuần 37"
+    },
+    {
+      "week": 40,
+      "title": "Ngày dự sinh",
+      "desc": "Nếu quá 41 tuần cần đánh giá khởi phát chuyển dạ"
+    }
+  ]
+}

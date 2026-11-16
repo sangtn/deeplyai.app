@@ -43,6 +43,16 @@ export const THAN_SO_URL = `${BASE}than-so-hoc/`;
 export const BOI_SIM_URL = `${BASE}boi-so-dien-thoai/`;
 export const TU_VI_NGAY_URL = `${BASE}tu-vi-hom-nay/`;
 
+// Personal tools (data stays in the visitor's browser)
+export const TOOLS_URL = `${BASE}tien-ich/`;
+export const EVENTS_URL = `${TOOLS_URL}ngay-gio/`;
+export const FINANCE_URL = `${TOOLS_URL}thu-chi/`;
+export const NOTES_URL = `${TOOLS_URL}ghi-chu/`;
+export const PREGNANCY_URL = `${TOOLS_URL}thai-ky/`;
+export const VACCINE_URL = `${TOOLS_URL}lich-tiem-chung/`;
+export const SHIFT_URL = `${TOOLS_URL}lich-ca/`;
+export const FEEDS_URL = `${TOOLS_URL}lich-am-google-calendar/`;
+
 export const hasDayPage = (y: number) => y >= DAY_FROM && y <= DAY_TO;
 export const hasMonthPage = (y: number) => y >= YEAR_FROM && y <= YEAR_TO;
 

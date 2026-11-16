@@ -8,9 +8,10 @@ import { BOI_SIM_URL, CHI_SLUGS, CULTURE_URL, LE_HOI_URL, LOI_CHUC_URL, SAO_HAN_
 import { YEARLY_YEAR } from '../lib/lich/tuvi';
 import { XONG_DAT_APP_YEAR } from '../lib/lich/xongdat';
 import greetings from '../data/lich/loi-chuc-tet.json';
+import { EVENTS_URL, FEEDS_URL, FINANCE_URL, NOTES_URL, PREGNANCY_URL, SHIFT_URL, TOOLS_URL, VACCINE_URL } from '../lib/lich/urls';
 
 function culturePaths() {
-  const out = [CULTURE_URL, SAO_HAN_URL, LE_HOI_URL, LOI_CHUC_URL, THAN_SO_URL, BOI_SIM_URL, TU_VI_NGAY_URL, tuViYearUrl(YEARLY_YEAR), xongDatUrl(XONG_DAT_APP_YEAR)];
+  const out = [TOOLS_URL, EVENTS_URL, FEEDS_URL, FINANCE_URL, NOTES_URL, PREGNANCY_URL, VACCINE_URL, SHIFT_URL, CULTURE_URL, SAO_HAN_URL, LE_HOI_URL, LOI_CHUC_URL, THAN_SO_URL, BOI_SIM_URL, TU_VI_NGAY_URL, tuViYearUrl(YEARLY_YEAR), xongDatUrl(XONG_DAT_APP_YEAR)];
   out.push(...greetings.categories.map((c) => loiChucUrl(c.slug)));
   CHI_SLUGS.forEach((_, i) => out.push(tuViChiUrl(YEARLY_YEAR, i), xongDatChiUrl(XONG_DAT_APP_YEAR, i)));
   for (let y = SAO_HAN_FROM; y <= SAO_HAN_TO; y += 1) {

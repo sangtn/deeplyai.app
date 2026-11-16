@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import StoreBadge from '../StoreBadge.astro';
 import { byId } from '../../data/catalog';
-import { BASE, CONVERT_URL, COUNT_URL, CULTURE_URL, GOOD_URL, VAN_KHAN_URL, monthUrl, yearUrl } from '../../lib/lich/urls';
+import { BASE, CONVERT_URL, COUNT_URL, CULTURE_URL, GOOD_URL, TOOLS_URL, VAN_KHAN_URL, monthUrl, yearUrl } from '../../lib/lich/urls';
 import { vietnamToday } from '../lich-viet/lunar';
 import '../../styles/lich.css';
 
@@ -13,7 +13,7 @@ interface Props {
   path: string;
   crumbs: Crumb[];
   jsonLd?: object[];
-  active?: 'today' | 'month' | 'year' | 'convert' | 'count' | 'good' | 'vankhan' | 'culture';
+  active?: 'today' | 'month' | 'year' | 'convert' | 'count' | 'good' | 'vankhan' | 'culture' | 'tools';
 }
 const { title, description, path, crumbs, jsonLd = [], active } = Astro.props;
 const site = 'https://deeplyai.app';
@@ -32,11 +32,17 @@ const nav = [
   { id: 'good', href: GOOD_URL, label: 'Xem ngày tốt' },
   { id: 'vankhan', href: VAN_KHAN_URL, label: 'Văn khấn' },
   { id: 'culture', href: CULTURE_URL, label: 'Tử vi & văn hóa' },
+  { id: 'tools', href: TOOLS_URL, label: 'Tiện ích' },
   { id: 'convert', href: CONVERT_URL, label: 'Đổi ngày âm dương' },
   { id: 'count', href: COUNT_URL, label: 'Đếm ngày' },
 ];
 ---
 <Base lang="vi" title={title} description={description} path={path} jsonLd={[breadcrumb, ...jsonLd]}>
+  <Fragment slot="head">
+    <link rel="manifest" href="/vi/lich-am/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/assets/apps/lich-viet/pwa/icon-192.png" />
+    <meta name="apple-mobile-web-app-title" content="Lịch Việt" />
+  </Fragment>
   <div class="la">
     <div class="la-top">
       <div class="wrap">
@@ -70,3 +76,10 @@ const nav = [
     <p class="wrap la-note">Ngày âm lịch tính theo múi giờ Việt Nam (UTC+7) bằng thuật toán thiên văn Hồ Ngọc Đức. Thông tin giờ tốt, ngày tốt mang tính tham khảo văn hóa.</p>
   </div>
 </Base>
+
+<script>
+  // Offline support and "add to home screen" for the Lịch âm section. Skipped on localhost.
+  if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(location.hostname)) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/vi/lich-am/sw.js', { scope: '/vi/lich-am/' }).catch(() => {}));
+  }
+</script>

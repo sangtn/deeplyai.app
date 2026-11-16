@@ -1,0 +1,387 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { SHIFT_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+import { PRESETS, defaultState, inkOn, isoToJd, jdToIso, monthWeeks, shiftOn } from '../../../../../lib/lich/shifts';
+import '../../../../../styles/lich-suc-khoe.css';
+
+const t = vietnamToday();
+const todayJd = jdFromDate(t.day, t.month, t.year);
+// Example: the app's default 3-shift cycle starting on the 1st of this month.
+const exStart = jdToIso(jdFromDate(1, t.month, t.year));
+const ex = defaultState(exStart);
+const exStartJd = isoToJd(exStart)!;
+const grid = monthWeeks(t.month, t.year);
+const heads = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+const exName = (id: string) => ex.types.find((x) => x.id === id)!.name;
+
+const faq = [
+  ['Lịch làm ca hoạt động thế nào?', 'Bạn chọn một chu kỳ ca lặp lại (ví dụ Sáng, Chiều, Đêm, Nghỉ) và ngày làm ca đầu tiên của chu kỳ. Từ đó mỗi ngày tiếp theo lấy ca kế tiếp trong chu kỳ, hết chu kỳ thì quay lại từ đầu. Công cụ tính được cả những ngày trước ngày bắt đầu.'],
+  ['Trực 24/48 là gì?', 'Là kiểu làm một ca trực 24 giờ rồi nghỉ 48 giờ, hay gặp ở bệnh viện, bảo vệ, cứu hoả. Trên lịch, chu kỳ này gồm 3 ngày: Trực, Nghỉ, Nghỉ.'],
+  ['Có tự đặt tên và màu cho ca được không?', 'Được. Mỗi loại ca có tên và màu riêng, bạn đổi tuỳ ý hoặc thêm loại ca mới như “Hành chính”, “Tăng ca”. Có thể nhập nhanh cả chu kỳ bằng các tên ca cách nhau bởi dấu phẩy.'],
+  ['Vì sao lịch ca có kèm ngày âm lịch?', 'Nhiều người cần biết ngày mình làm ca hay được nghỉ có trùng rằm, mùng một, ngày giỗ hay Tết âm lịch không. Mỗi ô ngày hiển thị luôn ngày âm, ngày mùng một ghi thêm tháng âm.'],
+  ['Lịch ca có tính ngày nghỉ lễ không?', 'Không. Chu kỳ chạy liên tục không phụ thuộc ngày lễ, giống cách xếp ca kíp ở hầu hết nơi làm việc theo ca. Nếu nơi bạn làm có lịch nghỉ lễ riêng, hãy đối chiếu với bảng phân ca của đơn vị.'],
+  ['Lịch ca của tôi được lưu ở đâu?', 'Chu kỳ, ngày bắt đầu, tên và màu ca chỉ lưu trong trình duyệt trên thiết bị này. Dùng nút tải tệp sao lưu để chuyển sang điện thoại hoặc máy tính khác.'],
+];
+const title = 'Lịch làm ca: xếp lịch ca kíp, trực 24/48 theo chu kỳ có âm lịch';
+const description = 'Tạo lịch làm ca theo chu kỳ: 3 ca sáng chiều đêm, 2 ca ngày đêm, trực 24/48, làm 6 nghỉ 1. Xem ca từng ngày trên lịch tháng kèm ngày âm lịch, lưu trên máy.';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Lịch làm ca', url: `https://deeplyai.app${SHIFT_URL}`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+<LichShell title={title} description={description} path={SHIFT_URL} crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Lịch làm ca' }]} jsonLd={jsonLd} active="tools">
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch làm ca</h1>
+      <p>Đặt chu kỳ ca của bạn một lần, xem ngay hôm nào làm ca sáng, ca đêm hay được nghỉ trên lịch tháng có ngày âm lịch. Dành cho công nhân, y bác sĩ, điều dưỡng, bảo vệ và mọi người làm theo ca.</p>
+    </header>
+
+    <form class="la-tool sk-tool" data-shift novalidate>
+      <p class="sk-msg" data-msg role="status" hidden></p>
+      <div class="sk-row">
+        <label>Mẫu chu kỳ
+          <select name="preset">
+            {PRESETS.map((p) => <option value={p.id}>{p.name}</option>)}
+            <option value="">Tự đặt chu kỳ</option>
+          </select>
+        </label>
+        <label>Ngày bắt đầu chu kỳ (ca đầu tiên)<input type="date" name="start" value={exStart} min="1900-01-31" max="2100-12-31" /></label>
+      </div>
+      <div class="sk-row">
+        <label>Nhập nhanh chu kỳ <span class="sk-hint">Nhập các ca cách nhau bằng dấu phẩy. VD: Sáng, Chiều, Đêm, Nghỉ</span>
+          <input type="text" name="quick" autocomplete="off" value={ex.cycle.map(exName).join(', ')} />
+        </label>
+        <button type="button" class="sk-btn-2" data-quick>Áp dụng</button>
+      </div>
+      <fieldset class="la-side sk-hide" data-js hidden>
+        <legend>Chu kỳ hiện tại <span class="sk-hint" data-cycle-len></span></legend>
+        <div class="sk-cycle" data-cycle></div>
+        <div class="sk-actions"><button type="button" class="sk-btn-2 sk-btn-sm" data-add-slot>Thêm một ngày vào chu kỳ</button></div>
+      </fieldset>
+      <details class="la-side sk-hide" data-js hidden>
+        <summary class="sk-weeks" style="cursor:pointer;font-weight:600">Tên và màu các loại ca</summary>
+        <div class="sk-types la-mt" data-types></div>
+        <div class="sk-actions la-mt"><button type="button" class="sk-btn-2 sk-btn-sm" data-add-type>Thêm loại ca</button></div>
+      </details>
+      <div class="sk-actions">
+        <button type="button" class="sk-btn-2 sk-btn-sm" data-export>Tải tệp sao lưu</button>
+        <label class="sk-btn-2 sk-btn-sm sk-file">Khôi phục từ tệp<input type="file" accept="application/json,.json" data-import /></label>
+        <button type="button" class="sk-btn-2 sk-btn-sm" data-reset>Đặt lại mặc định</button>
+      </div>
+    </form>
+
+    <section class="la-block" aria-labelledby="lich-thang">
+      <div class="sk-nav">
+        <h2 id="lich-thang" class="la-h2" style="margin:0" data-title>Lịch ca tháng {t.month}/{t.year}</h2>
+        <div class="sk-actions sk-hide" data-js hidden>
+          <button type="button" class="sk-btn-2 sk-btn-sm" data-nav="-1" aria-label="Tháng trước">‹ Trước</button>
+          <button type="button" class="sk-btn-2 sk-btn-sm" data-nav="0">Tháng này</button>
+          <button type="button" class="sk-btn-2 sk-btn-sm" data-nav="1" aria-label="Tháng sau">Sau ›</button>
+        </div>
+      </div>
+      <p class="la-lead" data-lead>Ví dụ chu kỳ 3 ca (Sáng · Chiều · Đêm · Nghỉ) bắt đầu ngày 01/{String(t.month).padStart(2, '0')}/{t.year}. Bật JavaScript để đặt chu kỳ của bạn.</p>
+      <div data-grid>
+        <table class="la-grid sk-grid">
+          <thead><tr>{heads.map((h, i) => <th scope="col" class:list={{ 'la-sun': i === 6 }}>{h}</th>)}</tr></thead>
+          <tbody>
+            {grid.map((w) => (
+              <tr>
+                {w.map((c, i) => {
+                  if (!c) return <td class="la-empty"></td>;
+                  const s = shiftOn(ex, exStartJd, c.jd)!;
+                  return (
+                    <td class:list={{ 'la-sun': i === 6, 'sk-today': c.jd === todayJd }} aria-current={c.jd === todayJd ? 'date' : undefined}>
+                      <span>
+                        <span class="la-solar">{c.day}</span>
+                        <span class:list={['la-lunar', { 'la-lunar-first': c.lunarDay === 1 }]}>{c.lunarDay === 1 ? `${c.lunarDay}/${c.lunarMonth}${c.leap ? 'N' : ''}` : c.lunarDay}</span>
+                        <span class="sk-pill" style={`background:${s.color};color:${inkOn(s.color)}`}>{s.name}</span>
+                      </span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="sk-sum" data-sum></div>
+    </section>
+
+    <section class="la-block" aria-labelledby="cach-dung">
+      <h2 id="cach-dung" class="la-h2">Cách dùng lịch làm ca</h2>
+      <div class="la-two">
+        <ul class="la-list">
+          <li>Chọn một mẫu có sẵn, hoặc nhập nhanh chu kỳ của bạn, ví dụ “Sáng, Sáng, Chiều, Chiều, Đêm, Đêm, Nghỉ, Nghỉ”.</li>
+          <li>Chọn ngày bắt đầu: ngày bạn làm ca đầu tiên trong chu kỳ.</li>
+          <li>Đổi tên hoặc màu từng loại ca nếu muốn; có thể sửa từng ngày trong chu kỳ.</li>
+          <li>Lật tháng để xem trước lịch ca, mỗi ô có kèm ngày âm lịch. Thiết lập được lưu tự động trên máy.</li>
+        </ul>
+        <div class="la-table-wrap">
+          <table class="la-table">
+            <caption class="sk-hint" style="text-align:left;padding-bottom:6px">Các mẫu chu kỳ có sẵn</caption>
+            <thead><tr><th scope="col">Mẫu</th><th scope="col">Số ngày</th></tr></thead>
+            <tbody>{PRESETS.map((p) => <tr><td>{p.name}<br /><small>{p.labels.join(' → ')}</small></td><td>{p.labels.length}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+  import { exportBackup, load, readBackup, save, storageAvailable } from '../../../../../lib/lich/store';
+  import { applyPreset, applyText, defaultState, ensureType, inkOn, isoToJd, jdToIso, matchingPreset, monthWeeks, sanitize, shiftOn, type ShiftState } from '../../../../../lib/lich/shifts';
+
+  const KEY = 'shifts';
+  const form = document.querySelector<HTMLFormElement>('[data-shift]');
+  if (form) {
+    const t = vietnamToday();
+    const today = jdFromDate(t.day, t.month, t.year);
+    const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
+    const msg = $<HTMLElement>('[data-msg]');
+    const f = (name: string) => form.elements.namedItem(name) as HTMLInputElement & HTMLSelectElement;
+    const canStore = storageAvailable();
+    const fallbackStart = jdToIso(today);
+    let state: ShiftState = sanitize(load<unknown>(KEY, null), fallbackStart) ?? defaultState(fallbackStart);
+    let view = { month: t.month, year: t.year };
+
+    document.querySelectorAll<HTMLElement>('[data-js]').forEach((n) => { n.hidden = false; });
+    const el = (tag: string, text?: string, cls?: string) => {
+      const e = document.createElement(tag);
+      if (text !== undefined) e.textContent = text;
+      if (cls) e.className = cls;
+      return e;
+    };
+    const say = (text: string, ok = false) => {
+      msg.textContent = text;
+      msg.classList.toggle('sk-ok', ok);
+      msg.hidden = !text;
+    };
+    const BLOCKED = 'Trình duyệt đang chặn lưu dữ liệu (chế độ ẩn danh hoặc đã tắt lưu trữ trang web), nên lịch ca sẽ không được giữ lại sau khi đóng trang.';
+    if (!canStore) say(BLOCKED);
+    const nameOf = (id: string) => state.types.find((x) => x.id === id)?.name ?? '?';
+
+    function renderForm() {
+      f('preset').value = matchingPreset(state) ?? '';
+      f('start').value = state.start;
+      f('quick').value = state.cycle.map(nameOf).join(', ');
+      $('[data-cycle-len]').textContent = `(${state.cycle.length} ngày)`;
+      $('[data-cycle]').replaceChildren(...state.cycle.map((id, i) => {
+        const slot = el('span', undefined, 'sk-slot');
+        const sel = document.createElement('select');
+        sel.dataset.slot = String(i);
+        sel.setAttribute('aria-label', `Ngày ${i + 1} của chu kỳ`);
+        state.types.forEach((ty) => sel.append(new Option(ty.name, ty.id, false, ty.id === id)));
+        const rm = el('button', '×') as HTMLButtonElement;
+        rm.type = 'button';
+        rm.dataset.rmSlot = String(i);
+        rm.setAttribute('aria-label', `Bỏ ngày ${i + 1} khỏi chu kỳ`);
+        rm.disabled = state.cycle.length <= 1;
+        slot.append(el('b', String(i + 1)), sel, rm);
+        return slot;
+      }));
+      $('[data-types]').replaceChildren(...state.types.map((ty) => {
+        const row = el('div', undefined, 'sk-type');
+        const color = document.createElement('input');
+        color.type = 'color';
+        color.value = ty.color;
+        color.dataset.color = ty.id;
+        color.setAttribute('aria-label', `Màu ca ${ty.name}`);
+        const name = document.createElement('input');
+        name.type = 'text';
+        name.value = ty.name;
+        name.maxLength = 24;
+        name.dataset.name = ty.id;
+        name.setAttribute('aria-label', `Tên ca ${ty.name}`);
+        const rm = el('button', '×') as HTMLButtonElement;
+        rm.type = 'button';
+        rm.dataset.rmType = ty.id;
+        rm.setAttribute('aria-label', `Xoá loại ca ${ty.name}`);
+        rm.disabled = state.types.length <= 1;
+        row.append(color, name, rm);
+        return row;
+      }));
+    }
+
+    function renderGrid() {
+      const startJd = isoToJd(state.start) ?? today;
+      $('[data-title]').textContent = `Lịch ca tháng ${view.month}/${view.year}`;
+      $('[data-lead]').textContent = state.cycle.length
+        ? `Chu kỳ ${state.cycle.length} ngày (${state.cycle.map(nameOf).join(' → ')}), bắt đầu ngày ${state.start.split('-').reverse().join('/')}.`
+        : 'Chu kỳ đang trống, hãy thêm ít nhất một ca.';
+      const table = el('table', undefined, 'la-grid sk-grid');
+      const head = el('tr');
+      ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'].forEach((h, i) => {
+        const th = el('th', h, i === 6 ? 'la-sun' : undefined);
+        th.setAttribute('scope', 'col');
+        head.append(th);
+      });
+      const thead = el('thead');
+      thead.append(head);
+      const tbody = el('tbody');
+      const counts = new Map<string, number>();
+      for (const w of monthWeeks(view.month, view.year)) {
+        const tr = el('tr');
+        w.forEach((c, i) => {
+          if (!c) { tr.append(el('td', undefined, 'la-empty')); return; }
+          const td = el('td');
+          if (i === 6) td.classList.add('la-sun');
+          if (c.jd === today) { td.classList.add('sk-today'); td.setAttribute('aria-current', 'date'); }
+          const box = el('span');
+          box.append(el('span', String(c.day), 'la-solar'), el('span', c.lunarDay === 1 ? `${c.lunarDay}/${c.lunarMonth}${c.leap ? 'N' : ''}` : String(c.lunarDay), c.lunarDay === 1 ? 'la-lunar la-lunar-first' : 'la-lunar'));
+          const s = shiftOn(state, startJd, c.jd);
+          if (s) {
+            const pill = el('span', s.name, 'sk-pill');
+            pill.style.background = s.color;
+            pill.style.color = inkOn(s.color);
+            box.append(pill);
+            counts.set(s.id, (counts.get(s.id) ?? 0) + 1);
+          }
+          td.append(box);
+          tr.append(td);
+        });
+        tbody.append(tr);
+      }
+      table.append(thead, tbody);
+      $('[data-grid]').replaceChildren(table);
+      $('[data-sum]').replaceChildren(...state.types.filter((ty) => counts.has(ty.id)).map((ty) => {
+        const s = el('span');
+        const dot = el('i');
+        dot.style.background = ty.color;
+        s.append(dot, el('span', `${ty.name}: ${counts.get(ty.id)} ngày`));
+        return s;
+      }));
+    }
+
+    function commit(next: ShiftState, opts: { form?: boolean } = { form: true }) {
+      state = next;
+      if (!canStore || !save(KEY, state)) say(BLOCKED);
+      if (opts.form !== false) renderForm();
+      renderGrid();
+    }
+
+    renderForm();
+    renderGrid();
+
+    f('preset').addEventListener('change', () => {
+      const id = f('preset').value;
+      if (id) commit(applyPreset(state, id));
+      else { $<HTMLInputElement>('input[name="quick"]').focus(); }
+    });
+    f('start').addEventListener('change', () => {
+      if (isoToJd(f('start').value) === null) return;
+      const s = isoToJd(f('start').value)!;
+      const d = { month: Number(f('start').value.slice(5, 7)), year: Number(f('start').value.slice(0, 4)) };
+      commit({ ...state, start: f('start').value }, { form: false });
+      if (Math.abs(s - today) > 62) { view = d; renderGrid(); }
+    });
+    const quick = () => {
+      const next = applyText(state, f('quick').value);
+      if (!next) { say('Hãy nhập ít nhất một ca, các ca cách nhau bằng dấu phẩy.'); return; }
+      say(canStore ? '' : BLOCKED);
+      commit(next);
+    };
+    $('[data-quick]').addEventListener('click', quick);
+    f('quick').addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter') { e.preventDefault(); quick(); } });
+    form.addEventListener('submit', (e) => e.preventDefault());
+
+    $('[data-cycle]').addEventListener('change', (e) => {
+      const sel = e.target as HTMLSelectElement;
+      if (!sel.dataset.slot) return;
+      const cycle = [...state.cycle];
+      cycle[Number(sel.dataset.slot)] = sel.value;
+      commit({ ...state, cycle });
+      $<HTMLSelectElement>(`[data-slot="${sel.dataset.slot}"]`)?.focus();
+    });
+    $('[data-cycle]').addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-rm-slot]');
+      if (!b) return;
+      const i = Number(b.dataset.rmSlot);
+      commit({ ...state, cycle: state.cycle.filter((_, j) => j !== i) });
+      ($(`[data-slot="${Math.min(i, state.cycle.length - 1)}"]`) as HTMLElement | null)?.focus();
+    });
+    $('[data-add-slot]').addEventListener('click', () => {
+      const last = state.cycle[state.cycle.length - 1] ?? state.types[0].id;
+      if (state.cycle.length >= 60) return;
+      commit({ ...state, cycle: [...state.cycle, last] });
+      ($(`[data-slot="${state.cycle.length - 1}"]`) as HTMLElement | null)?.focus();
+    });
+
+    $('[data-types]').addEventListener('change', (e) => {
+      const inp = e.target as HTMLInputElement;
+      if (inp.dataset.color) {
+        commit({ ...state, types: state.types.map((ty) => (ty.id === inp.dataset.color ? { ...ty, color: inp.value } : ty)) }, { form: false });
+      } else if (inp.dataset.name) {
+        const name = inp.value.trim().slice(0, 24);
+        if (!name) { inp.value = nameOf(inp.dataset.name); return; }
+        const id = inp.dataset.name;
+        commit({ ...state, types: state.types.map((ty) => (ty.id === id ? { ...ty, name } : ty)) });
+        $<HTMLInputElement>(`[data-name="${id}"]`)?.focus();
+      }
+    });
+    $('[data-types]').addEventListener('input', (e) => {
+      const inp = e.target as HTMLInputElement;
+      if (!inp.dataset.color) return;
+      state = { ...state, types: state.types.map((ty) => (ty.id === inp.dataset.color ? { ...ty, color: inp.value } : ty)) };
+      renderGrid();
+    });
+    $('[data-types]').addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-rm-type]');
+      if (!b) return;
+      const id = b.dataset.rmType!;
+      const used = state.cycle.filter((c) => c === id).length;
+      if (used && !confirm(`Ca “${nameOf(id)}” đang có ${used} ngày trong chu kỳ. Xoá loại ca này và bỏ các ngày đó khỏi chu kỳ?`)) return;
+      const types = state.types.filter((ty) => ty.id !== id);
+      let cycle = state.cycle.filter((c) => c !== id);
+      if (!cycle.length) cycle = [types[0].id];
+      commit({ ...state, types, cycle });
+      $<HTMLButtonElement>('[data-add-type]').focus();
+    });
+    $('[data-add-type]').addEventListener('click', () => {
+      const types = state.types.map((ty) => ({ ...ty }));
+      let n = 1;
+      while (types.some((ty) => ty.name === `Ca mới ${n}`)) n += 1;
+      const id = ensureType(types, `Ca mới ${n}`);
+      commit({ ...state, types });
+      $<HTMLInputElement>(`[data-name="${id}"]`)?.select();
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-nav]').forEach((b) => b.addEventListener('click', () => {
+      const d = Number(b.dataset.nav);
+      if (d === 0) view = { month: t.month, year: t.year };
+      else {
+        const total = view.year * 12 + view.month - 1 + d;
+        const y = Math.floor(total / 12);
+        if (y < 1900 || y > 2100) return;
+        view = { month: (total % 12) + 1, year: y };
+      }
+      renderGrid();
+    }));
+
+    $('[data-reset]').addEventListener('click', () => {
+      if (!confirm('Đặt lại về chu kỳ 3 ca mặc định, bắt đầu từ hôm nay? Tên và màu ca đã sửa sẽ mất.')) return;
+      view = { month: t.month, year: t.year };
+      commit(defaultState(jdToIso(today)));
+      say('Đã đặt lại chu kỳ mặc định.', true);
+    });
+    $('[data-export]').addEventListener('click', () => exportBackup(KEY, state));
+    $<HTMLInputElement>('[data-import]').addEventListener('change', async (e) => {
+      const input = e.target as HTMLInputElement;
+      const file = input.files?.[0];
+      input.value = '';
+      if (!file) return;
+      const data = sanitize(await readBackup<unknown>(file, KEY), fallbackStart);
+      if (!data) { say('Tệp này không phải bản sao lưu “Lịch làm ca” của Lịch Việt.'); return; }
+      if (!data.cycle.length) data.cycle = [data.types[0].id];
+      commit(data);
+      say('Đã khôi phục từ tệp sao lưu.', true);
+    });
+  }
+</script>

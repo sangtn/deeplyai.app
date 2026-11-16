@@ -1,0 +1,613 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { NOTES_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+import { MOODS } from '../../../../../lib/lich/notes';
+import '../../../../../styles/lich-ghi-chu.css';
+
+const features = [
+  'Ghi chú có tiêu đề, nội dung và danh sách việc cần làm, đánh dấu xong ngay trên thẻ.',
+  'Ghim ghi chú quan trọng lên đầu danh sách.',
+  'Nhật ký theo từng ngày, chọn tâm trạng bằng 5 biểu tượng cảm xúc.',
+  'Chuỗi ngày viết liên tiếp và mục "Ngày này năm xưa" theo cả dương lịch lẫn âm lịch.',
+  'Mỗi trang đều hiện ngày âm lịch tương ứng.',
+  'Tìm nhanh trong cả ghi chú và nhật ký, gõ không dấu vẫn ra.',
+  'Thống kê: số ghi chú, số trang nhật ký trong tháng, phân bố tâm trạng.',
+  'Khoá nhật ký bằng mã PIN, sao lưu và khôi phục bằng tệp JSON.',
+];
+
+const faq = [
+  ['Ghi chú có được đồng bộ không?', 'Không. Ghi chú và nhật ký chỉ lưu trong trình duyệt trên thiết bị bạn đang dùng, không gửi lên máy chủ nào và không tự đồng bộ sang máy khác. Muốn chuyển sang máy khác, hãy dùng nút Sao lưu để tải tệp JSON rồi chọn Khôi phục trên máy kia. Ứng dụng Lịch Việt trên iPhone có đồng bộ iCloud.'],
+  ['Mã PIN nhật ký bảo vệ thế nào?', 'Mã PIN 4–6 số che phần nhật ký trên thiết bị này, ai mở trang cũng phải nhập đúng mã mới xem được. Trang chỉ lưu bản băm SHA-256 có muối của mã PIN, không lưu mã gốc. Tuy vậy nội dung nhật ký không được mã hoá: người dùng chung máy và biết cách mở dữ liệu trình duyệt vẫn đọc được. Đừng ghi mật khẩu hay thông tin quá nhạy cảm.'],
+  ['Quên mã PIN thì làm sao?', 'Mã PIN không khôi phục được. Bạn có thể chọn "Quên mã PIN?" để xoá toàn bộ trang nhật ký và bỏ khoá; ghi chú vẫn giữ nguyên.'],
+  ['Xoá dữ liệu trình duyệt có mất ghi chú không?', 'Có. Xoá lịch sử kèm dữ liệu trang web, hoặc viết trong cửa sổ ẩn danh, sẽ làm mất ghi chú. Hãy sao lưu định kỳ ra tệp JSON.'],
+  ['"Ngày này năm xưa" tính thế nào?', 'Mục này liệt kê các trang nhật ký viết vào cùng ngày, cùng tháng dương lịch ở những năm trước, và cả những trang trùng ngày, tháng âm lịch với hôm nay.'],
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Ghi chú & nhật ký', url: `https://deeplyai.app${NOTES_URL}`, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+<LichShell
+  title="Ghi chú & nhật ký online miễn phí, kèm ngày âm lịch"
+  description="Viết ghi chú, danh sách việc cần làm và nhật ký online miễn phí, kèm ngày âm lịch, tâm trạng và chuỗi ngày viết. Lưu ngay trên máy bạn, có khoá PIN."
+  path={NOTES_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Ghi chú & nhật ký' }]}
+  jsonLd={jsonLd}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Ghi chú & nhật ký</h1>
+      <p>Ghi lại việc cần làm, ý tưởng và từng ngày của bạn, mỗi trang kèm ngày âm lịch. Mọi thứ nằm trong trình duyệt trên máy này, không cần đăng ký.</p>
+    </header>
+
+    <section class="gc" data-gc aria-labelledby="gc-title">
+      <h2 id="gc-title" class="gc-sr">Sổ tay của bạn</h2>
+      <noscript><p class="gc-alert">Công cụ ghi chú cần bật JavaScript để hoạt động.</p></noscript>
+      <p class="gc-alert" data-gc-storage hidden>Trình duyệt đang chặn lưu trữ cho trang này (có thể do cửa sổ ẩn danh hoặc cài đặt chặn dữ liệu trang web). Bạn vẫn viết được, nhưng mọi thứ sẽ mất khi đóng trang. Hãy dùng Sao lưu để giữ lại.</p>
+
+      <div class="gc-bar">
+        <div class="gc-tabs" role="tablist" aria-label="Chọn mục">
+          <button type="button" role="tab" id="gc-tab-note" aria-controls="gc-panel-note" aria-selected="true" data-tab="note">Ghi chú <span class="gc-count" data-count="note"></span></button>
+          <button type="button" role="tab" id="gc-tab-diary" aria-controls="gc-panel-diary" aria-selected="false" tabindex="-1" data-tab="diary">Nhật ký <span class="gc-count" data-count="diary"></span></button>
+        </div>
+        <div class="gc-search">
+          <label for="gc-q" class="gc-sr">Tìm trong ghi chú và nhật ký</label>
+          <input id="gc-q" type="search" placeholder="Tìm ghi chú, nhật ký…" autocomplete="off" data-gc-q />
+        </div>
+      </div>
+
+      <div class="gc-results" data-results hidden aria-live="polite">
+        <p class="gc-results-info" data-results-info></p>
+        <ul class="gc-list" data-list="search"></ul>
+      </div>
+
+      <div class="gc-panel" role="tabpanel" id="gc-panel-note" aria-labelledby="gc-tab-note" data-panel="note">
+        <div class="gc-actions"><button type="button" class="gc-btn" data-new="note">+ Ghi chú mới</button></div>
+        <p class="gc-stats" data-note-stats></p>
+        <ul class="gc-list" data-list="note"></ul>
+        <p class="gc-empty" data-empty="note" hidden>Chưa có ghi chú nào. Bấm “Ghi chú mới” để tạo.</p>
+      </div>
+
+      <div class="gc-panel" role="tabpanel" id="gc-panel-diary" aria-labelledby="gc-tab-diary" data-panel="diary" hidden>
+        <form class="gc-lock" data-unlock hidden>
+          <p class="gc-lock-icon" aria-hidden="true">🔒</p>
+          <label for="gc-unlock-pin">Nhập mã PIN để mở nhật ký</label>
+          <input id="gc-unlock-pin" name="pin" type="password" inputmode="numeric" autocomplete="off" pattern="[0-9]{4,6}" minlength="4" maxlength="6" required />
+          <button type="submit" class="gc-btn">Mở khoá</button>
+          <p class="gc-msg" data-unlock-msg role="alert"></p>
+          <button type="button" class="gc-link" data-forgot>Quên mã PIN?</button>
+        </form>
+        <div data-diary-body>
+          <div class="gc-actions">
+            <button type="button" class="gc-btn" data-new="diary">Viết nhật ký hôm nay</button>
+            <button type="button" class="gc-btn-ghost" data-relock hidden>🔒 Khoá lại</button>
+          </div>
+          <p class="gc-streak" data-streak></p>
+          <div class="gc-otd" data-otd hidden>
+            <h3>🕰 Ngày này năm xưa</h3>
+            <ul data-otd-list></ul>
+          </div>
+          <div class="gc-mood-stats" data-mood-wrap hidden>
+            <h3>Tâm trạng</h3>
+            <ul class="gc-mood-bars" data-mood-bars></ul>
+          </div>
+          <ul class="gc-list" data-list="diary"></ul>
+          <p class="gc-empty" data-empty="diary" hidden>Chưa có trang nhật ký nào. Bấm “Viết nhật ký hôm nay” để bắt đầu.</p>
+        </div>
+      </div>
+
+      <details class="gc-settings">
+        <summary>Sao lưu và khoá nhật ký</summary>
+        <div class="gc-settings-in">
+          <div class="gc-set">
+            <h3>Sao lưu</h3>
+            <p>Tải toàn bộ ghi chú và nhật ký về một tệp JSON, hoặc khôi phục từ tệp đã lưu. Khi khôi phục, trang trùng nhau giữ bản sửa gần nhất.</p>
+            <div class="gc-row">
+              <button type="button" class="gc-btn-ghost" data-export>Sao lưu (.json)</button>
+              <label class="gc-btn-ghost gc-file">Khôi phục từ tệp<input type="file" accept="application/json,.json" data-import /></label>
+            </div>
+          </div>
+          <div class="gc-set">
+            <h3>Khoá nhật ký</h3>
+            <p>Mã PIN che phần nhật ký trên thiết bị này. Nội dung không được mã hoá, người rành kỹ thuật dùng chung máy vẫn có thể đọc trong dữ liệu trình duyệt.</p>
+            <p class="gc-lock-state" data-lock-state></p>
+            <form class="gc-pin-form" data-pin-form hidden>
+              <label>Mã PIN mới (4–6 số)<input name="pin" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{4,6}" minlength="4" maxlength="6" required /></label>
+              <label>Nhập lại mã PIN<input name="pin2" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{4,6}" minlength="4" maxlength="6" required /></label>
+              <div class="gc-row">
+                <button type="submit" class="gc-btn" data-pin-submit>Đặt mã PIN</button>
+                <button type="button" class="gc-btn-danger" data-pin-remove hidden>Bỏ khoá</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </details>
+      <p class="gc-status" role="status" aria-live="polite" data-status></p>
+    </section>
+
+    <dialog class="gc-dialog" data-editor aria-labelledby="gc-ed-heading">
+      <form class="gc-ed" data-ed-form novalidate>
+        <div class="gc-ed-head">
+          <h2 id="gc-ed-heading" data-ed-heading>Ghi chú mới</h2>
+          <button type="button" class="gc-x" data-ed-cancel aria-label="Đóng">×</button>
+        </div>
+        <label class="gc-field">Ngày
+          <input type="date" name="date" required min="1900-01-31" max="2100-12-31" />
+        </label>
+        <p class="gc-ed-lunar" data-ed-lunar></p>
+        <fieldset class="gc-moods" data-ed-mood>
+          <legend>Hôm nay bạn thấy thế nào?</legend>
+          <div class="gc-mood-row">
+            {MOODS.map((m) => (
+              <label class="gc-mood"><input type="radio" name="mood" value={m.value} /><span aria-hidden="true">{m.emoji}</span><small>{m.label}</small></label>
+            ))}
+          </div>
+        </fieldset>
+        <label class="gc-field">Tiêu đề
+          <input type="text" name="title" maxlength="300" autocomplete="off" data-ed-title />
+        </label>
+        <label class="gc-field">Nội dung
+          <textarea name="content" rows="7" maxlength="50000" data-ed-content></textarea>
+        </label>
+        <fieldset class="gc-check" data-ed-check>
+          <legend>Việc cần làm</legend>
+          <ul data-ed-items></ul>
+          <button type="button" class="gc-link" data-ed-add>+ Thêm việc</button>
+        </fieldset>
+        <label class="gc-inline" data-ed-pin><input type="checkbox" name="pinned" /> Ghim lên đầu</label>
+        <p class="gc-msg" data-ed-msg role="alert"></p>
+        <div class="gc-ed-actions">
+          <button type="submit" class="gc-btn">Lưu</button>
+          <button type="button" class="gc-btn-ghost" data-ed-cancel>Huỷ</button>
+          <button type="button" class="gc-btn-danger" data-ed-delete hidden>Xoá</button>
+        </div>
+      </form>
+    </dialog>
+
+    <section class="la-block" aria-labelledby="gc-tinh-nang">
+      <h2 id="gc-tinh-nang" class="la-h2">Có gì trong sổ ghi chú này</h2>
+      <ul class="la-list">{features.map((f) => <li>{f}</li>)}</ul>
+      <p class="la-lead la-mt">Dữ liệu không rời khỏi thiết bị của bạn. Trang chưa hỗ trợ đính kèm ảnh; nếu cần ghi chú có hình và đồng bộ giữa các máy, hãy dùng ứng dụng Lịch Việt.</p>
+    </section>
+
+    <section class="la-block" aria-labelledby="gc-hoi-dap">
+      <h2 id="gc-hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { load, save, storageAvailable, uid, exportBackup, readBackup } from '../../../../../lib/lich/store';
+  import {
+    MOODS, checkPin, createLock, diaryFor, diaryStats, emptyDoc, isLock, lockSupported, lunarLabel, mergeItems, moodOf,
+    noteStats, onThisDay, parseIso, sanitizeDoc, search, solarLabel, sortItems, toIso, PIN_RE,
+    type ChecklistItem, type DiaryLock, type Note, type NoteKind, type NotesDoc,
+  } from '../../../../../lib/lich/notes';
+
+  const KEY = 'notes';
+  const LOCK_KEY = 'notes-lock';
+  const root = document.querySelector<HTMLElement>('[data-gc]');
+  const dialog = document.querySelector<HTMLDialogElement>('[data-editor]');
+
+  if (root && dialog) {
+    const $ = <T extends Element = HTMLElement>(sel: string, scope: ParentNode = root) => scope.querySelector<T>(sel)!;
+    const today = () => toIso(new Date());
+
+    // ---------- State ----------
+    const persistent = storageAvailable();
+    if (!persistent) $('[data-gc-storage]').hidden = false;
+    let doc: NotesDoc = sanitizeDoc(load<unknown>(KEY, emptyDoc()), uid) ?? emptyDoc();
+    const storedLock = load<unknown>(LOCK_KEY, null);
+    let lock: DiaryLock | null = isLock(storedLock) ? storedLock : null;
+    let unlocked = !lock;
+    let tab: NoteKind = 'note';
+    let query = '';
+
+    const status = (text: string) => {
+      const el = $('[data-status]');
+      el.textContent = text;
+      if (text) window.setTimeout(() => { if (el.textContent === text) el.textContent = ''; }, 6000);
+    };
+    const persist = () => {
+      if (persistent && !save(KEY, doc)) status('Không lưu được: bộ nhớ trình duyệt đã đầy hoặc bị chặn. Hãy sao lưu ra tệp.');
+    };
+    const diaryHidden = () => !!lock && !unlocked;
+
+    // ---------- DOM helpers ----------
+    function h<K extends keyof HTMLElementTagNameMap>(tag: K, props: Record<string, unknown> = {}, ...kids: (Node | string | null | false)[]) {
+      const el = document.createElement(tag);
+      for (const [k, v] of Object.entries(props)) {
+        if (v === undefined || v === null || v === false) continue;
+        if (k === 'class') el.className = String(v);
+        else if (k === 'text') el.textContent = String(v);
+        else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2), v as EventListener);
+        else if (k in el && typeof v !== 'string') (el as unknown as Record<string, unknown>)[k] = v;
+        else el.setAttribute(k, v === true ? '' : String(v));
+      }
+      for (const kid of kids) if (kid) el.append(kid);
+      return el;
+    }
+    const titleOf = (n: Note) => n.title.trim() || (n.kind === 'diary' ? 'Nhật ký' : n.content.trim().split('\n')[0].slice(0, 60) || 'Ghi chú không tiêu đề');
+    const editedAt = (ms: number) => {
+      const d = new Date(ms);
+      return `Sửa ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')} ${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    };
+
+    // ---------- Cards ----------
+    function card(n: Note, showKind = false) {
+      const mood = moodOf(n.mood);
+      const done = n.checklist.filter((c) => c.done).length;
+      const meta = [solarLabel(n.date), lunarLabel(n.date)].join(' · ');
+      const checklist = n.checklist.length
+        ? h('ul', { class: 'gc-card-check' }, ...n.checklist.map((c) => h('li', {},
+            h('label', { class: c.done ? 'gc-done' : '' },
+              h('input', { type: 'checkbox', checked: c.done, onchange: (e: Event) => toggleItem(n.id, c.id, (e.target as HTMLInputElement).checked) }),
+              h('span', { text: c.text })))))
+        : null;
+      return h('li', { class: `gc-card${n.pinned ? ' gc-pinned' : ''}` },
+        h('p', { class: 'gc-card-meta' },
+          showKind ? h('span', { class: 'gc-kind', text: n.kind === 'diary' ? 'Nhật ký' : 'Ghi chú' }) : null,
+          n.pinned ? h('span', { class: 'gc-pin-mark', text: '📌 Đã ghim' }) : null,
+          h('span', { text: meta })),
+        h('h3', { class: 'gc-card-title' },
+          mood ? h('span', { class: 'gc-card-mood', title: mood.label, 'aria-label': `Tâm trạng: ${mood.label}`, role: 'img', text: mood.emoji }) : null,
+          h('button', { type: 'button', text: titleOf(n), onclick: () => openEditor(n.kind, n) })),
+        n.content.trim() ? h('p', { class: 'gc-card-text', text: n.content }) : null,
+        checklist,
+        h('div', { class: 'gc-card-foot' },
+          h('small', { text: [n.checklist.length ? `✓ ${done}/${n.checklist.length} việc` : '', editedAt(n.updatedAt)].filter(Boolean).join(' · ') }),
+          h('div', { class: 'gc-card-btns' },
+            n.kind === 'note' ? h('button', { type: 'button', class: 'gc-mini', 'aria-pressed': String(n.pinned), text: n.pinned ? 'Bỏ ghim' : 'Ghim', onclick: () => togglePin(n.id) }) : null,
+            h('button', { type: 'button', class: 'gc-mini', text: 'Sửa', 'aria-label': `Sửa “${titleOf(n)}”`, onclick: () => openEditor(n.kind, n) }),
+            h('button', { type: 'button', class: 'gc-mini gc-mini-danger', text: 'Xoá', 'aria-label': `Xoá “${titleOf(n)}”`, onclick: () => remove(n.id) }))));
+    }
+
+    // ---------- Render ----------
+    function render() {
+      const notes = sortItems(doc.items.filter((n) => n.kind === 'note'));
+      const diaries = sortItems(doc.items.filter((n) => n.kind === 'diary'));
+      const t = today();
+      $('[data-count="note"]').textContent = notes.length ? `(${notes.length})` : '';
+      $('[data-count="diary"]').textContent = diaries.length && !diaryHidden() ? `(${diaries.length})` : diaryHidden() ? '🔒' : '';
+
+      // Tabs and search
+      root!.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((b) => {
+        const on = b.dataset.tab === tab;
+        b.setAttribute('aria-selected', String(on));
+        b.tabIndex = on ? 0 : -1;
+      });
+      const searching = query.trim().length > 0;
+      $('[data-results]').hidden = !searching;
+      root!.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => { p.hidden = searching || p.dataset.panel !== tab; });
+      if (searching) {
+        const pool = diaryHidden() ? doc.items.filter((n) => n.kind === 'note') : doc.items;
+        const found = sortItems(search(pool, query));
+        $('[data-list="search"]').replaceChildren(...found.map((n) => card(n, true)));
+        $('[data-results-info]').textContent = (found.length ? `Tìm thấy ${found.length} kết quả.` : 'Không tìm thấy kết quả phù hợp.') + (diaryHidden() ? ' Nhật ký đang khoá nên không được tìm.' : '');
+      }
+
+      // Notes
+      $('[data-list="note"]').replaceChildren(...notes.map((n) => card(n)));
+      $('[data-empty="note"]').hidden = notes.length > 0;
+      const ns = noteStats(doc.items);
+      $('[data-note-stats]').textContent = notes.length
+        ? [`${ns.notes} ghi chú`, ns.pinned ? `${ns.pinned} đã ghim` : '', ns.tasksTotal ? `${ns.tasksDone}/${ns.tasksTotal} việc đã xong` : ''].filter(Boolean).join(' · ')
+        : '';
+
+      // Diary (behind the lock)
+      const hidden = diaryHidden();
+      $('[data-unlock]').hidden = !hidden;
+      $('[data-diary-body]').hidden = hidden;
+      $('[data-relock]').hidden = !lock || hidden;
+      if (!hidden) {
+        const ds = diaryStats(doc.items, t);
+        $('[data-new="diary"]').textContent = diaryFor(doc.items, t) ? 'Viết tiếp nhật ký hôm nay' : 'Viết nhật ký hôm nay';
+        $('[data-streak]').textContent = ds.entries
+          ? [ds.streak ? `🔥 Chuỗi ${ds.streak} ngày` : '', `📖 ${ds.entries} trang`, `${ds.thisMonth} trang tháng này`, ds.avgMood !== null ? `tâm trạng trung bình ${String(ds.avgMood).replace('.', ',')}/5` : ''].filter(Boolean).join(' · ')
+          : '';
+        const otd = onThisDay(doc.items, t);
+        $('[data-otd]').hidden = !otd.length;
+        $('[data-otd-list]').replaceChildren(...otd.map(({ note, years, match }) => h('li', {},
+          h('button', { type: 'button', class: 'gc-link', onclick: () => openEditor('diary', note) },
+            `${moodOf(note.mood)?.emoji ?? '📖'} ${years} năm trước${match === 'lunar' ? ' (cùng ngày âm)' : ''}: ${titleOf(note)}`))));
+        const rated = MOODS.reduce((s, m) => s + ds.moods[m.value], 0);
+        $('[data-mood-wrap]').hidden = !rated;
+        $('[data-mood-bars]').replaceChildren(...[...MOODS].reverse().map((m) => {
+          const fill = h('span', { class: 'gc-bar-fill' });
+          fill.style.width = `${rated ? (ds.moods[m.value] / rated) * 100 : 0}%`;
+          return h('li', {}, h('span', { class: 'gc-bar-label' }, h('span', { 'aria-hidden': 'true', text: m.emoji }), ` ${m.label}`), h('span', { class: 'gc-bar-track', 'aria-hidden': 'true' }, fill), h('b', { text: String(ds.moods[m.value]) }));
+        }));
+        $('[data-list="diary"]').replaceChildren(...diaries.map((n) => card(n)));
+        $('[data-empty="diary"]').hidden = diaries.length > 0;
+      } else {
+        $('[data-list="diary"]').replaceChildren();
+        $('[data-otd-list]').replaceChildren();
+      }
+      renderLockSettings();
+    }
+
+    // ---------- Mutations ----------
+    const find = (id: string) => doc.items.find((n) => n.id === id);
+    function toggleItem(noteId: string, itemId: string, done: boolean) {
+      const n = find(noteId);
+      const c = n?.checklist.find((x) => x.id === itemId);
+      if (!n || !c) return;
+      c.done = done;
+      n.updatedAt = Date.now();
+      persist();
+      render();
+    }
+    function togglePin(id: string) {
+      const n = find(id);
+      if (!n) return;
+      n.pinned = !n.pinned;
+      n.updatedAt = Date.now();
+      persist();
+      render();
+      status(n.pinned ? 'Đã ghim ghi chú lên đầu.' : 'Đã bỏ ghim.');
+    }
+    function remove(id: string) {
+      const n = find(id);
+      if (!n || !window.confirm(`Xoá “${titleOf(n)}”? Không hoàn tác được.`)) return false;
+      doc.items = doc.items.filter((x) => x.id !== id);
+      persist();
+      render();
+      status(n.kind === 'diary' ? 'Đã xoá trang nhật ký.' : 'Đã xoá ghi chú.');
+      return true;
+    }
+
+    // ---------- Tabs and search ----------
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+    tabs.forEach((b, i) => {
+      b.addEventListener('click', () => {
+        tab = b.dataset.tab as NoteKind;
+        if (query) { query = ''; $<HTMLInputElement>('[data-gc-q]').value = ''; }
+        render();
+      });
+      b.addEventListener('keydown', (e) => {
+        const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        const next = tabs[(i + dir + tabs.length) % tabs.length];
+        next.focus();
+        next.click();
+      });
+    });
+    const q = $<HTMLInputElement>('[data-gc-q]');
+    q.addEventListener('input', () => { query = q.value; render(); });
+    q.addEventListener('keydown', (e) => { if (e.key === 'Escape' && q.value) { q.value = ''; query = ''; render(); } });
+
+    // ---------- Editor ----------
+    const form = $<HTMLFormElement>('[data-ed-form]', dialog);
+    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement;
+    const itemsList = $('[data-ed-items]', dialog);
+    let editing: { kind: NoteKind; id: string | null } = { kind: 'note', id: null };
+    let returnFocus: HTMLElement | null = null;
+
+    function itemRow(c: Partial<ChecklistItem> = {}) {
+      const text = h('input', { type: 'text', value: c.text ?? '', maxlength: '500', 'aria-label': 'Nội dung việc', class: 'gc-item-text' }) as HTMLInputElement;
+      const li = h('li', { class: 'gc-item', 'data-id': c.id ?? uid() },
+        h('input', { type: 'checkbox', checked: !!c.done, 'aria-label': 'Đã xong' }),
+        text,
+        h('button', { type: 'button', class: 'gc-x', 'aria-label': 'Xoá việc này', text: '×', onclick: () => { const prev = li.previousElementSibling?.querySelector('input[type=text]') as HTMLInputElement | null; li.remove(); (prev ?? $<HTMLButtonElement>('[data-ed-add]', dialog)).focus(); } }));
+      text.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        const row = itemRow();
+        li.after(row);
+        row.querySelector<HTMLInputElement>('input[type=text]')!.focus();
+      });
+      return li;
+    }
+    $('[data-ed-add]', dialog).addEventListener('click', () => {
+      const row = itemRow();
+      itemsList.append(row);
+      row.querySelector<HTMLInputElement>('input[type=text]')!.focus();
+    });
+
+    const syncLunar = () => { $('[data-ed-lunar]', dialog).textContent = parseIso(field('date').value) ? lunarLabel(field('date').value).replace(/^./, (c) => c.toUpperCase()) : ''; };
+    field('date').addEventListener('input', syncLunar);
+
+    function openEditor(kind: NoteKind, note?: Note, date?: string) {
+      if (kind === 'diary' && diaryHidden()) return;
+      returnFocus = document.activeElement as HTMLElement | null;
+      editing = { kind, id: note?.id ?? null };
+      form.reset();
+      $('[data-ed-msg]', dialog).textContent = '';
+      $('[data-ed-heading]', dialog).textContent = note ? (kind === 'diary' ? 'Sửa nhật ký' : 'Sửa ghi chú') : kind === 'diary' ? 'Nhật ký mới' : 'Ghi chú mới';
+      field('date').value = note?.date ?? date ?? today();
+      field('title').value = note?.title ?? '';
+      field('title').placeholder = kind === 'diary' ? 'Tiêu đề hôm nay…' : 'Tiêu đề ghi chú';
+      ($('[data-ed-content]', dialog) as HTMLTextAreaElement).value = note?.content ?? '';
+      ($('[data-ed-content]', dialog) as HTMLTextAreaElement).placeholder = kind === 'diary' ? 'Viết về một ngày của bạn…' : 'Nội dung ghi chú…';
+      field('pinned').checked = !!note?.pinned;
+      form.querySelectorAll<HTMLInputElement>('input[name=mood]').forEach((r) => { r.checked = Number(r.value) === note?.mood; });
+      $('[data-ed-mood]', dialog).hidden = kind !== 'diary';
+      $('[data-ed-check]', dialog).hidden = kind !== 'note';
+      $('[data-ed-pin]', dialog).hidden = kind !== 'note';
+      $('[data-ed-delete]', dialog).hidden = !note;
+      itemsList.replaceChildren(...(note?.checklist ?? []).map((c) => itemRow(c)));
+      syncLunar();
+      dialog!.showModal();
+      (kind === 'diary' && !note ? form.querySelector<HTMLInputElement>('input[name=mood]') : field('title'))?.focus();
+    }
+    function closeEditor() {
+      dialog!.close();
+    }
+    dialog.addEventListener('close', () => { returnFocus?.focus?.(); });
+    dialog.querySelectorAll('[data-ed-cancel]').forEach((b) => b.addEventListener('click', closeEditor));
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) closeEditor(); });
+    $('[data-ed-delete]', dialog).addEventListener('click', () => {
+      if (editing.id && remove(editing.id)) { returnFocus = null; closeEditor(); root!.querySelector<HTMLElement>(`[data-new="${editing.kind}"]`)?.focus(); }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = $('[data-ed-msg]', dialog);
+      const date = field('date').value;
+      if (!parseIso(date)) { msg.textContent = 'Hãy chọn một ngày hợp lệ.'; field('date').focus(); return; }
+      const title = field('title').value.trim();
+      const content = ($('[data-ed-content]', dialog) as HTMLTextAreaElement).value.replace(/\s+$/, '');
+      const mood = Number(form.querySelector<HTMLInputElement>('input[name=mood]:checked')?.value ?? 0);
+      const checklist: ChecklistItem[] = editing.kind === 'note'
+        ? [...itemsList.querySelectorAll<HTMLLIElement>('li')].map((li) => ({
+            id: li.dataset.id ?? uid(),
+            text: li.querySelector<HTMLInputElement>('input[type=text]')!.value.trim(),
+            done: li.querySelector<HTMLInputElement>('input[type=checkbox]')!.checked,
+          })).filter((c) => c.text)
+        : [];
+      if (!title && !content.trim() && !checklist.length && !(editing.kind === 'diary' && mood)) {
+        msg.textContent = 'Hãy viết vài dòng trước khi lưu.';
+        field('title').focus();
+        return;
+      }
+      if (editing.kind === 'diary') {
+        const other = diaryFor(doc.items, date);
+        if (other && other.id !== editing.id) {
+          msg.textContent = `Ngày ${solarLabel(date)} đã có trang nhật ký. Hãy chọn ngày khác hoặc mở trang đó để viết tiếp.`;
+          field('date').focus();
+          return;
+        }
+      }
+      const now = Date.now();
+      const existing = editing.id ? find(editing.id) : undefined;
+      const next: Note = {
+        id: existing?.id ?? uid(),
+        kind: editing.kind,
+        date,
+        title,
+        content,
+        checklist,
+        mood: editing.kind === 'diary' ? mood : 0,
+        pinned: editing.kind === 'note' && field('pinned').checked,
+        createdAt: existing?.createdAt ?? now,
+        updatedAt: now,
+      };
+      doc.items = existing ? doc.items.map((n) => (n.id === next.id ? next : n)) : [...doc.items, next];
+      persist();
+      closeEditor();
+      render();
+      status(editing.kind === 'diary' ? 'Đã lưu trang nhật ký.' : 'Đã lưu ghi chú.');
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-new]').forEach((b) => b.addEventListener('click', () => {
+      const kind = b.dataset.new as NoteKind;
+      if (kind === 'diary') {
+        const existing = diaryFor(doc.items, today());
+        openEditor('diary', existing);
+      } else openEditor('note');
+    }));
+
+    // ---------- Diary lock ----------
+    const unlockForm = $<HTMLFormElement>('[data-unlock]');
+    unlockForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = unlockForm.elements.namedItem('pin') as HTMLInputElement;
+      const msg = $('[data-unlock-msg]');
+      if (!lock) return;
+      if (await checkPin(lock, input.value)) {
+        unlocked = true;
+        input.value = '';
+        msg.textContent = '';
+        render();
+        $<HTMLButtonElement>('[data-new="diary"]').focus();
+      } else {
+        msg.textContent = 'Mã PIN chưa đúng.';
+        input.select();
+      }
+    });
+    $('[data-forgot]').addEventListener('click', () => {
+      const count = doc.items.filter((n) => n.kind === 'diary').length;
+      if (!window.confirm(`Mã PIN không khôi phục được. Xoá toàn bộ ${count} trang nhật ký và bỏ khoá? Ghi chú vẫn được giữ nguyên.`)) return;
+      doc.items = doc.items.filter((n) => n.kind !== 'diary');
+      lock = null;
+      unlocked = true;
+      persist();
+      if (persistent) save(LOCK_KEY, null);
+      render();
+      status('Đã xoá nhật ký và bỏ khoá.');
+    });
+    $('[data-relock]').addEventListener('click', () => {
+      unlocked = false;
+      render();
+      $<HTMLInputElement>('#gc-unlock-pin').focus();
+    });
+
+    const pinForm = $<HTMLFormElement>('[data-pin-form]');
+    function renderLockSettings() {
+      const state = $('[data-lock-state]');
+      const removeBtn = $('[data-pin-remove]');
+      if (!lockSupported()) {
+        state.textContent = 'Trình duyệt này không hỗ trợ khoá nhật ký (cần kết nối https).';
+        pinForm.hidden = true;
+        return;
+      }
+      if (!lock) {
+        state.textContent = 'Nhật ký chưa được khoá.';
+        pinForm.hidden = false;
+        $('[data-pin-submit]').textContent = 'Đặt mã PIN';
+        removeBtn.hidden = true;
+      } else if (!unlocked) {
+        state.textContent = '🔒 Nhật ký đang khoá. Mở khoá ở thẻ Nhật ký để đổi hoặc bỏ mã PIN.';
+        pinForm.hidden = true;
+      } else {
+        state.textContent = '🔓 Nhật ký có mã PIN và đang mở trong lần truy cập này. Tải lại trang sẽ khoá lại.';
+        pinForm.hidden = false;
+        $('[data-pin-submit]').textContent = 'Đổi mã PIN';
+        removeBtn.hidden = false;
+      }
+    }
+    pinForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const a = (pinForm.elements.namedItem('pin') as HTMLInputElement).value;
+      const b = (pinForm.elements.namedItem('pin2') as HTMLInputElement).value;
+      if (!PIN_RE.test(a)) { status('Mã PIN gồm 4 đến 6 chữ số.'); return; }
+      if (a !== b) { status('Hai lần nhập mã PIN chưa khớp.'); return; }
+      const changed = !!lock;
+      lock = await createLock(a);
+      unlocked = true;
+      if (persistent && !save(LOCK_KEY, lock)) status('Không lưu được mã PIN vì trình duyệt chặn lưu trữ.');
+      else status(changed ? 'Đã đổi mã PIN.' : 'Đã đặt mã PIN. Nhật ký sẽ khoá khi bạn tải lại trang hoặc bấm Khoá lại.');
+      pinForm.reset();
+      render();
+    });
+    $('[data-pin-remove]').addEventListener('click', () => {
+      if (!lock || !unlocked || !window.confirm('Bỏ khoá nhật ký?')) return;
+      lock = null;
+      if (persistent) save(LOCK_KEY, null);
+      render();
+      status('Đã bỏ khoá nhật ký.');
+    });
+
+    // ---------- Backup ----------
+    $('[data-export]').addEventListener('click', () => {
+      if (diaryHidden()) { status('Hãy mở khoá nhật ký trước khi sao lưu, vì tệp sao lưu chứa cả nhật ký.'); return; }
+      if (!doc.items.length) { status('Chưa có gì để sao lưu.'); return; }
+      exportBackup(KEY, doc);
+      status(`Đã tải tệp sao lưu gồm ${doc.items.length} mục. Tệp không được mã hoá, hãy cất giữ cẩn thận.`);
+    });
+    const fileInput = $<HTMLInputElement>('[data-import]');
+    fileInput.addEventListener('change', async () => {
+      const file = fileInput.files?.[0];
+      fileInput.value = '';
+      if (!file) return;
+      if (diaryHidden()) { status('Hãy mở khoá nhật ký trước khi khôi phục.'); return; }
+      const data = sanitizeDoc(await readBackup<unknown>(file, KEY), uid);
+      if (!data) { status('Tệp này không phải bản sao lưu ghi chú của Lịch Việt.'); return; }
+      // Keep one diary page per day: an imported page for a day that already has another page is skipped.
+      const taken = new Map(doc.items.filter((n) => n.kind === 'diary').map((n) => [n.date, n.id]));
+      const incoming = data.items.filter((n) => n.kind !== 'diary' || !taken.has(n.date) || taken.get(n.date) === n.id);
+      const { items, added, updated } = mergeItems(doc.items, incoming);
+      doc = { version: 1, items };
+      persist();
+      render();
+      const skipped = data.items.length - incoming.length;
+      status(`Đã khôi phục: thêm ${added}, cập nhật ${updated}${skipped ? `, bỏ qua ${skipped} trang nhật ký trùng ngày` : ''}.`);
+    });
+
+    render();
+  }
+</script>

@@ -1,0 +1,62 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { FEEDS, feedPath } from '../../../../../lib/lich/feeds';
+import { EVENTS_URL, FEEDS_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+
+const site = 'https://deeplyai.app';
+const faq = [
+  ['Thêm lịch âm vào Google Calendar thế nào?', 'Trên máy tính, mở Google Calendar, bấm dấu + cạnh “Lịch khác”, chọn “Từ URL”, dán đường link lịch bên dưới rồi bấm “Thêm lịch”. Lịch sẽ hiện trên cả điện thoại dùng cùng tài khoản Google.'],
+  ['Thêm vào iPhone thế nào?', 'Trên iPhone, bấm nút “Thêm vào iPhone” (mở bằng Safari), xác nhận Đăng ký. Hoặc vào Cài đặt › Lịch › Tài khoản › Thêm tài khoản › Khác › Thêm lịch đã đăng ký và dán đường link.'],
+  ['Lịch có tự cập nhật không?', 'Có. Đây là lịch đăng ký, ứng dụng lịch tự tải lại (Google Calendar thường vài giờ đến một ngày một lần). Lịch luôn có dữ liệu từ năm trước đến vài năm tới.'],
+  ['Có tốn phí hay cần tài khoản không?', 'Không. Lịch miễn phí và không cần đăng ký tài khoản với chúng tôi.'],
+];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }];
+---
+<LichShell
+  title="Lịch âm cho Google Calendar, iPhone – Thêm ngày âm, rằm, mùng 1"
+  description="Thêm lịch âm vào Google Calendar và lịch iPhone miễn phí: ngày âm lịch mỗi ngày, rằm và mùng 1 có nhắc nhở, ngày lễ Việt Nam. Đăng ký một lần, tự cập nhật."
+  path={FEEDS_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Lịch âm cho điện thoại' }]}
+  jsonLd={jsonLd}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch âm cho Google Calendar và iPhone</h1>
+      <p>Đăng ký một lần để ngày âm lịch, rằm, mùng một và ngày lễ hiện ngay trong ứng dụng lịch bạn đang dùng.</p>
+    </header>
+    <div class="la-purposes">
+      {FEEDS.map((f) => {
+        const https = `${site}${feedPath(f.id)}`;
+        const webcal = https.replace(/^https:/, 'webcal:');
+        const google = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcal)}`;
+        return (
+          <article class="la-card la-purpose">
+            <h2>{f.title}</h2>
+            <p>{f.text}</p>
+            <div class="la-ev-actions la-mt">
+              <a class="la-btn" href={google} rel="noopener" target="_blank">Thêm vào Google Calendar</a>
+              <a class="la-copy" href={webcal}>Thêm vào iPhone</a>
+              <button type="button" class="la-copy" data-copy-url={https}>Sao chép link</button>
+            </div>
+            <p class="la-feed-url"><code>{https}</code></p>
+          </article>
+        );
+      })}
+    </div>
+    <p class="la-more">Muốn nhắc ngày giỗ, ngày cưới của gia đình? <a href={EVENTS_URL}>Dùng công cụ nhắc ngày giỗ âm lịch</a>.</p>
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hướng dẫn và hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-url]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(btn.dataset.copyUrl!); btn.textContent = 'Đã sao chép'; } catch { btn.textContent = 'Không sao chép được'; }
+      setTimeout(() => { btn.textContent = 'Sao chép link'; }, 1800);
+    });
+  });
+</script>

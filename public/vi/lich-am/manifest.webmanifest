@@ -1,0 +1,22 @@
+{
+  "name": "Lịch Việt – Lịch âm, xem ngày tốt",
+  "short_name": "Lịch Việt",
+  "description": "Lịch âm hôm nay, xem ngày tốt, văn khấn, nhắc ngày giỗ và tiện ích cá nhân.",
+  "lang": "vi",
+  "start_url": "/vi/lich-am/?source=pwa",
+  "scope": "/vi/lich-am/",
+  "id": "/vi/lich-am/",
+  "display": "standalone",
+  "background_color": "#f3efe6",
+  "theme_color": "#a8231b",
+  "icons": [
+    { "src": "/assets/apps/lich-viet/pwa/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/apps/lich-viet/pwa/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/apps/lich-viet/pwa/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Xem ngày tốt", "url": "/vi/lich-am/xem-ngay-tot/" },
+    { "name": "Nhắc ngày giỗ", "url": "/vi/lich-am/tien-ich/ngay-gio/" },
+    { "name": "Đổi ngày âm dương", "url": "/vi/lich-am/doi-ngay-am-duong/" }
+  ]
+}

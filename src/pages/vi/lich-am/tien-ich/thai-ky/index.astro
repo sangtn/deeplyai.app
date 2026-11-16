@@ -1,0 +1,297 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { PREGNANCY_URL, TOOLS_URL, VACCINE_URL } from '../../../../../lib/lich/urls';
+import { FOOTER, HEADING, MILESTONES, SOURCE, TERM_DAYS, TRIMESTERS, formatJd, jdToIso, lunarLabel, milestoneJd } from '../../../../../lib/lich/pregnancy';
+import '../../../../../styles/lich-suc-khoe.css';
+
+const t = vietnamToday();
+const todayJd = jdFromDate(t.day, t.month, t.year);
+// Worked example, fixed to the first day of this month so it changes with each build.
+const exLmp = jdFromDate(1, t.month, t.year);
+const exEdd = exLmp + TERM_DAYS;
+const takenOn = SOURCE.takenOn.split('-').reverse().join('/');
+
+const faq = [
+  ['Cách tính ngày dự sinh như thế nào?', `Theo quy tắc Naegele, ngày dự sinh bằng ngày đầu tiên của kỳ kinh cuối cộng thêm 280 ngày (40 tuần), tương đương cộng 9 tháng và 7 ngày. Ví dụ kỳ kinh cuối bắt đầu ngày ${formatJd(exLmp, false)} thì ngày dự sinh là ${formatJd(exEdd, false)}.`],
+  ['Ngày dự sinh có chính xác không?', 'Đây chỉ là ngày ước tính. Phần lớn em bé chào đời trong khoảng tuần 37 đến tuần 42, rất ít bé sinh đúng ngày dự sinh. Siêu âm trong 3 tháng đầu thường cho tuổi thai chính xác hơn, và bác sĩ có thể điều chỉnh ngày dự sinh theo kết quả này.'],
+  ['Chu kỳ kinh không đều thì tính thế nào?', 'Quy tắc Naegele giả định chu kỳ khoảng 28 ngày. Nếu chu kỳ dài, ngắn hoặc không đều, hãy dùng ngày dự sinh bác sĩ ghi trong sổ khám thai: chọn “Ngày dự sinh” và nhập ngày đó, công cụ sẽ tính ngược lại tuổi thai và các mốc khám.'],
+  ['Tuần thai và tam cá nguyệt được tính ra sao?', 'Tuổi thai tính từ ngày đầu kỳ kinh cuối, ghi theo số tuần đã tròn và số ngày lẻ, ví dụ “Tuần 6 ngày 2”. Tam cá nguyệt 1 là tuần 0 đến 12, tam cá nguyệt 2 là tuần 13 đến 26, tam cá nguyệt 3 từ tuần 27 đến khi sinh.'],
+  ['Có xem được ngày dự sinh theo âm lịch không?', 'Có. Ngày dự sinh và mọi mốc khám đều hiển thị kèm ngày âm lịch, tính theo múi giờ Việt Nam.'],
+  ['Dữ liệu tôi nhập được lưu ở đâu?', 'Ngày bạn nhập chỉ được lưu trong trình duyệt trên thiết bị này, không gửi lên máy chủ. Bạn có thể tải tệp sao lưu JSON để chuyển sang máy khác hoặc xoá bất cứ lúc nào.'],
+];
+const title = 'Tính ngày dự sinh, tuổi thai và lịch khám thai theo tuần';
+const description = 'Tính ngày dự sinh từ ngày đầu kỳ kinh cuối (quy tắc Naegele), xem tuổi thai, tam cá nguyệt và lịch khám thai theo tuần kèm ngày âm lịch. Miễn phí.';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Tính ngày dự sinh', url: `https://deeplyai.app${PREGNANCY_URL}`, applicationCategory: 'HealthApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+<LichShell title={title} description={description} path={PREGNANCY_URL} crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Tính ngày dự sinh' }]} jsonLd={jsonLd} active="tools">
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tính ngày dự sinh</h1>
+      <p>Nhập ngày đầu tiên của kỳ kinh cuối, hoặc ngày dự sinh bác sĩ đã cho, để biết tuổi thai hôm nay, tam cá nguyệt và ngày của từng mốc khám thai, kèm ngày âm lịch.</p>
+    </header>
+
+    <form class="la-tool sk-tool" data-preg novalidate>
+      <fieldset class="la-side">
+        <legend>Bạn biết ngày nào?</legend>
+        <div class="la-seg">
+          <label><input type="radio" name="mode" value="lmp" checked /> Ngày đầu kỳ kinh cuối</label>
+          <label><input type="radio" name="mode" value="edd" /> Ngày dự sinh</label>
+        </div>
+        <label><span data-date-label>Ngày đầu kỳ kinh cuối</span>
+          <input type="date" name="date" required value={jdToIso(exLmp)} min="2000-01-01" max="2100-12-31" aria-describedby="preg-hint" />
+        </label>
+        <p id="preg-hint" class="sk-hint">Ngày dự sinh = ngày đầu kỳ kinh cuối + 280 ngày.</p>
+      </fieldset>
+      <div class="sk-actions">
+        <button type="submit">Tính ngày dự sinh</button>
+        <button type="button" class="sk-btn-2" data-clear hidden>Xoá ngày đã lưu</button>
+        <button type="button" class="sk-btn-2 sk-btn-sm" data-export>Tải tệp sao lưu</button>
+        <label class="sk-btn-2 sk-btn-sm sk-file">Khôi phục từ tệp<input type="file" accept="application/json,.json" data-import /></label>
+      </div>
+      <p class="sk-msg" data-msg role="status" hidden></p>
+      <div class="la-result" data-out aria-live="polite">
+        <b>Dự sinh {formatJd(exEdd)}</b>
+        <span>Ví dụ với kỳ kinh cuối bắt đầu {formatJd(exLmp, false)}: ngày dự sinh {formatJd(exEdd, false)}, tức {lunarLabel(exEdd)}. Bật JavaScript để tính theo ngày của bạn.</span>
+      </div>
+    </form>
+
+    <section class="la-block" data-dated hidden aria-labelledby="lich-cua-ban">
+      <h2 id="lich-cua-ban" class="la-h2">Lịch khám thai của bạn</h2>
+      <p class="la-lead">Ngày khám tính theo đầu mỗi tuần thai, như trong ứng dụng Lịch Việt. Bác sĩ có thể hẹn sớm hoặc muộn hơn vài ngày.</p>
+      <div class="la-table-wrap">
+        <table class="la-table sk-table">
+          <thead><tr><th scope="col">Tuần và ngày</th><th scope="col">Mốc khám</th></tr></thead>
+          <tbody data-checkups></tbody>
+        </table>
+      </div>
+      <details class="sk-weeks la-mt">
+        <summary>Xem từng tuần thai (tuần 0 – 41)</summary>
+        <div class="la-table-wrap">
+          <table class="la-table sk-table">
+            <thead><tr><th scope="col">Tuần</th><th scope="col">Từ ngày – đến ngày</th><th scope="col">Ghi chú</th></tr></thead>
+            <tbody data-weeks></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="la-block" aria-labelledby="cach-tinh">
+      <h2 id="cach-tinh" class="la-h2">Cách tính ngày dự sinh</h2>
+      <div class="la-two">
+        <div>
+          <p class="la-lead">Công cụ dùng quy tắc Naegele, cách các bác sĩ sản khoa vẫn dùng để ước tính ban đầu: lấy ngày đầu tiên của kỳ kinh cuối cộng 280 ngày, tức 40 tuần. Cách nhẩm nhanh là cộng 9 tháng và 7 ngày.</p>
+          <ul class="la-list">
+            <li>Tuổi thai hôm nay = số ngày từ ngày đầu kỳ kinh cuối đến hôm nay, viết thành “tuần … ngày …”.</li>
+            <li>Nếu bạn nhập ngày dự sinh, ngày đầu kỳ kinh cuối được suy ra bằng cách lùi 280 ngày.</li>
+            <li>Phần trăm hành trình = số ngày đã qua chia cho 280.</li>
+            <li>Sau 320 ngày (khoảng 45 tuần), công cụ coi thai kỳ đã kết thúc và không hiển thị tuổi thai nữa.</li>
+          </ul>
+        </div>
+        <div class="la-table-wrap">
+          <table class="la-table">
+            <caption class="sk-hint" style="text-align:left;padding-bottom:6px">Ba giai đoạn của thai kỳ</caption>
+            <thead><tr><th scope="col">Giai đoạn</th><th scope="col">Tuần thai</th></tr></thead>
+            <tbody>{TRIMESTERS.map((r) => <tr><td>{r.name}</td><td>{r.weeks}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="moc-kham">
+      <h2 id="moc-kham" class="la-h2">{HEADING}</h2>
+      <p class="la-lead">{MILESTONES.length} mốc khám và xét nghiệm chính trong thai kỳ, theo ứng dụng Lịch Việt. Cột ví dụ tính cho kỳ kinh cuối bắt đầu {formatJd(exLmp, false)}.</p>
+      <div class="la-table-wrap">
+        <table class="la-table sk-table">
+          <thead><tr><th scope="col">Tuần</th><th scope="col">Mốc khám</th><th scope="col">Ví dụ</th></tr></thead>
+          <tbody>
+            {MILESTONES.map((m) => {
+              const jd = milestoneJd(exLmp, m.week);
+              return <tr><td><b>Tuần {m.week}</b></td><td><b>{m.title}</b><br /><small>{m.desc}</small></td><td>{formatJd(jd, false)}<span class="sk-lunar">{lunarLabel(jd)}</span></td></tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div class="sk-caveat la-mt">
+        <p>{FOOTER.replace(/ Nhắc trước.*$/, '')}</p>
+        <p>Nội dung lịch khám lấy nguyên văn từ ứng dụng Lịch Việt (cập nhật {takenOn}), mang tính tham khảo và chưa thay thế tư vấn y tế. Lịch khám thực tế do bác sĩ hoặc cơ sở y tế nơi bạn theo dõi thai quyết định.</p>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+      <p class="la-more">Sau khi bé chào đời: <a href={VACCINE_URL}>lịch tiêm chủng cho trẻ theo ngày sinh</a>.</p>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+  import { exportBackup, load, readBackup, save, storageAvailable } from '../../../../../lib/lich/store';
+  import { MILESTONES, formatJd, isoToJd, jdToIso, lmpJd, lunarLabel, milestoneJd, status, weeks, type PregnancyInput } from '../../../../../lib/lich/pregnancy';
+
+  const KEY = 'pregnancy';
+  const form = document.querySelector<HTMLFormElement>('[data-preg]');
+  if (form) {
+    const t = vietnamToday();
+    const today = jdFromDate(t.day, t.month, t.year);
+    const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
+    const out = $<HTMLElement>('[data-out]');
+    const msg = $<HTMLElement>('[data-msg]');
+    const dated = $<HTMLElement>('[data-dated]');
+    const dateInput = form.elements.namedItem('date') as HTMLInputElement;
+    const clearBtn = $<HTMLButtonElement>('[data-clear]');
+    const canStore = storageAvailable();
+
+    const el = (tag: string, text?: string, cls?: string) => {
+      const e = document.createElement(tag);
+      if (text !== undefined) e.textContent = text;
+      if (cls) e.className = cls;
+      return e;
+    };
+    const say = (text: string, ok = false) => {
+      msg.textContent = text;
+      msg.classList.toggle('sk-ok', ok);
+      msg.hidden = !text;
+    };
+    const mode = () => ((form.querySelector<HTMLInputElement>('input[name="mode"]:checked')?.value ?? 'lmp') as PregnancyInput['mode']);
+    const syncLabel = () => { $('[data-date-label]').textContent = mode() === 'edd' ? 'Ngày dự sinh' : 'Ngày đầu kỳ kinh cuối'; };
+    form.addEventListener('change', syncLabel);
+
+    const stat = (label: string, value: string, sub?: string) => {
+      const box = el('div', undefined, 'sk-stat');
+      box.append(el('span', label), el('b', value));
+      if (sub) box.append(el('small', sub));
+      return box;
+    };
+    const dateCell = (jd: number) => {
+      const td = el('td', formatJd(jd));
+      td.append(el('span', lunarLabel(jd), 'sk-lunar'));
+      return td;
+    };
+
+    function render(input: PregnancyInput | null) {
+      const lmp = lmpJd(input);
+      if (lmp === null) { dated.hidden = true; return; }
+      const s = status(lmp, today);
+      const box = el('div', undefined, 'sk-stats');
+      if (s.current) {
+        box.append(
+          stat('Tuổi thai', `Tuần ${s.week} ngày ${s.day}`, `Tam cá nguyệt ${s.trimester}`),
+          stat('Ngày dự sinh', formatJd(s.edd, false), `${formatJd(s.edd).split(',')[0]} · ${lunarLabel(s.edd)}`),
+          stat('Còn lại', `${s.daysLeft} ngày`, `khoảng ${Math.floor(s.daysLeft / 7)} tuần ${s.daysLeft % 7} ngày`),
+        );
+      } else {
+        box.append(stat('Ngày dự sinh', formatJd(s.edd, false), lunarLabel(s.edd)));
+      }
+      const nodes: Node[] = [box];
+      if (s.current) {
+        const pct = Math.round(s.progress * 100);
+        const bar = el('div', undefined, 'sk-bar');
+        bar.setAttribute('role', 'progressbar');
+        bar.setAttribute('aria-valuemin', '0');
+        bar.setAttribute('aria-valuemax', '100');
+        bar.setAttribute('aria-valuenow', String(pct));
+        bar.setAttribute('aria-label', 'Hành trình thai kỳ');
+        const fill = el('span');
+        fill.style.width = `${pct}%`;
+        bar.append(fill);
+        const lab = el('div', undefined, 'sk-bar-label');
+        lab.append(el('span', `${pct}% hành trình`), el('span', `Kỳ kinh cuối ${formatJd(lmp, false)}`));
+        nodes.push(bar, lab);
+      } else {
+        nodes.push(el('span', s.days < 0 ? `Ngày đầu kỳ kinh cuối (${formatJd(lmp, false)}) còn ở phía trước, nên chưa tính được tuổi thai.` : 'Ngày đã nhập không hợp lệ hoặc thai kỳ đã kết thúc (quá 320 ngày). Hãy cập nhật ngày nếu bạn đang mang thai.'));
+      }
+      out.replaceChildren(...nodes);
+
+      const next = MILESTONES.find((m) => milestoneJd(lmp, m.week) >= today);
+      $('[data-checkups]').replaceChildren(...MILESTONES.map((m) => {
+        const jd = milestoneJd(lmp, m.week);
+        const tr = el('tr');
+        if (m === next) tr.className = 'sk-now';
+        const what = el('td');
+        what.append(el('b', m.title), el('br'), el('small', m.desc));
+        const when = dateCell(jd);
+        when.prepend(el('b', `Tuần ${m.week}`), el('br'));
+        const diff = jd - today;
+        when.append(jd < today ? el('span', 'Đã qua', 'sk-tag sk-tag-done') : m === next ? el('span', diff === 0 ? 'Hôm nay' : `Sắp tới · còn ${diff} ngày`, 'sk-tag sk-tag-soon') : el('span', `Còn ${diff} ngày`, 'sk-tag sk-tag-later'));
+        tr.append(when, what);
+        return tr;
+      }));
+      $('[data-weeks]').replaceChildren(...weeks(lmp).map((w) => {
+        const tr = el('tr');
+        const now = today >= w.start && today <= w.end;
+        if (now) tr.className = 'sk-now';
+        else if (w.end < today) tr.className = 'sk-past';
+        const note = el('td');
+        note.append(el('span', `TCN ${w.trimester}`, 'sk-tri'));
+        if (now) note.append(el('b', 'Tuần hiện tại. '));
+        w.milestones.forEach((m) => note.append(el('span', `${m.title}. `)));
+        if (w.start <= s.edd && s.edd <= w.end) note.append(el('b', 'Ngày dự sinh.'));
+        const range = el('td', `${formatJd(w.start, false)} – ${formatJd(w.end, false)}`);
+        range.append(el('span', `${lunarLabel(w.start)} – ${lunarLabel(w.end)}`, 'sk-lunar'));
+        tr.append(el('td', `Tuần ${w.week}`), range, note);
+        return tr;
+      }));
+      dated.hidden = false;
+    }
+
+    function apply(input: PregnancyInput | null, persist: boolean) {
+      if (input) {
+        (form!.querySelector<HTMLInputElement>(`input[name="mode"][value="${input.mode}"]`)!).checked = true;
+        dateInput.value = input.date;
+        syncLabel();
+      }
+      render(input);
+      clearBtn.hidden = !input;
+      if (persist && input) {
+        if (!canStore || !save(KEY, input)) say('Trình duyệt đang chặn lưu dữ liệu (chế độ ẩn danh hoặc đã tắt lưu trữ trang web). Kết quả vẫn hiển thị nhưng sẽ không được giữ lại.');
+        else say('');
+      }
+    }
+
+    const valid = (raw: unknown): PregnancyInput | null => {
+      const r = raw as PregnancyInput | null;
+      return r && (r.mode === 'lmp' || r.mode === 'edd') && isoToJd(r.date) !== null ? { mode: r.mode, date: r.date } : null;
+    };
+
+    if (!canStore) say('Trình duyệt đang chặn lưu dữ liệu, nên ngày bạn nhập sẽ không được giữ lại sau khi đóng trang. Công cụ vẫn tính bình thường.');
+    const saved = valid(load<unknown>(KEY, null));
+    if (saved) apply(saved, false);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (isoToJd(dateInput.value) === null) {
+        say('Vui lòng chọn một ngày hợp lệ.');
+        dateInput.focus();
+        return;
+      }
+      apply({ mode: mode(), date: dateInput.value }, true);
+    });
+    clearBtn.addEventListener('click', () => {
+      save(KEY, null);
+      dated.hidden = true;
+      clearBtn.hidden = true;
+      out.replaceChildren(el('span', 'Đã xoá ngày đã lưu trên thiết bị này.'));
+      dateInput.value = jdToIso(today);
+    });
+    $('[data-export]').addEventListener('click', () => {
+      const cur = valid(load<unknown>(KEY, null)) ?? (isoToJd(dateInput.value) !== null ? { mode: mode(), date: dateInput.value } : null);
+      exportBackup(KEY, cur);
+    });
+    $<HTMLInputElement>('[data-import]').addEventListener('change', async (e) => {
+      const input = e.target as HTMLInputElement;
+      const file = input.files?.[0];
+      input.value = '';
+      if (!file) return;
+      const data = valid(await readBackup<unknown>(file, KEY));
+      if (!data) { say('Tệp này không phải bản sao lưu “Tính ngày dự sinh” của Lịch Việt.'); return; }
+      apply(data, true);
+      if (canStore) say('Đã khôi phục từ tệp sao lưu.', true);
+    });
+  }
+</script>

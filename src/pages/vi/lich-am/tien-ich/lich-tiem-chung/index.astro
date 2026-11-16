@@ -1,0 +1,224 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { PREGNANCY_URL, TOOLS_URL, VACCINE_URL } from '../../../../../lib/lich/urls';
+import { FOOTER, HEADING, SOURCE, VACCINES, byAge } from '../../../../../lib/lich/vaccines';
+import '../../../../../styles/lich-suc-khoe.css';
+
+const t = vietnamToday();
+const groups = byAge();
+const takenOn = SOURCE.takenOn.split('-').reverse().join('/');
+const iso = `${t.year}-${String(t.month).padStart(2, '0')}-${String(t.day).padStart(2, '0')}`;
+
+const faq = [
+  ['Lịch tiêm chủng cho trẻ gồm những mũi nào?', `Bảng trên có ${VACCINES.length} mốc tiêm từ sơ sinh đến 4 tuổi, theo ứng dụng Lịch Việt: viêm gan B và BCG lúc sơ sinh; 5 trong 1 hoặc 6 trong 1 kèm bại liệt uống lúc 2, 3 và 4 tháng; sởi lúc 9 tháng; viêm não Nhật Bản, sởi – rubella và các mũi nhắc lại từ 12 tháng trở đi, cùng một số vắc xin dịch vụ như rota, phế cầu, cúm.`],
+  ['Tiêm chủng mở rộng (TCMR) là gì?', 'Tiêm chủng mở rộng là chương trình của Bộ Y tế, tiêm miễn phí các vắc xin bắt buộc cho trẻ tại trạm y tế xã, phường. Các vắc xin ghi “dịch vụ” không thuộc chương trình và được tiêm có trả phí tại các cơ sở tiêm chủng. Lịch cụ thể ở từng địa phương có thể khác, hãy theo hướng dẫn của trạm y tế nơi bé đăng ký.'],
+  ['Ngày tiêm dự kiến được tính thế nào?', 'Công cụ lấy ngày sinh của bé cộng số tháng tuổi của từng mũi, giữ nguyên ngày trong tháng (nếu tháng đó ngắn hơn thì lấy ngày cuối tháng). Ví dụ bé sinh ngày 31/01 thì mốc 1 tháng tuổi là 28 hoặc 29/02. Đây là ngày sớm nhất nên tiêm; bác sĩ sẽ hẹn ngày cụ thể.'],
+  ['Bé bị trễ lịch tiêm thì phải làm sao?', 'Hãy đưa bé đi tiêm càng sớm càng tốt và hỏi bác sĩ về lịch tiêm bù phù hợp. Công cụ đánh dấu “quá hạn” cho các mũi đã qua ngày mà bạn chưa đánh dấu đã tiêm, để bạn dễ nhớ.'],
+  ['Lịch này có thay thế sổ tiêm chủng không?', 'Không. Đây là công cụ nhắc lịch tham khảo. Sổ tiêm chủng (hoặc hồ sơ tiêm chủng điện tử) và chỉ định của bác sĩ mới là căn cứ chính thức về các mũi bé đã tiêm và cần tiêm.'],
+  ['Thông tin của bé được lưu ở đâu?', 'Ngày sinh, tên gọi và các mũi đã đánh dấu chỉ lưu trong trình duyệt trên thiết bị này, không gửi đi đâu. Bạn có thể tải tệp sao lưu JSON để chuyển sang thiết bị khác.'],
+];
+const title = 'Lịch tiêm chủng cho trẻ theo ngày sinh, từ sơ sinh đến 4 tuổi';
+const description = 'Nhập ngày sinh của bé để xem lịch tiêm chủng cho trẻ từ sơ sinh đến 4 tuổi, ngày tiêm dự kiến kèm âm lịch và đánh dấu mũi đã tiêm. Tham khảo TCMR.';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Lịch tiêm chủng cho trẻ', url: `https://deeplyai.app${VACCINE_URL}`, applicationCategory: 'HealthApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+<LichShell title={title} description={description} path={VACCINE_URL} crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Lịch tiêm chủng' }]} jsonLd={jsonLd} active="tools">
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch tiêm chủng cho trẻ</h1>
+      <p>Nhập ngày sinh của bé để có ngày tiêm dự kiến của từng mũi, kèm ngày âm lịch, và đánh dấu những mũi bé đã tiêm. Mọi thứ được lưu ngay trên thiết bị của bạn.</p>
+    </header>
+
+    <div class="sk-caveat sk-tool" role="note">
+      <p><b>Lưu ý quan trọng:</b> lịch dưới đây chỉ để tham khảo và nhắc lịch. Hãy luôn làm theo chỉ định của bác sĩ và lịch của Chương trình Tiêm chủng mở rộng (TCMR) tại trạm y tế nơi bé đăng ký.</p>
+      <p>Nội dung lấy nguyên văn từ ứng dụng Lịch Việt (cập nhật {takenOn}) và chưa được chuyên gia y tế thẩm định lại.</p>
+    </div>
+
+    <form class="la-tool sk-tool" data-vac novalidate>
+      <div class="sk-row">
+        <label>Ngày sinh của bé<input type="date" name="dob" required max="2100-12-31" min="2000-01-01" value={iso} /></label>
+        <label>Tên gọi của bé <span class="sk-hint">(không bắt buộc)</span><input type="text" name="name" maxlength="60" autocomplete="off" /></label>
+      </div>
+      <div class="sk-actions">
+        <button type="submit">Xem lịch tiêm</button>
+        <button type="button" class="sk-btn-2 sk-btn-sm" data-export>Tải tệp sao lưu</button>
+        <label class="sk-btn-2 sk-btn-sm sk-file">Khôi phục từ tệp<input type="file" accept="application/json,.json" data-import /></label>
+        <button type="button" class="sk-btn-2 sk-btn-sm" data-clear hidden>Xoá dữ liệu của bé</button>
+      </div>
+      <p class="sk-msg" data-msg role="status" hidden></p>
+      <div class="la-result" data-out aria-live="polite">
+        <span>Chọn ngày sinh rồi bấm “Xem lịch tiêm”. Cần bật JavaScript để tính ngày theo ngày sinh của bé; bảng lịch theo tháng tuổi ở bên dưới luôn xem được.</span>
+      </div>
+    </form>
+
+    <section class="la-block" data-dated hidden aria-labelledby="lich-cua-be">
+      <h2 id="lich-cua-be" class="la-h2" data-dated-title>Lịch tiêm của bé</h2>
+      <div class="la-table-wrap">
+        <table class="la-table sk-table">
+          <thead><tr><th scope="col">Tuổi và ngày dự kiến</th><th scope="col">Vắc xin</th></tr></thead>
+          <tbody data-rows></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="lich-theo-tuoi">
+      <h2 id="lich-theo-tuoi" class="la-h2">{HEADING}</h2>
+      <p class="la-lead">{VACCINES.length} mốc tiêm theo tháng tuổi của bé, từ sơ sinh đến 4 tuổi, theo ứng dụng Lịch Việt. Mục ghi “dịch vụ” là vắc xin khuyến nghị ngoài chương trình miễn phí.</p>
+      <div class="la-table-wrap">
+        <table class="la-table sk-table">
+          <thead><tr><th scope="col">Tuổi</th><th scope="col">Vắc xin</th><th scope="col">Ghi chú</th></tr></thead>
+          <tbody>
+            {groups.map((g) => g.items.map((v, i) => (
+              <tr>
+                {i === 0 && <th scope="rowgroup" rowspan={g.items.length}>{g.label}</th>}
+                <td>{v.title}</td>
+                <td>{v.note || '–'}</td>
+              </tr>
+            )))}
+          </tbody>
+        </table>
+      </div>
+      <div class="sk-caveat la-mt">
+        <p>{FOOTER.replace(/ Nhắc trước.*$/, '')}</p>
+        <p>Danh mục vắc xin, số mũi và độ tuổi tiêm có thể thay đổi theo từng thời kỳ và địa phương. Bảng này giữ nguyên nội dung của ứng dụng Lịch Việt tại thời điểm {takenOn}; khi có khác biệt, lịch của cơ sở y tế và bác sĩ là căn cứ đúng.</p>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+      <p class="la-more">Đang mang thai? <a href={PREGNANCY_URL}>Tính ngày dự sinh và lịch khám thai</a>.</p>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+  import { exportBackup, load, readBackup, save, storageAvailable } from '../../../../../lib/lich/store';
+  import { formatJd, isoToJd, jdToIso, lunarLabel } from '../../../../../lib/lich/pregnancy';
+  import { age, ageLabel, emptyState, sanitize, schedule, type VaccineState } from '../../../../../lib/lich/vaccines';
+
+  const KEY = 'vaccines';
+  const form = document.querySelector<HTMLFormElement>('[data-vac]');
+  if (form) {
+    const t = vietnamToday();
+    const today = jdFromDate(t.day, t.month, t.year);
+    const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
+    const out = $<HTMLElement>('[data-out]');
+    const msg = $<HTMLElement>('[data-msg]');
+    const dated = $<HTMLElement>('[data-dated]');
+    const dobInput = form.elements.namedItem('dob') as HTMLInputElement;
+    const nameInput = form.elements.namedItem('name') as HTMLInputElement;
+    const clearBtn = $<HTMLButtonElement>('[data-clear]');
+    const canStore = storageAvailable();
+    let state: VaccineState = sanitize(load<unknown>(KEY, null)) ?? emptyState();
+
+    const el = (tag: string, text?: string, cls?: string) => {
+      const e = document.createElement(tag);
+      if (text !== undefined) e.textContent = text;
+      if (cls) e.className = cls;
+      return e;
+    };
+    const say = (text: string, ok = false) => {
+      msg.textContent = text;
+      msg.classList.toggle('sk-ok', ok);
+      msg.hidden = !text;
+    };
+    const BLOCKED = 'Trình duyệt đang chặn lưu dữ liệu (chế độ ẩn danh hoặc đã tắt lưu trữ trang web), nên lịch và các mũi đã đánh dấu sẽ không được giữ lại sau khi đóng trang.';
+    const persist = () => { if (!canStore || !save(KEY, state)) say(BLOCKED); };
+    const TAGS = { done: ['Đã tiêm', 'sk-tag-done'], overdue: ['Quá hạn', 'sk-tag-overdue'], soon: ['Sắp tới', 'sk-tag-soon'], later: ['Chưa đến', 'sk-tag-later'] } as const;
+
+    function render() {
+      const dob = isoToJd(state.dob);
+      clearBtn.hidden = !state.dob;
+      if (dob === null) { dated.hidden = true; return; }
+      dobInput.value = state.dob;
+      nameInput.value = state.name ?? '';
+      const who = state.name ? state.name : 'Bé';
+      const a = age(dob, today);
+      const rows = schedule(state, dob, today);
+      const next = rows.find((r) => r.status !== 'done' && r.due >= today);
+      const overdue = rows.filter((r) => r.status === 'overdue').length;
+      const done = rows.filter((r) => r.status === 'done').length;
+
+      const head = el('b', a ? `${who} ${a.years} tuổi ${a.months} tháng ${a.days} ngày` : `${who} sinh ngày ${formatJd(dob, false)}`);
+      const lines: Node[] = [head, el('span', `Sinh ${formatJd(dob)} (${lunarLabel(dob)}). Đã đánh dấu ${done}/${rows.length} mốc tiêm${overdue ? `, ${overdue} mốc đã qua ngày chưa đánh dấu` : ''}.`)];
+      if (next) lines.push(el('span', `Mốc tiếp theo: ${ageLabel(next.months)}, ${formatJd(next.due)} (${lunarLabel(next.due)}), còn ${next.due - today} ngày – ${next.title}.`));
+      out.replaceChildren(...lines);
+      $('[data-dated-title]').textContent = state.name ? `Lịch tiêm của ${state.name}` : 'Lịch tiêm của bé';
+
+      $('[data-rows]').replaceChildren(...rows.map((r) => {
+        const tr = el('tr');
+        if (r === next) tr.className = 'sk-now';
+        const date = el('td');
+        date.append(el('b', ageLabel(r.months)), el('br'), formatJd(r.due), el('span', lunarLabel(r.due), 'sk-lunar'));
+        const what = el('td');
+        what.append(el('span', r.title));
+        if (r.note) what.append(el('br'), el('small', r.note));
+        const [label, cls] = TAGS[r.status];
+        date.append(el('span', label, `sk-tag ${cls}`));
+        if (r.doneOn) date.append(el('small', `đánh dấu ${formatJd(isoToJd(r.doneOn)!, false)}`, 'sk-lunar'));
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.checked = r.status === 'done';
+        box.dataset.id = r.id;
+        const lab = el('label', undefined, 'sk-check');
+        lab.append(box, el('span', 'Đã tiêm'));
+        box.setAttribute('aria-label', `Đã tiêm: ${ageLabel(r.months)} – ${r.title}`);
+        what.append(el('br'), lab);
+        tr.append(date, what);
+        return tr;
+      }));
+      dated.hidden = false;
+    }
+
+    $('[data-rows]').addEventListener('change', (e) => {
+      const box = e.target as HTMLInputElement;
+      const id = box.dataset.id;
+      if (!id) return;
+      if (box.checked) state.done[id] = jdToIso(today);
+      else delete state.done[id];
+      persist();
+      render();
+      document.querySelector<HTMLInputElement>(`[data-rows] input[data-id="${id}"]`)?.focus();
+    });
+
+    if (!canStore) say(BLOCKED);
+    render();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (isoToJd(dobInput.value) === null) { say('Vui lòng chọn ngày sinh hợp lệ.'); dobInput.focus(); return; }
+      if (isoToJd(dobInput.value)! > today) { say('Ngày sinh không được ở sau hôm nay.'); dobInput.focus(); return; }
+      say('');
+      state = { ...state, dob: dobInput.value, name: nameInput.value.trim().slice(0, 60) };
+      persist();
+      render();
+    });
+    clearBtn.addEventListener('click', () => {
+      if (!confirm('Xoá ngày sinh và các mũi đã đánh dấu khỏi thiết bị này?')) return;
+      state = emptyState();
+      save(KEY, state);
+      dated.hidden = true;
+      clearBtn.hidden = true;
+      nameInput.value = '';
+      out.replaceChildren(el('span', 'Đã xoá dữ liệu của bé trên thiết bị này.'));
+    });
+    $('[data-export]').addEventListener('click', () => exportBackup(KEY, state));
+    $<HTMLInputElement>('[data-import]').addEventListener('change', async (e) => {
+      const input = e.target as HTMLInputElement;
+      const file = input.files?.[0];
+      input.value = '';
+      if (!file) return;
+      const data = sanitize(await readBackup<unknown>(file, KEY));
+      if (!data) { say('Tệp này không phải bản sao lưu “Lịch tiêm chủng” của Lịch Việt.'); return; }
+      state = data;
+      say('Đã khôi phục từ tệp sao lưu.', true);
+      persist();
+      render();
+    });
+  }
+</script>

@@ -1,0 +1,69 @@
+/* Health and work tools in Lịch âm › Tiện ích: pregnancy, vaccination, shift calendar. Builds on lich.css. */
+.sk-tool { max-width: 760px; margin-bottom: 32px; }
+.sk-tool input[type='text'], .sk-tool select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; }
+.sk-tool input[type='color'] { width: 48px; min-height: 44px; padding: 2px; border: 1px solid var(--line); border-radius: 10px; background: #fff; cursor: pointer; }
+.sk-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; }
+.sk-row > label { flex: 1 1 200px; }
+.sk-row > label input, .sk-row > label select { width: 100%; }
+.sk-hint { color: var(--ink-2); font-size: 14px; font-weight: 400; }
+.sk-btn-2, .la-tool .sk-btn-2 { min-height: 44px; padding: 0 18px; border: 1px solid var(--la-red); border-radius: 999px; background: transparent; color: var(--la-red); font: 600 15px var(--body); cursor: pointer; }
+.sk-btn-sm, .la-tool .sk-btn-sm { min-height: 36px; padding: 0 12px; font-size: 14px; }
+.sk-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sk-file { position: relative; }
+.sk-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.sk-file:focus-within { outline: 2px solid var(--signal); outline-offset: 3px; }
+.sk-msg { padding: 10px 14px; border-radius: 12px; background: #fff3cd; font-size: 15px; }
+.sk-msg[hidden], .sk-hide[hidden] { display: none; }
+.sk-ok { background: var(--la-good-bg); color: var(--la-green); }
+
+/* Stats */
+.sk-stats { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+.sk-stat { display: grid; gap: 2px; padding: 12px 14px; border-radius: 14px; background: #fff; }
+.sk-stat span { color: var(--ink-2); font-size: 14px; }
+.sk-stat b { font-family: var(--display); font-size: 24px; line-height: 1.15; color: var(--la-red); }
+.sk-stat small { color: var(--ink-2); font-size: 13px; }
+.sk-bar { height: 14px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+.sk-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #e58aa0, var(--la-red)); }
+.sk-bar-label { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--ink-2); }
+
+/* Timelines and tables */
+.sk-table td:first-child { white-space: nowrap; }
+.sk-table tr.sk-now td { background: #fff4f1; }
+.sk-table tr.sk-now td:first-child { box-shadow: inset 3px 0 0 var(--la-red); }
+.sk-table .sk-past { color: var(--ink-2); }
+.sk-lunar { display: block; color: var(--ink-2); font-size: 13px; }
+.sk-tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.sk-tag-done { background: var(--la-good-bg); color: var(--la-green); }
+.sk-tag-overdue { background: var(--la-bad-bg); color: var(--la-red); }
+.sk-tag-soon { background: #fdeccd; color: #7a4b00; }
+.sk-tag-later { background: var(--paper-2); color: var(--ink-2); }
+.sk-tri { margin-right: 4px; color: var(--ink-2); font-size: 13px; }
+.sk-check { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.sk-check input { width: 20px; height: 20px; accent-color: var(--la-green); }
+.sk-weeks summary { cursor: pointer; color: var(--la-red); font-weight: 600; padding: 8px 0; }
+.sk-caveat { padding: 14px 16px; border-left: 4px solid var(--la-gold); border-radius: 0 14px 14px 0; background: #fff8e8; font-size: 15px; }
+.sk-caveat p + p { margin-top: 6px; }
+
+/* Shift calendar */
+.sk-cycle { display: flex; flex-wrap: wrap; gap: 8px; }
+.sk-slot { display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; }
+.sk-slot b { font-size: 13px; color: var(--ink-2); }
+.sk-slot select { min-height: 36px; padding: 0 6px; border: 0; background: transparent; font: 600 15px var(--body); }
+.sk-slot button, .sk-type button { width: 36px; height: 36px; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: var(--paper-2); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
+.sk-types { display: grid; gap: 8px; }
+.sk-type { display: flex; align-items: center; gap: 8px; }
+.sk-type input[type='text'] { flex: 1 1 auto; min-width: 0; }
+.sk-pill { display: block; margin-top: auto; padding: 1px 4px; border-radius: 6px; font-size: 12px; font-weight: 700; line-height: 1.3; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sk-grid td { height: 84px; }
+.sk-grid td.sk-today { border-color: var(--la-red); background: #fff; }
+.sk-nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sk-nav h3 { font-size: 22px; }
+.sk-sum { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 14px; }
+.sk-sum span { display: inline-flex; align-items: center; gap: 6px; }
+.sk-sum i { width: 12px; height: 12px; border-radius: 4px; }
+@media (max-width: 600px) {
+  .sk-grid td { height: 64px; }
+  .sk-pill { font-size: 10px; padding: 1px 2px; }
+  .sk-table th, .sk-table td { padding: 8px; }
+}
+.sk-file { display: inline-flex; align-items: center; }

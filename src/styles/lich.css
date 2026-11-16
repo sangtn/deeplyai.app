@@ -310,3 +310,43 @@
 .la-culture a { display: grid; gap: 4px; padding: 18px; }
 .la-culture b { font-family: var(--display); font-size: 22px; }
 .la-culture span { font-weight: 400; color: var(--ink-2); }
+
+/* Personal events */
+.la-tool select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; }
+.la-tool input[type='text'] { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; }
+.la-upcoming li > div:first-child { display: grid; gap: 2px; min-width: 0; }
+.la-upcoming li > div:first-child span { font-size: 14px; color: var(--ink-2); }
+.la-upcoming li > div:first-child a { font-size: 14px; color: var(--la-red); }
+.la-ev-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; }
+.la-link-btn { padding: 0; border: 0; background: none; color: var(--ink-2); font: 14px var(--body); text-decoration: underline; cursor: pointer; }
+.la-ev-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.la-file { display: inline-flex; align-items: center; cursor: pointer; }
+.la-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; background: var(--la-red); color: #fff !important; font-weight: 600; font-size: 15px; text-decoration: none; }
+a.la-copy { display: inline-flex; align-items: center; text-decoration: none; }
+.la-feed-url { margin-top: 10px; overflow-wrap: anywhere; font-size: 13px; color: var(--ink-2); }
+
+/* Sheet styles: Hiện đại (default), Tờ lịch, Sơn mài */
+.la-sheet-col { display: grid; gap: 10px; align-content: start; }
+.la-style { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; }
+.la-style-row { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--paper-2); }
+.la-style-row button { padding: 6px 12px; border: 0; border-radius: 999px; background: transparent; font: 600 14px var(--body); color: var(--ink-2); cursor: pointer; }
+.la-style-row button[aria-pressed='true'] { background: var(--la-red); color: #fff; }
+.la-style-art { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.la-style-art select { min-height: 34px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font: inherit; }
+.la-style-art[hidden] { display: none; }
+.la-sheet > * { position: relative; }
+.la-sheet .la-sheet-art { position: absolute; inset: 44px 0 0; z-index: 0; background: var(--la-art, none) center 70% / 92% auto no-repeat; opacity: 0; pointer-events: none; }
+.la-sheet[data-style='paper'] { background: #fbf4e4; box-shadow: 0 2px 0 #e7dcc4, 0 4px 0 #f5ecd8, 0 18px 40px -20px #3a1a0f55; }
+.la-sheet[data-style='paper'] .la-sheet-art { opacity: .26; }
+.la-sheet[data-style='paper'] .la-sheet-cc div { background: #fffaf0cc; }
+.la-sheet[data-style='lacquer'] { background: radial-gradient(120% 90% at 50% 20%, #2a1410, #120806); color: #f1d9a4; box-shadow: inset 0 0 0 2px #b8862b, 0 18px 40px -20px #000; }
+.la-sheet[data-style='lacquer'] header { background: linear-gradient(90deg, #7d1810, #a8231b, #7d1810); border-bottom: 2px solid #b8862b; }
+.la-sheet[data-style='lacquer'] .la-sheet-art { opacity: .11; filter: sepia(1) saturate(2) hue-rotate(-10deg); }
+.la-sheet[data-style='lacquer'] .la-sheet-day { color: #e0453a; text-shadow: 0 2px 0 #00000080; }
+.la-sheet[data-style='lacquer'] .la-sheet-wd { color: #e8c27a; }
+.la-sheet[data-style='lacquer'] .la-sheet-lunar, .la-sheet[data-style='lacquer'] .la-sheet-lunar b { color: #f1d9a4; }
+.la-sheet[data-style='lacquer'] .la-sheet-cc div { background: #ffffff10; border: 1px solid #b8862b55; }
+.la-sheet[data-style='lacquer'] .la-sheet-cc dt { color: #c9ad78; }
+.la-sheet[data-style='lacquer'] .la-sheet-badge { background: #b8862b33; color: #f1d9a4; }
+.la-install { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; padding: 16px 18px; border-radius: 16px; background: var(--la-good-bg); }
+.la-install[hidden], [data-install-ios][hidden] { display: none; }

@@ -1,0 +1,449 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { FINANCE_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, QUICK_AMOUNTS, formatVnd, isoDate, quickLabel } from '../../../../../lib/lich/finance';
+import '../../../../../styles/lich-thu-chi.css';
+
+const t = vietnamToday();
+const todayIso = isoDate(t.day, t.month, t.year);
+
+const steps = [
+  ['Chọn loại và nhập số tiền', 'Chọn Chi hoặc Thu, gõ số tiền (dấu chấm phân cách hàng nghìn tự thêm) hoặc bấm nhanh 20k, 50k, 100k…'],
+  ['Chọn danh mục, ngày và ghi chú', 'Có 11 danh mục chi như Ăn uống, Đi lại, Hoá đơn và 5 danh mục thu như Lương, Thưởng. Ngày âm lịch hiện ngay bên cạnh.'],
+  ['Xem tổng kết tháng', 'Đổi tháng bằng hai mũi tên. Trang tính tổng thu, tổng chi, số còn lại và tỉ lệ từng danh mục.'],
+  ['Xuất Excel hoặc sao lưu', 'Xuất CSV để mở bằng Excel, Google Sheets; sao lưu JSON để chuyển sang máy khác.'],
+];
+
+const faq = [
+  ['Dữ liệu thu chi lưu ở đâu?', 'Mọi khoản thu chi chỉ lưu trong trình duyệt trên máy bạn (localStorage). Trang không có tài khoản, không gửi dữ liệu lên máy chủ. Nếu xoá dữ liệu duyệt web hoặc dùng cửa sổ ẩn danh, sổ sẽ mất, nên hãy sao lưu định kỳ.'],
+  ['Xuất sổ thu chi ra Excel thế nào?', 'Bấm "Xuất CSV" để tải file ThuChi-năm-tháng.csv của tháng đang xem, gồm ngày dương, ngày âm, loại, danh mục, số tiền và ghi chú. File dùng mã UTF-8 có BOM nên Excel hiển thị đúng tiếng Việt; mở trực tiếp hoặc nhập vào Google Sheets.'],
+  ['Chuyển sổ sang điện thoại hoặc máy khác được không?', 'Được. Bấm "Sao lưu JSON" để tải file sao lưu, rồi trên máy kia mở trang này và bấm "Khôi phục từ file". Các khoản đã có sẽ được gộp, không bị nhân đôi.'],
+  ['Có danh mục nào để quản lý chi tiêu?', `Chi: ${EXPENSE_CATEGORIES.map((c) => c.label).join(', ')}. Thu: ${INCOME_CATEGORIES.map((c) => c.label).join(', ')}. Đây cũng là các danh mục trong ứng dụng Lịch Việt.`],
+  ['Vì sao sổ thu chi có cả ngày âm lịch?', 'Nhiều khoản chi của gia đình Việt gắn với lịch âm như rằm, mùng một, giỗ, Tết hay đám hiếu hỉ. Xem ngày âm bên cạnh giúp đối chiếu các khoản này dễ hơn.'],
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Sổ thu chi', url: `https://deeplyai.app${FINANCE_URL}`, applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'HowTo', name: 'Cách ghi sổ thu chi', step: steps.map(([name, text], i) => ({ '@type': 'HowToStep', position: i + 1, name, text })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+<LichShell
+  title="Sổ thu chi online – Quản lý chi tiêu cá nhân, xuất Excel"
+  description="Sổ thu chi miễn phí giúp quản lý chi tiêu hằng tháng: ghi khoản thu, chi theo danh mục, xem tổng kết, ngày âm lịch, xuất Excel. Dữ liệu chỉ lưu trên máy bạn."
+  path={FINANCE_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Thu chi' }]}
+  active="tools"
+  jsonLd={jsonLd}
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Sổ thu chi</h1>
+      <p>Ghi lại từng khoản thu, chi trong ngày, xem tháng này đã tiêu bao nhiêu và vào việc gì. Không cần tài khoản, dữ liệu nằm trong trình duyệt của bạn.</p>
+    </header>
+
+    <section class="tc" data-tc aria-label="Sổ thu chi">
+      <p class="tc-alert" data-tc-warn role="alert" hidden></p>
+      <noscript><p class="tc-alert">Sổ thu chi cần bật JavaScript để ghi và lưu giao dịch.</p></noscript>
+
+      <div class="tc-month">
+        <button type="button" class="tc-icon-btn" data-tc-prev aria-label="Tháng trước">‹</button>
+        <h2 class="tc-month-title" data-tc-month aria-live="polite">Tháng {t.month}/{t.year}</h2>
+        <button type="button" class="tc-icon-btn" data-tc-next aria-label="Tháng sau">›</button>
+        <button type="button" class="tc-link-btn" data-tc-now hidden>Về tháng này</button>
+      </div>
+
+      <dl class="tc-sum">
+        <div class="tc-sum-in"><dt>Thu</dt><dd data-tc-income>{formatVnd(0)}</dd></div>
+        <div class="tc-sum-out"><dt>Chi</dt><dd data-tc-expense>{formatVnd(0)}</dd></div>
+        <div class="tc-sum-bal"><dt>Còn lại</dt><dd data-tc-balance>{formatVnd(0)}</dd></div>
+      </dl>
+
+      <div class="tc-grid">
+        <form class="la-tool tc-form" data-tc-form novalidate aria-labelledby="tc-form-title">
+          <h3 id="tc-form-title" class="tc-h3" data-tc-form-title>Thêm giao dịch</h3>
+          <div class="tc-type" role="radiogroup" aria-label="Loại giao dịch">
+            <label class="tc-type-out"><input type="radio" name="type" value="expense" checked /><span>Chi</span></label>
+            <label class="tc-type-in"><input type="radio" name="type" value="income" /><span>Thu</span></label>
+          </div>
+          <label>Số tiền (₫)
+            <input class="tc-amount" name="amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0" aria-describedby="tc-amount-err" required />
+          </label>
+          <p id="tc-amount-err" class="tc-err" data-tc-amount-err hidden>Nhập số tiền lớn hơn 0.</p>
+          <div class="tc-quick" role="group" aria-label="Cộng nhanh số tiền">
+            {QUICK_AMOUNTS.map((v) => <button type="button" data-tc-quick={v} aria-label={`Cộng ${formatVnd(v)}`}>+{quickLabel(v)}</button>)}
+          </div>
+          <fieldset class="tc-cats">
+            <legend>Danh mục</legend>
+            <div class="tc-cat-grid" data-tc-cats>
+              {EXPENSE_CATEGORIES.map((c, i) => (
+                <label class="tc-cat" style={`--tc-c:${c.color}`}><input type="radio" name="category" value={c.id} checked={i === 0} /><span aria-hidden="true">{c.icon}</span>{c.label}</label>
+              ))}
+            </div>
+          </fieldset>
+          <label>Ngày
+            <input name="date" type="date" value={todayIso} required aria-describedby="tc-lunar" />
+          </label>
+          <p id="tc-lunar" class="tc-hint" data-tc-lunar></p>
+          <label>Ghi chú
+            <input name="note" type="text" maxlength="200" placeholder="VD: Cà phê với bạn" autocomplete="off" />
+          </label>
+          <div class="tc-actions">
+            <button type="submit" data-tc-submit>Lưu</button>
+            <button type="button" class="tc-btn-ghost" data-tc-cancel hidden>Huỷ</button>
+            <button type="button" class="tc-btn-danger" data-tc-delete hidden>Xoá</button>
+          </div>
+          <p class="tc-status" data-tc-status role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="tc-side">
+          <section class="tc-card" aria-labelledby="tc-cat-title">
+            <h3 id="tc-cat-title" class="tc-h3">Theo danh mục</h3>
+            <p class="tc-empty" data-tc-cat-empty>Chưa có số liệu trong tháng này.</p>
+            <ul class="tc-bars" data-tc-bars></ul>
+          </section>
+
+          <section class="tc-card" aria-labelledby="tc-list-title">
+            <div class="tc-list-head">
+              <h3 id="tc-list-title" class="tc-h3">Giao dịch</h3>
+              <label class="tc-filter">
+                <span class="tc-sr">Lọc theo danh mục</span>
+                <select data-tc-filter>
+                  <option value="">Tất cả danh mục</option>
+                  <optgroup label="Chi">{EXPENSE_CATEGORIES.map((c) => <option value={c.id}>{c.icon} {c.label}</option>)}</optgroup>
+                  <optgroup label="Thu">{INCOME_CATEGORIES.map((c) => <option value={c.id}>{c.icon} {c.label}</option>)}</optgroup>
+                </select>
+              </label>
+            </div>
+            <p class="tc-empty" data-tc-list-empty>Chưa có giao dịch trong tháng này. Thêm khoản thu hoặc chi ở biểu mẫu.</p>
+            <div data-tc-days></div>
+          </section>
+
+          <section class="tc-card tc-data" aria-labelledby="tc-data-title">
+            <h3 id="tc-data-title" class="tc-h3">Xuất và sao lưu</h3>
+            <div class="tc-data-btns">
+              <button type="button" data-tc-csv>Xuất CSV (Excel)</button>
+              <button type="button" data-tc-backup>Sao lưu JSON</button>
+              <label class="tc-file">Khôi phục từ file<input type="file" accept="application/json,.json" data-tc-import /></label>
+            </div>
+            <p class="tc-hint">CSV xuất các khoản của tháng đang xem. Bản sao lưu chứa toàn bộ sổ.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="cach-dung">
+      <h2 id="cach-dung" class="la-h2">Cách ghi sổ thu chi</h2>
+      <ol class="tc-steps">
+        {steps.map(([name, text]) => <li><b>{name}</b><span>{text}</span></li>)}
+      </ol>
+    </section>
+
+    <section class="la-block" aria-labelledby="danh-muc">
+      <h2 id="danh-muc" class="la-h2">Danh mục quản lý chi tiêu</h2>
+      <p class="la-lead">Chia khoản chi theo nhóm giúp thấy rõ tiền đi đâu: ăn uống, hoá đơn điện nước hay hiếu hỉ thường chiếm phần lớn ngân sách gia đình.</p>
+      <div class="tc-cat-lists">
+        <div>
+          <h3 class="tc-h3">Khoản chi</h3>
+          <ul class="tc-chips">{EXPENSE_CATEGORIES.map((c) => <li><span aria-hidden="true">{c.icon}</span> {c.label}</li>)}</ul>
+        </div>
+        <div>
+          <h3 class="tc-h3">Khoản thu</h3>
+          <ul class="tc-chips">{INCOME_CATEGORIES.map((c) => <li><span aria-hidden="true">{c.icon}</span> {c.label}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { solarToLunar, vietnamToday } from '../../../../../components/lich-viet/lunar';
+  import { download, exportBackup, load, readBackup, save, storageAvailable, uid } from '../../../../../lib/lich/store';
+  import {
+    FINANCE_KEY, buildCsv, categoriesFor, categoryOf, csvFilename, emptyFinance, formatVnd, groupDigits, isoDate, merge, parseAmount,
+    parseIso, sanitize, shiftMonth, signed, summarize, weekdayOf, type FinanceData, type Transaction, type TxType,
+  } from '../../../../../lib/lich/finance';
+
+  const root = document.querySelector<HTMLElement>('[data-tc]');
+  if (root) {
+    const $ = <T extends Element = HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const el = <K extends keyof HTMLElementTagNameMap>(tag: K, props: Partial<HTMLElementTagNameMap[K]> & { cls?: string } = {}, ...kids: (Node | string)[]) => {
+      const node = document.createElement(tag);
+      // aria* keys become attributes (ARIA property reflection is not universal yet).
+      for (const [k, v] of Object.entries(props)) {
+        if (k === 'cls') node.className = String(v);
+        else if (k.startsWith('aria')) node.setAttribute(`aria-${k.slice(4).toLowerCase()}`, String(v));
+        else (node as unknown as Record<string, unknown>)[k] = v;
+      }
+      node.append(...kids);
+      return node;
+    };
+
+    const lunarLabel = (iso: string) => {
+      const { y, m, d } = parseIso(iso);
+      const l = solarToLunar(d, m, y);
+      return `${l.day}/${l.month}${l.leap ? ' nhuận' : ''} âm`;
+    };
+    const dm = (iso: string) => {
+      const { m, d } = parseIso(iso);
+      return `${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}`;
+    };
+
+    // ---- State ----
+    const warn = $('[data-tc-warn]');
+    const showWarn = (text: string) => { warn.textContent = text; warn.hidden = false; };
+    const canStore = storageAvailable();
+    if (!canStore) showWarn('Trình duyệt đang chặn lưu dữ liệu (cửa sổ ẩn danh hoặc đã tắt lưu trữ trang web). Bạn vẫn ghi được, nhưng sổ sẽ mất khi đóng trang. Hãy xuất CSV hoặc sao lưu JSON trước khi rời đi.');
+    const stored = load<FinanceData>(FINANCE_KEY, emptyFinance());
+    let items: Transaction[] = sanitize(stored) ?? [];
+    const persist = () => {
+      if (!canStore) return;
+      if (!save<FinanceData>(FINANCE_KEY, { version: 1, items })) showWarn('Không lưu được vào trình duyệt (bộ nhớ đầy hoặc bị chặn). Hãy sao lưu JSON để giữ dữ liệu.');
+    };
+
+    // "Today" in Vietnam time at the moment of the visit (the built page may be days old).
+    const vt = vietnamToday();
+    const todayIso = isoDate(vt.day, vt.month, vt.year);
+    let view = { m: parseIso(todayIso).m, y: parseIso(todayIso).y };
+    let filter = '';
+    let editingId: string | null = null;
+
+    // ---- Form ----
+    const form = $<HTMLFormElement>('[data-tc-form]');
+    const f = (name: string) => form.elements.namedItem(name) as HTMLInputElement;
+    const amountInput = f('amount');
+    const dateInput = f('date');
+    const status = $('[data-tc-status]');
+    const amountErr = $('[data-tc-amount-err]');
+    const currentType = (): TxType => ((form.querySelector<HTMLInputElement>('input[name="type"]:checked')?.value ?? 'expense') as TxType);
+
+    const renderCats = (type: TxType, selected?: string) => {
+      const list = categoriesFor(type);
+      const pick = list.some((c) => c.id === selected) ? selected : list[0].id;
+      $('[data-tc-cats]').replaceChildren(...list.map((c) => {
+        const input = el('input', { type: 'radio', name: 'category', value: c.id, checked: c.id === pick });
+        const label = el('label', { cls: 'tc-cat' }, input, el('span', { ariaHidden: 'true' }, c.icon), c.label);
+        label.style.setProperty('--tc-c', c.color);
+        return label;
+      }));
+    };
+    const setType = (type: TxType) => {
+      form.querySelector<HTMLInputElement>(`input[name="type"][value="${type}"]`)!.checked = true;
+    };
+    const updateLunar = () => {
+      const v = dateInput.value;
+      $('[data-tc-lunar]').textContent = /^\d{4}-\d{2}-\d{2}$/.test(v) ? `${weekdayOf(v)} · ngày ${lunarLabel(v).replace(' âm', '')} âm lịch` : '';
+    };
+    const formatAmountField = () => {
+      const n = parseAmount(amountInput.value);
+      amountInput.value = n ? groupDigits(n) : '';
+      if (n) { amountErr.hidden = true; amountInput.removeAttribute('aria-invalid'); }
+    };
+    const defaultDate = () => {
+      const { m, y } = parseIso(todayIso);
+      return m === view.m && y === view.y ? todayIso : `${view.y}-${String(view.m).padStart(2, '0')}-01`;
+    };
+    const resetForm = () => {
+      editingId = null;
+      form.reset();
+      setType('expense');
+      renderCats('expense');
+      dateInput.value = defaultDate();
+      amountErr.hidden = true;
+      amountInput.removeAttribute('aria-invalid');
+      $('[data-tc-form-title]').textContent = 'Thêm giao dịch';
+      $('[data-tc-cancel]').hidden = true;
+      $('[data-tc-delete]').hidden = true;
+      updateLunar();
+    };
+    const startEdit = (t: Transaction) => {
+      editingId = t.id;
+      setType(t.type);
+      renderCats(t.type, categoryOf(t).id);
+      amountInput.value = groupDigits(t.amount);
+      dateInput.value = t.date;
+      f('note').value = t.note;
+      $('[data-tc-form-title]').textContent = 'Sửa giao dịch';
+      $('[data-tc-cancel]').hidden = false;
+      $('[data-tc-delete]').hidden = false;
+      status.textContent = '';
+      updateLunar();
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      amountInput.focus({ preventScroll: true });
+    };
+    const remove = (t: Transaction) => {
+      const c = categoryOf(t);
+      if (!confirm(`Xoá khoản ${t.type === 'expense' ? 'chi' : 'thu'} ${formatVnd(t.amount)} (${c.label}, ${dm(t.date)})?`)) return false;
+      items = items.filter((x) => x.id !== t.id);
+      persist();
+      if (editingId === t.id) resetForm();
+      status.textContent = 'Đã xoá giao dịch.';
+      render();
+      return true;
+    };
+
+    form.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.name === 'type') renderCats(currentType());
+      if (target.name === 'date') updateLunar();
+    });
+    amountInput.addEventListener('input', () => {
+      // Keep the caret near the end while regrouping digits.
+      const fromEnd = amountInput.value.length - (amountInput.selectionStart ?? amountInput.value.length);
+      formatAmountField();
+      const pos = Math.max(0, amountInput.value.length - fromEnd);
+      amountInput.setSelectionRange(pos, pos);
+    });
+    root.querySelectorAll<HTMLButtonElement>('[data-tc-quick]').forEach((b) => b.addEventListener('click', () => {
+      amountInput.value = String(parseAmount(amountInput.value) + Number(b.dataset.tcQuick));
+      formatAmountField();
+    }));
+    $('[data-tc-cancel]').addEventListener('click', () => { resetForm(); status.textContent = 'Đã huỷ sửa.'; });
+    $('[data-tc-delete]').addEventListener('click', () => {
+      const t = items.find((x) => x.id === editingId);
+      if (t) remove(t);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = parseAmount(amountInput.value);
+      if (!amount) {
+        amountErr.hidden = false;
+        amountInput.setAttribute('aria-invalid', 'true');
+        amountInput.focus();
+        return;
+      }
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(dateInput.value) ? dateInput.value : defaultDate();
+      const type = currentType();
+      const category = form.querySelector<HTMLInputElement>('input[name="category"]:checked')?.value ?? categoriesFor(type)[0].id;
+      const note = f('note').value.trim().slice(0, 200);
+      const stamp = new Date().toISOString();
+      const existing = editingId ? items.find((x) => x.id === editingId) : undefined;
+      if (existing) Object.assign(existing, { amount, type, category, note, date, updatedAt: stamp });
+      else items.push({ id: uid(), amount, type, category, note, date, createdAt: stamp, updatedAt: stamp });
+      persist();
+      status.textContent = `${existing ? 'Đã cập nhật' : 'Đã lưu'} khoản ${type === 'expense' ? 'chi' : 'thu'} ${formatVnd(amount)}.`;
+      const { m, y } = parseIso(date);
+      view = { m, y };
+      resetForm();
+      render();
+      amountInput.focus();
+    });
+
+    // ---- Month ----
+    const go = (delta: number) => {
+      view = shiftMonth(view.m, view.y, delta);
+      if (!editingId) { dateInput.value = defaultDate(); updateLunar(); }
+      render();
+    };
+    $('[data-tc-prev]').addEventListener('click', () => go(-1));
+    $('[data-tc-next]').addEventListener('click', () => go(1));
+    $('[data-tc-now]').addEventListener('click', () => {
+      const { m, y } = parseIso(todayIso);
+      go((y - view.y) * 12 + (m - view.m));
+    });
+    const filterSelect = $<HTMLSelectElement>('[data-tc-filter]');
+    filterSelect.addEventListener('change', () => { filter = filterSelect.value; render(); });
+
+    // ---- Render ----
+    function render() {
+      const s = summarize(items, view.m, view.y);
+      const { m, y } = parseIso(todayIso);
+      $('[data-tc-month]').textContent = `Tháng ${view.m}/${view.y}`;
+      $('[data-tc-now]').hidden = view.m === m && view.y === y;
+      $('[data-tc-income]').textContent = formatVnd(s.income);
+      $('[data-tc-expense]').textContent = formatVnd(s.expense);
+      const bal = $('[data-tc-balance]');
+      bal.textContent = formatVnd(s.balance, true);
+      bal.classList.toggle('tc-neg', s.balance < 0);
+
+      // Category breakdown: each row filters the list.
+      $('[data-tc-cat-empty]').hidden = s.categories.length > 0;
+      $('[data-tc-bars]').replaceChildren(...s.categories.map((r) => {
+        const out = r.category.type === 'expense';
+        const pct = Math.round(r.share * 100);
+        const bar = el('span', { cls: 'tc-bar' }, el('span', { cls: 'tc-bar-fill' }));
+        (bar.firstChild as HTMLElement).style.width = `${Math.max(2, r.share * 100)}%`;
+        const btn = el('button', { type: 'button', cls: 'tc-bar-btn', ariaPressed: String(filter === r.category.id) },
+          el('span', { cls: 'tc-bar-top' },
+            el('span', { cls: 'tc-bar-name' }, el('span', { ariaHidden: 'true' }, r.category.icon), ` ${r.category.label}`, el('small', {}, ` · ${r.count} khoản · ${pct}%`)),
+            el('b', { cls: out ? 'tc-out' : 'tc-in' }, formatVnd(out ? -r.amount : r.amount, true))),
+          bar);
+        btn.style.setProperty('--tc-c', r.category.color);
+        btn.setAttribute('aria-label', `${r.category.label}: ${r.count} khoản, ${formatVnd(r.amount)}, ${pct}% tổng ${out ? 'chi' : 'thu'}. Bấm để lọc danh sách.`);
+        btn.addEventListener('click', () => {
+          filter = filter === r.category.id ? '' : r.category.id;
+          filterSelect.value = filter;
+          render();
+        });
+        return el('li', {}, btn);
+      }));
+
+      // Day groups, filtered by category.
+      const days = s.days
+        .map((d) => {
+          const list = filter ? d.items.filter((t) => categoryOf(t).id === filter) : d.items;
+          return { ...d, items: list, total: list.reduce((n, t) => n + signed(t), 0) };
+        })
+        .filter((d) => d.items.length);
+      const empty = $('[data-tc-list-empty]');
+      empty.hidden = days.length > 0;
+      empty.textContent = s.items.length ? 'Không có giao dịch thuộc danh mục này trong tháng.' : 'Chưa có giao dịch trong tháng này. Thêm khoản thu hoặc chi ở biểu mẫu.';
+      $('[data-tc-days]').replaceChildren(...days.map((d) => {
+        const head = el('h4', { cls: 'tc-day-head' },
+          el('span', {}, `${weekdayOf(d.date)}, ${dm(d.date)}`, el('small', {}, ` · ${lunarLabel(d.date)}`)),
+          el('b', { cls: d.total < 0 ? 'tc-out' : 'tc-in' }, formatVnd(d.total, true)));
+        const rows = d.items.map((t) => {
+          const c = categoryOf(t);
+          const out = t.type === 'expense';
+          const icon = el('span', { cls: 'tc-tx-icon', ariaHidden: 'true' }, c.icon);
+          icon.style.setProperty('--tc-c', c.color);
+          const edit = el('button', { type: 'button', cls: 'tc-tx-main', ariaLabel: `Sửa: ${out ? 'chi' : 'thu'} ${formatVnd(t.amount)}, ${c.label}${t.note ? `, ${t.note}` : ''}` },
+            icon,
+            el('span', { cls: 'tc-tx-text' }, el('b', {}, t.note || c.label), el('small', {}, t.note ? c.label : out ? 'Chi' : 'Thu')),
+            el('span', { cls: `tc-tx-amt ${out ? 'tc-out' : 'tc-in'}` }, formatVnd(signed(t), true)));
+          edit.addEventListener('click', () => startEdit(t));
+          const del = el('button', { type: 'button', cls: 'tc-tx-del', ariaLabel: `Xoá ${formatVnd(t.amount)}, ${c.label}`, title: 'Xoá' }, '×');
+          del.addEventListener('click', () => { if (remove(t)) filterSelect.focus(); });
+          return el('li', { cls: 'tc-tx' }, edit, del);
+        });
+        return el('section', { cls: 'tc-day' }, head, el('ul', { cls: 'tc-tx-list' }, ...rows));
+      }));
+    }
+
+    // ---- Export / backup ----
+    $('[data-tc-csv]').addEventListener('click', () => {
+      const s = summarize(items, view.m, view.y);
+      if (!s.items.length) { status.textContent = `Tháng ${view.m}/${view.y} chưa có giao dịch để xuất.`; return; }
+      download(csvFilename(view.m, view.y), buildCsv(s.items, lunarLabel), 'text/csv');
+      status.textContent = `Đã xuất ${s.items.length} giao dịch của tháng ${view.m}/${view.y}.`;
+    });
+    $('[data-tc-backup]').addEventListener('click', () => {
+      exportBackup(FINANCE_KEY, { version: 1, items } satisfies FinanceData);
+      status.textContent = `Đã tải bản sao lưu ${items.length} giao dịch.`;
+    });
+    const importInput = $<HTMLInputElement>('[data-tc-import]');
+    importInput.addEventListener('change', async () => {
+      const file = importInput.files?.[0];
+      importInput.value = '';
+      if (!file) return;
+      const data = await readBackup<FinanceData>(file, FINANCE_KEY);
+      const incoming = data ? sanitize(data) : null;
+      if (!incoming) { status.textContent = 'File này không phải bản sao lưu sổ thu chi.'; return; }
+      const res = merge(items, incoming);
+      items = res.items;
+      persist();
+      render();
+      status.textContent = `Đã khôi phục: thêm ${res.added}, cập nhật ${res.updated} giao dịch.`;
+    });
+
+    resetForm();
+    render();
+  }
+</script>

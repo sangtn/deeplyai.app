@@ -1,0 +1,70 @@
+{
+  "source": {
+    "app": "Lịch Việt (iOS)",
+    "file": "PregnancyViewController.swift + vi.lproj/Localizable.strings",
+    "version": "V1.2026.1",
+    "commit": "7afbcb7",
+    "takenOn": "2026-11-05",
+    "review": "Nội dung y khoa giữ nguyên từ ứng dụng, chưa được chuyên gia y tế thẩm định."
+  },
+  "heading": "Lịch tiêm chủng (TCMR + khuyến nghị)",
+  "footer": "Tham khảo Chương trình Tiêm chủng mở rộng & khuyến nghị của bác sĩ nhi. Nhắc trước 1 ngày cho các mũi sắp tới.",
+  "newborn": "Sơ sinh",
+  "vaccines": [
+    {
+      "months": 0,
+      "title": "Viêm gan B (24h đầu) + BCG (lao)",
+      "note": "Tiêm sơ sinh tại bệnh viện"
+    },
+    {
+      "months": 2,
+      "title": "5 trong 1 / 6 trong 1 mũi 1 + bOPV (bại liệt uống) 1",
+      "note": "Bạch hầu, ho gà, uốn ván, Hib, VGB (+ bại liệt)"
+    },
+    {
+      "months": 2,
+      "title": "Rota liều 1 · Phế cầu mũi 1",
+      "note": "Dịch vụ (khuyến nghị)"
+    },
+    {
+      "months": 3,
+      "title": "5 trong 1 / 6 trong 1 mũi 2 + bOPV 2",
+      "note": ""
+    },
+    {
+      "months": 4,
+      "title": "5 trong 1 / 6 trong 1 mũi 3 + bOPV 3 + IPV",
+      "note": "IPV: bại liệt tiêm"
+    },
+    {
+      "months": 6,
+      "title": "Cúm mùa mũi 1 (dịch vụ)",
+      "note": "Nhắc lại hằng năm"
+    },
+    {
+      "months": 9,
+      "title": "Sởi mũi 1 (hoặc Sởi – Quai bị – Rubella)",
+      "note": "Viêm não Nhật Bản mũi 1 (12 tháng)"
+    },
+    {
+      "months": 12,
+      "title": "Viêm não Nhật Bản mũi 1 & 2 (cách 1–2 tuần) · Thuỷ đậu · Viêm gan A",
+      "note": "Phế cầu nhắc lại"
+    },
+    {
+      "months": 18,
+      "title": "Sởi – Rubella (MR) · DPT nhắc lại (mũi 4)",
+      "note": "Theo TCMR"
+    },
+    {
+      "months": 24,
+      "title": "Viêm não Nhật Bản mũi 3 · Thương hàn · Tả (vùng dịch)",
+      "note": ""
+    },
+    {
+      "months": 48,
+      "title": "Sởi – Quai bị – Rubella mũi 2 (4–6 tuổi)",
+      "note": "Bạch hầu – ho gà – uốn ván – bại liệt nhắc lại"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { COUNT_URL, CONVERT_URL, EVENTS_URL, FEEDS_URL, FINANCE_URL, NOTES_URL, PREGNANCY_URL, SHIFT_URL, TOOLS_URL, VACCINE_URL } from '../../../../lib/lich/urls';
+const items = [
+  { href: EVENTS_URL, title: 'Nhắc ngày giỗ âm lịch', text: 'Ngày giỗ, ngày cưới, sinh nhật âm lịch; đếm ngược và thêm nhắc vào lịch điện thoại.' },
+  { href: FEEDS_URL, title: 'Lịch âm cho Google Calendar', text: 'Ngày âm mỗi ngày, rằm, mùng 1, ngày lễ ngay trong lịch điện thoại.' },
+  { href: FINANCE_URL, title: 'Sổ thu chi', text: 'Ghi chi tiêu theo danh mục, tổng kết tháng, xuất Excel.' },
+  { href: NOTES_URL, title: 'Ghi chú & nhật ký', text: 'Ghi chú có danh sách việc, nhật ký cảm xúc, “ngày này năm xưa”.' },
+  { href: PREGNANCY_URL, title: 'Tính ngày dự sinh', text: 'Tuần thai, ngày dự sinh và lịch khám thai.' },
+  { href: VACCINE_URL, title: 'Lịch tiêm chủng cho bé', text: 'Các mũi tiêm theo tuổi, đánh dấu đã tiêm.' },
+  { href: SHIFT_URL, title: 'Lịch làm ca', text: 'Xếp ca theo chu kỳ, xem theo tháng kèm ngày âm.' },
+  { href: CONVERT_URL, title: 'Đổi ngày âm dương', text: 'Chuyển ngày âm sang dương và ngược lại.' },
+  { href: COUNT_URL, title: 'Đếm ngày', text: 'Số ngày giữa hai mốc, đếm ngược đến Tết.' },
+];
+---
+<LichShell
+  title="Tiện ích lịch âm – Nhắc ngày giỗ, thu chi, ghi chú, ngày dự sinh, lịch ca"
+  description="Bộ tiện ích miễn phí của Lịch Việt trên web: nhắc ngày giỗ âm lịch, lịch âm cho Google Calendar, sổ thu chi, ghi chú nhật ký, tính ngày dự sinh, lịch tiêm chủng, lịch làm ca."
+  path={TOOLS_URL}
+  crumbs={[{ name: 'Tiện ích' }]}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tiện ích</h1>
+      <p>Dùng ngay trên trình duyệt, không cần tài khoản. Dữ liệu cá nhân chỉ lưu trên máy của bạn; mỗi tiện ích có nút sao lưu để chuyển sang máy khác.</p>
+    </header>
+    <div class="la-install" data-install hidden>
+      <p><b>Cài Lịch Việt lên màn hình chính</b> để mở nhanh như ứng dụng, dùng được cả khi không có mạng.</p>
+      <button type="button" class="la-btn" data-install-btn>Cài đặt</button>
+    </div>
+    <p class="la-lead" data-install-ios hidden>Trên iPhone: mở trang bằng Safari, bấm nút Chia sẻ rồi chọn “Thêm vào MH chính” để dùng như ứng dụng.</p>
+    <div class="la-prayers la-culture">{items.map((it) => <a href={it.href}><b>{it.title}</b><span>{it.text}</span></a>)}</div>
+  </div>
+</LichShell>
+
+<script>
+  // Offer installation where the browser supports it; show the iOS hint on iPhone/iPad Safari.
+  const box = document.querySelector<HTMLElement>('[data-install]');
+  let deferred: (Event & { prompt: () => Promise<void> }) | null = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferred = e as typeof deferred;
+    if (box) box.hidden = false;
+  });
+  document.querySelector('[data-install-btn]')?.addEventListener('click', async () => {
+    if (!deferred) return;
+    await deferred.prompt();
+    deferred = null;
+    if (box) box.hidden = true;
+  });
+  const standalone = matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & { standalone?: boolean }).standalone;
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !standalone) document.querySelector<HTMLElement>('[data-install-ios]')!.hidden = false;
+</script>
