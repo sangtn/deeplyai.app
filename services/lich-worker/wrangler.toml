@@ -9,7 +9,7 @@ compatibility_date = "2025-09-01"
 ALLOWED_ORIGINS = "https://deeplyai.app,http://localhost:4321"
 # Extra market sources, comma separated: "pnj" (SJC gold via PNJ), "vndirect" (VN-Index).
 # Leave empty until you have confirmed you may use them.
-MARKET_SOURCES = ""
+MARKET_SOURCES = "pnj,vndirect"
 # VAPID public key (base64url). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
 VAPID_PUBLIC_KEY = "BFyssPEJQIGf8tQq2xdsj6Kw1cMnMz8VgoMBPa1ggkWOYzWz4Hz2sEnxOCD-RmVA6WdqaLRRSsBFgtKG1jU9Xnc"
 VAPID_SUBJECT = "https://deeplyai.app/vi/lich-am/"
