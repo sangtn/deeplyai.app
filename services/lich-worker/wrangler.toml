@@ -11,12 +11,12 @@ ALLOWED_ORIGINS = "https://deeplyai.app,http://localhost:4321"
 # Leave empty until you have confirmed you may use them.
 MARKET_SOURCES = ""
 # VAPID public key (base64url). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
-VAPID_PUBLIC_KEY = ""
+VAPID_PUBLIC_KEY = "BFyssPEJQIGf8tQq2xdsj6Kw1cMnMz8VgoMBPa1ggkWOYzWz4Hz2sEnxOCD-RmVA6WdqaLRRSsBFgtKG1jU9Xnc"
 VAPID_SUBJECT = "https://deeplyai.app/vi/lich-am/"
 
 [[kv_namespaces]]
 binding = "PUSH"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "99f95659b1db43d793743d6e51356f91"
 
 [triggers]
 # 23:00 UTC = 06:00 Vietnam time.

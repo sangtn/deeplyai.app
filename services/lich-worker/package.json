@@ -8,7 +8,7 @@
     "vapid": "node scripts/gen-vapid.mjs"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250901.0",
+    "@cloudflare/workers-types": "^5",
     "wrangler": "^4.0.0"
   }
 }
