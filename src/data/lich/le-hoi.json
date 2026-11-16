@@ -1,0 +1,1219 @@
+{
+  "_source": {
+    "app": "LichViet iOS v1.2026.1",
+    "files": [
+      "ViewController/CultureViet/Festival/FestivalViewController.swift (list data)",
+      "ViewController/CultureViet/Festival/FestivalDetailViewController.swift (createDetailedDescription, share text)"
+    ],
+    "extraction": "Strings dumped by compiling the app's own Swift data/functions with swiftc (no hand copying). detail.text = exact text shown in the detail screen (description + \\n\\n + sections). detail.sections is a mechanical split of that text.",
+    "notes": [
+      "Only 4 festivals have specific detail sections (Tết Nguyên Đán, Lễ hội đền Hùng, Hội Gióng, Lễ hội Chol Chnam Thmay); all others show the generic default sections.",
+      "App bug: the detail switch has a case \"Lễ hội Katê\" but the festival is named \"Lễ hội Kate\", so the Katê sections never display. They are preserved in unusedDetailSections.",
+      "date.* structured fields are derived by hand from date.text; date.text is verbatim.",
+      "image.url is the string in the app; image.requestedUrl is what the app actually requests after its percent-encoding helper."
+    ]
+  },
+  "screen": {
+    "menuTitle": "Lễ Hội",
+    "menuSubtitle": "Danh sách các lễ hội lớn của Việt Nam",
+    "screenTitle": "Lễ hội Việt Nam",
+    "shareButton": "Chia sẻ lễ hội",
+    "filters": [
+      "Tất cả",
+      "Truyền thống",
+      "Dân tộc",
+      "Tôn giáo",
+      "Văn hóa"
+    ],
+    "shareHashtags": "#LễHộiViệtNam #VănHóaViệtNam"
+  },
+  "types": [
+    {
+      "key": "traditional",
+      "label": "Lễ hội truyền thống",
+      "shortLabel": "Truyền thống"
+    },
+    {
+      "key": "ethnic",
+      "label": "Lễ hội dân tộc",
+      "shortLabel": "Dân tộc"
+    },
+    {
+      "key": "religious",
+      "label": "Lễ hội tôn giáo",
+      "shortLabel": "Tôn giáo"
+    },
+    {
+      "key": "cultural",
+      "label": "Lễ hội văn hóa",
+      "shortLabel": "Văn hóa"
+    }
+  ],
+  "defaultDetailSections": [
+    {
+      "icon": "📖",
+      "heading": "Thông tin thêm",
+      "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+    },
+    {
+      "icon": "🎯",
+      "heading": "Giá trị",
+      "items": [
+        "Giáo dục truyền thống",
+        "Gắn kết cộng đồng",
+        "Bảo tồn văn hóa",
+        "Phát triển du lịch"
+      ]
+    }
+  ],
+  "unusedDetailSections": {
+    "Lễ hội Katê": {
+      "appliesToSlug": "le-hoi-kate",
+      "reason": "name mismatch in app (Katê vs Kate); never shown",
+      "sections": [
+        {
+          "icon": "🕌",
+          "heading": "Ý nghĩa tôn giáo",
+          "text": "Katê là lễ hội quan trọng nhất của người Chăm, dành để tưởng nhớ tổ tiên và cầu mong may mắn."
+        },
+        {
+          "icon": "🎶",
+          "heading": "Nghi thức",
+          "items": [
+            "Rước Bani (linh thiêng)",
+            "Múa Apsara",
+            "Chạm khắc tượng thần",
+            "Cúng lễ tại tháp Chăm"
+          ]
+        },
+        {
+          "icon": "🏺",
+          "heading": "Văn hóa vật thể",
+          "text": "Trang phục truyền thống, nhạc cụ dân tộc, nghệ thuật chạm khắc Chăm."
+        }
+      ],
+      "text": "🕌 Ý nghĩa tôn giáo:\nKatê là lễ hội quan trọng nhất của người Chăm, dành để tưởng nhớ tổ tiên và cầu mong may mắn.\n\n🎶 Nghi thức:\n• Rước Bani (linh thiêng)\n• Múa Apsara\n• Chạm khắc tượng thần\n• Cúng lễ tại tháp Chăm\n\n🏺 Văn hóa vật thể:\nTrang phục truyền thống, nhạc cụ dân tộc, nghệ thuật chạm khắc Chăm."
+    }
+  },
+  "festivals": [
+    {
+      "slug": "tet-nguyen-dan",
+      "order": 1,
+      "name": "Tết Nguyên Đán",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "1/1 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 1,
+          "month": 1
+        },
+        "recurrence": "annual"
+      },
+      "location": "Toàn quốc",
+      "description": "Tết Nguyên Đán là lễ hội quan trọng nhất của người Việt Nam, đánh dấu sự chuyển giao giữa năm cũ và năm mới theo âm lịch.",
+      "detail": {
+        "variant": "specific",
+        "text": "Tết Nguyên Đán là lễ hội quan trọng nhất của người Việt Nam, đánh dấu sự chuyển giao giữa năm cũ và năm mới theo âm lịch.\n\n🏮 Ý nghĩa:\nTết Nguyên Đán là dịp đánh dấu sự chuyển giao giữa năm cũ và năm mới, là thời điểm thiêng liêng nhất trong năm của người Việt.\n\n🎊 Các hoạt động chính:\n• Trang trí nhà cửa, dọn dẹp\n• Mua sắm đồ Tết, quần áo mới\n• Gói bánh chưng, bánh tét\n• Thờ cúng tổ tiên\n• Lì xì, chúc Tết\n• Đi lễ chùa đầu năm\n\n🌸 Biểu tượng:\nHoa đào (miền Bắc), hoa mai (miền Nam), bánh chưng, bánh tét, lì xì màu đỏ.",
+        "sections": [
+          {
+            "icon": "🏮",
+            "heading": "Ý nghĩa",
+            "text": "Tết Nguyên Đán là dịp đánh dấu sự chuyển giao giữa năm cũ và năm mới, là thời điểm thiêng liêng nhất trong năm của người Việt."
+          },
+          {
+            "icon": "🎊",
+            "heading": "Các hoạt động chính",
+            "items": [
+              "Trang trí nhà cửa, dọn dẹp",
+              "Mua sắm đồ Tết, quần áo mới",
+              "Gói bánh chưng, bánh tét",
+              "Thờ cúng tổ tiên",
+              "Lì xì, chúc Tết",
+              "Đi lễ chùa đầu năm"
+            ]
+          },
+          {
+            "icon": "🌸",
+            "heading": "Biểu tượng",
+            "text": "Hoa đào (miền Bắc), hoa mai (miền Nam), bánh chưng, bánh tét, lì xì màu đỏ."
+          }
+        ]
+      },
+      "image": {
+        "url": "https://thptkontum.edu.vn/Uploads/images/2022/Tet NĐán.jpg",
+        "requestedUrl": "https://thptkontum.edu.vn/Uploads/images/2022/Tet%20N%C4%90%C3%A1n.jpg",
+        "host": "thptkontum.edu.vn",
+        "status": "dns-fail (host does not resolve, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Tết Nguyên Đán\n📅 1/1 Âm lịch\n📍 Toàn quốc\n\nTết Nguyên Đán là lễ hội quan trọng nhất của người Việt Nam, đánh dấu sự chuyển giao giữa năm cũ và năm mới theo âm lịch.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-den-hung",
+      "order": 2,
+      "name": "Lễ hội đền Hùng",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "10/3 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 10,
+          "month": 3
+        },
+        "recurrence": "annual"
+      },
+      "location": "Phú Thọ",
+      "description": "Lễ hội đền Hùng là dịp tưởng nhớ các vua Hùng - những người có công dựng nước. Đây là ngày Giỗ Tổ Hùng Vương.",
+      "detail": {
+        "variant": "specific",
+        "text": "Lễ hội đền Hùng là dịp tưởng nhớ các vua Hùng - những người có công dựng nước. Đây là ngày Giỗ Tổ Hùng Vương.\n\n👑 Ý nghĩa:\nNgày Giỗ Tổ Hùng Vương nhằm tưởng nhớ công ơn của các vua Hùng trong việc dựng nước và giữ nước.\n\n🎭 Các hoạt động:\n• Lễ dâng hương tại đền Hùng\n• Múa rồng, múa lân\n• Hát xoan Phú Thọ\n• Thi bánh chưng, bánh dày\n• Đấu vật, đua thuyền\n\n📍 Địa điểm chính:\nĐền Hùng (đền Thượng, đền Trung, đền Hạ) tại núi Nghĩa Lĩnh, Phú Thọ.",
+        "sections": [
+          {
+            "icon": "👑",
+            "heading": "Ý nghĩa",
+            "text": "Ngày Giỗ Tổ Hùng Vương nhằm tưởng nhớ công ơn của các vua Hùng trong việc dựng nước và giữ nước."
+          },
+          {
+            "icon": "🎭",
+            "heading": "Các hoạt động",
+            "items": [
+              "Lễ dâng hương tại đền Hùng",
+              "Múa rồng, múa lân",
+              "Hát xoan Phú Thọ",
+              "Thi bánh chưng, bánh dày",
+              "Đấu vật, đua thuyền"
+            ]
+          },
+          {
+            "icon": "📍",
+            "heading": "Địa điểm chính",
+            "text": "Đền Hùng (đền Thượng, đền Trung, đền Hạ) tại núi Nghĩa Lĩnh, Phú Thọ."
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mia.vn/media/uploads/blog-du-lich/ngam-nhin-toan-canh-le-hoi-den-hung-dac-sac-o-nha-trang-1625645219.jpg",
+        "requestedUrl": "https://mia.vn/media/uploads/blog-du-lich/ngam-nhin-toan-canh-le-hoi-den-hung-dac-sac-o-nha-trang-1625645219.jpg",
+        "host": "mia.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội đền Hùng\n📅 10/3 Âm lịch\n📍 Phú Thọ\n\nLễ hội đền Hùng là dịp tưởng nhớ các vua Hùng - những người có công dựng nước. Đây là ngày Giỗ Tổ Hùng Vương.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-giong",
+      "order": 3,
+      "name": "Hội Gióng",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "6/1 và 9/4 Âm lịch",
+        "calendar": "lunar",
+        "occurrences": [
+          {
+            "day": 6,
+            "month": 1
+          },
+          {
+            "day": 9,
+            "month": 4
+          }
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Hà Nội (Phù Đổng, Sóc Sơn)",
+      "description": "Hội Gióng tôn vinh Thánh Gióng - một trong Tứ bất tử của dân tộc Việt Nam, người có công đánh đuổi giặc Ân.",
+      "detail": {
+        "variant": "specific",
+        "text": "Hội Gióng tôn vinh Thánh Gióng - một trong Tứ bất tử của dân tộc Việt Nam, người có công đánh đuổi giặc Ân.\n\n⚔️ Truyền thuyết:\nThánh Gióng là một trong Tứ Bất Tử của dân tộc Việt, người có công đánh đuổi giặc Ân xâm lược.\n\n🎪 Nghi lễ:\n• Rước kiệu Thánh Gióng\n• Múa ngựa sắt\n• Đóng giả Thánh Gióng\n• Múa búa, đập lúa\n\n🏛️ Di sản:\nHội Gióng đã được UNESCO công nhận là Di sản văn hóa phi vật thể đại diện của nhân loại.",
+        "sections": [
+          {
+            "icon": "⚔️",
+            "heading": "Truyền thuyết",
+            "text": "Thánh Gióng là một trong Tứ Bất Tử của dân tộc Việt, người có công đánh đuổi giặc Ân xâm lược."
+          },
+          {
+            "icon": "🎪",
+            "heading": "Nghi lễ",
+            "items": [
+              "Rước kiệu Thánh Gióng",
+              "Múa ngựa sắt",
+              "Đóng giả Thánh Gióng",
+              "Múa búa, đập lúa"
+            ]
+          },
+          {
+            "icon": "🏛️",
+            "heading": "Di sản",
+            "text": "Hội Gióng đã được UNESCO công nhận là Di sản văn hóa phi vật thể đại diện của nhân loại."
+          }
+        ]
+      },
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Phu_Dong_Thien_Vuong_01.jpg",
+        "requestedUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Phu_Dong_Thien_Vuong_01.jpg",
+        "host": "upload.wikimedia.org",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội Gióng\n📅 6/1 và 9/4 Âm lịch\n📍 Hà Nội (Phù Đổng, Sóc Sơn)\n\nHội Gióng tôn vinh Thánh Gióng - một trong Tứ bất tử của dân tộc Việt Nam, người có công đánh đuổi giặc Ân.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-chua-huong",
+      "order": 4,
+      "name": "Lễ hội chùa Hương",
+      "type": "religious",
+      "typeLabel": "Lễ hội tôn giáo",
+      "typeShortLabel": "Tôn giáo",
+      "date": {
+        "text": "6/1 - 3/3 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 6,
+          "month": 1
+        },
+        "end": {
+          "day": 3,
+          "month": 3
+        },
+        "recurrence": "annual"
+      },
+      "location": "Hà Nội (Mỹ Đức)",
+      "description": "Lễ hội chùa Hương là một trong những lễ hội lớn nhất Việt Nam, thu hút hàng triệu lượt khách hành hương mỗi năm.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội chùa Hương là một trong những lễ hội lớn nhất Việt Nam, thu hút hàng triệu lượt khách hành hương mỗi năm.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://static.vinwonders.com/production/le-hoi-chua-huong-top-1.jpg",
+        "requestedUrl": "https://static.vinwonders.com/production/le-hoi-chua-huong-top-1.jpg",
+        "host": "static.vinwonders.com",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội chùa Hương\n📅 6/1 - 3/3 Âm lịch\n📍 Hà Nội (Mỹ Đức)\n\nLễ hội chùa Hương là một trong những lễ hội lớn nhất Việt Nam, thu hút hàng triệu lượt khách hành hương mỗi năm.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-lim",
+      "order": 5,
+      "name": "Hội Lim",
+      "type": "cultural",
+      "typeLabel": "Lễ hội văn hóa",
+      "typeShortLabel": "Văn hóa",
+      "date": {
+        "text": "13-14/1 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 13,
+          "month": 1
+        },
+        "end": {
+          "day": 14,
+          "month": 1
+        },
+        "durationDays": 2,
+        "recurrence": "annual"
+      },
+      "location": "Bắc Ninh",
+      "description": "Hội Lim nổi tiếng với nghệ thuật hát Quan họ Bắc Ninh, được UNESCO công nhận là Di sản văn hóa phi vật thể của nhân loại.",
+      "detail": {
+        "variant": "default",
+        "text": "Hội Lim nổi tiếng với nghệ thuật hát Quan họ Bắc Ninh, được UNESCO công nhận là Di sản văn hóa phi vật thể của nhân loại.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/12/hoi-lim-thumbnail.jpg",
+        "requestedUrl": "https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/12/hoi-lim-thumbnail.jpg",
+        "host": "cdn-media.sforum.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội Lim\n📅 13-14/1 Âm lịch\n📍 Bắc Ninh\n\nHội Lim nổi tiếng với nghệ thuật hát Quan họ Bắc Ninh, được UNESCO công nhận là Di sản văn hóa phi vật thể của nhân loại.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-hoa-lu",
+      "order": 6,
+      "name": "Lễ hội Hoa Lư",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "8-10/3 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 8,
+          "month": 3
+        },
+        "end": {
+          "day": 10,
+          "month": 3
+        },
+        "durationDays": 3,
+        "recurrence": "annual"
+      },
+      "location": "Ninh Bình",
+      "description": "Lễ hội Hoa Lư tưởng nhớ vua Đinh Tiên Hoàng và Lê Đại Hành, những người có công thống nhất đất nước.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Hoa Lư tưởng nhớ vua Đinh Tiên Hoàng và Lê Đại Hành, những người có công thống nhất đất nước.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://apibeta.baoninhbinh.org.vn/user-blob/15088545-560b-d200-1fa2-cc31adda5a44/2025/04/02/vh-d_1743561957602.jpg",
+        "requestedUrl": "https://apibeta.baoninhbinh.org.vn/user-blob/15088545-560b-d200-1fa2-cc31adda5a44/2025/04/02/vh-d_1743561957602.jpg",
+        "host": "apibeta.baoninhbinh.org.vn",
+        "status": "http-503 (checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Hoa Lư\n📅 8-10/3 Âm lịch\n📍 Ninh Bình\n\nLễ hội Hoa Lư tưởng nhớ vua Đinh Tiên Hoàng và Lê Đại Hành, những người có công thống nhất đất nước.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "tet-trung-thu",
+      "order": 7,
+      "name": "Tết Trung Thu",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "15/8 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 15,
+          "month": 8
+        },
+        "recurrence": "annual"
+      },
+      "location": "Toàn quốc",
+      "description": "Tết Trung Thu là ngày hội của trẻ em, với truyền thống phá cỗ, rước đèn lồng và thưởng thức bánh trung thu.",
+      "detail": {
+        "variant": "default",
+        "text": "Tết Trung Thu là ngày hội của trẻ em, với truyền thống phá cỗ, rước đèn lồng và thưởng thức bánh trung thu.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://urbox.vn/_next/image?url=https://upload.urbox.vn/strapi-mobile/tet_trung_thu_feature_image_1_bc298a6819_cb6ed5ebc7_e4eb8f1839.png&w=2048&q=75",
+        "requestedUrl": "https://urbox.vn/_next/image?url=https://upload.urbox.vn/strapi-mobile/tet_trung_thu_feature_image_1_bc298a6819_cb6ed5ebc7_e4eb8f1839.png&w=2048&q=75",
+        "host": "urbox.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Tết Trung Thu\n📅 15/8 Âm lịch\n📍 Toàn quốc\n\nTết Trung Thu là ngày hội của trẻ em, với truyền thống phá cỗ, rước đèn lồng và thưởng thức bánh trung thu.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-vu-lan",
+      "order": 8,
+      "name": "Lễ Vu Lan",
+      "type": "religious",
+      "typeLabel": "Lễ hội tôn giáo",
+      "typeShortLabel": "Tôn giáo",
+      "date": {
+        "text": "15/7 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 15,
+          "month": 7
+        },
+        "recurrence": "annual"
+      },
+      "location": "Toàn quốc",
+      "description": "Lễ Vu Lan hay Tết Trung Nguyên là dịp con cái báo hiếu cha mẹ, thể hiện lòng biết ơn đối với công ơn sinh thành.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ Vu Lan hay Tết Trung Nguyên là dịp con cái báo hiếu cha mẹ, thể hiện lòng biết ơn đối với công ơn sinh thành.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://cellphones.com.vn/sforum/wp-content/uploads/2023/08/le-vu-lan-ngay-may-1.jpg",
+        "requestedUrl": "https://cellphones.com.vn/sforum/wp-content/uploads/2023/08/le-vu-lan-ngay-may-1.jpg",
+        "host": "cellphones.com.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ Vu Lan\n📅 15/7 Âm lịch\n📍 Toàn quốc\n\nLễ Vu Lan hay Tết Trung Nguyên là dịp con cái báo hiếu cha mẹ, thể hiện lòng biết ơn đối với công ơn sinh thành.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-chol-chnam-thmay",
+      "order": 9,
+      "name": "Lễ hội Chol Chnam Thmay",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "13-15/4 Dương lịch",
+        "calendar": "solar",
+        "start": {
+          "day": 13,
+          "month": 4
+        },
+        "end": {
+          "day": 15,
+          "month": 4
+        },
+        "durationDays": 3,
+        "recurrence": "annual"
+      },
+      "location": "Đồng bằng sông Cửu Long",
+      "description": "Tết Chol Chnam Thmay là Tết cổ truyền của người Khmer, đánh dấu năm mới theo lịch Khmer.",
+      "detail": {
+        "variant": "specific",
+        "text": "Tết Chol Chnam Thmay là Tết cổ truyền của người Khmer, đánh dấu năm mới theo lịch Khmer.\n\n🌅 Ý nghĩa:\nChol Chnam Thmay là Tết truyền thống của người Khmer, đánh dấu năm mới theo lịch Khmer cổ.\n\n🎋 Hoạt động truyền thống:\n• Tắm Phật (Pithi Srang Preah)\n• Xây tháp cát (Pithi Chol Vossa)\n• Chơi Bos Angkunh (ném bóng bằng vải)\n• Nhảy múa Robam Trot\n• Làm lễ Sompeas Preah (cúng Phật)\n\n🥘 Ẩm thực:\nBánh ít lá gai, bánh căn, nước mắm nem, chà hoàng lá.",
+        "sections": [
+          {
+            "icon": "🌅",
+            "heading": "Ý nghĩa",
+            "text": "Chol Chnam Thmay là Tết truyền thống của người Khmer, đánh dấu năm mới theo lịch Khmer cổ."
+          },
+          {
+            "icon": "🎋",
+            "heading": "Hoạt động truyền thống",
+            "items": [
+              "Tắm Phật (Pithi Srang Preah)",
+              "Xây tháp cát (Pithi Chol Vossa)",
+              "Chơi Bos Angkunh (ném bóng bằng vải)",
+              "Nhảy múa Robam Trot",
+              "Làm lễ Sompeas Preah (cúng Phật)"
+            ]
+          },
+          {
+            "icon": "🥘",
+            "heading": "Ẩm thực",
+            "text": "Bánh ít lá gai, bánh căn, nước mắm nem, chà hoàng lá."
+          }
+        ]
+      },
+      "image": {
+        "url": "https://media-cdn-v2.laodong.vn/storage/newsportal/2024/4/1/1322072/Chol-Chnam-Thmay-2.jpg",
+        "requestedUrl": "https://media-cdn-v2.laodong.vn/storage/newsportal/2024/4/1/1322072/Chol-Chnam-Thmay-2.jpg",
+        "host": "media-cdn-v2.laodong.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Chol Chnam Thmay\n📅 13-15/4 Dương lịch\n📍 Đồng bằng sông Cửu Long\n\nTết Chol Chnam Thmay là Tết cổ truyền của người Khmer, đánh dấu năm mới theo lịch Khmer.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-kate",
+      "order": 10,
+      "name": "Lễ hội Kate",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 7-8 Dương lịch",
+        "calendar": "solar",
+        "months": [
+          7,
+          8
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Ninh Thuận, Bình Thuận",
+      "description": "Lễ hội Katê của người Chăm là dịp tưởng nhớ tổ tiên, cầu mùa màng bội thu và sức khỏe cho cộng đồng.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Katê của người Chăm là dịp tưởng nhớ tổ tiên, cầu mùa màng bội thu và sức khỏe cho cộng đồng.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mia.vn/media/uploads/blog-du-lich/tim-hieu-le-hoi-kate-ninh-thuan-va-gia-tri-van-hoa-lau-doi-3-1658276474.jpg",
+        "requestedUrl": "https://mia.vn/media/uploads/blog-du-lich/tim-hieu-le-hoi-kate-ninh-thuan-va-gia-tri-van-hoa-lau-doi-3-1658276474.jpg",
+        "host": "mia.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Kate\n📅 Tháng 7-8 Dương lịch\n📍 Ninh Thuận, Bình Thuận\n\nLễ hội Katê của người Chăm là dịp tưởng nhớ tổ tiên, cầu mùa màng bội thu và sức khỏe cho cộng đồng.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-gau-tao",
+      "order": 11,
+      "name": "Lễ hội Gầu Tào",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 1-2 Âm lịch",
+        "calendar": "lunar",
+        "months": [
+          1,
+          2
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Sapa, Lào Cai",
+      "description": "Lễ hội truyền thống của đồng bào H'Mông, cầu cho một năm mới bình an, mùa màng bội thu.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội truyền thống của đồng bào H'Mông, cầu cho một năm mới bình an, mùa màng bội thu.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mia.vn/media/uploads/blog-du-lich/le-hoi-gau-tao-co-dieu-gi-ma-dac-biet-den-vay-1723710127.jpg",
+        "requestedUrl": "https://mia.vn/media/uploads/blog-du-lich/le-hoi-gau-tao-co-dieu-gi-ma-dac-biet-den-vay-1723710127.jpg",
+        "host": "mia.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Gầu Tào\n📅 Tháng 1-2 Âm lịch\n📍 Sapa, Lào Cai\n\nLễ hội truyền thống của đồng bào H'Mông, cầu cho một năm mới bình an, mùa màng bội thu.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-dam-trau",
+      "order": 12,
+      "name": "Hội Đâm Trâu",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 2-3 Âm lịch",
+        "calendar": "lunar",
+        "months": [
+          2,
+          3
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Gia Lai",
+      "description": "Lễ hội quan trọng của dân tộc Giarai và Ê Đê, thể hiện lòng tri ân với thần linh và tổ tiên.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội quan trọng của dân tộc Giarai và Ê Đê, thể hiện lòng tri ân với thần linh và tổ tiên.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mia.vn/media/uploads/blog-du-lich/tim-hieu-le-hoi-dam-trau-mung-lua-moi-tai-binh-phuoc-5-1657005747.jpg",
+        "requestedUrl": "https://mia.vn/media/uploads/blog-du-lich/tim-hieu-le-hoi-dam-trau-mung-lua-moi-tai-binh-phuoc-5-1657005747.jpg",
+        "host": "mia.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội Đâm Trâu\n📅 Tháng 2-3 Âm lịch\n📍 Gia Lai\n\nLễ hội quan trọng của dân tộc Giarai và Ê Đê, thể hiện lòng tri ân với thần linh và tổ tiên.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-cau-bong",
+      "order": 13,
+      "name": "Hội Cầu Bông",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "10/3 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 10,
+          "month": 3
+        },
+        "recurrence": "annual"
+      },
+      "location": "An Giang",
+      "description": "Lễ hội truyền thống của người Khmer, cầu cho mùa màng được tốt tươi, thành công.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội truyền thống của người Khmer, cầu cho mùa màng được tốt tươi, thành công.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://static.vinwonders.com/2022/10/le-hoi-cau-bong-o-hoi-an-1.jpg",
+        "requestedUrl": "https://static.vinwonders.com/2022/10/le-hoi-cau-bong-o-hoi-an-1.jpg",
+        "host": "static.vinwonders.com",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội Cầu Bông\n📅 10/3 Âm lịch\n📍 An Giang\n\nLễ hội truyền thống của người Khmer, cầu cho mùa màng được tốt tươi, thành công.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "festival-hue",
+      "order": 14,
+      "name": "Festival Huế",
+      "type": "cultural",
+      "typeLabel": "Lễ hội văn hóa",
+      "typeShortLabel": "Văn hóa",
+      "date": {
+        "text": "2 năm/lần",
+        "calendar": null,
+        "recurrence": "biennial"
+      },
+      "location": "Huế",
+      "description": "Festival Huế là sự kiện văn hóa quốc tế lớn, giới thiệu di sản văn hóa Huế và các nền văn hóa thế giới.",
+      "detail": {
+        "variant": "default",
+        "text": "Festival Huế là sự kiện văn hóa quốc tế lớn, giới thiệu di sản văn hóa Huế và các nền văn hóa thế giới.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://bcp.cdnchinhphu.vn/334894974524682240/2022/6/25/1dji0485-16561663338821789795004.jpg",
+        "requestedUrl": "https://bcp.cdnchinhphu.vn/334894974524682240/2022/6/25/1dji0485-16561663338821789795004.jpg",
+        "host": "bcp.cdnchinhphu.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Festival Huế\n📅 2 năm/lần\n📍 Huế\n\nFestival Huế là sự kiện văn hóa quốc tế lớn, giới thiệu di sản văn hóa Huế và các nền văn hóa thế giới.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-an-lantern-festival",
+      "order": 15,
+      "name": "Hội An Lantern Festival",
+      "type": "cultural",
+      "typeLabel": "Lễ hội văn hóa",
+      "typeShortLabel": "Văn hóa",
+      "date": {
+        "text": "14/1 Âm lịch hàng tháng",
+        "calendar": "lunar",
+        "start": {
+          "day": 14,
+          "month": 1
+        },
+        "recurrence": "monthly",
+        "note": "App text reads \"14/1 Âm lịch hàng tháng\"; held on the 14th of every lunar month, so month 1 is literal app text only."
+      },
+      "location": "Hội An",
+      "description": "Lễ hội đèn lồng Hội An tổ chức hàng tháng, tạo nên khung cảnh lung linh, huyền ảo.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội đèn lồng Hội An tổ chức hàng tháng, tạo nên khung cảnh lung linh, huyền ảo.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://www.vietnamairlines.com/~/media/SEO-images/2025%20SEO/Traffic%20TA/MN/lantern%20festival%20hoi%20an/lantern-festival-hoi-an.jpg",
+        "requestedUrl": "https://www.vietnamairlines.com/~/media/SEO-images/2025%20SEO/Traffic%20TA/MN/lantern%20festival%20hoi%20an/lantern-festival-hoi-an.jpg",
+        "host": "www.vietnamairlines.com",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội An Lantern Festival\n📅 14/1 Âm lịch hàng tháng\n📍 Hội An\n\nLễ hội đèn lồng Hội An tổ chức hàng tháng, tạo nên khung cảnh lung linh, huyền ảo.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-phao-hoa-da-nang",
+      "order": 16,
+      "name": "Lễ hội pháo hoa Đà Nẵng",
+      "type": "cultural",
+      "typeLabel": "Lễ hội văn hóa",
+      "typeShortLabel": "Văn hóa",
+      "date": {
+        "text": "Hàng năm",
+        "calendar": null,
+        "recurrence": "annual"
+      },
+      "location": "Đà Nẵng",
+      "description": "Cuộc thi pháo hoa quốc tế qui mô lớn, thu hút du khách trong và ngoài nước.",
+      "detail": {
+        "variant": "default",
+        "text": "Cuộc thi pháo hoa quốc tế qui mô lớn, thu hút du khách trong và ngoài nước.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://xdcs.cdnchinhphu.vn/446259493575335936/2024/3/31/ph-17118659301061352617316.jpg",
+        "requestedUrl": "https://xdcs.cdnchinhphu.vn/446259493575335936/2024/3/31/ph-17118659301061352617316.jpg",
+        "host": "xdcs.cdnchinhphu.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội pháo hoa Đà Nẵng\n📅 Hàng năm\n📍 Đà Nẵng\n\nCuộc thi pháo hoa quốc tế qui mô lớn, thu hút du khách trong và ngoài nước.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-hoa-da-lat",
+      "order": 17,
+      "name": "Lễ hội hoa Đà Lạt",
+      "type": "cultural",
+      "typeLabel": "Lễ hội văn hóa",
+      "typeShortLabel": "Văn hóa",
+      "date": {
+        "text": "2 năm/lần",
+        "calendar": null,
+        "recurrence": "biennial"
+      },
+      "location": "Đà Lạt",
+      "description": "Lễ hội hoa lớn nhất Việt Nam, khoe sắc các loại hoa đặc trưng của cao nguyên Đà Lạt.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội hoa lớn nhất Việt Nam, khoe sắc các loại hoa đặc trưng của cao nguyên Đà Lạt.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://owa.bestprice.vn/images/articles/uploads/ruc-ro-le-hoi-hoa-o-da-lat-5ece160609332.jpg",
+        "requestedUrl": "https://owa.bestprice.vn/images/articles/uploads/ruc-ro-le-hoi-hoa-o-da-lat-5ece160609332.jpg",
+        "host": "owa.bestprice.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội hoa Đà Lạt\n📅 2 năm/lần\n📍 Đà Lạt\n\nLễ hội hoa lớn nhất Việt Nam, khoe sắc các loại hoa đặc trưng của cao nguyên Đà Lạt.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-long-tong",
+      "order": 18,
+      "name": "Lễ hội Lồng Tồng",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "7/1 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 7,
+          "month": 1
+        },
+        "recurrence": "annual"
+      },
+      "location": "Tuyên Quang, Hà Giang",
+      "description": "Lễ hội Lồng Tồng là lễ xuống đồng của người Tày, Nùng, cầu mong năm mới mùa màng bội thu.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Lồng Tồng là lễ xuống đồng của người Tày, Nùng, cầu mong năm mới mùa màng bội thu.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://nongthonvaphattrien.vn/uploads/images/2025/02/04/lambinh-1738657962.jpg",
+        "requestedUrl": "https://nongthonvaphattrien.vn/uploads/images/2025/02/04/lambinh-1738657962.jpg",
+        "host": "nongthonvaphattrien.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Lồng Tồng\n📅 7/1 Âm lịch\n📍 Tuyên Quang, Hà Giang\n\nLễ hội Lồng Tồng là lễ xuống đồng của người Tày, Nùng, cầu mong năm mới mùa màng bội thu.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-hoa-ban",
+      "order": 19,
+      "name": "Lễ hội Hoa Ban",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 3 Dương lịch",
+        "calendar": "solar",
+        "months": [
+          3
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Điện Biên",
+      "description": "Lễ hội Hoa Ban kỷ niệm mùa hoa ban nở rộ, là dịp giao lưu văn hóa của các dân tộc Tây Bắc.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Hoa Ban kỷ niệm mùa hoa ban nở rộ, là dịp giao lưu văn hóa của các dân tộc Tây Bắc.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/7/001-6-1673057777174385239911.jpg",
+        "requestedUrl": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/7/001-6-1673057777174385239911.jpg",
+        "host": "xdcs.cdnchinhphu.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Hoa Ban\n📅 Tháng 3 Dương lịch\n📍 Điện Biên\n\nLễ hội Hoa Ban kỷ niệm mùa hoa ban nở rộ, là dịp giao lưu văn hóa của các dân tộc Tây Bắc.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-roong-pooc",
+      "order": 20,
+      "name": "Lễ hội Roóng Poọc",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 3 Âm lịch",
+        "calendar": "lunar",
+        "months": [
+          3
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Sa Pa, Lào Cai",
+      "description": "Lễ hội Roóng Poọc của người Giáy là dịp cầu mùa màng tốt tươi và sum họp gia đình.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Roóng Poọc của người Giáy là dịp cầu mùa màng tốt tươi và sum họp gia đình.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://sanvemaybay.vn/includes/uploads/2019/01/Lễ-hội-Roóng-Poọc-của-người-Dáy-Tả-Van-e1546839347535.jpg",
+        "requestedUrl": "https://sanvemaybay.vn/includes/uploads/2019/01/L%E1%BB%85-h%E1%BB%99i-Ro%C3%B3ng-Po%E1%BB%8Dc-c%E1%BB%A7a-ng%C6%B0%E1%BB%9Di-D%C3%A1y-T%E1%BA%A3-Van-e1546839347535.jpg",
+        "host": "sanvemaybay.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Roóng Poọc\n📅 Tháng 3 Âm lịch\n📍 Sa Pa, Lào Cai\n\nLễ hội Roóng Poọc của người Giáy là dịp cầu mùa màng tốt tươi và sum họp gia đình.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-dua-voi",
+      "order": 21,
+      "name": "Lễ hội đua voi",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 3 Âm lịch",
+        "calendar": "lunar",
+        "months": [
+          3
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Đắk Lắk (Buôn Đôn)",
+      "description": "Lễ hội đua voi là nét văn hóa đặc sắc của người Ê Đê, M'Nông ở Tây Nguyên, thể hiện sự dũng mãnh và kỹ thuật điều khiển voi.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội đua voi là nét văn hóa đặc sắc của người Ê Đê, M'Nông ở Tây Nguyên, thể hiện sự dũng mãnh và kỹ thuật điều khiển voi.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mtcs.1cdn.vn/2023/02/20/voi.jpg",
+        "requestedUrl": "https://mtcs.1cdn.vn/2023/02/20/voi.jpg",
+        "host": "mtcs.1cdn.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội đua voi\n📅 Tháng 3 Âm lịch\n📍 Đắk Lắk (Buôn Đôn)\n\nLễ hội đua voi là nét văn hóa đặc sắc của người Ê Đê, M'Nông ở Tây Nguyên, thể hiện sự dũng mãnh và kỹ thuật điều khiển voi.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "le-hoi-cong-chieng",
+      "order": 22,
+      "name": "Lễ hội Cồng Chiêng",
+      "type": "ethnic",
+      "typeLabel": "Lễ hội dân tộc",
+      "typeShortLabel": "Dân tộc",
+      "date": {
+        "text": "Tháng 3 Dương lịch",
+        "calendar": "solar",
+        "months": [
+          3
+        ],
+        "recurrence": "annual"
+      },
+      "location": "Tây Nguyên",
+      "description": "Lễ hội Cồng Chiêng tôn vinh không gian văn hóa cồng chiêng Tây Nguyên - Di sản văn hóa phi vật thể của nhân loại.",
+      "detail": {
+        "variant": "default",
+        "text": "Lễ hội Cồng Chiêng tôn vinh không gian văn hóa cồng chiêng Tây Nguyên - Di sản văn hóa phi vật thể của nhân loại.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://mia.vn/media/uploads/blog-du-lich/le-hoi-cong-chieng-tay-nguyen-gia-tri-van-hoa-ngan-doi-2-1635891985.jpg",
+        "requestedUrl": "https://mia.vn/media/uploads/blog-du-lich/le-hoi-cong-chieng-tay-nguyen-gia-tri-van-hoa-ngan-doi-2-1635891985.jpg",
+        "host": "mia.vn",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Lễ hội Cồng Chiêng\n📅 Tháng 3 Dương lịch\n📍 Tây Nguyên\n\nLễ hội Cồng Chiêng tôn vinh không gian văn hóa cồng chiêng Tây Nguyên - Di sản văn hóa phi vật thể của nhân loại.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    },
+    {
+      "slug": "hoi-choi-trau-do-son",
+      "order": 23,
+      "name": "Hội chọi trâu Đồ Sơn",
+      "type": "traditional",
+      "typeLabel": "Lễ hội truyền thống",
+      "typeShortLabel": "Truyền thống",
+      "date": {
+        "text": "10/6 - 9/8 Âm lịch",
+        "calendar": "lunar",
+        "start": {
+          "day": 10,
+          "month": 6
+        },
+        "end": {
+          "day": 9,
+          "month": 8
+        },
+        "recurrence": "annual"
+      },
+      "location": "Hải Phòng",
+      "description": "Hội chọi trâu Đồ Sơn là lễ hội truyền thống độc đáo, thể hiện tinh thần dũng mãnh của người dân vùng biển.",
+      "detail": {
+        "variant": "default",
+        "text": "Hội chọi trâu Đồ Sơn là lễ hội truyền thống độc đáo, thể hiện tinh thần dũng mãnh của người dân vùng biển.\n\n📖 Thông tin thêm:\nLễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân.\n\n🎯 Giá trị:\n• Giáo dục truyền thống\n• Gắn kết cộng đồng\n• Bảo tồn văn hóa\n• Phát triển du lịch",
+        "sections": [
+          {
+            "icon": "📖",
+            "heading": "Thông tin thêm",
+            "text": "Lễ hội này mang đậm bản sắc văn hóa dân tộc Việt Nam, thể hiện niềm tin tâm linh và truyền thống lâu đời của nhân dân."
+          },
+          {
+            "icon": "🎯",
+            "heading": "Giá trị",
+            "items": [
+              "Giáo dục truyền thống",
+              "Gắn kết cộng đồng",
+              "Bảo tồn văn hóa",
+              "Phát triển du lịch"
+            ]
+          }
+        ]
+      },
+      "image": {
+        "url": "https://i2-vnexpress.vnecdn.net/2022/09/04/letan-trauchoi-15-1662268349-1662270725.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=VnCg15W-fJNfd9ebrfIBfQ",
+        "requestedUrl": "https://i2-vnexpress.vnecdn.net/2022/09/04/letan-trauchoi-15-1662268349-1662270725.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=VnCg15W-fJNfd9ebrfIBfQ",
+        "host": "i2-vnexpress.vnecdn.net",
+        "status": "ok (HTTP 200 image, checked 2026-11-16)"
+      },
+      "shareText": "🎊 Hội chọi trâu Đồ Sơn\n📅 10/6 - 9/8 Âm lịch\n📍 Hải Phòng\n\nHội chọi trâu Đồ Sơn là lễ hội truyền thống độc đáo, thể hiện tinh thần dũng mãnh của người dân vùng biển.\n\n#LễHộiViệtNam #VănHóaViệtNam"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { CHI_SLUGS, CULTURE_URL, SAO_HAN_BIRTH_FROM, chiIcon, saoHanUrl, tuViChiUrl, tuViYearUrl, xongDatChiUrl } from '../../../../../lib/lich/urls';
+import { DIA_CHI, YEARLY, YEARLY_YEAR, thaiTue, tamTai, zodiacDetails, zodiacFortune } from '../../../../../lib/lich/tuvi';
+
+export function getStaticPaths() {
+  return CHI_SLUGS.map((s, i) => ({ params: { chi: `tuoi-${s}` }, props: { i } }));
+}
+const { i } = Astro.props;
+const y = YEARLY_YEAR;
+const chi = DIA_CHI[i];
+const f = zodiacFortune(chi)!;
+const people = zodiacDetails(i, y);
+const sampleBirth = Number(people[0]?.year ?? 1990);
+const tt = thaiTue(y, sampleBirth);
+const tam = tamTai(y, sampleBirth);
+---
+<LichShell
+  title={`Tử vi ${y} tuổi ${chi} – Sự nghiệp, gia đình, sức khỏe năm ${YEARLY.canChi}`}
+  description={`Tử vi năm ${y} ${YEARLY.canChi} tuổi ${chi}: ${f.career} Sao hạn nam nữ tuổi ${chi} các năm sinh ${people.map((p) => p.year).slice(0, 4).join(', ')}…`}
+  path={tuViChiUrl(y, i)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: `Tử vi ${y}`, href: tuViYearUrl(y) }, { name: `Tuổi ${chi}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head la-head-icon">
+      <img src={chiIcon(i)} width="72" height="70" alt={`Con giáp tuổi ${chi}`} />
+      <div>
+        <h1>Tử vi {y} tuổi {chi}</h1>
+        <p>Năm {YEARLY.canChi}: {tt ? `tuổi ${chi} phạm ${tt.name}` : `tuổi ${chi} không phạm Thái Tuế`}{tam ? `, gặp Tam Tai năm thứ ${tam}` : ''}.</p>
+      </div>
+    </header>
+    <div class="la-cards">
+      <article class="la-card"><h2 class="la-h3">Sự nghiệp</h2><p>{f.career}</p></article>
+      <article class="la-card"><h2 class="la-h3">Gia đình</h2><p>{f.family}</p></article>
+      <article class="la-card"><h2 class="la-h3">Sức khỏe</h2><p>{f.health}</p></article>
+    </div>
+    <section class="la-block" aria-labelledby="sao-han">
+      <h2 id="sao-han" class="la-h2">Sao hạn {y} tuổi {chi} theo năm sinh</h2>
+      <div class="la-table-wrap">
+        <table class="la-table">
+          <thead><tr><th scope="col">Năm sinh</th><th scope="col">Nam mạng</th><th scope="col">Nữ mạng</th></tr></thead>
+          <tbody>{people.map((p) => <tr><td>{Number(p.year) >= SAO_HAN_BIRTH_FROM && Number(p.year) <= y - 9 ? <a href={saoHanUrl(y, Number(p.year))}><b>{p.name} {p.year}</b></a> : <b>{p.name} {p.year}</b>}</td><td>{p.maleText}</td><td>{p.femaleText}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="la-more"><a href={xongDatChiUrl(y, i)}>Gia chủ tuổi {chi} chọn người xông đất Tết {y}</a></p>
+    </section>
+    <nav class="la-chips" aria-label="Con giáp khác">{DIA_CHI.map((c, j) => j !== i && <a class="la-chip la-chip-hol" href={tuViChiUrl(y, j)}>Tuổi {c}</a>)}</nav>
+  </div>
+</LichShell>

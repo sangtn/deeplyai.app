@@ -1,0 +1,58 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, SAO_HAN_FROM, SAO_HAN_TO, SAO_HAN_URL, saoHanYearUrl } from '../../../../lib/lich/urls';
+import { canChi, targetYearFromLunar, TUVI_DATA } from '../../../../lib/lich/tuvi';
+import { solarToLunar, vietnamToday } from '../../../../components/lich-viet/lunar';
+
+const t = vietnamToday();
+const l = solarToLunar(t.day, t.month, t.year);
+const current = Math.min(SAO_HAN_TO, targetYearFromLunar(l.year, l.month));
+const years = Array.from({ length: SAO_HAN_TO - SAO_HAN_FROM + 1 }, (_, i) => SAO_HAN_FROM + i);
+const sh = TUVI_DATA.saoHan as { starMeanings: Record<string, string>; destinyMeanings: Record<string, string> };
+---
+<LichShell
+  title={`Sao hạn ${current} – Xem sao chiếu mệnh, vận hạn theo tuổi`}
+  description={`Xem sao hạn năm ${current} (${canChi(current)}) cho mọi tuổi: sao chiếu mệnh Cửu Diệu, vận hạn, Tam Tai, phạm Thái Tuế, kèm văn khấn dâng sao giải hạn và ngày cúng.`}
+  path={SAO_HAN_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Sao hạn' }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Sao hạn theo tuổi</h1>
+      <p>Mỗi năm, mỗi người có một sao chiếu mệnh trong chín sao Cửu Diệu và một vận hạn, tính theo tuổi âm (tuổi mụ) và giới tính. Chọn năm cần xem, rồi chọn năm sinh của bạn.</p>
+    </header>
+    <form class="la-jump" data-sao-form>
+      <label for="la-sao-year">Năm cần xem</label>
+      <select id="la-sao-year" name="y">{years.map((y) => <option value={y} selected={y === current}>{y} ({canChi(y)})</option>)}</select>
+      <label for="la-sao-birth">Năm sinh âm lịch</label>
+      <input id="la-sao-birth" name="b" type="number" min="1930" max="2017" inputmode="numeric" placeholder="Ví dụ 1990" required />
+      <button type="submit">Xem sao hạn</button>
+    </form>
+    <section class="la-block" aria-labelledby="cac-nam">
+      <h2 id="cac-nam" class="la-h2">Bảng sao hạn các năm</h2>
+      <ul class="la-years la-months">{years.map((y) => <li><a href={saoHanYearUrl(y)}>Năm {y}</a></li>)}</ul>
+    </section>
+    <section class="la-block la-cols" aria-label="Ý nghĩa">
+      <div>
+        <h2 class="la-h2">Chín sao chiếu mệnh</h2>
+        <ul class="la-stars">{Object.entries(sh.starMeanings).map(([k, v]) => <li><b>{k}</b>: {v}</li>)}</ul>
+      </div>
+      <div>
+        <h2 class="la-h2">Tám vận hạn</h2>
+        <ul class="la-stars">{Object.entries(sh.destinyMeanings).map(([k, v]) => <li><b>{k}</b>: {v}</li>)}</ul>
+      </div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { saoHanUrl } from '../../../../lib/lich/urls';
+  const form = document.querySelector<HTMLFormElement>('[data-sao-form]');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const y = Number((form.elements.namedItem('y') as HTMLSelectElement).value);
+    const b = Number((form.elements.namedItem('b') as HTMLInputElement).value);
+    if (b >= 1930 && b <= y - 9) window.location.href = saoHanUrl(y, b);
+  });
+</script>

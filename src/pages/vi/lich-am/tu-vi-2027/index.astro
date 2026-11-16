@@ -1,0 +1,35 @@
+---
+// The folder name carries the year of the app's yearly content (tuvi.json "yearly.year").
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, chiIcon, saoHanYearUrl, tuViChiUrl, tuViYearUrl, xongDatUrl } from '../../../../lib/lich/urls';
+import { YEARLY, YEARLY_YEAR, zodiacFortune, DIA_CHI } from '../../../../lib/lich/tuvi';
+
+const y = YEARLY_YEAR;
+if (y !== 2027) throw new Error(`tuvi.json now targets ${y}: rename src/pages/vi/lich-am/tu-vi-2027 to tu-vi-${y}`);
+const items = DIA_CHI.map((chi, i) => ({ chi, i, f: zodiacFortune(chi)! }));
+---
+<LichShell
+  title={`Tử vi ${y} – Tử vi năm ${YEARLY.canChi} cho 12 con giáp`}
+  description={`Tử vi năm ${y} ${YEARLY.canChi} cho 12 con giáp: sự nghiệp, gia đình, sức khỏe của từng tuổi, kèm sao hạn nam nữ theo năm sinh. ${YEARLY.yearInfo.description.slice(0, 80)}…`}
+  path={tuViYearUrl(y)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: `Tử vi ${y}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tử vi năm {y} {YEARLY.canChi}</h1>
+      <p>{YEARLY.headerSubtitle}. Năm âm lịch kéo dài từ {YEARLY.yearInfo.period}.</p>
+    </header>
+    <section class="la-block"><p class="la-prose">{YEARLY.yearInfo.description}</p></section>
+    <div class="la-zodiac">
+      {items.map(({ chi, i, f }) => (
+        <a class="la-card la-zodiac-card" href={tuViChiUrl(y, i)}>
+          <img src={chiIcon(i)} width="48" height="47" alt="" loading="lazy" />
+          <h2>Tuổi {chi}</h2>
+          <p>{f.career}</p>
+        </a>
+      ))}
+    </div>
+    <p class="la-more"><a href={saoHanYearUrl(y)}>Bảng sao hạn năm {y}</a> · <a href={xongDatUrl(y)}>Chọn tuổi xông đất Tết {y}</a></p>
+  </div>
+</LichShell>

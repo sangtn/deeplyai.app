@@ -233,3 +233,80 @@
 .la-app { position: relative; overflow: hidden; }
 .la-app::after { content: ''; position: absolute; right: -120px; top: 50%; width: 420px; height: 420px; transform: translateY(-50%); background: url('/assets/apps/lich-viet/drum-gold.webp') center / contain no-repeat; opacity: .14; pointer-events: none; }
 .la-app-in { position: relative; z-index: 1; }
+
+/* Good days */
+.la-rate { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.la-rate-excellent { background: #1f7a4d; color: #fff; }
+.la-rate-good { background: var(--la-good-bg); color: var(--la-green); }
+.la-rate-neutral { background: var(--paper-2); color: var(--ink-2); }
+.la-rate-bad { background: var(--la-bad-bg); color: var(--la-red); }
+.la-score { display: block; margin-top: 4px; color: var(--ink-2); }
+.la-why { display: grid; gap: 3px; font-size: 14px; min-width: 220px; }
+.la-why-good::before { content: '✓ '; color: var(--la-green); font-weight: 700; }
+.la-why-bad::before { content: '✕ '; color: var(--la-red); font-weight: 700; }
+.la-why-bad { color: var(--ink-2); }
+.la-good-table tr[hidden] { display: none; }
+.la-age { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 16px; padding: 14px 16px; border-radius: 16px; background: var(--paper-2); }
+.la-age > label:first-child { font-weight: 600; flex-basis: 100%; }
+.la-age input[type='number'] { width: 140px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; }
+.la-age button { min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--la-red); color: #fff; font: 600 16px var(--body); cursor: pointer; }
+.la-age .la-check { display: flex; align-items: center; gap: 6px; }
+.la-age-note { flex-basis: 100%; color: var(--la-green); font-weight: 600; }
+.la-age-note:empty { display: none; }
+.la-fit { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+.la-fit a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--la-card); text-decoration: none; font-weight: 600; }
+.la-fit a:hover { border-color: var(--la-red); }
+.la-purposes { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); padding-bottom: 32px; }
+.la-purpose h2 { font-size: 22px; margin-bottom: 10px; }
+.la-purpose h2 a { text-decoration: none; }
+.la-purpose ul { display: grid; gap: 8px; }
+.la-purpose li { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 15px; }
+.la-purpose li a { color: var(--la-red); }
+.la-months { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+/* Văn khấn */
+.la-kicker { font-weight: 600; color: var(--la-red); }
+.la-kicker a { text-decoration: none; }
+.la-prayers { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.la-prayers a { display: block; height: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--la-card); text-decoration: none; font-weight: 600; }
+.la-prayers a:hover { border-color: var(--la-red); color: var(--la-red); }
+.la-article .la-head h1 { max-width: 20em; font-size: clamp(32px, 5vw, 56px); }
+.la-prose { max-width: 46em; white-space: pre-line; font-size: 18px; line-height: 1.75; }
+.la-prayer { max-width: 40em; padding: clamp(18px, 3vw, 32px); border-radius: 18px; background: #fffdf8; border: 1px solid #e8dcc4; white-space: pre-line; font-size: 18px; line-height: 1.85; }
+.la-prayer-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; max-width: 46em; }
+.la-prayer-head .la-h2 { margin-bottom: 14px; }
+.la-copy { min-height: 40px; padding: 0 16px; border: 1px solid var(--la-red); border-radius: 999px; background: transparent; color: var(--la-red); font: 600 15px var(--body); cursor: pointer; }
+.la-chips a.la-chip { text-decoration: none; }
+
+/* Culture */
+.la-head-icon { display: flex; gap: 18px; align-items: center; }
+.la-head-icon img { flex: none; width: 72px; height: auto; }
+.la-zodiac { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); padding-bottom: 24px; }
+.la-zodiac-card { display: grid; gap: 6px; text-decoration: none; }
+.la-zodiac-card:hover { border-color: var(--la-red); }
+.la-zodiac-card h2 { font-size: 22px; }
+.la-zodiac-card p { color: var(--ink-2); font-size: 15px; }
+.la-sao { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+.la-sao-good { background: var(--la-good-bg); color: var(--la-green); }
+.la-sao-mid { background: var(--paper-2); color: var(--ink); }
+.la-sao-bad { background: var(--la-bad-bg); color: var(--la-red); }
+.la-fest h3 { font-size: 21px; margin-bottom: 8px; }
+.la-fest-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--ink-2); font-size: 15px; margin-bottom: 6px; }
+.la-fest-next { font-weight: 600; margin-bottom: 8px; }
+.la-fest-next a { color: var(--la-red); }
+.la-fest details { margin-top: 10px; }
+.la-fest summary { cursor: pointer; color: var(--la-red); font-weight: 600; }
+.la-fest-sec { margin-top: 10px; }
+.la-fest-sec h4 { margin: 0 0 4px; font-size: 16px; }
+.la-wishes { display: grid; gap: 10px; }
+.la-wishes li { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--la-card); }
+.la-wishes li p { font-size: 17px; }
+.la-wishes .la-copy { flex: none; }
+.la-wishes-preview li { display: block; padding: 0; border: 0; background: none; font-size: 15px; color: var(--ink-2); }
+.la-tool-wide { max-width: 720px; margin-bottom: 32px; }
+.la-result-pre p { white-space: pre-line; }
+.la-num-row { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.la-num-row b { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--la-red); color: #fff; font-family: var(--display); font-size: 20px; }
+.la-culture a { display: grid; gap: 4px; padding: 18px; }
+.la-culture b { font-family: var(--display); font-size: 22px; }
+.la-culture span { font-weight: 400; color: var(--ink-2); }

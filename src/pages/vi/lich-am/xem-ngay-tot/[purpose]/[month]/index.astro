@@ -1,0 +1,18 @@
+---
+import GoodMonthPage from '../../../../../../components/lich/GoodMonthPage.astro';
+import { PURPOSES } from '../../../../../../lib/lich/goodday';
+import { DAY_FROM, DAY_TO } from '../../../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  return PURPOSES.flatMap((p) => {
+    const out = [];
+    for (let y = DAY_FROM; y <= DAY_TO; y += 1) for (let m = 1; m <= 12; m += 1) out.push({ params: { purpose: p.slug, month: `thang-${p2(m)}-${y}` }, props: { m, y } });
+    return out;
+  });
+}
+
+const { purpose } = Astro.params;
+const { m, y } = Astro.props;
+---
+<GoodMonthPage slug={purpose!} m={m} y={y} />

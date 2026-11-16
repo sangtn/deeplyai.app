@@ -1,0 +1,89 @@
+---
+import { WEEKDAYS, type Almanac } from '../../lib/lich/engine';
+import { RATING_LABEL, type Rating } from '../../lib/lich/goodday';
+import { dayUrl, dmy, hasDayPage } from '../../lib/lich/urls';
+
+interface Row { a: Almanac; score: number; rating: Rating; reasons: string[]; warnings: string[] }
+interface Props { days: Row[]; m?: number; y?: number; label: string }
+const { days, label } = Astro.props;
+---
+<section class="la-good" data-good>
+  <form class="la-age" data-age-form>
+    <label for="la-age-year">Năm sinh của người làm việc {label}</label>
+    <input id="la-age-year" name="year" type="number" min="1920" max="2025" inputmode="numeric" placeholder="Ví dụ 1990" />
+    <button type="submit">Lọc theo tuổi</button>
+    <label class="la-check"><input type="checkbox" name="only" /> Chỉ hiện ngày tốt</label>
+    <p class="la-age-note" data-age-note aria-live="polite"></p>
+  </form>
+  <div class="la-table-wrap">
+    <table class="la-table la-good-table">
+      <thead><tr><th scope="col">Ngày</th><th scope="col">Đánh giá</th><th scope="col">Lý do</th><th scope="col">Giờ hoàng đạo</th></tr></thead>
+      <tbody>
+        {days.map((d) => {
+          const date = dmy(d.a.day, d.a.month, d.a.year);
+          return (
+            <tr data-chi={d.a.index60 % 12} data-score={d.score} data-rating={d.rating}>
+              <td>
+                {hasDayPage(d.a.year) ? <a href={dayUrl(d.a.day, d.a.month, d.a.year)}><b>{date}</b></a> : <b>{date}</b>}
+                <br /><small>{WEEKDAYS[d.a.weekday]} · {d.a.lunar.day}/{d.a.lunar.month}{d.a.lunar.leap ? ' nhuận' : ''} âm · {d.a.canChi}</small>
+              </td>
+              <td><span class:list={['la-rate', `la-rate-${d.rating}`]} data-badge>{RATING_LABEL[d.rating]}</span><small class="la-score" data-score-text>{d.score > 0 ? '+' : ''}{d.score} điểm</small></td>
+              <td class="la-why">
+                {d.reasons.map((r) => <span class="la-why-good">{r}</span>)}
+                {d.warnings.map((w) => <span class="la-why-bad">{w}</span>)}
+                <span class="la-why-age" data-age-line hidden></span>
+              </td>
+              <td><small>{d.a.hours.filter((h) => h.good).map((h) => h.chi).join(', ')}</small></td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  import { RATING_LABEL, ageAdjust, rate } from '../../lib/lich/goodday-age';
+
+  document.querySelectorAll<HTMLElement>('[data-good]').forEach((root) => {
+    const form = root.querySelector<HTMLFormElement>('[data-age-form]')!;
+    const note = root.querySelector<HTMLElement>('[data-age-note]')!;
+    const rows = [...root.querySelectorAll<HTMLTableRowElement>('tr[data-chi]')];
+    const yearInput = form.elements.namedItem('year') as HTMLInputElement;
+    const onlyInput = form.elements.namedItem('only') as HTMLInputElement;
+
+    const apply = () => {
+      const year = Number(yearInput.value);
+      const valid = year >= 1920 && year <= 2025;
+      let good = 0;
+      for (const row of rows) {
+        const base = Number(row.dataset.score);
+        const adj = valid ? ageAdjust(Number(row.dataset.chi), year) : null;
+        const score = Math.max(-10, Math.min(10, base + (adj?.delta ?? 0)));
+        const r = rate(score);
+        const badge = row.querySelector<HTMLElement>('[data-badge]')!;
+        badge.className = `la-rate la-rate-${r}`;
+        badge.textContent = RATING_LABEL[r];
+        row.querySelector<HTMLElement>('[data-score-text]')!.textContent = `${score > 0 ? '+' : ''}${score} điểm`;
+        const line = row.querySelector<HTMLElement>('[data-age-line]')!;
+        line.hidden = !adj;
+        if (adj) {
+          line.textContent = `${adj.note} (${adj.delta > 0 ? '+' : ''}${adj.delta})`;
+          line.className = adj.good ? 'la-why-good' : 'la-why-bad';
+        }
+        const isGood = r === 'excellent' || r === 'good';
+        if (isGood) good += 1;
+        row.hidden = onlyInput.checked && !isGood;
+      }
+      note.textContent = valid ? `Đã tính theo tuổi sinh năm ${year}: còn ${good} ngày tốt.` : yearInput.value ? 'Nhập năm sinh từ 1920 đến 2025.' : '';
+      try { if (valid) localStorage.setItem('la-birth-year', String(year)); } catch {}
+    };
+
+    form.addEventListener('submit', (e) => { e.preventDefault(); apply(); });
+    onlyInput.addEventListener('change', apply);
+    try {
+      const saved = localStorage.getItem('la-birth-year');
+      if (saved) { yearInput.value = saved; apply(); }
+    } catch {}
+  });
+</script>

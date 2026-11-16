@@ -1,0 +1,33 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { PRAYERS, PRAYER_GROUPS } from '../../../../lib/lich/vankhan';
+import { VAN_KHAN_URL, vanKhanUrl } from '../../../../lib/lich/urls';
+
+const groups = PRAYER_GROUPS.map((g) => ({ ...g, items: PRAYERS.filter((p) => p.cat === g.id) }));
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Văn khấn cổ truyền Việt Nam',
+  itemListElement: PRAYERS.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://deeplyai.app${vanKhanUrl(p.slug)}`, name: p.title })),
+}];
+---
+<LichShell
+  title="Văn khấn cổ truyền – Văn khấn mùng 1, ngày rằm, lễ Tết, giỗ, nhập trạch"
+  description={`Tổng hợp ${PRAYERS.length} bài văn khấn cổ truyền Việt Nam: mùng một, ngày rằm, lễ Tết, giỗ chạp, dâng sao giải hạn, nhập trạch, động thổ, khai trương, đi đền chùa, kèm ý nghĩa và cách sắm lễ.`}
+  path={VAN_KHAN_URL}
+  crumbs={[{ name: 'Văn khấn' }]}
+  jsonLd={jsonLd}
+  active="vankhan"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Văn khấn cổ truyền</h1>
+      <p>{PRAYERS.length} bài văn khấn dùng trong gia đình và khi đi lễ đền chùa, mỗi bài có ý nghĩa của lễ, cách sắm lễ và lời khấn.</p>
+    </header>
+    <nav class="la-chips" aria-label="Nhóm văn khấn">{groups.map((g) => <a class="la-chip la-chip-hol" href={`#${g.id}`}>{g.title}</a>)}</nav>
+    {groups.map((g) => (
+      <section class="la-block" aria-labelledby={g.id}>
+        <h2 id={g.id} class="la-h2">{g.title}</h2>
+        <ul class="la-prayers">{g.items.map((p) => <li><a href={vanKhanUrl(p.slug)}>{p.title}</a></li>)}</ul>
+      </section>
+    ))}
+  </div>
+</LichShell>

@@ -1,0 +1,1521 @@
+{
+  "_source": {
+    "app": "LichViet iOS v1.2026.1",
+    "files": [
+      "ViewController/CultureViet/LoiChucTet2026/LoiChucTetData.swift",
+      "ViewController/CultureViet/LoiChucTet2026/LoiChucTet2026ViewController.swift"
+    ],
+    "extraction": "Texts dumped by compiling the app's LoiChucTetData.swift with swiftc and cross-checked line by line against a regex parse of the source.",
+    "targetYear": {
+      "year": 2027,
+      "canChi": "Đinh Mùi",
+      "note": "Folder/class names say 2026, but all year-specific greetings and the menu title reference Đinh Mùi 2027 (🐐). No greeting references Bính Ngọ 2026."
+    },
+    "notes": [
+      "codeGroup is the Swift source comment above the item (not shown in the app UI). \"Từ\" / \"Từ oneshop.vn\" are source-attribution comments, not group names.",
+      "In the Đồng Nghiệp category, the codeGroup \"Lời chúc thêm cho sếp\" items are boss greetings filed under colleagues in the app.",
+      "yearRef is null for evergreen greetings; set when the text mentions 2027, Đinh Mùi/Mùi or the 🐐 emoji.",
+      "Users can add custom wishes in the app (stored locally, max length enforced); none are bundled."
+    ]
+  },
+  "screen": {
+    "menuTitle": "Lời Chúc Tết 2027",
+    "menuSubtitle": "Tổng hợp lời chúc Tết ý nghĩa theo từng mục đối tượng",
+    "title": "🏮 Lời Chúc Tết 🏮",
+    "subtitle": "Gửi gắm yêu thương qua từng lời chúc ý nghĩa",
+    "filters": [
+      "📝 Tất cả",
+      "❤️ Yêu thích",
+      "✍️ Của tôi"
+    ],
+    "searchPlaceholder": "Tìm kiếm lời chúc...",
+    "customWishMaxChars": 500
+  },
+  "total": 227,
+  "categories": [
+    {
+      "slug": "gia-dinh",
+      "name": "Gia Đình",
+      "swiftCase": "giadinh",
+      "sfSymbol": "house.fill",
+      "emoji": "🏠",
+      "count": 35,
+      "items": [
+        {
+          "id": "gia-dinh-01",
+          "text": "🏡 Con kính chúc cha mẹ luôn mạnh khỏe, hạnh phúc và bình an bên con cháu.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-02",
+          "text": "🌸 Chúc cha mẹ năm mới thật nhiều niềm vui, tràn đầy năng lượng và an khang thịnh vượng.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-03",
+          "text": "💝 Năm mới đến, con chỉ mong cha mẹ luôn khỏe mạnh và vui cười mỗi ngày.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-04",
+          "text": "🕯️ Cầu mong cha mẹ mãi là ngọn lửa ấm, soi sáng gia đình ta.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-05",
+          "text": "🌺 Con chúc cha mẹ một mùa xuân tươi trẻ, tràn đầy tiếng cười.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-06",
+          "text": "🙏 Chúc cha mẹ thêm tuổi, thêm phúc, thêm bình an.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-07",
+          "text": "💖 Con nguyện sống tốt hơn để cha mẹ luôn tự hào.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-08",
+          "text": "🌟 Kính chúc cha mẹ năm mới sung túc, sức khỏe dồi dào.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-09",
+          "text": "👨‍👩‍👧‍👦 Chúc cha mẹ luôn hạnh phúc, sum vầy cùng con cháu.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-10",
+          "text": "💕 Năm mới đến, con biết ơn cha mẹ vì tất cả yêu thương.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-11",
+          "text": "😊 Chúc cha mẹ năm nay bớt lo toan, nhiều niềm vui hơn.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-12",
+          "text": "💪 Con mong cha mẹ luôn là nguồn động lực và niềm tin cho chúng con.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-13",
+          "text": "🌈 Năm mới, chúc cha mẹ cười nhiều hơn, buồn ít lại.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-14",
+          "text": "🎋 Kính chúc cha mẹ vạn điều tốt lành, an nhiên suốt năm.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-15",
+          "text": "🌸 Chúc cha mẹ năm mới trọn vẹn hạnh phúc và bình yên viên mãn.",
+          "codeGroup": "Lời chúc cho cha mẹ",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-16",
+          "text": "👴👵 Con kính chúc ông bà sống vui, sống khỏe, sống lâu trăm tuổi.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-17",
+          "text": "🌸 Năm mới, chúc ông bà luôn hạnh phúc, phúc lộc đầy nhà.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-18",
+          "text": "🏮 Cầu mong ông bà an khang, thịnh vượng và luôn mỉm cười rạng rỡ.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-19",
+          "text": "👪 Con chúc ông bà có nhiều thời gian vui vẻ bên con cháu.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-20",
+          "text": "🎋 Năm mới, mong ông bà thêm tuổi, thêm phúc, thêm niềm vui.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-21",
+          "text": "💪 Chúc ông bà mạnh khỏe, tinh thần luôn sảng khoái.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-22",
+          "text": "🏡 Kính chúc ông bà mãi là điểm tựa ấm áp của gia đình.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-23",
+          "text": "😊 Năm mới đến, mong ông bà luôn vui vẻ, yêu đời.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-24",
+          "text": "🌊🏔️ Chúc ông bà phúc như Đông Hải, thọ tỷ Nam Sơn.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-25",
+          "text": "🌱 Xuân sang, con mong ông bà luôn rạng ngời sức sống.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-26",
+          "text": "🙏 Con cầu chúc ông bà an nhiên, hạnh phúc và sống lâu trăm tuổi.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-27",
+          "text": "👨‍👩‍👧‍👦 Chúc ông bà luôn hạnh phúc, bình yên bên con cháu.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-28",
+          "text": "🌺 Kính chúc ông bà một mùa xuân sum vầy, tràn đầy tiếng cười.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-29",
+          "text": "💚 Năm mới, chúc ông bà có thật nhiều sức khỏe và niềm vui.",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-30",
+          "text": "🎉 Chúc ông bà năm nay 'càng sống càng vui, càng yêu đời càng khỏe mạnh!'",
+          "codeGroup": "Lời chúc cho ông bà",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-31",
+          "text": "🏠 Chúc gia đình mình luôn ấm no, hạnh phúc và đoàn viên.",
+          "codeGroup": "Lời chúc chung cho gia đình",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-32",
+          "text": "🌟 Năm mới đến, chúc gia đình ta thêm nhiều tiếng cười và niềm vui.",
+          "codeGroup": "Lời chúc chung cho gia đình",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-33",
+          "text": "💝 Mong gia đình luôn là tổ ấm bình yên cho tất cả mọi người.",
+          "codeGroup": "Lời chúc chung cho gia đình",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-34",
+          "text": "🎊 Chúc gia đình năm mới sum vầy, tràn đầy tình thương yêu.",
+          "codeGroup": "Lời chúc chung cho gia đình",
+          "yearRef": null
+        },
+        {
+          "id": "gia-dinh-35",
+          "text": "🌈 Cầu mong gia đình luôn khỏe mạnh, hạnh phúc và an lành.",
+          "codeGroup": "Lời chúc chung cho gia đình",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "ban-be",
+      "name": "Bạn Bè",
+      "swiftCase": "banbe",
+      "sfSymbol": "person.3.fill",
+      "emoji": "👥",
+      "count": 25,
+      "items": [
+        {
+          "id": "ban-be-01",
+          "text": "🎉 Chúc bạn năm mới vui như Tết, tiền nhiều như nước, phúc lộc đầy nhà!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-02",
+          "text": "💻 Năm mới, chúc bạn 'deadline không đuổi kịp, lương cứ tăng đều'!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-03",
+          "text": "🍜 Tết này chúc bạn ăn ngon, ngủ kỹ, làm gì cũng hên.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-04",
+          "text": "☀️ Mong bạn luôn lạc quan, yêu đời và gặp toàn điều may mắn.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-05",
+          "text": "💰 Chúc bạn năm mới phát tài, phát lộc, phát sắc!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-06",
+          "text": "😄 Tết đến, chúc bạn cười nhiều hơn, lo ít lại.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-07",
+          "text": "💼💕 Chúc bạn có công việc thuận lợi, tình duyên viên mãn.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-08",
+          "text": "🤝 Năm mới, chúc tình bạn chúng ta càng thêm bền chặt.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-09",
+          "text": "🎯 Chúc bạn có nhiều 'deal ngon' và cơ hội mới trong năm 2027.",
+          "codeGroup": "Từ",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "ban-be-10",
+          "text": "💖 Năm mới, chúc bạn đủ tiền – đủ vui – đủ yêu!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-11",
+          "text": "✨ Chúc bạn 'đẹp hơn, khỏe hơn và ít stress hơn' trong năm mới.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-12",
+          "text": "🍻 Tết này không say không về. Chúc bạn vui thả ga nhé!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-13",
+          "text": "🎊 Năm mới, chúc bạn mọi điều như ý, phúc lộc đầy nhà.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-14",
+          "text": "🚀 Mong bạn luôn có năng lượng tích cực để chinh phục mọi ước mơ.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-15",
+          "text": "⚡ Tết này chúc bạn 'upgrade' từ vui sang siêu vui, từ hên sang cực hên!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-16",
+          "text": "🎮 Chúc bạn năm mới 'level up' trong mọi việc, từ game đến đời thực!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-17",
+          "text": "📱 Năm mới chúc bạn wifi luôn mạnh, pin không bao giờ hết!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-18",
+          "text": "🛍️ Chúc bạn năm mới mua sắm thả ga mà vẫn dư tiền tiết kiệm!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-19",
+          "text": "🌟 Tết đến rồi, chúc bạn làm gì cũng 'max điểm', sống gì cũng 'full energy'!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-20",
+          "text": "🎁 Chúc bạn năm mới nhận được nhiều surprise và ít drama!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-21",
+          "text": "💪 Năm mới chúc bạn tăng cân theo ý muốn, giảm stress theo ý thích!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-22",
+          "text": "🌈 Chúc bạn năm 2027 đầy màu sắc, ít đen đủi nhiều hồng phấn!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "ban-be-23",
+          "text": "🎪 Tết này chúc bạn vui như hội, khỏe như voi, giàu như Tây!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-24",
+          "text": "🔥 Chúc bạn năm mới hot trend, không bao giờ outdated!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        },
+        {
+          "id": "ban-be-25",
+          "text": "💝 Năm mới chúc bạn được yêu thương, được quan tâm và không bao giờ cô đơn!",
+          "codeGroup": "Thêm lời chúc hài hước và gần gũi",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "nguoi-yeu",
+      "name": "Người Yêu",
+      "swiftCase": "nguoiyeu",
+      "sfSymbol": "heart.fill",
+      "emoji": "💕",
+      "count": 25,
+      "items": [
+        {
+          "id": "nguoi-yeu-01",
+          "text": "💕 Năm mới đến, chúc em yêu luôn xinh đẹp, rạng rỡ và hạnh phúc bên anh.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-02",
+          "text": "🌸 Cảm ơn em đã mang đến cho anh một mùa xuân trọn vẹn yêu thương.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-03",
+          "text": "🌺 Chúc cho tình yêu của chúng ta mãi bền lâu, rực rỡ như hoa mai đầu năm.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-04",
+          "text": "😊 Anh chúc em luôn mỉm cười, sống vui và được yêu thương mỗi ngày.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-05",
+          "text": "🏮 Năm mới, chỉ cần có anh/em… mọi thứ đều là Tết.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-06",
+          "text": "🍀 Mong em có thật nhiều may mắn và niềm vui trong năm 2027.",
+          "codeGroup": "Từ",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "nguoi-yeu-07",
+          "text": "⭐ Anh chúc em thành công, tỏa sáng và luôn yêu đời.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-08",
+          "text": "🎆 Chúc cho tình yêu đôi ta luôn rực rỡ như pháo hoa đêm giao thừa.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-09",
+          "text": "💑 Tết này, chỉ cần ở bên nhau là hạnh phúc đủ đầy.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-10",
+          "text": "🌟 Năm mới, anh chúc em yêu luôn được bình an và tràn đầy năng lượng tích cực.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-11",
+          "text": "💖 Chúc anh/em luôn tự tin, yêu bản thân và yêu chúng ta hơn nữa.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-12",
+          "text": "🥰 Cảm ơn em vì đã đến bên anh. Chúc chúng ta mãi hạnh phúc như hôm nay.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-13",
+          "text": "🔥 Năm mới, chúc cho tình yêu của chúng ta luôn ấm áp, bền chặt và ngọt ngào.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-14",
+          "text": "🌸 Em là mùa xuân trong tim anh. Chúc em mãi rạng ngời và yêu đời.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-15",
+          "text": "💝 Tết này, anh chỉ chúc một điều: Em mãi hạnh phúc bên anh!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-16",
+          "text": "🌹 Em là món quà đẹp nhất mà năm cũ tặng anh. Chúc năm mới ta có thêm nhiều kỷ niệm đẹp!",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-17",
+          "text": "💫 Anh muốn cùng em đếm từng giây phút của năm mới, cùng nhau tạo nên những điều kỳ diệu.",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-18",
+          "text": "🎭 Năm mới này, anh chỉ muốn là người duy nhất làm em cười hạnh phúc mỗi ngày.",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-19",
+          "text": "🏡 Chúc năm mới ta xây dựng được tổ ấm nhỏ đầy tiếng cười và yêu thương.",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-20",
+          "text": "🎪 Tết đến, anh chúc đôi ta vui như trẻ con nhưng yêu như người lớn!",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-21",
+          "text": "🌙 Em là ánh trăng soi sáng đêm đông lạnh giá. Chúc em năm mới ấm áp như ánh nắng.",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-22",
+          "text": "💐 Năm mới, anh hứa sẽ yêu em nhiều hơn 365 ngày, từng giờ từng phút!",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-23",
+          "text": "🦋 Chúc tình yêu của chúng ta bay cao như cánh bướm, tự do nhưng không bao giờ rời xa.",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-24",
+          "text": "🎨 Em là tác phẩm nghệ thuật đẹp nhất trong cuộc đời anh. Chúc em mãi rạng ngời!",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        },
+        {
+          "id": "nguoi-yeu-25",
+          "text": "⭐ Trong năm mới, anh muốn là ngôi sao may mắn nhất trong vũ trụ của em!",
+          "codeGroup": "Thêm lời chúc ngọt ngào và lãng mạn",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "dong-nghiep",
+      "name": "Đồng Nghiệp",
+      "swiftCase": "dongphap",
+      "sfSymbol": "briefcase.fill",
+      "emoji": "💼",
+      "count": 24,
+      "items": [
+        {
+          "id": "dong-nghiep-01",
+          "text": "💼 Chúc đồng nghiệp một năm mới tràn đầy năng lượng, sáng tạo không ngừng.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-02",
+          "text": "📈 Năm mới, chúc cả công ty ta thắng lớn, doanh thu bội thu!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-03",
+          "text": "🎯 Chúc đồng nghiệp luôn vui vẻ, đạt KPI, thưởng đầy tay.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-04",
+          "text": "🤝 Năm mới đến, chúc cả team đoàn kết và bứt phá mạnh mẽ.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-05",
+          "text": "🏢 Tết này, chúc sếp sáng suốt, nhân viên quý mến, công ty thăng hoa.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-06",
+          "text": "⏰💰 Chúc bạn đồng nghiệp năm mới 'ít deadline – nhiều bonus'!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-07",
+          "text": "🚀 Chúc cho mọi dự án đều thành công ngoài mong đợi.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-08",
+          "text": "😄 Năm mới, chúc cả văn phòng tràn ngập tiếng cười và niềm vui.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-09",
+          "text": "💪 Chúc đồng nghiệp sức khỏe, thăng tiến và hạnh phúc viên mãn.",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-10",
+          "text": "🌟 Năm mới, chúc tất cả chúng ta cùng nhau bứt phá mạnh mẽ hơn nữa!",
+          "codeGroup": "Từ",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-11",
+          "text": "🙏 Kính chúc sếp năm mới sức khỏe dồi dào, thành công rực rỡ.",
+          "codeGroup": "Lời chúc thêm cho sếp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-12",
+          "text": "🏆 Chúc sếp dẫn dắt đội ngũ chinh phục thêm nhiều đỉnh cao.",
+          "codeGroup": "Lời chúc thêm cho sếp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-13",
+          "text": "💰 Năm mới, chúc sếp phát tài phát lộc, vạn sự như ý.",
+          "codeGroup": "Lời chúc thêm cho sếp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-14",
+          "text": "👨‍👩‍👧‍👦 Chúc sếp và gia đình an khang, hạnh phúc viên mãn.",
+          "codeGroup": "Lời chúc thêm cho sếp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-15",
+          "text": "🌟 Chúc sếp năm mới thêm bản lĩnh, thêm thành công, thêm niềm tin.",
+          "codeGroup": "Lời chúc thêm cho sếp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-16",
+          "text": "☕ Chúc năm mới cà phê luôn đậm đà, meeting luôn ngắn gọn!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-17",
+          "text": "📊 Năm mới chúc biểu đồ doanh thu chỉ biết đi lên, stress chỉ biết đi xuống!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-18",
+          "text": "💻 Chúc đồng nghiệp năm mới máy tính không lag, internet không đứt!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-19",
+          "text": "🎊 Tết đến rồi, chúc anh chị 'work from home' nhưng lương 'work from office'!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-20",
+          "text": "📝 Chúc năm mới to-do list ngắn lại, done list dài ra!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-21",
+          "text": "🏃 Năm mới chúc đồng nghiệp chạy KPI nhẹ như chạy bộ buổi sáng!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-22",
+          "text": "🎯 Chúc team mình năm nào cũng vượt target, năm nào cũng tăng lương!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-23",
+          "text": "🌈 Năm mới chúc văn phòng ít drama, nhiều niềm vui!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        },
+        {
+          "id": "dong-nghiep-24",
+          "text": "⚡ Chúc đồng nghiệp năm mới năng suất cao, hiệu quả tốt, về nhà sớm!",
+          "codeGroup": "Lời chúc hài hước cho đồng nghiệp",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "sep",
+      "name": "Sếp",
+      "swiftCase": "sep",
+      "sfSymbol": "crown.fill",
+      "emoji": "👑",
+      "count": 40,
+      "items": [
+        {
+          "id": "sep-01",
+          "text": "🙏 Kính chúc sếp một năm mới an khang – thịnh vượng, luôn sáng suốt trong mọi quyết sách và đưa đội ngũ ngày càng phát triển vững mạnh.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-02",
+          "text": "💪 Năm mới kính chúc sếp sức khỏe dồi dào, công danh rộng mở, dẫn dắt tập thể vươn xa và gặt hái nhiều thành tựu vượt bậc.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-03",
+          "text": "👑 Chúc mừng năm mới sếp! Chúc sếp luôn giữ vững bản lĩnh người lãnh đạo, tiếp tục truyền cảm hứng và dẫn dắt tập thể đi đến thành công.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-04",
+          "text": "🌟 Xuân mới kính chúc sếp vạn sự như ý, sự nghiệp thăng hoa, luôn là trụ cột vững chắc của công ty và là tấm gương cho thế hệ sau.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-05",
+          "text": "🚢 Tết đến xuân về, kính chúc sếp sức khỏe – trí tuệ – bản lĩnh vững vàng để đưa công ty phát triển ngày một lớn mạnh.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-06",
+          "text": "🎯 Kính gửi sếp lời chúc đầu năm mới: Hưng thịnh – Bình an – Thành công rực rỡ trong mọi kế hoạch và dự định.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-07",
+          "text": "🐐 Chúc sếp năm Đinh Mùi luôn điềm đạm, vững vàng vượt qua thử thách và cùng tập thể đón một năm sung túc.",
+          "codeGroup": "Sếp nam",
+          "yearRef": {
+            "canChi": "Đinh Mùi",
+            "emoji": "🐐"
+          }
+        },
+        {
+          "id": "sep-08",
+          "text": "🔥 Mừng xuân mới, chúc sếp luôn giữ phong độ đỉnh cao, truyền lửa cho đội ngũ và gặt hái nhiều đỉnh cao mới.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-09",
+          "text": "⚡ Kính chúc sếp một năm mới tràn đầy năng lượng, sáng tạo đột phá và vững tay chèo lái con thuyền doanh nghiệp.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-10",
+          "text": "💼 Nhân dịp năm mới, chúc sếp luôn dồi dào sức khỏe, tâm thế vững vàng và dẫn dắt công ty ngày một hưng thịnh.",
+          "codeGroup": "Sếp nam",
+          "yearRef": null
+        },
+        {
+          "id": "sep-11",
+          "text": "🌸 Chúc mừng năm mới sếp! Kính chúc chị một năm thật nhiều sức khỏe, luôn giữ được năng lượng tích cực và truyền cảm hứng đến cả tập thể.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-12",
+          "text": "👸 Tết đến xuân về, chúc sếp luôn duyên dáng, bản lĩnh và tỏa sáng trong vai trò lãnh đạo như bấy lâu nay.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-13",
+          "text": "💎 Kính chúc sếp một năm mới hạnh phúc – thành công – viên mãn, mãi là người phụ nữ mạnh mẽ và truyền cảm hứng cho mọi người.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-14",
+          "text": "🌺 Chúc sếp năm mới thăng hoa trong công việc, an yên trong cuộc sống và luôn là người dẫn dắt tận tâm, tinh tế.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-15",
+          "text": "✨ Năm mới kính chúc sếp luôn giữ được thần thái rạng ngời, tâm thế vững vàng và tầm nhìn chiến lược sắc sảo.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-16",
+          "text": "🔥 Chúc mừng năm mới sếp! Mong rằng chị sẽ tiếp tục là ngọn lửa sáng, khơi nguồn động lực cho cả tập thể vươn xa.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-17",
+          "text": "✨ Kính chúc sếp nữ của chúng em năm mới dồi dào năng lượng, gặt hái nhiều thành tựu và luôn là hình mẫu phụ nữ hiện đại đáng ngưỡng mộ.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-18",
+          "text": "💖 Tết đến, xin gửi đến chị lời chúc tốt đẹp nhất: sự nghiệp thành công, gia đình hạnh phúc và tâm hồn luôn tràn đầy yêu thương.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-19",
+          "text": "🐐 Chúc sếp năm Đinh Mùi an khang, hiền hòa như gió xuân và luôn vững vàng ở vị trí dẫn dắt.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": {
+            "canChi": "Đinh Mùi",
+            "emoji": "🐐"
+          }
+        },
+        {
+          "id": "sep-20",
+          "text": "💫 Kính chúc chị – người sếp đáng quý, một năm mới trọn vẹn yêu thương, viên mãn niềm vui và tỏa sáng trên mọi hành trình.",
+          "codeGroup": "Sếp nữ",
+          "yearRef": null
+        },
+        {
+          "id": "sep-21",
+          "text": "🎊 Chúc sếp năm mới an khang, thành công rực rỡ!",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-22",
+          "text": "🙏 Kính chúc sếp một năm mới đại cát, đại lợi.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-23",
+          "text": "🏮 Xuân mới bình an – Sự nghiệp vững bền – Gia đình hạnh phúc.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-24",
+          "text": "💰 Chúc sếp vạn sự hanh thông, tài lộc như ý!",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-25",
+          "text": "⭐ Chúc mừng năm mới sếp! Thịnh vượng – Vững vàng – Tỏa sáng!",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-26",
+          "text": "🌟 Năm mới rạng ngời – Chúc sếp luôn dẫn đầu và truyền cảm hứng.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-27",
+          "text": "🎯 Chúc sếp xuân mới thắng lợi mới, vạn sự như mong.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-28",
+          "text": "🐐 Tết Đinh Mùi, kính chúc sếp an khang, sung túc, thành công như ý.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": {
+            "canChi": "Đinh Mùi",
+            "emoji": "🐐"
+          }
+        },
+        {
+          "id": "sep-29",
+          "text": "⛵ Sếp ơi, chúc năm mới vui khỏe, làm gì cũng 'thuận buồm xuôi gió'!",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-30",
+          "text": "🚀 Chúc sếp năm mới mở ra hành trình mới đầy rực rỡ và bứt phá.",
+          "codeGroup": "Lời chúc ngắn gọn",
+          "yearRef": null
+        },
+        {
+          "id": "sep-31",
+          "text": "🚢 Chúc sếp một năm mới Đinh Mùi thật hưng thịnh, như con thuyền lớn căng buồm đón gió, vững vàng vượt mọi thử thách và cập bến vinh quang trong từng dự án.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": {
+            "canChi": "Đinh Mùi"
+          }
+        },
+        {
+          "id": "sep-32",
+          "text": "🏔️ Kính chúc sếp năm mới thăng hoa sự nghiệp, bền bỉ từng bước lên cao, khẳng định vị thế và dẫn dắt đội ngũ chạm đến những tầm cao mới.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-33",
+          "text": "⛵ Tết đến, kính gửi sếp lời chúc chân thành: sự nghiệp 'thuận buồm xuôi gió', mọi kế hoạch đều hanh thông, mọi mục tiêu đều sớm thành hiện thực.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-34",
+          "text": "☀️ Chúc sếp năm mới rực rỡ như ánh mặt trời đầu xuân, luôn là người soi sáng và truyền cảm hứng để cả tập thể cùng phát triển bền vững.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-35",
+          "text": "⚔️ Kính chúc sếp một năm Đinh Mùi thật mạnh mẽ – bản lĩnh vững vàng như núi, trí tuệ sắc bén như kiếm, và thành công nối tiếp thành công.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": {
+            "canChi": "Đinh Mùi"
+          }
+        },
+        {
+          "id": "sep-36",
+          "text": "🚂 Mừng xuân mới, chúc sếp giữ vững vai trò đầu tàu, dẫn dắt công ty đi qua mọi cơn sóng lớn và cập bến thành công với nhiều đỉnh cao mới.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-37",
+          "text": "🎯 Chúc sếp một năm mới 'làm đâu – thắng đó', mỗi quyết định đều là bước ngoặt đưa tổ chức đến với sự bứt phá và đổi mới.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-38",
+          "text": "🧠 Kính gửi sếp lời chúc đầu xuân: tâm thế vững vàng, chiến lược thông tuệ, gặt hái nhiều thành quả vượt ngoài mong đợi trong năm tới.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-39",
+          "text": "🏆 Tết này, chúc sếp gặt hái nhiều thắng lợi mới, giữ vững phong độ và khẳng định dấu ấn lãnh đạo ngày càng rõ nét trong lòng tập thể.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        },
+        {
+          "id": "sep-40",
+          "text": "👑 Chúc mừng năm mới sếp! Kính mong sếp luôn duy trì bản lĩnh 'tướng quân', dẫn dắt đội ngũ vững tiến trên con đường chinh phục thành công và phát triển bền vững.",
+          "codeGroup": "Thông điệp thành công và thăng tiến",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "thay-co",
+      "name": "Thầy Cô",
+      "swiftCase": "thayco",
+      "sfSymbol": "graduationcap.fill",
+      "emoji": "🎓",
+      "count": 20,
+      "items": [
+        {
+          "id": "thay-co-01",
+          "text": "🙏 Kính chúc thầy cô sức khỏe dồi dào, hạnh phúc viên mãn.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-02",
+          "text": "📚 Năm mới, chúc thầy cô tràn đầy năng lượng và cảm hứng giảng dạy.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-03",
+          "text": "🌱 Chúc thầy cô gặt hái thêm nhiều thành công trong sự nghiệp trồng người.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-04",
+          "text": "❤️ Kính chúc thầy cô luôn tươi trẻ, yêu nghề và yêu trò.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-05",
+          "text": "🌟 Năm mới, chúc thầy cô bình an, vạn sự như ý.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-06",
+          "text": "😊 Chúc thầy cô được nhiều niềm vui và tiếng cười mỗi ngày.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-07",
+          "text": "🏆 Năm mới, chúc thầy cô có thêm nhiều học trò giỏi, đạt nhiều thành tích cao.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-08",
+          "text": "🏠 Tết này, chúc thầy cô ấm áp, đoàn viên bên gia đình.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-09",
+          "text": "💖 Chúc thầy cô luôn hạnh phúc, thành công và an yên.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-10",
+          "text": "🌸 Năm mới, chúc thầy cô công tác tốt, dạy tốt, sống vui.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-11",
+          "text": "🎊 Kính chúc thầy cô có một mùa xuân đầy ý nghĩa và tiếng cười.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-12",
+          "text": "💫 Năm mới, chúc thầy cô luôn được yêu quý và kính trọng.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-13",
+          "text": "🌺 Chúc thầy cô vạn điều tốt lành, hạnh phúc tràn đầy.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-14",
+          "text": "✏️ Chúc thầy cô luôn là ngọn đèn soi sáng con đường tri thức cho học sinh.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-15",
+          "text": "🎓 Năm mới, chúc thầy cô gặt hái nhiều thành tựu trong sự nghiệp giáo dục.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-16",
+          "text": "🌳 Kính chúc thầy cô như người làm vườn, nuôi dưỡng từng mầm xanh trở thành cây lớn.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-17",
+          "text": "💡 Chúc thầy cô luôn truyền cảm hứng và thắp sáng ước mơ cho thế hệ trẻ.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-18",
+          "text": "🌈 Năm mới, chúc thầy cô có nhiều khoảnh khắc đáng nhớ với học sinh.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-19",
+          "text": "📖 Kính chúc thầy cô luôn là tấm gương sáng về đạo đức và học vấn.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        },
+        {
+          "id": "thay-co-20",
+          "text": "🎨 Chúc thầy cô năm mới sáng tạo trong phương pháp giảng dạy, truyền đạt kiến thức hiệu quả.",
+          "codeGroup": "Lời chúc thêm cho thầy cô",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "khach-hang",
+      "name": "Khách Hàng",
+      "swiftCase": "khachhang",
+      "sfSymbol": "handshake.fill",
+      "emoji": "🤝",
+      "count": 23,
+      "items": [
+        {
+          "id": "khach-hang-01",
+          "text": "🙏 Kính chúc Quý khách năm mới An khang - Thịnh vượng - Vạn sự như ý!",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-02",
+          "text": "🤝 Xin cảm ơn Quý khách đã đồng hành cùng chúng tôi suốt năm qua.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-03",
+          "text": "🚀 Chúc Quý khách năm 2027 gặt hái nhiều thành công và cơ hội mới.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "khach-hang-04",
+          "text": "💪 Kính chúc Quý khách hàng luôn dồi dào sức khỏe, hạnh phúc và bình an.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-05",
+          "text": "💰 Chúc Quý khách kinh doanh phát đạt, tài lộc dồi dào.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-06",
+          "text": "🏆 Năm mới, chúc Quý khách đạt nhiều thành tựu vượt bậc.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-07",
+          "text": "🙏 Cảm ơn Quý khách đã tin tưởng và lựa chọn sản phẩm của chúng tôi.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-08",
+          "text": "👨‍👩‍👧‍👦 Chúc Quý khách năm mới thành công viên mãn, hạnh phúc bên người thân.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-09",
+          "text": "⛵ Kính chúc Quý khách công việc suôn sẻ, thuận buồm xuôi gió.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-10",
+          "text": "🤝 Năm mới đến, chúc mối quan hệ hợp tác của chúng ta ngày càng bền chặt.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-11",
+          "text": "⚡ Chúc Quý khách một mùa xuân tràn đầy năng lượng tích cực.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-12",
+          "text": "🌸 Tết đến, kính chúc Quý khách hạnh phúc và bình an.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-13",
+          "text": "💎 Chúc Quý khách hàng thân thiết năm mới Tấn tài – Tấn lộc – Tấn bình an.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-14",
+          "text": "🙏 Cảm ơn Quý khách vì đã là một phần trong hành trình phát triển của chúng tôi.",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-15",
+          "text": "🎯 Năm mới, chúc Quý khách rực rỡ thành công, vạn điều như ý!",
+          "codeGroup": "Từ oneshop.vn",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-16",
+          "text": "🌟 Kính chúc Quý khách năm mới luôn gặp may mắn trong mọi hoạt động kinh doanh.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-17",
+          "text": "💼 Chúc Quý khách năm 2027 mở rộng thị trường, gia tăng lợi nhuận bền vững.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "khach-hang-18",
+          "text": "🎊 Năm mới, chúc Quý khách và gia đình đoàn viên, ấm no, hạnh phúc.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-19",
+          "text": "📈 Kính chúc hoạt động kinh doanh của Quý khách ngày càng phát triển thịnh vượng.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-20",
+          "text": "🔥 Chúc Quý khách năm mới đầy nhiệt huyết, sáng tạo và đổi mới.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-21",
+          "text": "🌈 Năm Đinh Mùi 2027, chúc Quý khách vượt qua mọi thử thách, đạt được mục tiêu đề ra.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": {
+            "year": 2027,
+            "canChi": "Đinh Mùi"
+          }
+        },
+        {
+          "id": "khach-hang-22",
+          "text": "💝 Xin gửi đến Quý khách lời chúc tốt đẹp nhất cho một năm mới thành công và may mắn.",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        },
+        {
+          "id": "khach-hang-23",
+          "text": "🎁 Cảm ơn Quý khách đã luôn ủng hộ và tin tưởng. Chúc năm mới tràn đầy niềm vui!",
+          "codeGroup": "Lời chúc thêm cho khách hàng",
+          "yearRef": null
+        }
+      ]
+    },
+    {
+      "slug": "chung",
+      "name": "Chúc Tết Chung",
+      "swiftCase": "chung",
+      "sfSymbol": "sparkles",
+      "emoji": "✨",
+      "count": 35,
+      "items": [
+        {
+          "id": "chung-01",
+          "text": "🏮 Xuân về muôn nơi, chúc bạn năm mới tràn đầy may mắn và hạnh phúc!",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-02",
+          "text": "🌸 Tết đến, chúc bạn vạn sự như ý, gia đình sum vầy, công việc thuận lợi.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-03",
+          "text": "🎊 Năm Đinh Mùi 2027, chúc bạn an khang, hiền hòa, tài lộc sung túc!",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": {
+            "year": 2027,
+            "canChi": "Đinh Mùi"
+          }
+        },
+        {
+          "id": "chung-04",
+          "text": "💫 Chúc bạn một năm mới rực rỡ như pháo hoa đêm giao thừa.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-05",
+          "text": "🍀 Mùa xuân mới, chúc bạn gặp nhiều may mắn và thành công trong mọi việc.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-06",
+          "text": "🌺 Chúc bạn năm mới an khang thịnh vượng, phúc lộc đầy nhà.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-07",
+          "text": "🎋 Tết về mang theo niềm vui, chúc bạn hạnh phúc và bình an.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-08",
+          "text": "⭐ Năm mới, chúc bạn luôn tỏa sáng và đạt được mọi ước mơ.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-09",
+          "text": "🌈 Chúc bạn một năm mới đầy màu sắc và những trải nghiệm tuyệt vời.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-10",
+          "text": "🎆 Xuân sang, chúc bạn vạn điều như ý, mọi điều hanh thông.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-11",
+          "text": "💝 Tết đến, xin gửi đến bạn lời chúc tốt đẹp nhất từ đáy lòng.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-12",
+          "text": "🏡 Chúc bạn có một mùa xuân ấm áp bên gia đình và người thân.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-13",
+          "text": "🌟 Năm mới 2027, chúc bạn luôn rạng ngời và tràn đầy năng lượng tích cực.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "chung-14",
+          "text": "🎉 Chúc mừng năm mới! Mong bạn có 365 ngày hạnh phúc và thành công.",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-15",
+          "text": "🌻 Tết này, chúc bạn như hoa hướng dương, luôn hướng về ánh sáng và hy vọng!",
+          "codeGroup": "Lời chúc truyền thống",
+          "yearRef": null
+        },
+        {
+          "id": "chung-16",
+          "text": "🎮 Năm mới chúc bạn 'cheat code' cuộc sống, luôn thắng lớn trong mọi game!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-17",
+          "text": "📱 Chúc bạn năm 2027 'update' phiên bản tốt nhất của chính mình!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "chung-18",
+          "text": "🚀 Năm mới, chúc bạn 'bay' cao như SpaceX, thành công như Elon Musk!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-19",
+          "text": "☕ Chúc năm mới bạn luôn 'fresh' như cà phê buổi sáng!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-20",
+          "text": "🌟 Tết đến, chúc bạn 'glow up' cả về ngoại hình lẫn tài chính!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-21",
+          "text": "💎 Năm 2027, chúc bạn 'shine' sáng như kim cương!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "chung-22",
+          "text": "🔋 Chúc bạn năm mới năng lượng 'full battery' 24/7!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-23",
+          "text": "🎯 Năm mới chúc bạn 'bắn' trúng mọi mục tiêu đã đề ra!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-24",
+          "text": "🌊 Chúc năm mới bạn 'lướt' qua mọi khó khăn một cách dễ dàng!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-25",
+          "text": "🎪 Tết này, chúc bạn vui như lễ hội, khỏe như siêu nhân!",
+          "codeGroup": "Lời chúc hiện đại và sáng tạo",
+          "yearRef": null
+        },
+        {
+          "id": "chung-26",
+          "text": "🐐 Năm Mùi đến, chúc bạn 'đồng cỏ' lúc nào cũng xanh, ví tiền lúc nào cũng dày!",
+          "codeGroup": "Lời chúc hài hước",
+          "yearRef": {
+            "chi": "Mùi",
+            "emoji": "🐐"
+          }
+        },
+        {
+          "id": "chung-27",
+          "text": "💰 Chúc bạn năm mới giàu có đến mức... phải mua két sắt mới!",
+          "codeGroup": "Lời chúc hài hước",
+          "yearRef": null
+        },
+        {
+          "id": "chung-28",
+          "text": "😄 Tết đến, chúc bạn cười nhiều đến nỗi nếp nhăn cũng thành... nếp cười!",
+          "codeGroup": "Lời chúc hài hước",
+          "yearRef": null
+        },
+        {
+          "id": "chung-29",
+          "text": "🍜 Chúc năm mới bạn no như lễ tết, vui như được nghỉ!",
+          "codeGroup": "Lời chúc hài hước",
+          "yearRef": null
+        },
+        {
+          "id": "chung-30",
+          "text": "🎊 Năm mới chúc bạn may mắn đến mức... quên luôn việc suy nghĩ tiêu cực!",
+          "codeGroup": "Lời chúc hài hước",
+          "yearRef": null
+        },
+        {
+          "id": "chung-31",
+          "text": "🌱 Năm mới, chúc bạn luôn giữ được trái tim trẻ trung và tâm hồn trong sáng.",
+          "codeGroup": "Lời chúc ý nghĩa sâu sắc",
+          "yearRef": null
+        },
+        {
+          "id": "chung-32",
+          "text": "🕊️ Chúc bạn năm 2027 tìm được bình yên trong tâm hồn và hạnh phúc trong cuộc sống.",
+          "codeGroup": "Lời chúc ý nghĩa sâu sắc",
+          "yearRef": {
+            "year": 2027
+          }
+        },
+        {
+          "id": "chung-33",
+          "text": "🌸 Mong rằng năm mới sẽ mang đến cho bạn những điều tốt đẹp nhất đang chờ đợi.",
+          "codeGroup": "Lời chúc ý nghĩa sâu sắc",
+          "yearRef": null
+        },
+        {
+          "id": "chung-34",
+          "text": "💖 Chúc bạn năm mới luôn biết yêu thương bản thân và lan tỏa tình yêu đến mọi người.",
+          "codeGroup": "Lời chúc ý nghĩa sâu sắc",
+          "yearRef": null
+        },
+        {
+          "id": "chung-35",
+          "text": "🌟 Năm 2027, chúc bạn trở thành phiên bản tốt nhất của chính mình!",
+          "codeGroup": "Lời chúc ý nghĩa sâu sắc",
+          "yearRef": {
+            "year": 2027
+          }
+        }
+      ]
+    }
+  ]
+}

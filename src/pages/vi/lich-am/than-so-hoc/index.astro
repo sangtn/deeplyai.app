@@ -1,0 +1,82 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import data from '../../../../data/lich/numerology.json';
+import { CULTURE_URL, THAN_SO_URL } from '../../../../lib/lich/urls';
+
+const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '11', '22', '33'] as const;
+const L = data.labels;
+const lp = data.lifePath as Record<string, string>;
+const st = data.strengths as Record<string, string[]>;
+const ch = data.challenges as Record<string, string[]>;
+const faq = [
+  ['Số đường đời tính thế nào?', 'Cộng tất cả chữ số của ngày, tháng, năm sinh dương lịch rồi rút gọn đến một chữ số, giữ nguyên các số bậc thầy 11, 22, 33.'],
+  ['Số linh hồn và số biểu đạt khác nhau ra sao?', 'Số biểu đạt tính từ tất cả chữ cái trong họ tên theo bảng Pythagoras; số linh hồn chỉ tính các nguyên âm. Dấu tiếng Việt được bỏ trước khi tính, chữ Đ đọc là D.'],
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Thần số học', url: `https://deeplyai.app${THAN_SO_URL}`, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
+];
+---
+<LichShell
+  title="Thần số học – Tính số đường đời, số linh hồn theo họ tên và ngày sinh"
+  description="Tính thần số học Pythagoras miễn phí: số đường đời, số linh hồn, số biểu đạt, năm cá nhân từ họ tên tiếng Việt và ngày sinh, kèm ý nghĩa, điểm mạnh và thách thức của từng con số."
+  path={THAN_SO_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Thần số học' }]}
+  jsonLd={jsonLd}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Thần số học</h1>
+      <p>{L.disclaimer}.</p>
+    </header>
+    <form class="la-tool la-tool-wide" data-num>
+      <label>{L.fullName}<input name="name" type="text" autocomplete="name" placeholder={L.fullNamePlaceholder} required /></label>
+      <label>{L.birthDate}<input name="date" type="date" min="1900-01-01" max="2030-12-31" required /></label>
+      <button type="submit">{L.calculate}</button>
+      <output class="la-result" data-out aria-live="polite"><span>Nhập họ tên và ngày sinh để xem kết quả.</span></output>
+    </form>
+    <section class="la-block" aria-labelledby="y-nghia">
+      <h2 id="y-nghia" class="la-h2">Ý nghĩa các con số đường đời</h2>
+      <div class="la-table-wrap">
+        <table class="la-table">
+          <thead><tr><th scope="col">Số</th><th scope="col">Ý nghĩa</th><th scope="col">{L.strengths}</th><th scope="col">{L.challenges}</th></tr></thead>
+          <tbody>{nums.map((n) => <tr><td><b>{n}</b></td><td>{lp[n]}</td><td>{st[n].join(', ')}</td><td>{ch[n].join(', ')}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </section>
+    <section class="la-block"><h2 class="la-h2">Hỏi đáp</h2><div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div></section>
+  </div>
+</LichShell>
+
+<script>
+  import { NUMEROLOGY_LABELS as L, calculateNumerology } from '../../../../lib/lich/numerology';
+  const form = document.querySelector<HTMLFormElement>('[data-num]');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const [y, m, d] = (form.elements.namedItem('date') as HTMLInputElement).value.split('-').map(Number);
+    const out = form.querySelector('[data-out]')!;
+    if (!name || !y) return;
+    const p = calculateNumerology(name, { day: d, month: m, year: y });
+    const rows: [string, number, string][] = [
+      [L.lifePath, p.lifePathNumber, p.interpretation.lifePathMeaning],
+      [L.soulUrge, p.soulUrgeNumber, p.interpretation.soulUrgeMeaning],
+      [L.expression, p.expressionNumber, p.interpretation.expressionMeaning],
+      [L.personalYear, p.personalYear, p.interpretation.personalYearMeaning],
+    ];
+    const frag = document.createDocumentFragment();
+    for (const [label, n, text] of rows) {
+      const div = document.createElement('div');
+      div.className = 'la-num-row';
+      const b = document.createElement('b'); b.textContent = String(n);
+      const s = document.createElement('span'); s.textContent = `${label}: ${text}`;
+      div.append(b, s);
+      frag.append(div);
+    }
+    const extra = document.createElement('p');
+    extra.textContent = `${L.strengths}: ${p.interpretation.strengths.join(', ')}. ${L.challenges}: ${p.interpretation.challenges.join(', ')}.`;
+    frag.append(extra);
+    out.replaceChildren(frag);
+  });
+</script>

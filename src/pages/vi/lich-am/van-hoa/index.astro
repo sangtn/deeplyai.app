@@ -1,0 +1,32 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { YEARLY_YEAR } from '../../../../lib/lich/tuvi';
+import { BOI_SIM_URL, CULTURE_URL, GOOD_URL, LE_HOI_URL, LOI_CHUC_URL, SAO_HAN_URL, THAN_SO_URL, TU_VI_NGAY_URL, VAN_KHAN_URL, tuViYearUrl, xongDatUrl } from '../../../../lib/lich/urls';
+const items = [
+  { href: tuViYearUrl(YEARLY_YEAR), title: `Tử vi ${YEARLY_YEAR}`, text: 'Sự nghiệp, gia đình, sức khỏe năm mới của 12 con giáp.' },
+  { href: SAO_HAN_URL, title: 'Sao hạn theo tuổi', text: 'Sao chiếu mệnh, vận hạn, Tam Tai, Thái Tuế và cách cúng giải hạn.' },
+  { href: xongDatUrl(YEARLY_YEAR), title: `Xông đất Tết ${YEARLY_YEAR}`, text: 'Chọn tuổi người xông nhà hợp với gia chủ.' },
+  { href: TU_VI_NGAY_URL, title: 'Tử vi hôm nay', text: 'Vận trình trong ngày theo năm sinh.' },
+  { href: GOOD_URL, title: 'Xem ngày tốt', text: 'Chọn ngày cưới, khai trương, động thổ, chuyển nhà.' },
+  { href: VAN_KHAN_URL, title: 'Văn khấn', text: 'Văn khấn mùng 1, ngày rằm, lễ Tết, giỗ, đi đền chùa.' },
+  { href: LE_HOI_URL, title: 'Lễ hội Việt Nam', text: 'Lịch lễ hội truyền thống, dân tộc, tôn giáo.' },
+  { href: LOI_CHUC_URL, title: `Lời chúc Tết ${YEARLY_YEAR}`, text: 'Lời chúc hay cho gia đình, bạn bè, sếp, đồng nghiệp.' },
+  { href: THAN_SO_URL, title: 'Thần số học', text: 'Số đường đời, số linh hồn từ họ tên và ngày sinh.' },
+  { href: BOI_SIM_URL, title: 'Bói số điện thoại', text: 'Ý nghĩa phong thủy của số điện thoại.' },
+];
+---
+<LichShell
+  title="Tử vi và văn hóa Việt – Sao hạn, xông đất, văn khấn, lễ hội, thần số học"
+  description={`Tử vi ${YEARLY_YEAR}, sao hạn theo tuổi, chọn tuổi xông đất, văn khấn cổ truyền, lễ hội Việt Nam, lời chúc Tết, thần số học và bói số điện thoại.`}
+  path={CULTURE_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa' }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tử vi và văn hóa Việt</h1>
+      <p>Những phong tục, tín ngưỡng gắn với lịch âm của người Việt. Nội dung mang tính tham khảo văn hóa dân gian.</p>
+    </header>
+    <div class="la-prayers la-culture">{items.map((it) => <a href={it.href}><b>{it.title}</b><span>{it.text}</span></a>)}</div>
+  </div>
+</LichShell>

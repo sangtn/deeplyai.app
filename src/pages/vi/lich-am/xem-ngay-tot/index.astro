@@ -1,0 +1,53 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { PURPOSES, scoreDay, RATING_LABEL } from '../../../../lib/lich/goodday';
+import { WEEKDAYS, almanac } from '../../../../lib/lich/engine';
+import { fromJd, jdFromDate, vietnamToday } from '../../../../components/lich-viet/lunar';
+import { GOOD_URL, dayUrl, dmy, goodMonthUrl, goodPurposeUrl } from '../../../../lib/lich/urls';
+
+const t = vietnamToday();
+const start = jdFromDate(t.day, t.month, t.year);
+const next30 = Array.from({ length: 30 }, (_, i) => { const s = fromJd(start + i); return almanac(s.day, s.month, s.year); });
+const cards = PURPOSES.map((p) => {
+  const ranked = next30.map((a) => ({ a, ...scoreDay(a, p) })).filter((d) => d.rating === 'excellent' || d.rating === 'good').sort((x, y) => y.score - x.score || x.a.jd - y.a.jd).slice(0, 3).sort((x, y) => x.a.jd - y.a.jd);
+  return { p, ranked };
+});
+const faq = [
+  ['Xem ngày tốt dựa trên những yếu tố nào?', 'Mỗi ngày được chấm điểm theo việc cần làm: ngày hoàng đạo hay hắc đạo, Trực của ngày, sao Nhị thập bát tú, các ngày kỵ như Tam Nương, Nguyệt Kỵ, Dương Công Kỵ, Sát Chủ, Thọ Tử, và nếu bạn nhập năm sinh thì tính thêm ngày xung, hình, hại, phá hay tam hợp, lục hợp với tuổi.'],
+  ['Ngày tốt cho mọi người có giống nhau không?', 'Phần lớn tiêu chí là chung, riêng yếu tố tuổi khác nhau theo từng người. Hãy nhập năm sinh của người đứng ra làm việc (chú rể hoặc cô dâu, chủ nhà, chủ cửa hàng) để lọc bỏ ngày xung tuổi.'],
+  ['Nên chọn giờ nào trong ngày tốt?', 'Nên khởi sự vào giờ hoàng đạo của ngày đó. Mỗi trang ngày có danh sách 6 giờ hoàng đạo và giờ xuất hành theo Lý Thuần Phong.'],
+];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }];
+---
+<LichShell
+  title="Xem ngày tốt xấu – Chọn ngày cưới, khai trương, động thổ, chuyển nhà"
+  description="Xem ngày tốt theo lịch âm cho 10 việc: cưới hỏi, khai trương, động thổ, xuất hành, chuyển nhà, ký hợp đồng, mua xe, an táng, cắt tóc, cầu tài. Chấm điểm minh bạch, lọc theo tuổi."
+  path={GOOD_URL}
+  crumbs={[{ name: 'Xem ngày tốt' }]}
+  jsonLd={jsonLd}
+  active="good"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Xem ngày tốt</h1>
+      <p>Chọn việc bạn cần làm để xem các ngày tốt trong từng tháng. Mỗi ngày đều ghi rõ lý do cộng, trừ điểm, và có thể lọc theo năm sinh.</p>
+    </header>
+    <div class="la-purposes">
+      {cards.map(({ p, ranked }) => (
+        <article class="la-card la-purpose">
+          <h2><a href={goodPurposeUrl(p.slug)}>{p.title}</a></h2>
+          {ranked.length ? (
+            <ul>
+              {ranked.map((d) => <li><a href={dayUrl(d.a.day, d.a.month, d.a.year)}>{WEEKDAYS[d.a.weekday]}, {dmy(d.a.day, d.a.month, d.a.year)}</a> <span class:list={['la-rate', `la-rate-${d.rating}`]}>{RATING_LABEL[d.rating]}</span></li>)}
+            </ul>
+          ) : <p>Chưa có ngày tốt trong 30 ngày tới.</p>}
+          <p class="la-more"><a href={goodMonthUrl(p.slug, t.month, t.year)}>Tháng {t.month}/{t.year}</a> · <a href={goodPurposeUrl(p.slug)}>Xem thêm</a></p>
+        </article>
+      ))}
+    </div>
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>

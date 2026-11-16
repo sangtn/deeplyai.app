@@ -183,3 +183,21 @@ Mục `/vi/lich-am/` gồm:
 - Liên kết nội bộ: ngày ↔ tháng ↔ năm, ngày trước/ngày sau, cùng ngày ở các năm khác.
 - Tất cả URL có trong `sitemap.xml`.
 - Site build lại lúc 00:05 giờ Việt Nam mỗi ngày để trang "hôm nay" luôn đúng ngày.
+
+## Trạng thái: nhóm 2 (ngày tốt và văn hóa) đã dựng
+
+| Phần | URL | Ghi chú |
+|---|---|---|
+| Xem ngày tốt | `/vi/lich-am/xem-ngay-tot/`, `…/cuoi-hoi/`, `…/cuoi-hoi/thang-12-2026/` | 10 việc × mọi tháng có trang ngày. Chấm điểm theo cách của `GoodDayEngine.swift` nhưng dùng các quy tắc đã chuẩn hóa ở nhóm 1. Lọc theo năm sinh chạy trên trình duyệt. |
+| Văn khấn | `/vi/lich-am/van-khan/…` | 74 bài, 5 nhóm. Trang ngày lễ, rằm, mùng 1 có link sang bài tương ứng. |
+| Sao hạn | `/vi/lich-am/sao-han/nam-2027/tuoi-1990/` | Từ năm 2025 đến năm hiện tại + 2. Khớp app ở 1.344 trường hợp. |
+| Tử vi 2027 | `/vi/lich-am/tu-vi-2027/tuoi-ngo/` | Nội dung năm Đinh Mùi của app. |
+| Xông đất 2027 | `/vi/lich-am/xong-dat-2027/tuoi-ngo/` | Khớp app ở 76 năm sinh gia chủ. |
+| Lễ hội | `/vi/lich-am/le-hoi/` | 23 lễ hội gộp một trang. Không dùng ảnh hotlink từ báo ngoài. |
+| Lời chúc Tết | `/vi/lich-am/loi-chuc-tet/sep/` | 227 lời chúc, 8 nhóm. |
+| Thần số học, bói số điện thoại, tử vi hôm nay | công cụ trên trình duyệt | Khớp app 100%. Riêng thần số học, web đọc Đ là D (app bỏ qua Đ). Tử vi hôm nay dùng hệ số 0 thay cho số ngẫu nhiên của app. |
+
+**Chưa làm:**
+- Tử vi trọn đời: app chọn sao ngẫu nhiên mỗi lần, giờ âm lệch một giờ, ngũ hành dùng công thức rút gọn.
+- La bàn phong thủy.
+- Nghe kinh Phật: audio nằm trên host bên ngoài, cần xác nhận quyền phát.

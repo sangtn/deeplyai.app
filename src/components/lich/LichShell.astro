@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import StoreBadge from '../StoreBadge.astro';
 import { byId } from '../../data/catalog';
-import { BASE, CONVERT_URL, COUNT_URL, monthUrl, yearUrl } from '../../lib/lich/urls';
+import { BASE, CONVERT_URL, COUNT_URL, CULTURE_URL, GOOD_URL, VAN_KHAN_URL, monthUrl, yearUrl } from '../../lib/lich/urls';
 import { vietnamToday } from '../lich-viet/lunar';
 import '../../styles/lich.css';
 
@@ -13,7 +13,7 @@ interface Props {
   path: string;
   crumbs: Crumb[];
   jsonLd?: object[];
-  active?: 'today' | 'month' | 'year' | 'convert' | 'count';
+  active?: 'today' | 'month' | 'year' | 'convert' | 'count' | 'good' | 'vankhan' | 'culture';
 }
 const { title, description, path, crumbs, jsonLd = [], active } = Astro.props;
 const site = 'https://deeplyai.app';
@@ -29,6 +29,9 @@ const nav = [
   { id: 'today', href: BASE, label: 'Hôm nay' },
   { id: 'month', href: monthUrl(today.month, today.year), label: 'Lịch tháng' },
   { id: 'year', href: yearUrl(today.year), label: `Lịch năm ${today.year}` },
+  { id: 'good', href: GOOD_URL, label: 'Xem ngày tốt' },
+  { id: 'vankhan', href: VAN_KHAN_URL, label: 'Văn khấn' },
+  { id: 'culture', href: CULTURE_URL, label: 'Tử vi & văn hóa' },
   { id: 'convert', href: CONVERT_URL, label: 'Đổi ngày âm dương' },
   { id: 'count', href: COUNT_URL, label: 'Đếm ngày' },
 ];

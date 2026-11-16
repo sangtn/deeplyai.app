@@ -1,0 +1,40 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, chiIcon, tuViYearUrl, xongDatChiUrl, xongDatUrl } from '../../../../lib/lich/urls';
+import { CHI, XONG_DAT_APP_YEAR, canChiOfYear, getXongDat } from '../../../../lib/lich/xongdat';
+
+const y = XONG_DAT_APP_YEAR;
+if (y !== 2027) throw new Error(`xong-dat.json now targets ${y}: rename the xong-dat-2027 folder`);
+const target = canChiOfYear(y);
+const rows = CHI.map((chi, i) => ({ chi, i, r: getXongDat(1984 + i, y) }));
+const avoid = rows[0].r.avoid;
+---
+<LichShell
+  title={`Tuổi xông đất ${y} – Chọn người xông nhà Tết ${target.canChi} hợp tuổi gia chủ`}
+  description={`Chọn tuổi xông đất Tết ${y} (${target.canChi}) cho gia chủ 12 con giáp. Năm ${target.canChi} nên tránh tuổi ${avoid.chi.map((c) => c.chi).join(', ')} và can ${avoid.stems.join(', ')}.`}
+  path={xongDatUrl(y)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: `Xông đất ${y}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Chọn tuổi xông đất Tết {y}</h1>
+      <p>Người xông đất (xông nhà) là vị khách đầu tiên bước vào nhà sau giao thừa. Nên chọn người hợp tuổi gia chủ và không phạm Thái Tuế năm {target.canChi}; năm nay nên tránh tuổi {avoid.chi.map((c) => `${c.chi} (${c.label})`).join(', ')} và người có can {avoid.stems.join(', ')}.</p>
+    </header>
+    <div class="la-table-wrap">
+      <table class="la-table">
+        <thead><tr><th scope="col">Gia chủ</th><th scope="col">Nên chọn tuổi</th><th scope="col">Năm sinh người xông đất</th></tr></thead>
+        <tbody>
+          {rows.map(({ chi, i, r }) => (
+            <tr>
+              <td class="la-term-cell"><img src={chiIcon(i)} width="32" height="31" alt="" loading="lazy" /><a href={xongDatChiUrl(y, i)}><b>Tuổi {chi}</b></a></td>
+              <td>{r.picks.map((p) => p.chi).join(', ')}</td>
+              <td><small>{r.picks.flatMap((p) => p.years.map((c) => `${c.canChi} ${c.year}`)).join(', ')}</small></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <section class="la-block"><p class="la-prose">{rows[0].r.adviceText}</p><p class="la-more"><a href={tuViYearUrl(y)}>Tử vi {y} 12 con giáp</a></p></section>
+  </div>
+</LichShell>

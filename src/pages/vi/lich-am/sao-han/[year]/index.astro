@@ -1,0 +1,47 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, SAO_HAN_BIRTH_FROM, SAO_HAN_FROM, SAO_HAN_TO, SAO_HAN_URL, saoHanUrl, saoHanYearUrl } from '../../../../../lib/lich/urls';
+import { canChi, saoHan } from '../../../../../lib/lich/tuvi';
+
+export function getStaticPaths() {
+  return Array.from({ length: SAO_HAN_TO - SAO_HAN_FROM + 1 }, (_, i) => ({ params: { year: `nam-${SAO_HAN_FROM + i}` }, props: { y: SAO_HAN_FROM + i } }));
+}
+const { y } = Astro.props;
+const rows = [];
+for (let b = y - 9; b >= SAO_HAN_BIRTH_FROM; b -= 1) rows.push({ b, nam: saoHan(b, y, 'Nam'), nu: saoHan(b, y, 'Nữ') });
+---
+<LichShell
+  title={`Bảng sao hạn năm ${y} (${canChi(y)}) cho nam và nữ mọi tuổi`}
+  description={`Bảng sao hạn năm ${y} ${canChi(y)}: sao chiếu mệnh, vận hạn, Tam Tai, Thái Tuế của nam và nữ sinh từ ${SAO_HAN_BIRTH_FROM} đến ${y - 9}. Bấm vào từng tuổi để xem chi tiết và cách cúng giải hạn.`}
+  path={saoHanYearUrl(y)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Sao hạn', href: SAO_HAN_URL }, { name: `Năm ${y}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Bảng sao hạn năm {y} ({canChi(y)})</h1>
+      <p>Sao chiếu mệnh và vận hạn tính theo tuổi mụ trong năm {y}. Năm sinh là năm âm lịch: người sinh trước Tết thì lấy năm trước.</p>
+    </header>
+    <nav class="la-pager" aria-label="Năm khác">
+      {y > SAO_HAN_FROM ? <a href={saoHanYearUrl(y - 1)} rel="prev">← Năm {y - 1}</a> : <span></span>}
+      <a href={SAO_HAN_URL}>Sao hạn</a>
+      {y < SAO_HAN_TO ? <a href={saoHanYearUrl(y + 1)} rel="next">Năm {y + 1} →</a> : <span></span>}
+    </nav>
+    <div class="la-table-wrap">
+      <table class="la-table la-sao-table">
+        <thead><tr><th scope="col">Năm sinh</th><th scope="col">Tuổi mụ</th><th scope="col">Nam</th><th scope="col">Nữ</th><th scope="col">Tam Tai, Thái Tuế</th></tr></thead>
+        <tbody>
+          {rows.map(({ b, nam, nu }) => (
+            <tr>
+              <td><a href={saoHanUrl(y, b)}><b>{b}</b></a><br /><small>{nam.canChi}</small></td>
+              <td>{nam.tuoiMu}</td>
+              <td><span class:list={['la-sao', `la-sao-${nam.saoRating === 'Tốt' ? 'good' : nam.saoRating === 'Xấu' ? 'bad' : 'mid'}`]}>{nam.sao}</span><br /><small>{nam.han}</small></td>
+              <td><span class:list={['la-sao', `la-sao-${nu.saoRating === 'Tốt' ? 'good' : nu.saoRating === 'Xấu' ? 'bad' : 'mid'}`]}>{nu.sao}</span><br /><small>{nu.han}</small></td>
+              <td><small>{[nam.tamTai ? `Tam Tai năm thứ ${nam.tamTai}` : '', nam.thaiTue?.name ?? ''].filter(Boolean).join(', ') || '–'}</small></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</LichShell>

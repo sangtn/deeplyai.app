@@ -16,6 +16,32 @@ export const monthUrl = (m: number, y: number) => `${BASE}thang-${p2(m)}-${y}/`;
 export const yearUrl = (y: number) => `${BASE}nam-${y}/`;
 export const CONVERT_URL = `${BASE}doi-ngay-am-duong/`;
 export const COUNT_URL = `${BASE}dem-ngay/`;
+export const GOOD_URL = `${BASE}xem-ngay-tot/`;
+export const goodPurposeUrl = (slug: string) => `${GOOD_URL}${slug}/`;
+export const goodMonthUrl = (slug: string, m: number, y: number) => `${GOOD_URL}${slug}/thang-${p2(m)}-${y}/`;
+export const VAN_KHAN_URL = `${BASE}van-khan/`;
+export const vanKhanUrl = (slug: string) => `${VAN_KHAN_URL}${slug}/`;
+
+// Culture section
+export const CHI_SLUGS = ['ty', 'suu', 'dan', 'mao', 'thin', 'ti', 'ngo', 'mui', 'than', 'dau', 'tuat', 'hoi'];
+export const CULTURE_URL = `${BASE}van-hoa/`;
+export const SAO_HAN_URL = `${BASE}sao-han/`;
+export const SAO_HAN_FROM = 2025;
+export const SAO_HAN_TO = new Date().getFullYear() + 2;
+export const SAO_HAN_BIRTH_FROM = 1930;
+export const saoHanYearUrl = (y: number) => `${SAO_HAN_URL}nam-${y}/`;
+export const saoHanUrl = (y: number, birth: number) => `${SAO_HAN_URL}nam-${y}/tuoi-${birth}/`;
+export const tuViYearUrl = (y: number) => `${BASE}tu-vi-${y}/`;
+export const tuViChiUrl = (y: number, chi: number) => `${tuViYearUrl(y)}tuoi-${CHI_SLUGS[chi]}/`;
+export const xongDatUrl = (y: number) => `${BASE}xong-dat-${y}/`;
+export const xongDatChiUrl = (y: number, chi: number) => `${xongDatUrl(y)}tuoi-${CHI_SLUGS[chi]}/`;
+export const LE_HOI_URL = `${BASE}le-hoi/`;
+export const leHoiUrl = (slug: string) => `${LE_HOI_URL}${slug}/`;
+export const LOI_CHUC_URL = `${BASE}loi-chuc-tet/`;
+export const loiChucUrl = (slug: string) => `${LOI_CHUC_URL}${slug}/`;
+export const THAN_SO_URL = `${BASE}than-so-hoc/`;
+export const BOI_SIM_URL = `${BASE}boi-so-dien-thoai/`;
+export const TU_VI_NGAY_URL = `${BASE}tu-vi-hom-nay/`;
 
 export const hasDayPage = (y: number) => y >= DAY_FROM && y <= DAY_TO;
 export const hasMonthPage = (y: number) => y >= YEAR_FROM && y <= YEAR_TO;

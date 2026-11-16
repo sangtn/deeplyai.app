@@ -1,0 +1,675 @@
+{
+  "_source": {
+    "app": "LichViet iOS v1.2026.1",
+    "files": [
+      "ViewController/CultureViet/XongDat2026/ZodiacCompatibilityData.swift",
+      "ViewController/CultureViet/XongDat2026/XongDat2026ViewController.swift",
+      "VNLunar/VNLunar.m (nạp âm names)"
+    ],
+    "extraction": "Dumped by compiling ZodiacCompatibilityData.swift with swiftc; screen texts copied from the view controller's string literals via the same harness.",
+    "notes": [
+      "Despite the 2026 folder/class names, every rule targets lunar year Đinh Mùi 2027 (06/02/2027 - 25/01/2028).",
+      "The app takes only the host's con giáp (12 buttons), not a birth year, and only shows zodiacRules[host] + adviceText + guidelinesText.",
+      "elementRules, favorableConditions, agesToAvoid and culturalGuidelines are defined in the app but never displayed (the screen uses guidelinesText instead).",
+      "candidateYearsByChi is parsed from the rule descriptions; it equals: years 1957-2007 (target-70 .. target-20) of that chi, excluding stems Tân and Quý."
+    ]
+  },
+  "appYear": {
+    "year": 2027,
+    "canChi": "Đinh Mùi",
+    "can": "Đinh",
+    "chi": "Mùi",
+    "napAm": "Thiên Hà Thủy",
+    "solarRange": {
+      "start": "2027-02-06",
+      "end": "2028-01-25"
+    }
+  },
+  "screen": {
+    "menuTitle": "Xông Đất 2027",
+    "menuSubtitle": "Chọn tuổi xông đất năm Đinh Mùi 2027 giúp gia chủ phát tài",
+    "title": "🐐 Chọn Tuổi Xông Đất Năm Đinh Mùi 2027",
+    "yearInfo": "Năm Đinh Mùi 2027 • 06/02/2027 - 25/01/2028",
+    "description": "Chọn người xông đất hợp tuổi để mang lại may mắn, thịnh vượng và tài lộc cho gia chủ trong năm Đinh Mùi 2027. Hãy chọn tuổi của bạn để xem những tuổi phù hợp nhất.",
+    "selectPrompt": "👆 Chọn tuổi của gia chủ:",
+    "guidelinesTitle": "📖 Nguyên tắc chọn tuổi xông đất 2027",
+    "guidelinesText": "🎯 Nên chọn:\n• Người có tuổi hợp với tuổi chủ nhà\n• Tuổi hợp năm Mùi: Hợi, Mão (Tam hợp), Ngọ (Lục hợp)\n• Thiên can Nhâm (Đinh - Nhâm tương hợp), ví dụ Nhâm Dần 1962, Nhâm Thân 1992, Nhâm Ngọ 2002\n• Nạp âm Kim, Mộc (tương sinh với Thiên Hà Thủy của năm Đinh Mùi)\n• Người có cung vận tốt trong năm 2027\n• Người có sao chiếu mệnh đẹp (Thái Dương, Thái Âm, Mộc Đức)\n\n⚠️ Nên tránh:\n• Tuổi Mùi (Trực Thái Tuế), Sửu (Xung Thái Tuế)\n• Tuổi Tý (Hại Thái Tuế), Tuất (Phá Thái Tuế, tam hình Sửu - Tuất - Mùi)\n• Thiên can Quý, Tân (Quý khắc Đinh, Đinh khắc Tân)\n• Người đang trong thời gian chịu tang\n• Phụ nữ có thai (theo quan niệm dân gian)\n\n💡 Lưu ý:\n• Theo dân gian, Hợi, Mão, Mùi đang ở năm cuối Tam Tai; gia chủ kỹ lưỡng có thể cân nhắc thêm\n\n🎭 Phong tục:\n• Tránh mặc quần áo trắng hoặc đen\n• Vợ chồng xông nhà thì chồng bước vào trước\n• Mang theo lì xì và quà tặng may mắn",
+    "resultTemplate": "🏠 Gia chủ tuổi {host}:\n\n✅ Nên chọn người xông đất tuổi: {compatible}\n\n💡 Lý do: {reason}\n\n📝 Chi tiết: {description}",
+    "adviceText": "💰 Lời khuyên bổ sung:\n• Chọn người có sự nghiệp thành công, tính tình vui vẻ\n• Tránh những người đang có tang hoặc vận hạn xấu\n• Người xông đất nên mặc trang phục màu sắc tươi sáng\n• Thời gian tốt nhất: Sáng sớm ngày mùng 1 Tết"
+  },
+  "zodiacs": [
+    "Tý",
+    "Sửu",
+    "Dần",
+    "Mão",
+    "Thìn",
+    "Tỵ",
+    "Ngọ",
+    "Mùi",
+    "Thân",
+    "Dậu",
+    "Tuất",
+    "Hợi"
+  ],
+  "elements": [
+    "Kim",
+    "Mộc",
+    "Thuỷ",
+    "Hoả",
+    "Thổ"
+  ],
+  "zodiacRules": [
+    {
+      "description": "Chủ nhà tuổi Tý nên chọn tuổi Thân (Mậu Thân 1968, Canh Thân 1980, Nhâm Thân 1992, Giáp Thân 2004) và tuổi Thìn (Giáp Thìn 1964, Bính Thìn 1976, Mậu Thìn 1988, Canh Thìn 2000)",
+      "compatible": [
+        "Thân",
+        "Thìn"
+      ],
+      "host": "Tý",
+      "reason": "Thân, Thìn Tam hợp với Tý. Sửu dù Lục hợp với Tý nhưng Xung Thái Tuế năm Mùi nên tạm không chọn"
+    },
+    {
+      "reason": "Tỵ, Dậu Tam hợp với Sửu. Tý dù Lục hợp với Sửu nhưng Hại Thái Tuế năm Mùi nên tạm không chọn",
+      "description": "Chủ nhà tuổi Sửu nên chọn tuổi Tỵ (Ất Tỵ 1965, Đinh Tỵ 1977, Kỷ Tỵ 1989) và tuổi Dậu (Đinh Dậu 1957, Kỷ Dậu 1969, Ất Dậu 2005)",
+      "host": "Sửu",
+      "compatible": [
+        "Tỵ",
+        "Dậu"
+      ]
+    },
+    {
+      "compatible": [
+        "Ngọ",
+        "Hợi"
+      ],
+      "description": "Chủ nhà tuổi Dần nên chọn tuổi Ngọ (Bính Ngọ 1966, Mậu Ngọ 1978, Canh Ngọ 1990, Nhâm Ngọ 2002) và tuổi Hợi (Kỷ Hợi 1959, Ất Hợi 1995, Đinh Hợi 2007)",
+      "reason": "Ngọ Tam hợp, Hợi Lục hợp với Dần. Tuất dù Tam hợp với Dần nhưng Phá Thái Tuế năm Mùi nên tạm không chọn",
+      "host": "Dần"
+    },
+    {
+      "compatible": [
+        "Hợi"
+      ],
+      "host": "Mão",
+      "reason": "Hợi Tam hợp với Mão. Mùi (Trực Thái Tuế) và Tuất (Phá Thái Tuế) dù hợp tuổi Mão nhưng tạm không chọn trong năm Mùi",
+      "description": "Chủ nhà tuổi Mão nên chọn tuổi Hợi (Kỷ Hợi 1959, Ất Hợi 1995, Đinh Hợi 2007)"
+    },
+    {
+      "host": "Thìn",
+      "compatible": [
+        "Thân",
+        "Dậu"
+      ],
+      "reason": "Thân Tam hợp, Dậu Lục hợp với Thìn. Tý dù Tam hợp với Thìn nhưng Hại Thái Tuế năm Mùi nên tạm không chọn",
+      "description": "Chủ nhà tuổi Thìn nên chọn tuổi Thân (Mậu Thân 1968, Canh Thân 1980, Nhâm Thân 1992, Giáp Thân 2004) và tuổi Dậu (Đinh Dậu 1957, Kỷ Dậu 1969, Ất Dậu 2005)"
+    },
+    {
+      "description": "Chủ nhà tuổi Tỵ nên chọn tuổi Dậu (Đinh Dậu 1957, Kỷ Dậu 1969, Ất Dậu 2005) và tuổi Thân (Mậu Thân 1968, Canh Thân 1980, Nhâm Thân 1992, Giáp Thân 2004)",
+      "reason": "Dậu Tam hợp, Thân Lục hợp với Tỵ. Sửu dù Tam hợp với Tỵ nhưng Xung Thái Tuế năm Mùi nên tạm không chọn",
+      "host": "Tỵ",
+      "compatible": [
+        "Dậu",
+        "Thân"
+      ]
+    },
+    {
+      "compatible": [
+        "Dần",
+        "Hợi"
+      ],
+      "description": "Chủ nhà tuổi Ngọ nên chọn tuổi Dần (Nhâm Dần 1962, Giáp Dần 1974, Bính Dần 1986, Mậu Dần 1998) và tuổi Hợi (Kỷ Hợi 1959, Ất Hợi 1995, Đinh Hợi 2007)",
+      "reason": "Dần Tam hợp với Ngọ, Hợi Tam hợp với năm Mùi. Tuất (Phá Thái Tuế) và Mùi (Trực Thái Tuế) dù hợp tuổi Ngọ nhưng tạm không chọn trong năm Mùi",
+      "host": "Ngọ"
+    },
+    {
+      "host": "Mùi",
+      "compatible": [
+        "Mão",
+        "Hợi",
+        "Ngọ"
+      ],
+      "reason": "Mão, Hợi Tam hợp, Ngọ Lục hợp với Mùi, cũng là ba tuổi hợp với năm Đinh Mùi",
+      "description": "Chủ nhà tuổi Mùi nên chọn tuổi Mão (Ất Mão 1975, Đinh Mão 1987, Kỷ Mão 1999), tuổi Hợi (Kỷ Hợi 1959, Ất Hợi 1995, Đinh Hợi 2007) và tuổi Ngọ (Bính Ngọ 1966, Mậu Ngọ 1978, Canh Ngọ 1990, Nhâm Ngọ 2002)"
+    },
+    {
+      "description": "Chủ nhà tuổi Thân nên chọn tuổi Thìn (Giáp Thìn 1964, Bính Thìn 1976, Mậu Thìn 1988, Canh Thìn 2000) và tuổi Tỵ (Ất Tỵ 1965, Đinh Tỵ 1977, Kỷ Tỵ 1989)",
+      "host": "Thân",
+      "reason": "Thìn Tam hợp, Tỵ Lục hợp với Thân. Tý dù Tam hợp với Thân nhưng Hại Thái Tuế năm Mùi nên tạm không chọn",
+      "compatible": [
+        "Thìn",
+        "Tỵ"
+      ]
+    },
+    {
+      "compatible": [
+        "Tỵ",
+        "Thìn"
+      ],
+      "host": "Dậu",
+      "description": "Chủ nhà tuổi Dậu nên chọn tuổi Tỵ (Ất Tỵ 1965, Đinh Tỵ 1977, Kỷ Tỵ 1989) và tuổi Thìn (Giáp Thìn 1964, Bính Thìn 1976, Mậu Thìn 1988, Canh Thìn 2000)",
+      "reason": "Tỵ Tam hợp, Thìn Lục hợp với Dậu. Sửu dù Tam hợp với Dậu nhưng Xung Thái Tuế năm Mùi nên tạm không chọn"
+    },
+    {
+      "description": "Chủ nhà tuổi Tuất nên chọn tuổi Dần (Nhâm Dần 1962, Giáp Dần 1974, Bính Dần 1986, Mậu Dần 1998), tuổi Ngọ (Bính Ngọ 1966, Mậu Ngọ 1978, Canh Ngọ 1990, Nhâm Ngọ 2002) và tuổi Mão (Ất Mão 1975, Đinh Mão 1987, Kỷ Mão 1999)",
+      "reason": "Dần, Ngọ Tam hợp, Mão Lục hợp với Tuất. Mão, Ngọ cũng hợp với năm Đinh Mùi",
+      "host": "Tuất",
+      "compatible": [
+        "Dần",
+        "Ngọ",
+        "Mão"
+      ]
+    },
+    {
+      "host": "Hợi",
+      "compatible": [
+        "Mão",
+        "Dần"
+      ],
+      "reason": "Mão Tam hợp, Dần Lục hợp với Hợi. Mùi dù Tam hợp với Hợi nhưng Trực Thái Tuế năm Mùi nên tạm không chọn",
+      "description": "Chủ nhà tuổi Hợi nên chọn tuổi Mão (Ất Mão 1975, Đinh Mão 1987, Kỷ Mão 1999) và tuổi Dần (Nhâm Dần 1962, Giáp Dần 1974, Bính Dần 1986, Mậu Dần 1998)"
+    }
+  ],
+  "candidateYearsByChi": {
+    "Thân": [
+      {
+        "canChi": "Mậu Thân",
+        "year": 1968
+      },
+      {
+        "canChi": "Canh Thân",
+        "year": 1980
+      },
+      {
+        "canChi": "Nhâm Thân",
+        "year": 1992
+      },
+      {
+        "canChi": "Giáp Thân",
+        "year": 2004
+      }
+    ],
+    "Thìn": [
+      {
+        "canChi": "Giáp Thìn",
+        "year": 1964
+      },
+      {
+        "canChi": "Bính Thìn",
+        "year": 1976
+      },
+      {
+        "canChi": "Mậu Thìn",
+        "year": 1988
+      },
+      {
+        "canChi": "Canh Thìn",
+        "year": 2000
+      }
+    ],
+    "Tỵ": [
+      {
+        "canChi": "Ất Tỵ",
+        "year": 1965
+      },
+      {
+        "canChi": "Đinh Tỵ",
+        "year": 1977
+      },
+      {
+        "canChi": "Kỷ Tỵ",
+        "year": 1989
+      }
+    ],
+    "Dậu": [
+      {
+        "canChi": "Đinh Dậu",
+        "year": 1957
+      },
+      {
+        "canChi": "Kỷ Dậu",
+        "year": 1969
+      },
+      {
+        "canChi": "Ất Dậu",
+        "year": 2005
+      }
+    ],
+    "Ngọ": [
+      {
+        "canChi": "Bính Ngọ",
+        "year": 1966
+      },
+      {
+        "canChi": "Mậu Ngọ",
+        "year": 1978
+      },
+      {
+        "canChi": "Canh Ngọ",
+        "year": 1990
+      },
+      {
+        "canChi": "Nhâm Ngọ",
+        "year": 2002
+      }
+    ],
+    "Hợi": [
+      {
+        "canChi": "Kỷ Hợi",
+        "year": 1959
+      },
+      {
+        "canChi": "Ất Hợi",
+        "year": 1995
+      },
+      {
+        "canChi": "Đinh Hợi",
+        "year": 2007
+      }
+    ],
+    "Dần": [
+      {
+        "canChi": "Nhâm Dần",
+        "year": 1962
+      },
+      {
+        "canChi": "Giáp Dần",
+        "year": 1974
+      },
+      {
+        "canChi": "Bính Dần",
+        "year": 1986
+      },
+      {
+        "canChi": "Mậu Dần",
+        "year": 1998
+      }
+    ],
+    "Mão": [
+      {
+        "canChi": "Ất Mão",
+        "year": 1975
+      },
+      {
+        "canChi": "Đinh Mão",
+        "year": 1987
+      },
+      {
+        "canChi": "Kỷ Mão",
+        "year": 1999
+      }
+    ]
+  },
+  "elementRules": [
+    {
+      "compatible": [
+        "Thổ",
+        "Thuỷ",
+        "Kim"
+      ],
+      "description": "Chủ nhà mệnh Kim nên chọn người mệnh Thổ, Thuỷ, Kim",
+      "host": "Kim"
+    },
+    {
+      "description": "Chủ nhà mệnh Mộc nên chọn người mệnh Thuỷ, Hoả, Mộc",
+      "host": "Mộc",
+      "compatible": [
+        "Thuỷ",
+        "Hoả",
+        "Mộc"
+      ]
+    },
+    {
+      "compatible": [
+        "Kim",
+        "Mộc",
+        "Thuỷ"
+      ],
+      "host": "Thuỷ",
+      "description": "Chủ nhà mệnh Thuỷ nên chọn người mệnh Kim, Mộc, Thuỷ"
+    },
+    {
+      "compatible": [
+        "Mộc",
+        "Thổ",
+        "Hoả"
+      ],
+      "description": "Chủ nhà mệnh Hoả nên chọn người mệnh Mộc, Thổ, Hoả",
+      "host": "Hoả"
+    },
+    {
+      "description": "Chủ nhà mệnh Thổ nên chọn người mệnh Hoả, Kim, Thổ",
+      "host": "Thổ",
+      "compatible": [
+        "Hoả",
+        "Kim",
+        "Thổ"
+      ]
+    }
+  ],
+  "favorableConditions": [
+    "Người có tuổi con giáp hợp với con giáp của chủ nhà",
+    "Người có thiên can Nhâm, hợp với can Đinh của năm Đinh Mùi (Nhâm Dần 1962, Nhâm Thân 1992, Nhâm Ngọ 2002)",
+    "Người có con giáp hợp với năm Mùi (Hợi, Mão, Ngọ)",
+    "Người có nạp âm Kim hoặc Mộc, tương sinh với Thiên Hà Thủy của năm Đinh Mùi",
+    "Người có cung vận tốt trong năm 2027",
+    "Người có sao chiếu mệnh đẹp (Thái Dương, Thái Âm, Mộc Đức)"
+  ],
+  "agesToAvoid": [
+    "Tuổi Mùi (Trực Thái Tuế)",
+    "Tuổi Sửu (Xung Thái Tuế) - xung với năm Mùi",
+    "Tuổi Tý (Hại Thái Tuế) - Tý Mùi tương hại",
+    "Tuổi Tuất (Phá Thái Tuế) - tam hình Sửu - Tuất - Mùi",
+    "Người có thiên can Quý, Tân (Quý khắc Đinh, Đinh khắc Tân)",
+    "Người đang trong thời gian chịu tang",
+    "Phụ nữ có thai (theo quan niệm dân gian)"
+  ],
+  "culturalGuidelines": [
+    "Người xông đất phải là người tốt vía, tính tình vui vẻ, khỏe mạnh",
+    "Sự nghiệp thành công, gia đình hạnh phúc",
+    "Tránh mặc quần áo trắng hoặc đen khi xông nhà",
+    "Nếu vợ chồng cùng đến thì chồng nên bước vào trước",
+    "Không nên mời người có gia đình đang có tang"
+  ],
+  "napAm": [
+    {
+      "canChi": "Giáp Tý",
+      "napAm": "Hải Trung Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Ất Sửu",
+      "napAm": "Hải Trung Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Bính Dần",
+      "napAm": "Lô Trung Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Đinh Mão",
+      "napAm": "Lô Trung Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Mậu Thìn",
+      "napAm": "Đại Lâm Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Kỷ Tỵ",
+      "napAm": "Đại Lâm Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Canh Ngọ",
+      "napAm": "Lộ Bàng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Tân Mùi",
+      "napAm": "Lộ Bàng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Nhâm Thân",
+      "napAm": "Kiếm Phong Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Quý Dậu",
+      "napAm": "Kiếm Phong Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Giáp Tuất",
+      "napAm": "Sơn Đầu Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Ất Hợi",
+      "napAm": "Sơn Đầu Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Bính Tý",
+      "napAm": "Giản Hạ Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Đinh Sửu",
+      "napAm": "Giản Hạ Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Mậu Dần",
+      "napAm": "Thành Đầu Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Kỷ Mão",
+      "napAm": "Thành Đầu Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Canh Thìn",
+      "napAm": "Bạch Lạp Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Tân Tỵ",
+      "napAm": "Bạch Lạp Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Nhâm Ngọ",
+      "napAm": "Dương Liễu Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Quý Mùi",
+      "napAm": "Dương Liễu Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Giáp Thân",
+      "napAm": "Tuyền Trung Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Ất Dậu",
+      "napAm": "Tuyền Trung Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Bính Tuất",
+      "napAm": "Ốc Thượng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Đinh Hợi",
+      "napAm": "Ốc Thượng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Mậu Tý",
+      "napAm": "Phích Lịch Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Kỷ Sửu",
+      "napAm": "Phích Lịch Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Canh Dần",
+      "napAm": "Tùng Bách Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Tân Mão",
+      "napAm": "Tùng Bách Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Nhâm Thìn",
+      "napAm": "Trường Lưu Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Quý Tỵ",
+      "napAm": "Trường Lưu Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Giáp Ngọ",
+      "napAm": "Sa Trung Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Ất Mùi",
+      "napAm": "Sa Trung Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Bính Thân",
+      "napAm": "Sơn Hạ Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Đinh Dậu",
+      "napAm": "Sơn Hạ Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Mậu Tuất",
+      "napAm": "Bình Địa Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Kỷ Hợi",
+      "napAm": "Bình Địa Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Canh Tý",
+      "napAm": "Bích Thượng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Tân Sửu",
+      "napAm": "Bích Thượng Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Nhâm Dần",
+      "napAm": "Kim Bạc Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Quý Mão",
+      "napAm": "Kim Bạc Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Giáp Thìn",
+      "napAm": "Phúc Đăng Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Ất Tỵ",
+      "napAm": "Phúc Đăng Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Bính Ngọ",
+      "napAm": "Thiên Hà Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Đinh Mùi",
+      "napAm": "Thiên Hà Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Mậu Thân",
+      "napAm": "Đại Dịch Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Kỷ Dậu",
+      "napAm": "Đại Dịch Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Canh Tuất",
+      "napAm": "Thoa Xuyến Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Tân Hợi",
+      "napAm": "Thoa Xuyến Kim",
+      "element": "Kim"
+    },
+    {
+      "canChi": "Nhâm Tý",
+      "napAm": "Tang Chá Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Quý Sửu",
+      "napAm": "Tang Chá Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Giáp Dần",
+      "napAm": "Đại Khê Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Ất Mão",
+      "napAm": "Đại Khê Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Bính Thìn",
+      "napAm": "Sa Trung Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Đinh Tỵ",
+      "napAm": "Sa Trung Thổ",
+      "element": "Thổ"
+    },
+    {
+      "canChi": "Mậu Ngọ",
+      "napAm": "Thiên Thượng Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Kỷ Mùi",
+      "napAm": "Thiên Thượng Hỏa",
+      "element": "Hoả"
+    },
+    {
+      "canChi": "Canh Thân",
+      "napAm": "Thạch Lựu Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Tân Dậu",
+      "napAm": "Thạch Lựu Mộc",
+      "element": "Mộc"
+    },
+    {
+      "canChi": "Nhâm Tuất",
+      "napAm": "Đại Hải Thủy",
+      "element": "Thuỷ"
+    },
+    {
+      "canChi": "Quý Hợi",
+      "napAm": "Đại Hải Thủy",
+      "element": "Thuỷ"
+    }
+  ]
+}

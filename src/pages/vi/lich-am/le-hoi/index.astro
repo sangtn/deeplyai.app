@@ -1,0 +1,68 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import festivals from '../../../../data/lich/le-hoi.json';
+import { WEEKDAYS, lunarToSolar } from '../../../../lib/lich/engine';
+import { jdFromDate, vietnamToday } from '../../../../components/lich-viet/lunar';
+import { CULTURE_URL, LE_HOI_URL, dayUrl, dmy, hasDayPage } from '../../../../lib/lich/urls';
+
+interface Fest { slug: string; name: string; type: string; typeLabel: string; location: string; description: string; date: { text: string; calendar: string | null; start?: { day: number; month: number }; occurrences?: { day: number; month: number }[]; recurrence: string }; detail: { variant: string; sections?: { icon: string; heading: string; text?: string; items?: string[] }[] } }
+const list = (festivals.festivals as unknown as Fest[]);
+const t = vietnamToday();
+const todayJd = jdFromDate(t.day, t.month, t.year);
+
+// Next start date (this or next year) for festivals with a fixed annual day.
+function nextDate(f: Fest) {
+  const start = f.date.start ?? f.date.occurrences?.[0];
+  if (!start || f.date.recurrence !== 'annual') return null;
+  for (const off of [-1, 0, 1]) {
+    const yy = t.year + off;
+    const s = f.date.calendar === 'lunar' ? lunarToSolar(start.day, start.month, yy) : { day: start.day, month: start.month, year: yy };
+    if (s && jdFromDate(s.day, s.month, s.year) >= todayJd) return s;
+  }
+  return null;
+}
+const types = [...new Map(list.map((f) => [f.type, f.typeLabel])).entries()];
+const rows = list.map((f) => ({ f, next: nextDate(f) }));
+---
+<LichShell
+  title="Lễ hội Việt Nam – Lịch lễ hội truyền thống, dân tộc, tôn giáo trong năm"
+  description={`Lịch ${list.length} lễ hội lớn ở Việt Nam: Tết Nguyên Đán, Giỗ Tổ Hùng Vương, Hội Gióng, chùa Hương, Chol Chnăm Thmây, Katê… kèm ngày âm lịch, ngày dương lịch năm nay và địa điểm.`}
+  path={LE_HOI_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Lễ hội' }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lễ hội Việt Nam</h1>
+      <p>{list.length} lễ hội truyền thống, dân tộc, tôn giáo và văn hóa tiêu biểu, với ngày diễn ra theo âm lịch và ngày dương lịch gần nhất.</p>
+    </header>
+    <nav class="la-chips" aria-label="Loại lễ hội">{types.map(([k, label]) => <a class="la-chip la-chip-hol" href={`#${k}`}>{label}</a>)}</nav>
+    {types.map(([k, label]) => (
+      <section class="la-block" aria-labelledby={k}>
+        <h2 id={k} class="la-h2">{label}</h2>
+        <div class="la-cards">
+          {rows.filter(({ f }) => f.type === k).map(({ f, next }) => (
+            <article class="la-card la-fest" id={f.slug}>
+              <h3>{f.name}</h3>
+              <p class="la-fest-meta"><span>📅 {f.date.text}</span><span>📍 {f.location}</span></p>
+              {next && <p class="la-fest-next">Lần tới: {hasDayPage(next.year) ? <a href={dayUrl(next.day, next.month, next.year)}>{WEEKDAYS[(jdFromDate(next.day, next.month, next.year) + 1) % 7]}, {dmy(next.day, next.month, next.year)}</a> : dmy(next.day, next.month, next.year)}</p>}
+              <p>{f.description}</p>
+              {f.detail.variant === 'specific' && f.detail.sections && (
+                <details>
+                  <summary>Ý nghĩa và hoạt động</summary>
+                  {f.detail.sections.map((s) => (
+                    <div class="la-fest-sec">
+                      <h4>{s.icon} {s.heading}</h4>
+                      {s.text && <p>{s.text}</p>}
+                      {s.items && <ul class="la-list">{s.items.map((it) => <li>{it}</li>)}</ul>}
+                    </div>
+                  ))}
+                </details>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</LichShell>

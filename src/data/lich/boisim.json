@@ -1,0 +1,84 @@
+{
+  "_source": "Lịch Việt iOS app: ViewController/Utilities/BoiSimViewController.swift (texts verbatim) and vi.lproj/Localizable.strings (labels).",
+  "labels": {
+    "navTitle": "Bói Sim - Số Điện Thoại",
+    "title": "📱 BÓI SIM - SỐ ĐIỆN THOẠI 📱",
+    "subtitle": "Khám phá ý nghĩa phong thủy của số điện thoại",
+    "phoneLabel": "📱 Số điện thoại",
+    "placeholder": "Nhập số điện thoại (VD: 0987654321)",
+    "note": "Lưu ý: Nhập số điện thoại 10-11 chữ số (VD: 0987654321)",
+    "button": "📱 Đánh Giá",
+    "evaluating": "Đang đánh giá số điện thoại...",
+    "intro": "Nhập số điện thoại của bạn và bấm nút 'Đánh Giá' để xem kết quả bói sim phong thủy.",
+    "errorTitle": "Lỗi"
+  },
+  "errors": {
+    "empty": "Vui lòng nhập số điện thoại",
+    "length": "Số điện thoại phải có từ 10-11 chữ số",
+    "prefix": "Số điện thoại không đúng định dạng Việt Nam"
+  },
+  "validPrefixes": ["09", "08", "07", "05", "03", "012", "016", "018", "019"],
+  "luckyDigits": [6, 8, 9],
+  "unluckyDigits": [4],
+  "elements": [
+    "Kim (Kim loại) - Cương quyết, may mắn về tài chính",
+    "Mộc (Cây cối) - Phát triển, sáng tạo, thuận lợi học hành",
+    "Thủy (Nước) - Thông minh, linh hoạt, may mắn thương mại",
+    "Hỏa (Lửa) - Nhiệt huyết, thành công sự nghiệp",
+    "Thổ (Đất) - Ổn định, tin cậy, may mắn bất động sản"
+  ],
+  "numberMeanings": {
+    "1": "Số 1 - Lãnh đạo, độc lập, khởi đầu mới. Phù hợp với người muốn khẳng định bản thân.",
+    "2": "Số 2 - Hợp tác, cân bằng, hòa hợp. Tốt cho mối quan hệ và đối tác.",
+    "3": "Số 3 - Sáng tạo, giao tiếp, vui vẻ. Thuận lợi cho nghệ thuật và giải trí.",
+    "4": "Số 4 - Ổn định, cần cù, thực tế. Phù hợp với công việc đòi hỏi sự kiên nhẫn.",
+    "5": "Số 5 - Tự do, phiêu lưu, thay đổi. Tốt cho du lịch và khám phá.",
+    "6": "Số 6 - Yêu thương, gia đình, trách nhiệm. Mang lại hạnh phúc gia đình.",
+    "7": "Số 7 - Tâm linh, trí tuệ, nghiên cứu. Phù hợp với học giả và nhà tư tưởng.",
+    "8": "Số 8 - Thành công, quyền lực, tài chính. Rất may mắn về tiền bạc và sự nghiệp.",
+    "9": "Số 9 - Hoàn thiện, từ bi, phục vụ. Mang lại danh tiếng và uy tín."
+  },
+  "numberMeaningFallback": "Số đặc biệt với ý nghĩa riêng biệt.",
+  "luckyLevel": { "8-10": "Rất may mắn ⭐⭐⭐⭐⭐", "6-7": "May mắn ⭐⭐⭐⭐", "4-5": "Bình thường ⭐⭐⭐", "2-3": "Cần cải thiện ⭐⭐", "other": "Nên thay đổi ⭐" },
+  "phongThuyLevel": { "8-10": "Rất tốt - Hỗ trợ mạnh mẽ cho vận mệnh", "6-7": "Tốt - Có tác dụng tích cực", "4-5": "Trung bình - Không ảnh hưởng nhiều", "2-3": "Kém - Có thể gây cản trở nhẹ", "other": "Xấu - Nên thay đổi số khác" },
+  "career": {
+    "byRoot": { "8": "Rất thuận lợi cho kinh doanh và tài chính", "1": "Phù hợp với vị trí lãnh đạo và quản lý", "3": "Tốt cho ngành sáng tạo và truyền thông", "6": "Phù hợp với dịch vụ và chăm sóc khách hàng", "9": "Thuận lợi cho giáo dục và y tế" },
+    "rootDefault": "Có thể thành công trong nhiều lĩnh vực khác nhau",
+    "score7": "Thời gian tới sẽ có nhiều cơ hội thăng tiến",
+    "score5": "Cần nỗ lực để đạt được mục tiêu",
+    "scoreLow": "Nên kiên nhẫn và chuẩn bị kỹ càng cho các dự án"
+  },
+  "love": {
+    "byRoot": { "2": "Rất may mắn trong tình duyên, dễ tìm được người phù hợp", "6": "Hạnh phúc gia đình, mối quan hệ hài hòa", "9": "Được nhiều người yêu mến và tin tưởng", "5": "Cuộc sống tình cảm đa dạng, nhiều lựa chọn" },
+    "rootDefault": "Cần kiên nhẫn để tìm được người phù hợp",
+    "score7": "Thời gian này thuận lợi cho hôn nhân",
+    "score5": "Mối quan hệ ổn định và phát triển tốt",
+    "scoreLow": "Cần chú ý giao tiếp để tránh hiểu lầm"
+  },
+  "health": {
+    "byRoot": { "7": "Cần chú ý sức khỏe tinh thần, tránh stress", "4": "Sức khỏe ổn định, cần tập thể dục đều đặn", "8": "May mắn về sức khỏe, ít gặp bệnh tật", "1": "Năng lượng tốt, cần cân bằng giữa làm việc và nghỉ ngơi" },
+    "rootDefault": "Cần chăm sóc sức khỏe một cách toàn diện",
+    "score7": "Thời kỳ sức khỏe dồi dào",
+    "score5": "Cần duy trì lối sống lành mạnh",
+    "scoreLow": "Nên tăng cường chăm sóc sức khỏe"
+  },
+  "fengShui": {
+    "always": "Nên sử dụng số này vào các thời điểm quan trọng",
+    "score8": ["Số rất may mắn, không cần thay đổi", "Có thể sử dụng làm số chính cho công việc"],
+    "score6": ["Số khá tốt, có thể tiếp tục sử dụng", "Nên kết hợp với những số may mắn khác"],
+    "score4": ["Số bình thường, không có tác hại", "Có thể cải thiện bằng cách thay đổi một vài chữ số cuối"],
+    "scoreLow": ["Nên cân nhắc thay đổi số điện thoại", "Tìm số có nhiều chữ số 6, 8, 9 hơn"]
+  },
+  "headings": {
+    "result": "📱 KẾT QUẢ BÓI SIM - SỐ ĐIỆN THOẠI 📱",
+    "info": "📞 THÔNG TIN SỐ:",
+    "overview": "🌟 ĐÁNH GIÁ TỔNG QUAN:",
+    "elements": "🔥 PHÂN TÍCH NGŨ HÀNH:",
+    "meaning": "🎯 Ý NGHĨA SỐ CHỦ ĐẠO",
+    "career": "💼 SỰ NGHIỆP & TÀI LỘC:",
+    "love": "💕 TÌNH DUYÊN & GIA ĐÌNH:",
+    "health": "🏥 SỨC KHỎE & CUỘC SỐNG:",
+    "advice": "🔮 LỜI KHUYÊN PHONG THỦY:"
+  },
+  "disclaimer": "⭐️ LƯU Ý: Đây là kết quả bói sim mang tính chất tham khảo. Số điện thoại chỉ là một yếu tố nhỏ trong cuộc sống, quan trọng nhất vẫn là nỗ lực và hành động của bản thân."
+}

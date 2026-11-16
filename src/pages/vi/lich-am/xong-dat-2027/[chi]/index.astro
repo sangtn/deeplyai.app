@@ -1,0 +1,50 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { CHI_SLUGS, CULTURE_URL, chiIcon, tuViChiUrl, xongDatChiUrl, xongDatUrl } from '../../../../../lib/lich/urls';
+import { CHI, XONG_DAT_APP_YEAR, canChiOfYear, getXongDat } from '../../../../../lib/lich/xongdat';
+
+export function getStaticPaths() {
+  return CHI_SLUGS.map((s, i) => ({ params: { chi: `tuoi-${s}` }, props: { i } }));
+}
+const { i } = Astro.props;
+const y = XONG_DAT_APP_YEAR;
+const chi = CHI[i];
+const r = getXongDat(1984 + i, y);
+const target = canChiOfYear(y);
+const REL: Record<string, string> = { 'tam-hop': 'Tam hợp với gia chủ', 'luc-hop': 'Lục hợp với gia chủ', 'hop-nam': `Hợp với năm ${target.canChi}` };
+---
+<LichShell
+  title={`Gia chủ tuổi ${chi} chọn ai xông đất Tết ${y}? Tuổi ${r.picks.map((p) => p.chi).join(', ')}`}
+  description={`Gia chủ tuổi ${chi} nên chọn người tuổi ${r.picks.map((p) => p.chi).join(' hoặc ')} xông đất Tết ${y} (${target.canChi}): ${r.picks.flatMap((p) => p.years.map((c) => `${c.canChi} ${c.year}`)).slice(0, 5).join(', ')}…`}
+  path={xongDatChiUrl(y, i)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: `Xông đất ${y}`, href: xongDatUrl(y) }, { name: `Tuổi ${chi}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head la-head-icon">
+      <img src={chiIcon(i)} width="72" height="70" alt={`Con giáp tuổi ${chi}`} />
+      <div>
+        <h1>Gia chủ tuổi {chi} chọn người xông đất Tết {y}</h1>
+        <p>{r.reason}.</p>
+      </div>
+    </header>
+    <div class="la-cards">
+      {r.picks.map((p) => (
+        <article class="la-card">
+          <h2 class="la-h3">Tuổi {p.chi}</h2>
+          <p><small>{p.relations.map((x) => REL[x]).join(', ')}</small></p>
+          <ul class="la-stars">{p.years.map((c) => <li><b>{c.canChi} {c.year}</b>: mệnh {c.napAm}, {c.age} tuổi{c.bonuses.length ? ` · ${c.bonuses.join(', ')}` : ''}</li>)}</ul>
+        </article>
+      ))}
+      {r.excluded.length > 0 && (
+        <article class="la-card">
+          <h2 class="la-h3">Hợp tuổi nhưng nên tránh năm nay</h2>
+          <ul class="la-stars">{r.excluded.map((e) => <li><b>Tuổi {e.chi}</b>: {e.label}</li>)}</ul>
+        </article>
+      )}
+    </div>
+    <section class="la-block"><p class="la-prose">{r.adviceText}</p>
+      <p class="la-more"><a href={tuViChiUrl(y, i)}>Tử vi {y} tuổi {chi}</a> · <a href={xongDatUrl(y)}>Bảng xông đất 12 con giáp</a></p>
+    </section>
+  </div>
+</LichShell>

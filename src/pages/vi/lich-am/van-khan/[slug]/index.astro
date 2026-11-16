@@ -1,0 +1,62 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { PRAYERS, PRAYER_GROUPS, prayerBySlug } from '../../../../../lib/lich/vankhan';
+import { VAN_KHAN_URL, vanKhanUrl } from '../../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  return PRAYERS.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const p = prayerBySlug.get(Astro.params.slug!)!;
+const group = PRAYER_GROUPS.find((g) => g.id === p.cat)!;
+const related = PRAYERS.filter((o) => o.cat === p.cat && o.slug !== p.slug).slice(0, 12);
+const plain = (s: string) => s.replace(/\s+/g, ' ').trim();
+const lead = plain(p.meaning || p.offerings || p.prayer);
+const description = `${p.title}: ${lead.length > 120 ? `${lead.slice(0, 117).replace(/\s+\S*$/, '')}…` : lead} Kèm cách sắm lễ và bài khấn đầy đủ.`;
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: p.title, inLanguage: 'vi', mainEntityOfPage: `https://deeplyai.app${vanKhanUrl(p.slug)}`, publisher: { '@id': 'https://deeplyai.app/#organization' }, articleSection: group.title }];
+---
+<LichShell
+  title={`${p.title} – Bài văn khấn đầy đủ, cách sắm lễ`}
+  description={description}
+  path={vanKhanUrl(p.slug)}
+  crumbs={[{ name: 'Văn khấn', href: VAN_KHAN_URL }, { name: p.title }]}
+  jsonLd={jsonLd}
+  active="vankhan"
+>
+  <div class="wrap la-article">
+    <header class="la-head">
+      <p class="la-kicker"><a href={`${VAN_KHAN_URL}#${group.id}`}>{group.title}</a></p>
+      <h1>{p.title}</h1>
+    </header>
+    {p.meaning && <section class="la-block"><h2 class="la-h2">Ý nghĩa</h2><p class="la-prose">{p.meaning}</p></section>}
+    {p.offerings && <section class="la-block"><h2 class="la-h2">Sắm lễ</h2><p class="la-prose">{p.offerings}</p></section>}
+    <section class="la-block" aria-labelledby="bai-khan">
+      <div class="la-prayer-head">
+        <h2 id="bai-khan" class="la-h2">Bài văn khấn</h2>
+        <button type="button" class="la-copy" data-copy>Sao chép bài khấn</button>
+      </div>
+      <div class="la-prayer" data-prayer>{p.prayer}</div>
+    </section>
+    {related.length > 0 && (
+      <section class="la-block" aria-labelledby="lien-quan">
+        <h2 id="lien-quan" class="la-h2">Văn khấn cùng nhóm</h2>
+        <ul class="la-prayers">{related.map((o) => <li><a href={vanKhanUrl(o.slug)}>{o.title}</a></li>)}</ul>
+      </section>
+    )}
+  </div>
+</LichShell>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = document.querySelector<HTMLElement>('[data-prayer]')?.innerText ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Đã sao chép';
+      } catch {
+        btn.textContent = 'Không sao chép được';
+      }
+      setTimeout(() => { btn.textContent = 'Sao chép bài khấn'; }, 2000);
+    });
+  });
+</script>

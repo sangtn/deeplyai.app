@@ -1,0 +1,38 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { BOI_SIM_URL, CULTURE_URL } from '../../../../lib/lich/urls';
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Bói số điện thoại', url: `https://deeplyai.app${BOI_SIM_URL}`, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } }];
+---
+<LichShell
+  title="Bói số điện thoại – Xem số điện thoại hợp phong thủy, may mắn"
+  description="Xem ý nghĩa số điện thoại theo phong thủy: tổng nút, số chủ đạo, điểm may mắn, ngũ hành, gợi ý về sự nghiệp, tình cảm, sức khỏe. Miễn phí, xem ngay trên trình duyệt."
+  path={BOI_SIM_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Bói số điện thoại' }]}
+  jsonLd={jsonLd}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Bói số điện thoại</h1>
+      <p>Nhập số điện thoại 10 hoặc 11 số để xem điểm may mắn và ý nghĩa phong thủy. Số điện thoại chỉ được tính trên máy của bạn, không gửi đi đâu. Kết quả mang tính giải trí, tham khảo.</p>
+    </header>
+    <form class="la-tool la-tool-wide" data-sim>
+      <label>Số điện thoại<input name="phone" type="tel" inputmode="tel" autocomplete="off" placeholder="0987 654 321" required /></label>
+      <button type="submit">Xem ý nghĩa</button>
+      <output class="la-result la-result-pre" data-out aria-live="polite"><span>Kết quả sẽ hiện ở đây.</span></output>
+    </form>
+  </div>
+</LichShell>
+
+<script>
+  import { evaluatePhone } from '../../../../lib/lich/boisim';
+  const form = document.querySelector<HTMLFormElement>('[data-sim]');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const r = evaluatePhone((form.elements.namedItem('phone') as HTMLInputElement).value);
+    const out = form.querySelector('[data-out]')!;
+    const p = document.createElement('p');
+    p.textContent = r.ok ? r.evaluation.text : r.message;
+    out.replaceChildren(p);
+  });
+</script>

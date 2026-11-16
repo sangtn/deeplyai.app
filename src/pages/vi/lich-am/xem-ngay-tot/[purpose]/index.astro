@@ -1,0 +1,71 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import GoodTable from '../../../../../components/lich/GoodTable.astro';
+import { PURPOSES, purposeBySlug, scoreDay } from '../../../../../lib/lich/goodday';
+import { almanac } from '../../../../../lib/lich/engine';
+import { fromJd, jdFromDate, vietnamToday } from '../../../../../components/lich-viet/lunar';
+import { GOOD_URL, goodMonthUrl, goodPurposeUrl, vanKhanUrl } from '../../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  return PURPOSES.map((p) => ({ params: { purpose: p.slug } }));
+}
+
+const INTRO: Record<string, string> = {
+  'cuoi-hoi': 'Ngày cưới thường được chọn kỹ nhất. Nên ưu tiên ngày hoàng đạo, trực Thành, Khai hoặc Kiến, tránh Tam Nương, Nguyệt Kỵ, Sát Chủ, Trùng Tang và ngày xung với tuổi cô dâu, chú rể.',
+  'khai-truong': 'Ngày khai trương nên hợp với tuổi chủ cửa hàng, rơi vào ngày hoàng đạo có trực Mãn, Thành, Thâu hoặc Khai, và chọn giờ hoàng đạo để mở cửa đón khách đầu tiên.',
+  'dong-tho': 'Động thổ, khởi công xây nhà cần tránh trực Phá, Bình, Kiến và các ngày Sát Chủ, Kim Thần Thất Sát; ngày tốt nhất là hoàng đạo, hợp tuổi gia chủ.',
+  'xuat-hanh': 'Ngày xuất hành đi xa nên rơi vào ngày Đại An, Tốc Hỷ hoặc Tiểu Cát theo Khổng Minh, kết hợp hướng Hỷ thần, Tài thần của ngày.',
+  'nhap-trach': 'Chuyển nhà, nhập trạch nên chọn ngày hoàng đạo có trực Thành hoặc Khai, tránh Sát Chủ, Nguyệt Tận và ngày xung tuổi gia chủ.',
+  'ky-ket': 'Ký hợp đồng, giao dịch lớn nên chọn ngày có trực Định, Thành hoặc Mãn, tránh trực Chấp, Phá và các ngày Tam Nương, Nguyệt Kỵ.',
+  'mua-xe': 'Mua xe, mua tài sản nên chọn ngày hoàng đạo hợp tuổi người đứng tên, tránh ngày kỵ và nhận xe vào giờ hoàng đạo.',
+  'an-tang': 'An táng, cải mộ cần tránh Trùng Tang, Trùng Phục, Sát Chủ Âm và trực Khai, Kiến; nên chọn ngày hợp tuổi người mất và người đứng lễ.',
+  'cat-toc': 'Cắt tóc, làm đẹp hợp các ngày trực Trừ, theo kinh nghiệm dân gian giúp gột bỏ điều không may.',
+  'cau-tai': 'Cầu tài, cúng lễ, dâng sao giải hạn nên chọn ngày hoàng đạo có trực Mãn, Thâu hoặc Nguy (hợp lễ bái), tránh ngày kỵ.',
+};
+
+const { purpose } = Astro.params;
+const p = purposeBySlug.get(purpose!)!;
+const t = vietnamToday();
+const start = jdFromDate(t.day, t.month, t.year);
+const days = Array.from({ length: 45 }, (_, i) => {
+  const s = fromJd(start + i);
+  const a = almanac(s.day, s.month, s.year);
+  return { a, ...scoreDay(a, p) };
+});
+const goodCount = days.filter((d) => d.rating === 'excellent' || d.rating === 'good').length;
+const months = Array.from({ length: 18 }, (_, i) => {
+  const mm = ((t.month - 1 + i) % 12) + 1;
+  const yy = t.year + Math.floor((t.month - 1 + i) / 12);
+  return { m: mm, y: yy };
+});
+const cap = p.query[0].toUpperCase() + p.query.slice(1);
+---
+<LichShell
+  title={`${cap} – Ngày tốt ${p.short} 45 ngày tới và từng tháng`}
+  description={`${cap} theo lịch âm: ${goodCount} ngày tốt cho việc ${p.short} trong 45 ngày tới, chấm điểm theo hoàng đạo, Trực, Nhị thập bát tú, ngày kỵ và tuổi của bạn. Xem ngày tốt ${p.short} từng tháng.`}
+  path={goodPurposeUrl(p.slug)}
+  crumbs={[{ name: 'Xem ngày tốt', href: GOOD_URL }, { name: p.title }]}
+  active="good"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>{cap}</h1>
+      <p>{INTRO[p.slug]}</p>
+    </header>
+    <section class="la-block" aria-labelledby="45-ngay">
+      <h2 id="45-ngay" class="la-h2">Ngày tốt {p.short} 45 ngày tới</h2>
+      <GoodTable days={days} label={p.short} />
+    </section>
+    <section class="la-block la-cols" aria-label="Các tháng">
+      <div>
+        <h2 class="la-h2">Ngày tốt {p.short} theo tháng</h2>
+        <ul class="la-years la-months">{months.map(({ m, y }) => <li><a href={goodMonthUrl(p.slug, m, y)}>Tháng {m}/{y}</a></li>)}</ul>
+        {p.vanKhan && <p class="la-more"><a href={vanKhanUrl(p.vanKhan)}>Văn khấn cho việc {p.short}</a></p>}
+      </div>
+      <div>
+        <h2 class="la-h2">Việc khác</h2>
+        <ul class="la-links la-links-dense">{PURPOSES.filter((o) => o.slug !== p.slug).map((o) => <li><a href={goodPurposeUrl(o.slug)}>{o.query[0].toUpperCase() + o.query.slice(1)}</a></li>)}</ul>
+      </div>
+    </section>
+  </div>
+</LichShell>

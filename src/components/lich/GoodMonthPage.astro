@@ -1,0 +1,63 @@
+---
+import LichShell from './LichShell.astro';
+import GoodTable from './GoodTable.astro';
+import { PURPOSES, RATING_LABEL, purposeBySlug, scanMonth } from '../../lib/lich/goodday';
+import { WEEKDAYS } from '../../lib/lich/engine';
+import { DAY_FROM, DAY_TO, GOOD_URL, dayUrl, dmy, goodMonthUrl, goodPurposeUrl, monthUrl, vanKhanUrl } from '../../lib/lich/urls';
+
+interface Props { slug: string; m: number; y: number }
+const { slug, m, y } = Astro.props;
+const p = purposeBySlug.get(slug)!;
+const days = scanMonth(m, y, p);
+const best = [...days].filter((d) => d.rating === 'excellent' || d.rating === 'good').sort((a, b) => b.score - a.score || a.a.jd - b.a.jd);
+const top = best.slice(0, 5);
+
+const prev = m === 1 ? { m: 12, y: y - 1 } : { m: m - 1, y };
+const next = m === 12 ? { m: 1, y: y + 1 } : { m: m + 1, y };
+const inRange = (yy: number) => yy >= DAY_FROM && yy <= DAY_TO;
+
+const title = `Ngày tốt ${p.short} tháng ${m}/${y} – ${p.query[0].toUpperCase()}${p.query.slice(1)} tháng ${m} năm ${y}`;
+const description = `${p.query[0].toUpperCase()}${p.query.slice(1)} tháng ${m}/${y}: ${best.length} ngày tốt${top[0] ? `, tốt nhất là ${WEEKDAYS[top[0].a.weekday].toLowerCase()} ${dmy(top[0].a.day, m, y)}` : ''}. Chấm điểm theo hoàng đạo, Trực, Nhị thập bát tú, ngày kỵ và lọc theo tuổi của bạn.`;
+---
+<LichShell
+  title={title}
+  description={description}
+  path={goodMonthUrl(slug, m, y)}
+  crumbs={[{ name: 'Xem ngày tốt', href: GOOD_URL }, { name: p.title, href: goodPurposeUrl(slug) }, { name: `Tháng ${m}/${y}` }]}
+  active="good"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Ngày tốt {p.short} tháng {m}/{y}</h1>
+      <p>Tháng {m}/{y} có <b>{best.length} ngày tốt</b> cho việc {p.short}{top.length ? <Fragment>, tốt nhất là {top.slice(0, 3).map((d, i) => <Fragment>{i ? ', ' : ''}<a href={dayUrl(d.a.day, m, y)}>{WEEKDAYS[d.a.weekday].toLowerCase()} {dmy(d.a.day, m, y)}</a></Fragment>)}</Fragment> : ''}. Nhập năm sinh để tính thêm tuổi xung, hợp với từng ngày.</p>
+    </header>
+    <nav class="la-pager" aria-label="Tháng khác">
+      {inRange(prev.y) ? <a href={goodMonthUrl(slug, prev.m, prev.y)} rel="prev">← Tháng {prev.m}/{prev.y}</a> : <span></span>}
+      <a href={monthUrl(m, y)}>Lịch âm tháng {m}/{y}</a>
+      {inRange(next.y) ? <a href={goodMonthUrl(slug, next.m, next.y)} rel="next">Tháng {next.m}/{next.y} →</a> : <span></span>}
+    </nav>
+
+    <GoodTable days={days} m={m} y={y} label={p.short} />
+
+    <section class="la-block la-cols" aria-label="Thông tin thêm">
+      <div>
+        <h2 class="la-h2">Cách chấm điểm</h2>
+        <ul class="la-list">
+          <li>Ngày hoàng đạo cộng 3 điểm, ngày hắc đạo trừ 3 điểm.</li>
+          <li>Trực của ngày hợp việc {p.short} cộng 3, kỵ việc này trừ 4.</li>
+          <li>Sao Nhị thập bát tú tốt cho việc này cộng 2, kiêng trừ 3.</li>
+          <li>Phạm Tam Nương, Nguyệt Kỵ, Dương Công Kỵ, Thọ Tử và các ngày kỵ liên quan bị trừ 2 đến 3 điểm.</li>
+          <li>Theo tuổi: ngày xung tuổi trừ 6, hình, hại, phá trừ 2, tam hợp hoặc lục hợp cộng 2.</li>
+          <li>Từ 6 điểm trở lên là {RATING_LABEL.excellent.toLowerCase()}, từ 2 đến 5 là {RATING_LABEL.good.toLowerCase()}, từ −2 đến 1 là {RATING_LABEL.neutral.toLowerCase()}, thấp hơn là {RATING_LABEL.bad.toLowerCase()}.</li>
+        </ul>
+        {p.vanKhan && <p class="la-more"><a href={vanKhanUrl(p.vanKhan)}>Văn khấn cho việc {p.short}</a></p>}
+      </div>
+      <div>
+        <h2 class="la-h2">Xem ngày tốt cho việc khác</h2>
+        <ul class="la-links la-links-dense">
+          {PURPOSES.filter((o) => o.slug !== slug).map((o) => <li><a href={goodMonthUrl(o.slug, m, y)}>Ngày tốt {o.short} tháng {m}/{y}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  </div>
+</LichShell>

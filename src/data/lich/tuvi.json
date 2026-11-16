@@ -1,0 +1,1142 @@
+{
+  "_source": "LichViet iOS app V1.2026.1 (TuviViewController, TuviTrondoiViewController, SaoHanCalculator, HoroscopeDetailService, ZodiacDetailViewController, SaohanViewController)",
+  "yearly": {
+    "_note": "Nội dung tử vi năm cố định cho năm Đinh Mùi 2027 (không tính động).",
+    "year": 2027,
+    "canChi": "Đinh Mùi",
+    "pageTitle": "Tử vi 2027",
+    "headerTitle": "🐐 Năm Đinh Mùi 2027 🐐",
+    "headerSubtitle": "Năm của Con Dê (Mùi) - Mệnh Thiên Hà Thủy",
+    "yearInfo": {
+      "cardTitle": "📅 Thông Tin Năm 2027",
+      "periodLabel": "Thời gian:",
+      "descriptionLabel": "Đặc điểm:",
+      "description": "Năm 2027 là năm Đinh Mùi, mệnh nạp âm Thiên Hà Thủy. Theo vòng Thiên Can - Địa Chi, thiên can Đinh tương hợp với Nhâm, khắc Tân và bị Quý khắc; địa chi Mùi tam hợp với Hợi - Mão, lục hợp với Ngọ, xung với Sửu, hại với Tý, phá với Tuất và cùng nhóm tứ hành xung Thìn - Tuất - Sửu - Mùi. Nội dung trong mục này mang tính tham khảo văn hóa dân gian.",
+      "period": "06/02/2027 - 25/01/2028",
+      "title": "Năm Đinh Mùi 2027"
+    },
+    "destiny": {
+      "cardTitle": "🌊 Mệnh Thiên Hà Thủy",
+      "text": "Người sinh năm Đinh Mùi (như 1967, 2027) mang mệnh Thiên Hà Thủy, biểu tượng cho nước từ trên trời rơi xuống.\n\n✨ Đặc điểm tính cách:\n• Tinh tế, nhẹ nhàng như dòng nước mát\n• Kiên cường và quyết đoán dưới lớp bề ngoài mềm mại\n• Cần suy nghĩ thận trọng, nâng cao trí tuệ\n• Làm việc đúng thời điểm và đúng địa điểm"
+    },
+    "colors": {
+      "cardTitle": "🎨 Màu Sắc Phù Hợp",
+      "text": "🟢 Màu phù hợp:\n• Đen, Xanh dương (màu chính - Thủy)\n• Trắng, Xám, Ghi (màu phụ - Kim)\n\n🔴 Màu không phù hợp:\n• Vàng, Nâu đất (màu tương khắc - Thổ)\n\n💡 Lời khuyên: Chọn các vật dụng hàng ngày có màu phù hợp để thu hút may mắn."
+    },
+    "character": {
+      "cardTitle": "👥 Tính Cách & Đặc Điểm",
+      "text": "👨 Nam Đinh Mùi:\n• Điềm đạm, hiền hòa và sống tình cảm\n• Kiên nhẫn, làm việc có trước có sau\n• Quý trọng gia đình và bạn bè\n• Có thể mạnh dạn hơn khi cần quyết định\n\n👩 Nữ Đinh Mùi:\n• Dịu dàng, tinh tế, biết quan tâm người khác\n• Khéo léo trong giao tiếp, dễ tạo thiện cảm\n• Chăm lo gia đình, sống chan hòa\n• Có thể tin vào bản thân hơn và bớt lo nghĩ"
+    },
+    "zodiacFortunes": {
+      "cardTitle": "🔮 Tử Vi 12 Con Giáp Năm 2027",
+      "nameFormat": "Tuổi {zodiacName}",
+      "labels": {
+        "career": "🏢 Sự nghiệp:",
+        "family": "👨‍👩‍👧‍👦 Gia đình:",
+        "health": "💪 Sức khỏe:"
+      },
+      "items": [
+        {
+          "career": "Tý và Mùi là cặp Lục hại (Hại Thái Tuế) nên công việc có thể cần kiên nhẫn hơn. Trao đổi rõ ràng và làm chắc từng việc sẽ thuận hơn.",
+          "family": "Lắng nghe và nhường nhịn nhau giúp không khí gia đình êm ấm.",
+          "health": "Giữ nhịp sinh hoạt điều độ, dành thời gian nghỉ ngơi.",
+          "iconName": "🐭",
+          "zodiacName": "Tý"
+        },
+        {
+          "career": "Sửu xung Mùi (Xung Thái Tuế) nên năm nay có thể nhiều đổi thay. Chuẩn bị kỹ và giữ sự linh hoạt sẽ giúp bạn đón việc mới nhẹ nhàng hơn.",
+          "family": "Nhẹ nhàng trong lời nói, dành thời gian trò chuyện cùng người thân.",
+          "health": "Cân bằng giữa công việc và nghỉ ngơi, không nên ôm đồm.",
+          "iconName": "🐂",
+          "zodiacName": "Sửu"
+        },
+        {
+          "career": "Dần không có quan hệ xung hợp trực tiếp với Mùi, công việc đi theo nhịp ổn định, hợp với việc củng cố những gì đang làm.",
+          "family": "Gia đình êm đềm, những việc nhỏ cùng làm tạo thêm gắn kết.",
+          "health": "Duy trì thói quen vận động nhẹ nhàng, đều đặn.",
+          "iconName": "🐅",
+          "zodiacName": "Dần"
+        },
+        {
+          "career": "Mão nằm trong tam hợp Hợi - Mão - Mùi, thuận cho hợp tác và nhận sự hỗ trợ. Theo dân gian đây cũng là năm cuối Tam Tai, nên tiến từng bước vững vàng.",
+          "family": "Không khí gia đình hòa thuận, dễ có dịp sum họp.",
+          "health": "Giữ tinh thần thư thái, sinh hoạt đều đặn.",
+          "iconName": "🐈︎",
+          "zodiacName": "Mão"
+        },
+        {
+          "career": "Thìn cùng nhóm tứ hành xung Thìn - Tuất - Sửu - Mùi, khi có ý kiến trái chiều nên cân nhắc kỹ và ưu tiên hòa khí.",
+          "family": "Dành thêm thời gian cho người thân để hiểu nhau hơn.",
+          "health": "Sắp xếp công việc hợp lý để có thời gian thư giãn.",
+          "iconName": "🐲",
+          "zodiacName": "Thìn"
+        },
+        {
+          "career": "Tỵ không có quan hệ xung hợp trực tiếp với Mùi, năm nay phù hợp để học hỏi thêm và mở rộng dần công việc.",
+          "family": "Gia đình bình yên, nên giữ những thói quen sum họp quen thuộc.",
+          "health": "Ăn ngủ đúng giờ, giữ nhịp sống cân bằng.",
+          "iconName": "🐍",
+          "zodiacName": "Tỵ"
+        },
+        {
+          "career": "Ngọ và Mùi là cặp Lục hợp, thuận lợi cho kết nối, đồng hành và những việc cần sự chung sức.",
+          "family": "Tình cảm gắn bó, dễ có niềm vui chung trong nhà.",
+          "health": "Giữ năng lượng tích cực, xen kẽ vận động và nghỉ ngơi.",
+          "iconName": "🐴",
+          "zodiacName": "Ngọ"
+        },
+        {
+          "career": "Năm tuổi (Trực Thái Tuế), cũng là năm cuối Tam Tai theo dân gian: dịp tốt để nhìn lại và sắp xếp kế hoạch, ưu tiên sự chắc chắn hơn là vội vàng.",
+          "family": "Sự đồng hành của gia đình là điểm tựa ấm áp trong năm nay.",
+          "health": "Dành thời gian chăm sóc bản thân, sinh hoạt điều độ.",
+          "iconName": "🐐",
+          "zodiacName": "Mùi"
+        },
+        {
+          "career": "Thân không có quan hệ xung hợp trực tiếp với Mùi, có thể chủ động đón việc mới khi đã chuẩn bị kỹ.",
+          "family": "Gia đình ổn định, sẻ chia nhiều hơn sẽ thêm gần gũi.",
+          "health": "Giữ thói quen vận động và nghỉ ngơi đều đặn.",
+          "iconName": "🐵",
+          "zodiacName": "Thân"
+        },
+        {
+          "career": "Dậu không có quan hệ xung hợp trực tiếp với Mùi, công việc thuận theo sự chỉn chu và cẩn thận vốn có của bạn.",
+          "family": "Quan tâm đến người thân bằng những việc nhỏ hằng ngày.",
+          "health": "Giữ tinh thần nhẹ nhàng, dành thời gian thư giãn.",
+          "iconName": "🐓",
+          "zodiacName": "Dậu"
+        },
+        {
+          "career": "Tuất và Mùi có quan hệ Phá (Phá Thái Tuế), cùng trong tam hình Sửu - Tuất - Mùi. Nên xem kỹ các thỏa thuận và giữ lời nói ôn hòa.",
+          "family": "Kiên nhẫn trao đổi giúp mọi việc trong nhà êm thuận.",
+          "health": "Sắp xếp nhịp làm việc vừa sức, nghỉ ngơi đủ.",
+          "iconName": "🐕",
+          "zodiacName": "Tuất"
+        },
+        {
+          "career": "Hợi nằm trong tam hợp Hợi - Mão - Mùi, thuận cho hợp tác và các mối quan hệ. Theo dân gian đây cũng là năm cuối Tam Tai, nên làm chắc từng bước.",
+          "family": "Gia đình ấm áp, nhiều dịp vui bên nhau.",
+          "health": "Giữ nhịp sinh hoạt đều đặn và tinh thần thoải mái.",
+          "iconName": "🐷",
+          "zodiacName": "Hợi"
+        }
+      ]
+    }
+  },
+  "saoHan": {
+    "_note": "Sao (Cửu diệu) và Hạn (Bát hạn) tính theo tuổi mụ & giới tính cho mọi năm (SaoHanCalculator). Năm xem mặc định = năm âm lịch hiện tại, từ tháng 9 âm lịch chuyển sang năm sau.",
+    "cungMenhByChi": {
+      "Dần": "Chấn Mộc",
+      "Dậu": "Chấn Mộc",
+      "Hợi": "Ly Hỏa",
+      "Mão": "Tốn Mộc",
+      "Mùi": "Khôn Thổ",
+      "Ngọ": "Càn Kim",
+      "Sửu": "Cấn Thổ",
+      "Thân": "Cấn Thổ",
+      "Thìn": "Ly Hỏa",
+      "Tuất": "Tốn Mộc",
+      "Tý": "Khôn Thổ",
+      "Tỵ": "Đoài Kim"
+    },
+    "destinyMeanings": {
+      "Địa Võng": "Hạn Địa Võng được xem là hạn xấu chủ về mặt tâm lý và tài chính. Những người gặp phải hạn này thường có tâm trạng bất ổn, lo lắng và suy nghĩ tiêu cực. Hạn Địa Võng cũng ảnh hưởng đến tài chính của mỗi người, đặc biệt là về việc tiêu hoang và chi tiêu không cần thiết. Ngoài ra, trong năm hạn Địa Võng, người ta cần cẩn trọng trong việc tiếp nhận người lạ vào nhà hoặc ra ngoài vào thời gian tối để tránh gặp phải những tai họa.",
+      "Diêm Vương": "Hạn xấu, chủ về bệnh tật và chuyện không may.",
+      "Huỳnh Tuyền": "Hạn trung bình, cần chú ý sức khỏe và tài chính.",
+      "Ngũ Mộ": "Hạn xấu, chủ về tang tóc và buồn phiền.",
+      "Tam Kheo": "Hạn xấu, chủ về thị phi và tranh cãi.",
+      "Thiên La": "Hạn xấu, chủ về tai họa bất ngờ, cần cẩn trọng trong mọi việc.",
+      "Thiên Tinh": "Hạn tốt, chủ về may mắn và thuận lợi.",
+      "Toán Tận": "Hạn xấu, chủ về tài chính và tiền bạc bị thất thoát."
+    },
+    "diaChi": [
+      "Tý",
+      "Sửu",
+      "Dần",
+      "Mão",
+      "Thìn",
+      "Tỵ",
+      "Ngọ",
+      "Mùi",
+      "Thân",
+      "Dậu",
+      "Tuất",
+      "Hợi"
+    ],
+    "hanNam": [
+      "Huỳnh Tuyền",
+      "Tam Kheo",
+      "Ngũ Mộ",
+      "Thiên Tinh",
+      "Toán Tận",
+      "Thiên La",
+      "Địa Võng",
+      "Diêm Vương"
+    ],
+    "hanNu": [
+      "Toán Tận",
+      "Thiên Tinh",
+      "Ngũ Mộ",
+      "Tam Kheo",
+      "Huỳnh Tuyền",
+      "Diêm Vương",
+      "Địa Võng",
+      "Thiên La"
+    ],
+    "mauHopRules": [
+      [
+        "Kim",
+        "Trắng, Vàng, Nâu"
+      ],
+      [
+        "Mộc",
+        "Xanh lá, Xanh lam"
+      ],
+      [
+        "Thủy",
+        "Đen, Xanh đậm"
+      ],
+      [
+        "Hỏa",
+        "Đỏ, Hồng, Tím"
+      ],
+      [
+        "Thổ",
+        "Vàng, Nâu, Cam"
+      ],
+      [
+        "?",
+        "Đa dạng"
+      ]
+    ],
+    "nguHanhNapAm60From1924": [
+      "Hải Trung Kim",
+      "Hải Trung Kim",
+      "Lò Trung Hỏa",
+      "Lò Trung Hỏa",
+      "Đại Lâm Mộc",
+      "Đại Lâm Mộc",
+      "Lộ Bàng Thổ",
+      "Lộ Bàng Thổ",
+      "Kiếm Phong Kim",
+      "Kiếm Phong Kim",
+      "Sơn Đầu Hỏa",
+      "Sơn Đầu Hỏa",
+      "Giản Hạ Thủy",
+      "Giản Hạ Thủy",
+      "Thành Đầu Thổ",
+      "Thành Đầu Thổ",
+      "Bạch Lạp Kim",
+      "Bạch Lạp Kim",
+      "Dương Liễu Mộc",
+      "Dương Liễu Mộc",
+      "Tuyền Trung Thủy",
+      "Tuyền Trung Thủy",
+      "Ốc Thượng Thổ",
+      "Ốc Thượng Thổ",
+      "Thần Đầu Hỏa",
+      "Thần Đầu Hỏa",
+      "Tùng Bách Mộc",
+      "Tùng Bách Mộc",
+      "Trường Lưu Thủy",
+      "Trường Lưu Thủy",
+      "Sa Trung Kim",
+      "Sa Trung Kim",
+      "Sơn Hạ Hỏa",
+      "Sơn Hạ Hỏa",
+      "Bình Địa Mộc",
+      "Bình Địa Mộc",
+      "Bích Thượng Thổ",
+      "Bích Thượng Thổ",
+      "Kim Bạch Kim",
+      "Kim Bạch Kim",
+      "Phú Đăng Hỏa",
+      "Phú Đăng Hỏa",
+      "Thiên Hà Thủy",
+      "Thiên Hà Thủy",
+      "Đại Trạch Thổ",
+      "Đại Trạch Thổ",
+      "Thoa Xuyến Kim",
+      "Thoa Xuyến Kim",
+      "Tang Chá Mộc",
+      "Tang Chá Mộc",
+      "Đại Khê Thủy",
+      "Đại Khê Thủy",
+      "Sa Trung Thổ",
+      "Sa Trung Thổ",
+      "Thiên Thượng Hỏa",
+      "Thiên Thượng Hỏa",
+      "Thạch Lựu Mộc",
+      "Thạch Lựu Mộc",
+      "Đại Hải Thủy",
+      "Đại Hải Thủy"
+    ],
+    "saoNam": [
+      "La Hầu",
+      "Thổ Tú",
+      "Thủy Diệu",
+      "Thái Bạch",
+      "Thái Dương",
+      "Vân Hớn",
+      "Kế Đô",
+      "Thái Âm",
+      "Mộc Đức"
+    ],
+    "saoNu": [
+      "Kế Đô",
+      "Vân Hớn",
+      "Mộc Đức",
+      "Thái Âm",
+      "Thổ Tú",
+      "La Hầu",
+      "Thái Dương",
+      "Thái Bạch",
+      "Thủy Diệu"
+    ],
+    "saoRating": {
+      "Kế Đô": "Xấu",
+      "La Hầu": "Xấu",
+      "Mộc Đức": "Tốt",
+      "Thái Âm": "Tốt",
+      "Thái Bạch": "Xấu",
+      "Thái Dương": "Tốt",
+      "Thổ Tú": "Trung bình",
+      "Thủy Diệu": "Trung bình",
+      "Vân Hớn": "Trung bình"
+    },
+    "starMeanings": {
+      "Kế Đô": "Chủ về ám muội, thị phi, đau khổ, hao tài tốn của, họa vô đơn chí - Trong gia đình có việc mờ ám, đi làm ăn xa lại có tài lộc mang về. Nam nữ đều kị nhưng kỵ nhất với nữ giới.",
+      "La Hầu": "Chủ khẩu thiệt tinh - Hay liên quan đến công quyền, nhiều chuyện phiền muộn, bệnh tật về tai mắt, máu huyết. Kỵ nhất với nam giới.",
+      "Mộc Đức": "Chủ về sự cát lành - Nữ giới phòng bệnh tật phát sinh nhất là máu huyết, nam giới coi chừng bệnh tật về mắt.",
+      "Thái Âm": "Chủ về danh lợi - Tốt cho nữ hơn nam.",
+      "Thái Bạch": "Chủ về hao tán tiền bạc, có tiểu nhân quấy phá, đề phòng quan sự. Sao này kỵ màu trắng quanh năm.",
+      "Thái Dương": "Chủ về an khang thịnh vượng - Nam giới gặp nhiều tin vui, tài lộc còn nữ giới lại thường gặp vất vả, tức hợp nữ hơn nam mạng.",
+      "Thổ Tú": "Chủ về tiểu nhân, xuất hành đi xa không lợi, có kẻ ném đá giấu tay sinh ra thưa kiện, gia đạo không yên, chăn nuôi thua lỗ.",
+      "Thủy Diệu": "Phước lộc tinh, tốt nhưng cũng kỵ tháng tư và tháng tám. Chủ về tài lộc hỉ. Không nên đi sông biển, giữ gìn lời nói (nhất là nữ giới) nếu không sẽ có tranh cãi, lời tiếng thị phi đàm tiếu.",
+      "Vân Hớn": "Tai tinh, chủ về tật ách. Nam gặp tai hình, phòng thương tật, bị kiện thưa bất lợi; nữ không tốt về thai sản."
+    },
+    "thaiTueNames": {
+      "hai": "Hại Thái Tuế",
+      "hinh": "Hình Thái Tuế",
+      "pha": "Phá Thái Tuế",
+      "truc": "Trực Thái Tuế",
+      "xung": "Xung Thái Tuế"
+    },
+    "thienCan": [
+      "Giáp",
+      "Ất",
+      "Bính",
+      "Đinh",
+      "Mậu",
+      "Kỷ",
+      "Canh",
+      "Tân",
+      "Nhâm",
+      "Quý"
+    ],
+    "labels": {
+      "pageTitle": "Bảng Sao Hạn",
+      "zodiacTitleFormat": "TUỔI {CHI}",
+      "maleBox": "NAM MẠNG",
+      "femaleBox": "NỮ MẠNG",
+      "detailTextFormat": "S. {sao} - H. {han}",
+      "modalTitleFormat": "Năm {targetYear} {gender} tuổi {canChi} {birthYear}",
+      "modalSubtitle": "Sao chiếu mệnh và hạn niên",
+      "basicInfoTitle": "THÔNG TIN CƠ BẢN",
+      "basicInfoRows": [
+        "Năm sinh",
+        "Âm lịch",
+        "Ngũ Hành",
+        "Cung Mệnh",
+        "Thiên Can",
+        "Địa chi",
+        "Màu hợp"
+      ],
+      "ageCardTitleFormat": "TUỔI NĂM {targetYear}",
+      "ageCardTextFormat": "Như vậy, năm {targetYear} thì tuổi {canChi} sinh năm {birthYear} sẽ được {age} tuổi, nếu tính theo lịch âm {targetYear} thì là {lunarAge} tuổi.",
+      "solarAgeLabel": "Tuổi Dương lịch",
+      "lunarAgeLabel": "Tuổi Âm lịch",
+      "ageValueFormat": "{age} tuổi",
+      "starCardTitleFormat": "SAO CHIẾU MỆNH {targetYear}",
+      "starNameFormat": "Sao {star}",
+      "starQuestionFormat": "Sao \"{star}\" tốt hay xấu?",
+      "destinyCardTitleFormat": "HẠN NIÊN {targetYear}",
+      "destinyNameFormat": "Hạn {destiny}",
+      "destinyQuestionFormat": "Hạn \"{destiny}\" tốt hay xấu?",
+      "meaningPrefix": "➥ "
+    }
+  },
+  "lifetime": {
+    "_note": "Tử vi trọn đời trong app là bộ sinh văn bản theo mẫu (generateMockTuviResult), không phải bảng tra theo năm. Đầu vào: ngày/tháng/năm/giờ/phút sinh, giới tính, loại lịch (chỉ hiển thị). Sao tốt/xấu được chọn ngẫu nhiên (shuffle) mỗi lần.",
+    "resultTemplate": "🌟 TỬ VI TRỌN ĐỜI 🌟\n\n� THÔNG TIN CÁ NHÂN:\n• Ngày sinh: {day}/{month}/{year} ({calendarType})\n• Giờ sinh: {hour}:{minute2} ({lunarHour})\n• Giới tính: {gender}\n• Tuổi hiện tại: {age} tuổi\n\n🐉 MỆNH SỐ VÀ CAN CHI:\n• Thiên can: {canSign} ({canMeaning})\n• Địa chi: {zodiacSign} ({zodiacMeaning})\n• Ngũ hành: {element} ({elementMeaning})\n• Cung mệnh: {destiny}\n\n⭐ VỊ TRÍ CÁC SAO:\n• Sao tốt: {goodStars}\n• Sao xấu: {badStars}\n\n🌟 TÍNH CÁCH VÀ ĐẶC ĐIỂM:\n{personality}\n\n💼 SỰ NGHIỆP VÀ CÔNG DANH:\n{career}\n\n💰 TÀI LỘC VÀ PHÚ QUÝ:\n{wealth}\n\n💕 TÌNH DUYÊN VÀ HÔN NHÂN:\n{love}\n\n🏥 SỨC KHỎE VÀ TUỔI THỌ:\n{health}\n\n🔮 VẬN HẠN THEO TUỔI:\n{ageFortune}\n\n🌸 PHONG THỦY VÀ LỜI KHUYÊN:\n{fengShui}\n\n⭐️ LƯU Ý: Đây là kết quả tử vi mang tính chất tham khảo. Vận mệnh có thể thay đổi tùy thuộc vào nỗ lực và hành động của bản thân.",
+    "elements": [
+      "Kim",
+      "Mộc",
+      "Thủy",
+      "Hỏa",
+      "Thổ"
+    ],
+    "canMeaning": {
+      "Ất": "Gỗ mềm, dẻo dai, khéo léo thích ứng",
+      "Bính": "Lửa mặt trời, sáng sủa, nhiệt huyết",
+      "Canh": "Kim cứng, sắc bén, quyết đoán mạnh mẽ",
+      "Đinh": "Lửa đèn, ấm áp, tỉ mỉ chu đáo",
+      "Giáp": "Gỗ cứng, cương quyết, có sức mạnh nội tại",
+      "Kỷ": "Đất vườn, màu mỡ, nuôi dưỡng sinh khí",
+      "Mậu": "Đất núi, vững chãi, bao dung rộng lượng",
+      "Nhâm": "Nước biển, bao la, có khí độ lớn",
+      "Quý": "Nước mưa, trong sạch, nuôi dưỡng vạn vật",
+      "Tân": "Kim mềm, tinh tế, có óc thẩm mỹ"
+    },
+    "chiMeaning": {
+      "Dần": "Hổ - dũng mãnh, quyết đoán, có khí chất lãnh đạo",
+      "Dậu": "Gà - chính xác, tỉ mỉ, có tinh thần trách nhiệm",
+      "Hợi": "Heo - chân thật, rộng lượng, có lòng từ bi",
+      "Mão": "Mèo/Thỏ - nhân hậu, tế nhị, có khiếu thẩm mỹ",
+      "Mùi": "Dê - hiền lành, nhân từ, có lòng trắc ẩn",
+      "Ngọ": "Ngựa - tự do, năng động, thích phiêu lưu",
+      "Sửu": "Trâu - kiên nhẫn, cần cù, đáng tin cậy",
+      "Thân": "Khỉ - thông minh, nhanh trí, linh hoạt",
+      "Thìn": "Rồng - cao quý, có khí chất vương giả, tài năng đặc biệt",
+      "Tuất": "Chó - trung thành, đáng tin cậy, có lòng công bằng",
+      "Tý": "Chuột - thông minh, nhanh nhẹn, khéo léo",
+      "Tỵ": "Rắn - khôn ngoan, sâu sắc, có trực giác tốt"
+    },
+    "elementMeaning": {
+      "Hỏa": "Lửa - nhiệt huyết, năng động, có khí chất lãnh đạo",
+      "Kim": "Kim loại - cương quyết, sắc bén, có nguyên tắc",
+      "Mộc": "Cây cối - phát triển, sáng tạo, có lòng nhân từ",
+      "Thổ": "Đất - chín chắn, đáng tin cậy, có tính kiên nhẫn",
+      "Thủy": "Nước - thông minh, linh hoạt, thích ứng tốt"
+    },
+    "lunarHours": [
+      "Tý (23-01h)",
+      "Sửu (01-03h)",
+      "Dần (03-05h)",
+      "Mão (05-07h)",
+      "Thìn (07-09h)",
+      "Tỵ (09-11h)",
+      "Ngọ (11-13h)",
+      "Mùi (13-15h)",
+      "Thân (15-17h)",
+      "Dậu (17-19h)",
+      "Tuất (19-21h)",
+      "Hợi (21-23h)"
+    ],
+    "palaces": [
+      "Mệnh",
+      "Phúc Đức",
+      "Quan Lộc",
+      "Điền Trạch",
+      "Sự Nghiệp",
+      "Nô Bộc",
+      "Thiên Di",
+      "Tật Ách",
+      "Tài Bạch",
+      "Tử Tức",
+      "Phu Thê",
+      "Huynh Đệ"
+    ],
+    "goodStarsPool": [
+      "Tử Vi",
+      "Thiên Phủ",
+      "Thái Dương",
+      "Vũ Khúc",
+      "Thiên Tướng",
+      "Liêm Trinh"
+    ],
+    "badStarsPool": [
+      "Kình Dương",
+      "Đà La",
+      "Hỏa Tinh",
+      "Linh Tinh",
+      "Địa Kiếp",
+      "Thiên Không"
+    ],
+    "goodStarsCount": 3,
+    "badStarsCount": 2,
+    "sections": {
+      "personality": {
+        "template": "• Đặc điểm cơ bản: {elementTraits}\n• Tính cách chủ đạo: {zodiacTraits}\n• Lời khuyên: {genderAdvice} để đạt được thành công tốt nhất.\n• Điểm mạnh: Có khả năng thích ứng và phát triển bản thân.\n• Điểm cần chú ý: Cần kiểm soát cảm xúc và phát triển kiên nhẫn.",
+        "genderAdvice": {
+          "Nam": "Nên phát huy tính cương quyết, dẫn dắt",
+          "Nữ": "Nên phát huy tính dịu dàng, khéo léo"
+        }
+      },
+      "career": {
+        "template": "• Hướng nghề nghiệp: {careerAdvice}\n• Thời điểm hiện tại: {ageAdvice}\n• Lời khuyên: Nên kiên trì và không ngừng học hỏi để đạt thành công.\n• Cơ hội: Trong vài năm tới sẽ có những bước tiến quan trọng.",
+        "byElement": {
+          "Kim": "Phù hợp với ngành tài chính, pháp luật",
+          "Mộc": "Phù hợp với giáo dục, y tế, sáng tạo",
+          "Thủy": "Phù hợp với thương mại, du lịch, truyền thông",
+          "Hỏa": "Phù hợp với lãnh đạo, kinh doanh, thể thao",
+          "Thổ": "Phù hợp với bất động sản, nông nghiệp, xây dựng"
+        },
+        "byAge": [
+          {
+            "below": 30,
+            "text": "Giai đoạn học hỏi và tích lũy kinh nghiệm"
+          },
+          {
+            "below": 45,
+            "text": "Thời kỳ phát triển sự nghiệp mạnh mẽ"
+          },
+          {
+            "below": null,
+            "text": "Giai đoạn ổn định và truyền đạt kinh nghiệm"
+          }
+        ]
+      },
+      "wealth": {
+        "template": "• Nguồn tài chính: {elementWealth}\n• Xu hướng năm nay: {monthAdvice}\n• Lời khuyên: Nên tiết kiệm và đầu tư thông minh.\n• Thời điểm tốt: Cuối năm và đầu năm sau sẽ có cơ hội tốt.",
+        "byElement": {
+          "Kim": "Tài lộc từ kim loại, tài chính",
+          "Mộc": "Tài lộc từ nông nghiệp, giáo dục",
+          "Thủy": "Tài lộc từ thương mại, vận tải",
+          "Hỏa": "Tài lộc từ năng lượng, công nghệ",
+          "Thổ": "Tài lộc từ bất động sản, đất đai"
+        },
+        "byMonth": [
+          {
+            "below": 7,
+            "text": "Tài lộc ổn định, nên đầu tư an toàn"
+          },
+          {
+            "below": null,
+            "text": "Có cơ hội tăng thu nhập bất ngờ"
+          }
+        ]
+      },
+      "love": {
+        "template": "• Giai đoạn tình cảm: {ageAdvice}\n• Lời khuyên: {genderAdvice}\n• Người phù hợp: Nên tìm người có tính cách bổ trợ và hiểu nhau.\n• Thời điểm tốt: Mùa xuân và mùa thu là thời gian thuận lợi cho tình duyên.",
+        "genderAdvice": {
+          "Nam": "Nên chủ động và thể hiện sự chăm sóc",
+          "Nữ": "Nên khéo léo và tạo sự ấm áp"
+        },
+        "byAge": [
+          {
+            "below": 25,
+            "text": "Thời gian tìm hiểu và học hỏi về tình yêu"
+          },
+          {
+            "below": 35,
+            "text": "Giai đoạn vàng để tìm kiếm bạn đời phù hợp"
+          },
+          {
+            "below": 50,
+            "text": "Thời kỳ ổn định và xây dựng hạnh phúc gia đình"
+          },
+          {
+            "below": null,
+            "text": "Giai đoạn tận hưởng hạnh phúc bền vững"
+          }
+        ]
+      },
+      "health": {
+        "template": "• Điểm cần lưu ý: {elementHealth}\n• Theo độ tuổi: {ageHealth}\n• Lời khuyên: Duy trì chế độ ăn uống cân bằng và tập thể dục đều đặn.\n• Phương pháp: Yoga, thiền, và các bài tập nhẹ nhàng sẽ rất có lợi.",
+        "byElement": {
+          "Kim": "Cần chú ý hệ hô hấp và da",
+          "Mộc": "Cần chú ý gan mật và hệ thần kinh",
+          "Thủy": "Cần chú ý thận và hệ tiết niệu",
+          "Hỏa": "Cần chú ý tim mạch và huyết áp",
+          "Thổ": "Cần chú ý tiêu hóa và xương khớp"
+        },
+        "byAge": [
+          {
+            "below": 30,
+            "text": "Sức khỏe tốt, nên tập thể dục đều đặn"
+          },
+          {
+            "below": 50,
+            "text": "Cần chú ý chế độ ăn uống và nghỉ ngơi"
+          },
+          {
+            "below": null,
+            "text": "Nên thường xuyên kiểm tra sức khỏe và duy trì lối sống lành mạnh"
+          }
+        ]
+      },
+      "ageFortune": {
+        "template": "• Vận hạn hiện tại ({age} tuổi): {fortune}\n• Đến {nextDecade} tuổi: Sẽ có những thay đổi tích cực và cơ hội mới.\n• Năm tốt nhất: Những năm có chữ số cuối giống với năm sinh.\n• Lưu ý: Cần chuẩn bị tâm lý cho những thay đổi lớn trong cuộc sống.",
+        "byAge": [
+          {
+            "below": 30,
+            "text": "Giai đoạn học hỏi và phát triển, vận may tăng dần"
+          },
+          {
+            "below": 40,
+            "text": "Thời kỳ vàng của sự nghiệp, tài lộc tăng trưởng mạnh"
+          },
+          {
+            "below": 50,
+            "text": "Giai đoạn ổn định và thu hoạch thành quả"
+          },
+          {
+            "below": 60,
+            "text": "Thời kỳ viên mãn, hưởng thụ cuộc sống"
+          },
+          {
+            "below": null,
+            "text": "Giai đoạn an nhàn, truyền đạt kinh nghiệm"
+          }
+        ],
+        "nextDecadeRule": "(trunc(age/10)+1)*10"
+      },
+      "fengShui": {
+        "template": "• Màu sắc may mắn: {elementColor}\n• Hướng thuận lợi: {direction}\n• Số may mắn: Các số có tổng chia hết cho 3 hoặc 6\n• Cây phong thủy: Nên trồng cây phù hợp với mệnh {element}\n• Lời khuyên: Sắp xếp không gian sống hài hòa, thoáng đãng và sạch sẽ.",
+        "byElement": {
+          "Kim": "trắng, vàng, bạc",
+          "Mộc": "xanh lá, xanh lam",
+          "Thủy": "đen, xanh đậm",
+          "Hỏa": "đỏ, cam, hồng",
+          "Thổ": "vàng, nâu, be"
+        },
+        "directionByChi": {
+          "Tý": "Bắc",
+          "Sửu": "Đông Bắc",
+          "Dần": "Đông Bắc",
+          "Mão": "Đông",
+          "Thìn": "Đông Nam",
+          "Tỵ": "Đông Nam",
+          "Ngọ": "Nam",
+          "Mùi": "Tây Nam",
+          "Thân": "Tây Nam",
+          "Dậu": "Tây",
+          "Tuất": "Tây Bắc",
+          "Hợi": "Tây Bắc"
+        }
+      }
+    }
+  },
+  "legacyUnused": {
+    "_note": "Dữ liệu cũ nằm trong khối /* */ (đã bị comment, KHÔNG dùng trong app): bảng sao hạn cố định năm 2026 và ý nghĩa sao/hạn phiên bản cũ. Giữ để tham khảo. LƯU Ý: bảng 2026 này KHÔNG nhất quán — chỉ 8/72 dòng khớp thuật toán SaoHanCalculator cho năm 2026 (các con giáp ngoài Tý có vẻ bị sao chép lặp); đừng dùng.",
+    "hanMeanings": {
+      "Địa Võng": "Chủ về lao tù, bị hạn chế tự do, khó khăn trắc trở.",
+      "Diêm Vương": "Chủ về sức khỏe yếu, dễ có tang trong gia đình.",
+      "Huỳnh Tuyền": "Chủ về bệnh nặng, hao tổn sức khỏe, khó chữa.",
+      "Ngũ Mộ": "Chủ về hao tài, mất của, mua bán dễ thua thiệt.",
+      "Tam Kheo": "Hạn nhỏ, chủ về đau nhức chân tay, xương khớp.",
+      "Thiên Họa": "Chủ về tai nạn bất ngờ, tranh cãi xung đột.",
+      "Thiên La": "Hạn xấu, chủ về bệnh tật, tinh thần bất an.",
+      "Thiên Tinh": "Chủ về thị phi, kiện cáo, dễ gặp chuyện pháp luật.",
+      "Toán Tận": "Chủ về tai nạn bất ngờ, hao tài tốn của."
+    },
+    "saoMeanings": {
+      "Kế Đô": "Chủ về ám muội, thị phi, đau khổ, hao tài tốn của, họa vô đơn chí – Trong gia đình có việc mờ ám, đi làm ăn xa lại có tài lộc mang về. Nam nữ đều kị nhưng kỵ nhất với nữ giới.",
+      "La Hầu": "Chủ về khẩu thiệt, thị phi, tai nạn, bệnh tật, hao tài, lao lực. Nam kỵ tháng 1, nữ kỵ tháng 7.",
+      "Mộc Đức": "Cát tinh, chủ về an vui, may mắn, sự nghiệp thăng tiến. Nam nữ đều tốt.",
+      "Thái Âm": "Cát tinh, chủ về phúc lộc, may mắn, tài vận. Nữ rất tốt, nam hay ưu phiền.",
+      "Thái Bạch": "Hung tinh mạnh nhất, chủ về hao tài tốn của, công việc khó khăn, dễ bị tiểu nhân hãm hại.",
+      "Thái Dương": "Cát tinh, chủ về hanh thông, tài lộc, công danh sự nghiệp thăng tiến. Nam rất tốt, nữ hơi kỵ.",
+      "Thổ Tú": "Chủ về tiểu nhân, xuất hành không thuận lợi, gia đạo bất an, sức khỏe giảm sút.",
+      "Thủy Diệu": "Chủ về tài lộc, hỷ sự, tuy nhiên dễ gặp tai bay vạ gió về đường sông nước. Nam kỵ tháng 4, nữ kỵ tháng 8.",
+      "Vân Hớn": "Chủ về kiện tụng, thị phi, nóng nảy, tai nạn. Nam kỵ tháng 2, nữ kỵ tháng 8."
+    },
+    "table2026": [
+      {
+        "chi": "Tý",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Kế Đô - H. Diêm Vương",
+        "name": "Mậu Tý",
+        "year": "1948"
+      },
+      {
+        "chi": "Tý",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Canh Tý",
+        "year": "1960"
+      },
+      {
+        "chi": "Tý",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Nhâm Tý",
+        "year": "1972"
+      },
+      {
+        "chi": "Tý",
+        "femaleText": "S. Thái Dương - H. Địa Võng",
+        "maleText": "S. Kế Đô - H. Địa Võng",
+        "name": "Giáp Tý",
+        "year": "1984"
+      },
+      {
+        "chi": "Tý",
+        "femaleText": "S. Thái Âm - H. Tam Kheo",
+        "maleText": "S. Thái Bạch - H. Thiên Tinh",
+        "name": "Bính Tý",
+        "year": "1996"
+      },
+      {
+        "chi": "Tý",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Mậu Tý",
+        "year": "2008"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Kỷ Sửu",
+        "year": "1949"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Tân Sửu",
+        "year": "1961"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Quý Sửu",
+        "year": "1973"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Ất Sửu",
+        "year": "1985"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Đinh Sửu",
+        "year": "1997"
+      },
+      {
+        "chi": "Sửu",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Kỷ Sửu",
+        "year": "2009"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Canh Dần",
+        "year": "1950"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Nhâm Dần",
+        "year": "1962"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Thái Âm - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Giáp Dần",
+        "year": "1974"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Bính Dần",
+        "year": "1986"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Mậu Dần",
+        "year": "1998"
+      },
+      {
+        "chi": "Dần",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Canh Dần",
+        "year": "2010"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Tam Kheo",
+        "name": "Tân Mão",
+        "year": "1951"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Quý Mão",
+        "year": "1963"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Ất Mão",
+        "year": "1975"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Đinh Mão",
+        "year": "1987"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Kỷ Mão",
+        "year": "1999"
+      },
+      {
+        "chi": "Mão",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Tam Kheo",
+        "name": "Tân Mão",
+        "year": "2011"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Nhâm Thìn",
+        "year": "1952"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Giáp Thìn",
+        "year": "1964"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. Thái Âm - H. Tam Kheo",
+        "name": "Bính Thìn",
+        "year": "1976"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Mậu Thìn",
+        "year": "1988"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Canh Thìn",
+        "year": "2000"
+      },
+      {
+        "chi": "Thìn",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Nhâm Thìn",
+        "year": "2012"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Quý Tỵ",
+        "year": "1953"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Ất Tỵ",
+        "year": "1965"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Đinh Tỵ",
+        "year": "1977"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Kỷ Tỵ",
+        "year": "1989"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Tân Tỵ",
+        "year": "2001"
+      },
+      {
+        "chi": "Tỵ",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Quý Tỵ",
+        "year": "2013"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Giáp Ngọ",
+        "year": "1954"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Bính Ngọ",
+        "year": "1966"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Mậu Ngọ",
+        "year": "1978"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Canh Ngọ",
+        "year": "1990"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Nhâm Ngọ",
+        "year": "2002"
+      },
+      {
+        "chi": "Ngọ",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Giáp Ngọ",
+        "year": "2014"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Ất Mùi",
+        "year": "1955"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Đinh Mùi",
+        "year": "1967"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Kỷ Mùi",
+        "year": "1979"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Tân Mùi",
+        "year": "1991"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Quý Mùi",
+        "year": "2003"
+      },
+      {
+        "chi": "Mùi",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Ất Mùi",
+        "year": "2015"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Bính Thân",
+        "year": "1956"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Mậu Thân",
+        "year": "1968"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Canh Thân",
+        "year": "1980"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Nhâm Thân",
+        "year": "1992"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Giáp Thân",
+        "year": "2004"
+      },
+      {
+        "chi": "Thân",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Bính Thân",
+        "year": "2016"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Đinh Dậu",
+        "year": "1957"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Kỷ Dậu",
+        "year": "1969"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Tân Dậu",
+        "year": "1981"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Quý Dậu",
+        "year": "1993"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Ất Dậu",
+        "year": "2005"
+      },
+      {
+        "chi": "Dậu",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Đinh Dậu",
+        "year": "2017"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Mậu Tuất",
+        "year": "1958"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Canh Tuất",
+        "year": "1970"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Nhâm Tuất",
+        "year": "1982"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Giáp Tuất",
+        "year": "1994"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Thổ Tú - H. Diêm Vương",
+        "maleText": "S. Thái Dương - H. Thiên La",
+        "name": "Bính Tuất",
+        "year": "2006"
+      },
+      {
+        "chi": "Tuất",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Mậu Tuất",
+        "year": "2018"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Kỷ Hợi",
+        "year": "1959"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Thái Dương - H. Thiên La",
+        "maleText": "S. Thổ Tú - H. Diêm Vương",
+        "name": "Tân Hợi",
+        "year": "1971"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Thái Dương - H. Tam Kheo",
+        "maleText": "S. Kế Đô - H. Thiên Tinh",
+        "name": "Quý Hợi",
+        "year": "1983"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "maleText": "S. Thái Bạch - H. Toán Tận",
+        "name": "Ất Hợi",
+        "year": "1995"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Kế Đô - H. Thiên Tinh",
+        "maleText": "S. La Hầu - H. Tam Kheo",
+        "name": "Đinh Hợi",
+        "year": "2007"
+      },
+      {
+        "chi": "Hợi",
+        "femaleText": "S. Thái Bạch - H. Toán Tận",
+        "maleText": "S. Thái Âm - H. Huỳnh Tuyền",
+        "name": "Kỷ Hợi",
+        "year": "2019"
+      }
+    ]
+  }
+}

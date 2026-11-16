@@ -1,0 +1,65 @@
+---
+import LichShell from '../../../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, SAO_HAN_BIRTH_FROM, SAO_HAN_FROM, SAO_HAN_TO, SAO_HAN_URL, saoHanUrl, saoHanYearUrl, tuViChiUrl, vanKhanUrl, xongDatChiUrl } from '../../../../../../lib/lich/urls';
+import { canChi, chiIndex, saoHan, YEARLY_YEAR, type SaoHanResult } from '../../../../../../lib/lich/tuvi';
+import { canChiOfYear } from '../../../../../../lib/lich/xongdat';
+import { starPrayer } from '../../../../../../lib/lich/saohan-web';
+
+export function getStaticPaths() {
+  const out = [];
+  for (let y = SAO_HAN_FROM; y <= SAO_HAN_TO; y += 1) for (let b = SAO_HAN_BIRTH_FROM; b <= y - 9; b += 1) out.push({ params: { year: `nam-${y}`, birth: `tuoi-${b}` }, props: { y, b } });
+  return out;
+}
+const { y, b } = Astro.props;
+const nam = saoHan(b, y, 'Nam');
+const nu = saoHan(b, y, 'Nữ');
+const info = canChiOfYear(b);
+const title = `Sao hạn năm ${y} tuổi ${info.canChi} ${b} – Nam ${nam.sao}, nữ ${nu.sao}`;
+const description = `Tuổi ${info.canChi} sinh năm ${b}, năm ${y} (${canChi(y)}) ${nam.tuoiMu} tuổi mụ: nam mạng sao ${nam.sao}, hạn ${nam.han}; nữ mạng sao ${nu.sao}, hạn ${nu.han}.${nam.tamTai ? ` Phạm Tam Tai năm thứ ${nam.tamTai}.` : ''}${nam.thaiTue ? ` ${nam.thaiTue.name}.` : ''} Cách cúng giải hạn.`;
+const card = (r: SaoHanResult, label: string) => ({ r, label, prayer: starPrayer(r.sao) });
+const cards = [card(nam, 'Nam mạng'), card(nu, 'Nữ mạng')];
+const sameYear = [b - 2, b - 1, b + 1, b + 2].filter((x) => x >= SAO_HAN_BIRTH_FROM && x <= y - 9);
+const otherYears = Array.from({ length: SAO_HAN_TO - SAO_HAN_FROM + 1 }, (_, i) => SAO_HAN_FROM + i).filter((x) => x !== y && b <= x - 9);
+---
+<LichShell
+  title={title}
+  description={description}
+  path={saoHanUrl(y, b)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Sao hạn', href: SAO_HAN_URL }, { name: `Năm ${y}`, href: saoHanYearUrl(y) }, { name: `Tuổi ${b}` }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Sao hạn năm {y} tuổi {info.canChi} ({b})</h1>
+      <p>Người sinh năm {b} (âm lịch) tuổi {info.canChi}, mệnh {info.napAm}. Năm {y} ({canChi(y)}) bước sang {nam.tuoiMu} tuổi mụ.</p>
+    </header>
+    <div class="la-cards">
+      {cards.map(({ r, label, prayer }) => (
+        <article class="la-card">
+          <h2 class="la-h3">{label}</h2>
+          <p><b>Sao {r.sao}</b> <span class:list={['la-sao', `la-sao-${r.saoRating === 'Tốt' ? 'good' : r.saoRating === 'Xấu' ? 'bad' : 'mid'}`]}>{r.saoRating}</span></p>
+          <p>{r.saoMeaning}</p>
+          <p class="la-mt"><b>Hạn {r.han}</b></p>
+          <p>{r.hanMeaning}</p>
+          {prayer && <p class="la-more"><a href={vanKhanUrl(prayer.slug)}>Văn khấn dâng sao {r.sao}</a>{prayer.day && ` · cúng ngày ${prayer.day} âm lịch hằng tháng`}</p>}
+        </article>
+      ))}
+      <article class="la-card">
+        <h2 class="la-h3">Tam Tai và Thái Tuế</h2>
+        <p>{nam.tamTai ? `Năm ${y}, tuổi ${info.canChi} phạm Tam Tai năm thứ ${nam.tamTai}.` : `Năm ${y}, tuổi ${info.canChi} không phạm Tam Tai.`}</p>
+        <p>{nam.thaiTue ? `Tuổi ${info.canChi} phạm ${nam.thaiTue.name} trong năm ${canChi(y)}.` : `Tuổi ${info.canChi} không phạm Thái Tuế trong năm ${canChi(y)}.`}</p>
+        <p class="la-more"><a href={tuViChiUrl(YEARLY_YEAR, chiIndex(b))}>Tử vi {YEARLY_YEAR} tuổi {info.chi}</a> · <a href={xongDatChiUrl(YEARLY_YEAR, chiIndex(b))}>Tuổi {info.chi} chọn người xông đất {YEARLY_YEAR}</a></p>
+      </article>
+    </div>
+    <section class="la-block la-cols" aria-label="Xem thêm">
+      <div>
+        <h2 class="la-h2">Tuổi {b} các năm khác</h2>
+        <ul class="la-links">{otherYears.map((x) => <li><a href={saoHanUrl(x, b)}>Sao hạn năm {x} tuổi {info.canChi}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2 class="la-h2">Tuổi gần {b}</h2>
+        <ul class="la-links">{sameYear.map((x) => <li><a href={saoHanUrl(y, x)}>Sao hạn {y} tuổi {canChiOfYear(x).canChi} ({x})</a></li>)}<li><a href={saoHanYearUrl(y)}>Bảng sao hạn năm {y}</a></li></ul>
+      </div>
+    </section>
+  </div>
+</LichShell>

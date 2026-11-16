@@ -1,0 +1,30 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import data from '../../../../data/lich/loi-chuc-tet.json';
+import { CULTURE_URL, LOI_CHUC_URL, loiChucUrl } from '../../../../lib/lich/urls';
+
+const cats = data.categories;
+---
+<LichShell
+  title="Lời chúc Tết 2027 Đinh Mùi hay, ý nghĩa cho gia đình, bạn bè, sếp, đồng nghiệp"
+  description={`${data.total} lời chúc Tết 2027 Đinh Mùi hay và ý nghĩa, chia theo đối tượng: gia đình, bạn bè, người yêu, đồng nghiệp, sếp, thầy cô, khách hàng. Sao chép một chạm.`}
+  path={LOI_CHUC_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Lời chúc Tết' }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lời chúc Tết 2027</h1>
+      <p>{data.total} lời chúc Tết Đinh Mùi cho từng đối tượng. Chọn một nhóm để xem tất cả và sao chép.</p>
+    </header>
+    <div class="la-purposes">
+      {cats.map((c) => (
+        <article class="la-card la-purpose">
+          <h2><a href={loiChucUrl(c.slug)}>{c.emoji} Chúc Tết {c.name.toLowerCase().replace('chúc tết chung', 'mọi người')}</a></h2>
+          <ul class="la-wishes la-wishes-preview">{c.items.slice(0, 2).map((w) => <li>{w.text}</li>)}</ul>
+          <p class="la-more"><a href={loiChucUrl(c.slug)}>Xem {c.count} lời chúc</a></p>
+        </article>
+      ))}
+    </div>
+  </div>
+</LichShell>

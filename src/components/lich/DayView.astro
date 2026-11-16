@@ -1,7 +1,9 @@
 ---
 import type { Almanac } from '../../lib/lich/engine';
 import { WEEKDAYS, lunarMonthName } from '../../lib/lich/engine';
-import { chiIcon, directionIcon, dmy, dayUrl, hasDayPage, termImage } from '../../lib/lich/urls';
+import { chiIcon, directionIcon, dmy, dayUrl, goodMonthUrl, hasDayPage, termImage, vanKhanUrl } from '../../lib/lich/urls';
+import { RATING_LABEL, scoreAll } from '../../lib/lich/goodday';
+import { HOLIDAY_PRAYER, RAM_MUNG_MOT, prayerBySlug } from '../../lib/lich/vankhan';
 
 interface Props { a: Almanac; /** Short label used inside headings, e.g. "hôm nay" or "16/11/2026". */ label: string }
 const { a, label } = Astro.props;
@@ -24,6 +26,13 @@ const startDeg = sun ? (sun.riseMin / 1440) * 360 + 90 : 0;
 const termRange = `${dmy(a.term.start.day, a.term.start.month, a.term.start.year)} đến ${dmy(a.term.next.day, a.term.next.month, a.term.next.year)}`;
 const linkDate = (d: { day: number; month: number; year: number }) => (hasDayPage(d.year) ? dayUrl(d.day, d.month, d.year) : null);
 const tetLink = linkDate(a.tet.date);
+const scores = scoreAll(a);
+// Prayers for this day: mùng 1 / rằm, and any holiday that has its own.
+const prayerSlugs = [...new Set([
+  ...(a.lunar.day === 1 || a.lunar.day === 15 ? [RAM_MUNG_MOT] : []),
+  ...a.holidays.map((h) => HOLIDAY_PRAYER[h.id]).filter(Boolean),
+])];
+const prayers = prayerSlugs.map((s) => prayerBySlug.get(s)).filter((x) => !!x);
 ---
 <div class="la-day">
   <section class="la-sheet-wrap" aria-label={`Tờ lịch ngày ${date}`}>
@@ -123,6 +132,24 @@ const tetLink = linkDate(a.tet.date);
         </ul>
       </article>
     </div>
+  </section>
+
+  <section class="la-block" aria-labelledby="hop-viec">
+    <h2 id="hop-viec" class="la-h2">Ngày {label} hợp làm gì?</h2>
+    <p class="la-lead">Điểm của ngày cho từng việc, chưa tính tuổi. Chọn một việc để xem các ngày tốt khác trong tháng và lọc theo năm sinh.</p>
+    <ul class="la-fit">
+      {scores.map((s) => (
+        <li>
+          <a href={goodMonthUrl(s.purpose.slug, a.month, a.year)}>
+            <span>{s.purpose.title}</span>
+            <span class:list={['la-rate', `la-rate-${s.rating}`]}>{RATING_LABEL[s.rating]}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    {prayers.length > 0 && (
+      <p class="la-more">Văn khấn cho ngày này: {prayers.map((pr, i) => <Fragment>{i ? ' · ' : ''}<a href={vanKhanUrl(pr!.slug)}>{pr!.title}</a></Fragment>)}</p>
+    )}
   </section>
 
   <section class="la-block" aria-labelledby="xuat-hanh">

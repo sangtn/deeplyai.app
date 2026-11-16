@@ -1,0 +1,77 @@
+{
+  "_source": "Lịch Việt iOS app: Models/DailyHoroscopeEngine.swift (texts verbatim, including the app's own typos) and vi.lproj/Localizable.strings (labels).",
+  "labels": {
+    "title": "Tử Vi Hàng Ngày",
+    "inputTitle": "Chọn Ngày Sinh",
+    "birthDate": "Ngày sinh",
+    "button": "Xem Tử Vi Hôm Nay",
+    "forDate": "Tử Vi Ngày",
+    "disclaimer": "* Dự đoán dựa trên Can Chi và âm lịch, mang tính tham khảo",
+    "overall": "Tổng Quan",
+    "work": "Công Việc",
+    "finance": "Tài Chính",
+    "love": "Tình Cảm",
+    "health": "Sức Khỏe",
+    "luckyElements": "Yếu Tố May Mắn",
+    "luckyColor": "Màu may mắn",
+    "luckyDirection": "Hướng may mắn",
+    "shouldDo": "Nên Làm",
+    "shouldAvoid": "Nên Tránh",
+    "share": "Chia Sẻ Tử Vi"
+  },
+  "tripleHarmony": [["Tý", "Thìn", "Thân"], ["Sửu", "Tỵ", "Dậu"], ["Dần", "Ngọ", "Tuất"], ["Mão", "Mùi", "Hợi"]],
+  "sixConflicts": { "Tý": "Ngọ", "Ngọ": "Tý", "Sửu": "Mùi", "Mùi": "Sửu", "Dần": "Thân", "Thân": "Dần", "Mão": "Dậu", "Dậu": "Mão", "Thìn": "Tuất", "Tuất": "Thìn", "Tỵ": "Hợi", "Hợi": "Tỵ" },
+  "favorableLunarDays": [1, 6, 8, 9, 10, 12, 13, 15, 16, 21, 22, 23, 24],
+  "unfavorableLunarDays": [3, 5, 7, 14, 18, 23, 27],
+  "bandsNote": "Texts are indexed by score band: [>=3, >=1, >=0, >=-2, else].",
+  "overall": [
+    "Hôm nay là ngày rất tốt lành! Vận khí hanh thông, mọi việc suôn sẻ. Đây là thời điểm lý tưởng để thực hiện những kế hoạch quan trọng và mở rộng cơ hội phát triển.",
+    "Ngày hôm nay khá thuận lợi. Vận khí ổn định, công việc tiến triển tốt. Hãy tận dụng những cơ hội đến với bạn và duy trì thái độ tích cực.",
+    "Ngày bình thường với vận khí trung hòa. Không có nhiều thay đổi đột ngột. Hãy duy trì nhịp độ công việc đều đặn và giữ tâm trạng thoải mái.",
+    "Hôm nay có thể gặp một số khó khăn nhỏ. Vận khí chưa thật sự thuận lợi. Hãy kiên nhẫn, cẩn trọng trong mọi quyết định và tránh những rủi ro không cần thiết.",
+    "Ngày không mấy thuận lợi. Vận khí bất ổn, có thể gặp trở ngại. Nên hạn chế ra quyết định quan trọng, tránh tranh cãi và giữ thái độ điềm tĩnh."
+  ],
+  "work": [
+    "Công việc hanh thông, được quý nhân phù trợ. Dễ dàng hoàn thành mục tiêu và nhận được sự công nhận từ cấp trên.",
+    "Công việc tiến triển ổn định. Có thể gặp một vài thử thách nhỏ nhưng đều vượt qua được. Đồng nghiệp hợp tác tốt.",
+    "Công việc bình thường, không có nhiều biến động. Hãy tập trung hoàn thành nhiệm vụ hiện tại một cách chu đáo.",
+    "Công việc có thể gặp một số khó khăn. Cần kiên nhẫn và linh hoạt trong xử lý vấn đề. Tránh căng thẳng với đồng nghiệp.",
+    "Công việc gặp nhiều trở ngại. Nên tránh đưa ra quyết định quan trọng. Hãy giữ bình tĩnh và chờ đợi thời cơ tốt hơn."
+  ],
+  "finance": [
+    "Tài vận hanh thông, có cơ hội thu lợi nhuận tốt. Đầu tư có khả năng sinh lời, nhưng vẫn cần thận trọng cân nhắc.",
+    "Tài chính ổn định, có thu nhập đều đặn. Có thể có thêm nguồn thu nhỏ bất ngờ. Quản lý tốt chi tiêu.",
+    "Tài chính bình thường, không có biến động lớn. Hãy duy trì kế hoạch chi tiêu hợp lý và tránh tiêu xài hoang phí.",
+    "Tài chính có thể gặp nhỏ. Hạn chế chi tiêu không cần thiết, tránh đầu tư mạo hiểm. Cẩn thận với các khoản vay mượn.",
+    "Tài vận bất ổn, dễ tổn thất. Tuyệt đối không nên đầu tư hoặc mua sắm lớn hôm nay. Hãy giữ tiền và chờ thời cơ tốt hơn."
+  ],
+  "love": [
+    "Tình duyên hanh thông, cảm xúc tích cực. Người độc thân dễ gặp được người phù hợp. Cặp đôi ngày càng gắn bó hơn.",
+    "Tình cảm ổn định và ấm áp. Quan hệ với người thương phát triển tốt. Là thời điểm tốt để thể hiện tình cảm chân thành.",
+    "Tình cảm bình thường. Dành thời gian cho người thương nhưng tránh kỳ vọng quá cao. Hiểu và thông cảm lẫn nhau.",
+    "Tình cảm có thể có xích mích nhỏ. Cần kiên nhẫn lắng nghe và tránh tranh cãi. Giữ bình tĩnh để vượt qua khó khăn.",
+    "Tình cảm bất ổn, dễ xảy ra hiểu lầm. Nên hạn chế nói chuyện quan trọng hôm nay. Hãy cho nhau không gian và thời gian."
+  ],
+  "health": [
+    "Sức khỏe tốt, tinh thần sảng khoái. Năng lượng dồi dào, thích hợp cho các hoạt động thể thao và giải trí.",
+    "Sức khỏe ổn định. Duy trì chế độ ăn uống và nghỉ ngơi hợp lý. Có thể tham gia các hoạt động vận động nhẹ nhàng.",
+    "Sức khỏe bình thường. Chú ý nghỉ ngơi đầy đủ và không làm việc quá sức. Duy trì lối sống lành mạnh.",
+    "Sức khỏe cần chú ý. Có thể cảm thấy mệt mỏi hoặc căng thẳng. Hạn chế làm việc nặng và tăng cường nghỉ ngơi.",
+    "Sức khỏe yếu, cần đặc biệt chăm sóc. Tránh làm việc quá sức và căng thẳng. Nếu có triệu chứng bất thường, nên đi khám."
+  ],
+  "luckyColor": { "Tý": "Đen, Xanh dương", "Hợi": "Đen, Xanh dương", "Dần": "Xanh lá", "Mão": "Xanh lá", "Tỵ": "Đỏ, Cam", "Ngọ": "Đỏ, Cam", "Thân": "Trắng, Vàng kim", "Dậu": "Trắng, Vàng kim", "Thìn": "Vàng, Nâu", "Tuất": "Vàng, Nâu", "Sửu": "Vàng, Nâu", "Mùi": "Vàng, Nâu" },
+  "luckyColorDefault": "Xanh dương",
+  "luckyDirection": { "Tý": "Bắc", "Sửu": "Đông Bắc", "Dần": "Đông", "Mão": "Đông", "Thìn": "Đông Nam", "Tỵ": "Nam", "Ngọ": "Nam", "Mùi": "Tây Nam", "Thân": "Tây", "Dậu": "Tây", "Tuất": "Tây Bắc", "Hợi": "Bắc" },
+  "luckyDirectionDefault": "Đông Nam",
+  "actionsNote": "Indexed by score band: [>=2, >=0, else].",
+  "shouldDo": [
+    ["Thực hiện các kế hoạch quan trọng", "Gặp gỡ đối tác, khách hàng", "Ký kết hợp đồng, thỏa thuận", "Tham gia các hoạt động xã hội", "Đầu tư, mở rộng kinh doanh"],
+    ["Hoàn thành công việc hiện tại", "Duy trì mối quan hệ tốt", "Học hỏi kỹ năng mới", "Chăm sóc sức khỏe", "Dành thời gian cho gia đình"],
+    ["Nghỉ ngơi, thư giãn", "Ôn lại kế hoạch cũ", "Chăm sóc bản thân", "Tránh stress, áp lực", "Giữ bình tĩnh, kiên nhẫn"]
+  ],
+  "shouldAvoid": [
+    ["Kiêu ngạo, tự mãn", "Chi tiêu hoang phí", "Bỏ qua lời khuyên hữu ích"],
+    ["Quyết định vội vàng", "Tranh cãi không đáng", "Làm việc quá sức"],
+    ["Đưa ra quyết định quan trọng", "Đầu tư, mua sắm lớn", "Tranh cãi, xung đột", "Ký kết hợp đồng quan trọng", "Đi xa, di chuyển nhiều"]
+  ]
+}

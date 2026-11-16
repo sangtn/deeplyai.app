@@ -1,0 +1,56 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { CULTURE_URL, TU_VI_NGAY_URL } from '../../../../lib/lich/urls';
+---
+<LichShell
+  title="Tử vi hôm nay theo tuổi – Xem vận trình công việc, tài chính, tình cảm"
+  description="Xem tử vi hôm nay theo năm sinh: năng lượng trong ngày, công việc, tài chính, tình cảm, sức khỏe, màu và hướng may mắn, việc nên làm và nên tránh, tính theo can chi của ngày."
+  path={TU_VI_NGAY_URL}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Tử vi hôm nay' }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tử vi hôm nay</h1>
+      <p>Dựa trên quan hệ tam hợp, lục xung giữa tuổi của bạn và can chi của ngày, cùng ngày âm lịch tốt xấu. Mang tính tham khảo.</p>
+    </header>
+    <form class="la-tool la-tool-wide" data-hor>
+      <label>Năm sinh<input name="year" type="number" min="1920" max="2025" inputmode="numeric" placeholder="Ví dụ 1990" required /></label>
+      <label>Ngày xem<input name="date" type="date" required data-today /></label>
+      <button type="submit">Xem tử vi</button>
+      <output class="la-result" data-out aria-live="polite"><span>Nhập năm sinh để xem.</span></output>
+    </form>
+  </div>
+</LichShell>
+
+<script>
+  import { calculateDailyHoroscope } from '../../../../lib/lich/daily-horoscope';
+  import { vietnamToday } from '../../../../components/lich-viet/lunar';
+  const form = document.querySelector<HTMLFormElement>('[data-hor]');
+  const t = vietnamToday();
+  const dateInput = form?.querySelector<HTMLInputElement>('[data-today]');
+  if (dateInput) dateInput.value = `${t.year}-${String(t.month).padStart(2, '0')}-${String(t.day).padStart(2, '0')}`;
+  try { const saved = localStorage.getItem('la-birth-year'); if (saved && form) (form.elements.namedItem('year') as HTMLInputElement).value = saved; } catch {}
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const year = Number((form.elements.namedItem('year') as HTMLInputElement).value);
+    const [y, m, d] = dateInput!.value.split('-').map(Number);
+    if (!year || !y) return;
+    try { localStorage.setItem('la-birth-year', String(year)); } catch {}
+    // Neutral factor: the app adds a random −1…1 on each view; the web keeps the result stable.
+    const h = calculateDailyHoroscope(year, { day: d, month: m, year: y }, 0);
+    const p = h.prediction;
+    const lines: [string, string][] = [
+      ['Tổng quan', `${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)} ${p.overall}`],
+      ['Công việc', p.work], ['Tài chính', p.finance], ['Tình cảm', p.love], ['Sức khỏe', p.health],
+      ['Màu may mắn', p.luckyColor], ['Hướng may mắn', p.luckyDirection],
+      ['Nên làm', p.shouldDo.join(', ')], ['Nên tránh', p.shouldAvoid.join(', ')],
+    ];
+    const frag = document.createDocumentFragment();
+    const head = document.createElement('b');
+    head.textContent = `Tuổi ${h.birthCanChi}, ngày ${h.dayCanChi} (${h.lunarDay}/${h.lunarMonth} âm)`;
+    frag.append(head);
+    for (const [k, v] of lines) { const div = document.createElement('p'); const s = document.createElement('strong'); s.textContent = `${k}: `; div.append(s, v); frag.append(div); }
+    form.querySelector('[data-out]')!.replaceChildren(frag);
+  });
+</script>

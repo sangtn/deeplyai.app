@@ -1,0 +1,39 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import data from '../../../../../data/lich/loi-chuc-tet.json';
+import { CULTURE_URL, LOI_CHUC_URL, loiChucUrl } from '../../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  return data.categories.map((c) => ({ params: { slug: c.slug } }));
+}
+const c = data.categories.find((x) => x.slug === Astro.params.slug)!;
+const who = c.slug === 'chung' ? 'mọi người' : c.name.toLowerCase();
+---
+<LichShell
+  title={`Lời chúc Tết 2027 cho ${who} – ${c.count} lời chúc hay, ý nghĩa`}
+  description={`${c.count} lời chúc Tết 2027 Đinh Mùi dành cho ${who}: ${c.items[0].text.replace(/^\S+\s/, '').slice(0, 90)}… Sao chép nhanh để gửi tin nhắn chúc Tết.`}
+  path={loiChucUrl(c.slug)}
+  crumbs={[{ name: 'Tử vi & văn hóa', href: CULTURE_URL }, { name: 'Lời chúc Tết', href: LOI_CHUC_URL }, { name: c.name }]}
+  active="culture"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>{c.emoji} Lời chúc Tết cho {who}</h1>
+      <p>{c.count} lời chúc Tết Đinh Mùi 2027. Bấm “Sao chép” để dán vào tin nhắn.</p>
+    </header>
+    <ul class="la-wishes">
+      {c.items.map((w) => <li><p>{w.text}</p><button type="button" class="la-copy" data-copy-wish>Sao chép</button></li>)}
+    </ul>
+    <nav class="la-chips la-mt" aria-label="Nhóm khác">{data.categories.filter((x) => x.slug !== c.slug).map((x) => <a class="la-chip la-chip-hol" href={loiChucUrl(x.slug)}>{x.emoji} {x.name}</a>)}</nav>
+  </div>
+</LichShell>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-wish]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.previousElementSibling?.textContent ?? '';
+      try { await navigator.clipboard.writeText(text); btn.textContent = 'Đã chép'; } catch { btn.textContent = 'Lỗi'; }
+      setTimeout(() => { btn.textContent = 'Sao chép'; }, 1800);
+    });
+  });
+</script>
