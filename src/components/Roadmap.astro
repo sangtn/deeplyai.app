@@ -1,7 +1,18 @@
 ---
+import { CHI, LUNAR_MONTHS, dayInfo, vietnamToday } from './lich-viet/lunar';
+import { byId } from '../data/catalog';
+
 interface Props { lang?: 'en' | 'vi' }
 const { lang = 'en' } = Astro.props;
 const vi = lang === 'vi';
+
+// The Web card shows a live piece of Lịch Vạn Niên: today's lunar date, computed at build
+// time and recomputed in the browser so it never shows yesterday.
+const lich = byId.get(6749473194);
+const today = vietnamToday();
+const info = dayInfo(today.day, today.month, today.year);
+const lunarDate = (d: number, m: number, leap: boolean) => (vi ? `${d} ${LUNAR_MONTHS[m - 1]}` : `Month ${m}, day ${d}`) + (leap ? (vi ? ' (nhuận)' : ' (leap)') : '');
+const lichHref = vi ? '/vi/lich-am/' : '/apps/lich-van-nien/#hom-nay';
 ---
 <section class="roadmap" aria-labelledby="roadmap-title">
   <div class="wrap">
@@ -15,12 +26,40 @@ const vi = lang === 'vi';
         <p>{vi ? 'Đưa ứng dụng của chúng tôi đến người dùng điện thoại Android thông qua Google Play.' : 'Bringing our apps to Android phones through Google Play.'}</p>
         <img class="gp" src={`/assets/images/stores/google-play-${vi ? 'vi' : 'en'}.png`} width="646" height="250" loading="lazy" alt={vi ? 'Google Play, sắp ra mắt' : 'Google Play, coming soon'} />
       </article>
-      <article class="road">
-        <span class="status">{vi ? 'Đang phát triển' : 'In development'}</span>
+      <article class="road road-live">
+        <span class="status status-live"><i aria-hidden="true"></i>{vi ? 'Đã có bản đầu tiên' : 'First one is live'}</span>
         <h3>Web</h3>
-        <p>{vi ? 'Trải nghiệm ngay trên trình duyệt, không cần cài đặt.' : 'Experiences that open right in your browser, with nothing to install.'}</p>
+        <p>{vi ? 'Trải nghiệm ngay trên trình duyệt, không cần cài đặt. Bắt đầu với lịch âm của Lịch Vạn Niên.' : 'Experiences that open right in your browser, with nothing to install. It starts with the lunar calendar from Lịch Vạn Niên.'}</p>
+        <a class="web-tile" href={lichHref} data-rm-today>
+          {lich && <img src={lich.icon} width="52" height="52" alt="" loading="lazy" decoding="async" />}
+          <span class="web-tile-body">
+            <small>{vi ? 'Âm lịch hôm nay' : 'Lunar date today'}</small>
+            <b data-rm="date">{lunarDate(info.lunar.day, info.lunar.month, info.lunar.leap)}</b>
+            <span class="web-tile-cc">{vi ? 'Ngày' : 'Day'} <span data-rm="daycc">{info.dayCanChi}</span> · {vi ? 'Năm' : 'Year'} <span data-rm="yearcc">{info.yearCanChi}</span></span>
+            <span class="web-tile-cc">{vi ? 'Giờ Hoàng Đạo' : 'Auspicious hours'}: <span data-rm="hours">{info.goodHours.map((i) => CHI[i]).join(', ')}</span></span>
+          </span>
+          <span class="web-tile-go">{vi ? 'Mở trên web' : 'Open on the web'} <span aria-hidden="true">→</span></span>
+        </a>
+        <p class="web-next">{vi ? 'Tiếp theo: các công cụ web nhỏ cho những ứng dụng khác.' : 'Next: small web tools for more of our apps.'}</p>
       </article>
     </div>
-    <p class="fine">{vi ? 'Đây là kế hoạch đang thực hiện; phạm vi và thời gian có thể thay đổi. Chưa có ứng dụng DeeplyAi nào phát hành trên các nền tảng này.' : 'These plans are in progress, and scope and timing may change. No DeeplyAi apps are available on these platforms yet.'}</p>
+    <p class="fine">{vi ? 'Đây là kế hoạch đang thực hiện; phạm vi và thời gian có thể thay đổi. Chưa có ứng dụng DeeplyAi nào trên Google Play; trên web, hiện mới có lịch âm của Lịch Vạn Niên.' : 'These plans are in progress, and scope and timing may change. No DeeplyAi apps are on Google Play yet; on the web, the Lịch Vạn Niên lunar calendar is the first to go live.'}</p>
   </div>
 </section>
+
+<script>
+  import { CHI, LUNAR_MONTHS, dayInfo, vietnamToday } from './lich-viet/lunar';
+
+  const tile = document.querySelector<HTMLElement>('[data-rm-today]');
+  if (tile) {
+    const vi = document.documentElement.lang.startsWith('vi');
+    const now = vietnamToday();
+    const info = dayInfo(now.day, now.month, now.year);
+    const set = (key: string, value: string) => { const el = tile.querySelector(`[data-rm="${key}"]`); if (el) el.textContent = value; };
+    const { day, month, leap } = info.lunar;
+    set('date', (vi ? `${day} ${LUNAR_MONTHS[month - 1]}` : `Month ${month}, day ${day}`) + (leap ? (vi ? ' (nhuận)' : ' (leap)') : ''));
+    set('daycc', info.dayCanChi);
+    set('yearcc', info.yearCanChi);
+    set('hours', info.goodHours.map((i) => CHI[i]).join(', '));
+  }
+</script>

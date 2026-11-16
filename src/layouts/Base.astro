@@ -24,6 +24,7 @@ const vi = lang === 'vi';
 const links = [
   { href: vi ? '/vi/apps/' : '/apps/', label: vi ? 'Ứng dụng' : 'Apps' },
   { href: vi ? '/vi/platforms/' : '/platforms/', label: vi ? 'Nền tảng' : 'Platforms' },
+  ...(vi ? [{ href: '/vi/lich-am/', label: 'Lịch âm' }] : []),
   { href: '/services.html', label: vi ? 'Dịch vụ' : 'Services' },
   { href: '/solutions.html', label: vi ? 'Giải pháp' : 'Solutions' },
   { href: '/about.html', label: vi ? 'Giới thiệu' : 'About' },
@@ -31,7 +32,7 @@ const links = [
 ];
 const switcher = alternates ? (vi ? { href: alternates.en, label: 'EN' } : { href: alternates.vi, label: 'VI' }) : null;
 const home = vi ? '/vi/' : '/';
-const current = (href: string) => (path === href || ((href.endsWith('/apps/') || href.endsWith('/platforms/')) && path.startsWith(href)) ? 'page' : undefined);
+const current = (href: string) => (path === href || ((href.endsWith('/apps/') || href.endsWith('/platforms/') || href.endsWith('/lich-am/')) && path.startsWith(href)) ? 'page' : undefined);
 ---
 <!doctype html>
 <html lang={lang}>

@@ -1,0 +1,86 @@
+---
+import LichShell from './LichShell.astro';
+import MonthGrid from './MonthGrid.astro';
+import { CAN, CHI, SOLAR_TERMS, WEEKDAYS, holidaysOfYear, leapMonthOf, lunarMonthName, lunarToSolar, solarToLunar, termAt } from '../../lib/lich/engine';
+import { fromJd, jdFromDate } from '../lich-viet/lunar';
+import { YEAR_FROM, YEAR_TO, dayUrl, dmy, hasDayPage, termImage, yearUrl } from '../../lib/lich/urls';
+
+interface Props { y: number }
+const { y } = Astro.props;
+const cc = (ly: number) => `${CAN[(ly + 6) % 10]} ${CHI[(ly + 8) % 12]}`;
+const yearCC = cc(y);
+const tet = lunarToSolar(1, 1, y)!;
+const tetNext = lunarToSolar(1, 1, y + 1)!;
+const leap = leapMonthOf(y);
+const leapStart = leap ? lunarToSolar(1, leap, y, true) : null;
+const linkDays = hasDayPage(y);
+const wd = (d: { day: number; month: number; year: number }) => WEEKDAYS[(jdFromDate(d.day, d.month, d.year) + 1) % 7];
+const dateLink = (d: { day: number; month: number; year: number }) => (linkDays && d.year === y ? `<a href="${dayUrl(d.day, d.month, d.year)}">${dmy(d.day, d.month, d.year)}</a>` : dmy(d.day, d.month, d.year));
+
+const holidays = [...holidaysOfYear(y).entries()].sort((a, b) => a[0] - b[0]).flatMap(([jd, list]) => list.map((h) => ({ h, date: fromJd(jd), lunar: (() => { const s = fromJd(jd); return solarToLunar(s.day, s.month, s.year); })() })));
+const startJd = jdFromDate(1, 1, y);
+const endJd = jdFromDate(31, 12, y);
+const terms = [];
+for (let j = startJd; j <= endJd; j += 1) if (termAt(j) !== termAt(j - 1)) terms.push({ name: SOLAR_TERMS[termAt(j)], date: fromJd(j) });
+
+const title = `Lịch âm ${y} – Lịch vạn niên năm ${yearCC} ${y}`;
+const description = `Lịch âm năm ${y} (${yearCC}): Tết Nguyên Đán ngày ${dmy(tet.day, tet.month, tet.year)}${leap ? `, năm có tháng ${leap} nhuận` : ''}. Xem lịch âm 12 tháng, ngày lễ, ngày nghỉ và 24 tiết khí năm ${y}.`;
+const inRange = (yy: number) => yy >= YEAR_FROM && yy <= YEAR_TO;
+---
+<LichShell title={title} description={description} path={yearUrl(y)} crumbs={[{ name: `Năm ${y}` }]} active="year">
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch âm năm {y} ({yearCC})</h1>
+      <p>Năm âm lịch {yearCC} bắt đầu từ Tết Nguyên Đán {wd(tet)} {dmy(tet.day, tet.month, tet.year)} và kết thúc ngày {(() => { const e = fromJd(jdFromDate(tetNext.day, tetNext.month, tetNext.year) - 1); return dmy(e.day, e.month, e.year); })()} dương lịch.{leap ? ` Năm này có tháng ${leap} nhuận, bắt đầu từ ngày ${dmy(leapStart!.day, leapStart!.month, leapStart!.year)}.` : ' Năm này không có tháng nhuận.'}</p>
+    </header>
+    <nav class="la-pager" aria-label="Năm khác">
+      {inRange(y - 1) ? <a href={yearUrl(y - 1)} rel="prev">← Năm {y - 1}</a> : <span></span>}
+      <span>{yearCC}</span>
+      {inRange(y + 1) ? <a href={yearUrl(y + 1)} rel="next">Năm {y + 1} →</a> : <span></span>}
+    </nav>
+
+    <section class="la-block" aria-labelledby="muoi-hai-thang">
+      <h2 id="muoi-hai-thang" class="la-h2">Lịch âm 12 tháng năm {y}</h2>
+      <div class="la-year">
+        {Array.from({ length: 12 }, (_, i) => <div class="la-year-month"><MonthGrid month={i + 1} year={y} compact caption /></div>)}
+      </div>
+      <p class="la-legend"><span class="la-dot la-dot-good"></span>Ngày hoàng đạo <span class="la-dot la-dot-bad"></span>Ngày hắc đạo. Chọn tên tháng để xem chi tiết.</p>
+    </section>
+
+    <section class="la-block la-cols" aria-label="Ngày lễ và tiết khí">
+      <div>
+        <h2 class="la-h2">Ngày lễ năm {y}</h2>
+        <div class="la-table-wrap">
+          <table class="la-table">
+            <thead><tr><th scope="col">Ngày lễ</th><th scope="col">Dương lịch</th><th scope="col">Âm lịch</th></tr></thead>
+            <tbody>
+              {holidays.map(({ h, date, lunar }) => (
+                <tr><td>{h.title}</td><td><Fragment set:html={dateLink(date)} /><br /><small>{wd(date)}</small></td><td>{lunar.day}/{lunar.month}{lunar.leap ? ' nhuận' : ''}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h2 class="la-h2">24 tiết khí năm {y}</h2>
+        <div class="la-table-wrap">
+          <table class="la-table">
+            <thead><tr><th scope="col">Tiết khí</th><th scope="col">Bắt đầu</th></tr></thead>
+            <tbody>{terms.map((t) => <tr><td class="la-term-cell"><img src={termImage(t.name)} width="36" height="36" alt="" loading="lazy" decoding="async" />{t.name}</td><td><Fragment set:html={dateLink(t.date)} /></td></tr>)}</tbody>
+          </table>
+        </div>
+        <h2 class="la-h2 la-mt">Các tháng âm lịch năm {yearCC}</h2>
+        <ul class="la-links la-links-dense">
+          {Array.from({ length: 12 + (leap ? 1 : 0) }, (_, i) => {
+            // Order: 1 … leap, leap (nhuận), leap + 1 … 12.
+            const isLeap = !!leap && i === leap;
+            const month = !leap || i < leap ? i + 1 : i === leap ? leap : i;
+            const s = lunarToSolar(1, month, y, isLeap)!;
+            const text = dmy(s.day, s.month, s.year);
+            return <li>{lunarMonthName(month, isLeap)}: bắt đầu {hasDayPage(s.year) ? <a href={dayUrl(s.day, s.month, s.year)}>{text}</a> : text}</li>;
+          })}
+        </ul>
+      </div>
+    </section>
+  </div>
+</LichShell>

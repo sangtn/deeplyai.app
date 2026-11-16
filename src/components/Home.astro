@@ -25,6 +25,13 @@ const stories = [
 
 const lich = byId.get(6749473194);
 
+// Apps that have their own in-depth page on this site, beyond the standard catalog page.
+const deepPages = [
+  { id: 6755303976, href: vi ? '/vi/apps/car-play-connect/' : '/apps/car-play-connect/', line: vi ? 'Bảng điều khiển lái xe, xem trước từng màn hình' : 'The driving dashboard, screen by screen' },
+  { id: 6796624138, href: '/apps/drive-weather/', line: vi ? 'Thời tiết dọc lộ trình, có video từ ứng dụng' : 'Route weather, shown with real app footage' },
+  { id: 6749473194, href: vi ? '/vi/apps/lich-van-nien/' : '/apps/lich-van-nien/', line: vi ? 'Lịch âm, ngày tốt và giờ Hoàng Đạo hôm nay' : 'Lunar dates, good days and today’s hours' },
+].flatMap((p) => { const app = byId.get(p.id); return app ? [{ ...p, app }] : []; });
+
 const steps = vi
   ? [['Khám phá', 'Tìm hiểu nhu cầu thật qua nghiên cứu kỹ lưỡng trước khi chọn giải pháp.'], ['Phát triển', 'Thiết kế và xây dựng sản phẩm đẹp, dễ dùng, phù hợp với tầm nhìn.'], ['Ra mắt', 'Phát hành suôn sẻ và tiếp tục hỗ trợ, cải tiến sau khi ra mắt.']]
   : [['Discovery', 'We start with in-depth research into the real need before choosing a solution.'], ['Development', 'We design and build products that are visually appealing and easy to use.'], ['Launch', 'We ship carefully, then keep supporting and improving what we released.']];
@@ -144,6 +151,20 @@ const jsonLd = {
           </a>
         );
       })}
+    </div>
+    <div class="deep reveal">
+      <h3 id="deep-title" class="eyebrow">{vi ? 'Trang riêng của ứng dụng' : 'In-depth app pages'}</h3>
+      <ul class="deep-list">
+        {deepPages.map((p) => (
+          <li>
+            <a href={p.href}>
+              <img src={p.app.icon} width="48" height="48" alt="" loading="lazy" decoding="async" />
+              <span><b>{p.app.name}</b><small>{p.line}</small></span>
+              <span class="deep-go" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
     <div class="center-cta"><a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'See all our apps'}</a></div>
   </section>

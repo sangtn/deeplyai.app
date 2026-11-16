@@ -1,0 +1,121 @@
+---
+import LichShell from '../../../components/lich/LichShell.astro';
+import DayView from '../../../components/lich/DayView.astro';
+import MonthGrid from '../../../components/lich/MonthGrid.astro';
+import { WEEKDAYS, almanac, dayLite, lunarMonthName } from '../../../lib/lich/engine';
+import { fromJd, vietnamToday } from '../../../components/lich-viet/lunar';
+import { BASE, CONVERT_URL, COUNT_URL, DAY_FROM, DAY_TO, YEAR_FROM, YEAR_TO, dayUrl, dmy, monthUrl, yearUrl } from '../../../lib/lich/urls';
+
+// Built every night just after midnight Vietnam time; the script below covers the gap.
+const t = vietnamToday();
+const a = almanac(t.day, t.month, t.year);
+const date = dmy(t.day, t.month, t.year);
+
+const upcoming = [];
+for (let j = a.jd; upcoming.length < 8 && j < a.jd + 400; j += 1) {
+  const s = fromJd(j);
+  const x = dayLite(s.day, s.month, s.year);
+  for (const h of x.holidays) if (upcoming.length < 8 && !/mùng [23]/.test(h.title)) upcoming.push({ h, x, days: j - a.jd });
+}
+
+const faq = [
+  ['Lịch âm là gì?', 'Lịch âm (âm lịch) của Việt Nam thực chất là âm dương lịch: mỗi tháng bắt đầu từ ngày trăng mới (sóc), còn năm được điều chỉnh theo mặt trời bằng tháng nhuận, khoảng 3 năm có một tháng nhuận. Lịch âm dùng để tính Tết, ngày rằm, mùng một, ngày giỗ và các lễ cổ truyền.'],
+  ['Lịch âm trên trang này được tính thế nào?', 'Ngày âm được tính bằng thuật toán thiên văn của Hồ Ngọc Đức theo múi giờ Việt Nam (UTC+7), dùng được cho các năm từ 1900 đến 2100. Kết quả được đối chiếu với ứng dụng Lịch Việt trên toàn bộ hơn 73.000 ngày trong khoảng này.'],
+  ['Giờ hoàng đạo là gì?', 'Mỗi ngày chia thành 12 giờ theo 12 địa chi, mỗi giờ dài 2 tiếng. Sáu giờ ứng với các thần tốt (Thanh Long, Minh Đường, Kim Quỹ, Kim Đường, Ngọc Đường, Tư Mệnh) gọi là giờ hoàng đạo, thường được chọn để khởi sự việc quan trọng.'],
+  ['Ngày hoàng đạo và hắc đạo khác nhau thế nào?', 'Ngày hoàng đạo là ngày có một trong sáu thần tốt trực nhật, được xem là thuận lợi. Ngày hắc đạo do sáu thần xấu (Thiên Hình, Chu Tước, Bạch Hổ, Thiên Lao, Huyền Vũ, Câu Trần) trực nhật, nên tránh việc lớn. Khi chọn ngày nên xem thêm Trực, sao Nhị thập bát tú và các ngày kỵ.'],
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Lịch âm hôm nay', url: 'https://deeplyai.app/vi/lich-am/', inLanguage: 'vi', isPartOf: { '@id': 'https://deeplyai.app/#website' } },
+];
+const years = Array.from({ length: YEAR_TO - YEAR_FROM + 1 }, (_, i) => YEAR_FROM + i);
+---
+<LichShell
+  title="Lịch âm hôm nay – Lịch vạn niên, xem ngày tốt xấu, giờ hoàng đạo"
+  description={`Lịch âm hôm nay ${date}: ngày ${a.lunar.day}/${a.lunar.month} âm lịch năm ${a.yearCanChi}. Lịch vạn niên 1900–2100, giờ hoàng đạo, ngày tốt xấu, đổi ngày âm dương, ngày lễ Việt Nam.`}
+  path={BASE}
+  crumbs={[]}
+  jsonLd={jsonLd}
+  active="today"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch âm hôm nay</h1>
+      <p data-today-line data-build={`${t.year}-${t.month}-${t.day}`}>{WEEKDAYS[a.weekday]}, ngày {date} dương lịch, tức ngày {a.lunar.day} {lunarMonthName(a.lunar.month, a.lunar.leap).toLowerCase()} năm {a.yearCanChi} âm lịch.</p>
+      <p class="la-stale" data-stale hidden>Đã sang ngày mới. <a href={BASE} data-stale-link>Xem lịch âm hôm nay</a></p>
+    </header>
+
+    <form class="la-jump" data-jump action={CONVERT_URL}>
+      <label for="la-jump-date">Xem lịch âm ngày bất kỳ</label>
+      <input id="la-jump-date" type="date" name="d" min={`${YEAR_FROM}-01-01`} max={`${YEAR_TO}-12-31`} value={`${t.year}-${String(t.month).padStart(2, '0')}-${String(t.day).padStart(2, '0')}`} required />
+      <button type="submit">Xem</button>
+    </form>
+
+    <DayView a={a} label="hôm nay" />
+    <p class="la-more"><a href={dayUrl(t.day, t.month, t.year)}>Trang riêng của ngày {date}</a></p>
+
+    <section class="la-block la-two" aria-labelledby="thang-nay">
+      <div>
+        <h2 id="thang-nay" class="la-h2">Lịch âm tháng {t.month}/{t.year}</h2>
+        <div class="la-table-wrap"><MonthGrid month={t.month} year={t.year} selected={a.jd} /></div>
+        <p class="la-legend"><span class="la-dot la-dot-good"></span>Ngày hoàng đạo <span class="la-dot la-dot-bad"></span>Ngày hắc đạo <span class="la-dot la-dot-hol"></span>Ngày lễ</p>
+        <p class="la-more"><a href={monthUrl(t.month, t.year)}>Xem chi tiết lịch tháng {t.month}/{t.year}</a></p>
+      </div>
+      <div>
+        <h2 class="la-h2">Ngày lễ sắp tới</h2>
+        <ul class="la-upcoming">
+          {upcoming.map(({ h, x, days }) => (
+            <li>
+              <a href={dayUrl(x.day, x.month, x.year)}><b>{h.title}</b><span>{WEEKDAYS[x.weekday]}, {dmy(x.day, x.month, x.year)}{h.lunar ? ` · ${x.lunar.day}/${x.lunar.month} âm` : ''}</span></a>
+              <em>{days === 0 ? 'Hôm nay' : `Còn ${days} ngày`}</em>
+            </li>
+          ))}
+        </ul>
+        <h2 class="la-h2 la-mt">Công cụ</h2>
+        <ul class="la-links">
+          <li><a href={CONVERT_URL}>Đổi ngày âm sang dương, dương sang âm</a></li>
+          <li><a href={COUNT_URL}>Đếm số ngày giữa hai ngày, đếm ngược đến Tết</a></li>
+          <li><a href={yearUrl(t.year)}>Lịch âm năm {t.year}</a> · <a href={yearUrl(t.year + 1)}>năm {t.year + 1}</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="cac-nam">
+      <h2 id="cac-nam" class="la-h2">Lịch vạn niên các năm {YEAR_FROM}–{YEAR_TO}</h2>
+      <p class="la-lead">Xem lịch âm 12 tháng, ngày Tết, tháng nhuận và ngày lễ của từng năm. Trang chi tiết từng ngày có cho các năm {DAY_FROM}–{DAY_TO}.</p>
+      <ul class="la-years">{years.map((yy) => <li><a href={yearUrl(yy)} aria-current={yy === t.year ? 'true' : undefined}>{yy}</a></li>)}</ul>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp về lịch âm</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { vietnamToday } from '../../../components/lich-viet/lunar';
+  import { DAY_FROM, DAY_TO, YEAR_FROM, YEAR_TO, dayUrl, monthUrl } from '../../../lib/lich/urls';
+
+  // If the visitor opens a page built yesterday, point them to today's page.
+  const line = document.querySelector<HTMLElement>('[data-today-line]');
+  const t = vietnamToday();
+  if (line && line.dataset.build !== `${t.year}-${t.month}-${t.day}`) {
+    const stale = document.querySelector<HTMLElement>('[data-stale]');
+    const link = document.querySelector<HTMLAnchorElement>('[data-stale-link]');
+    if (stale && link) {
+      link.href = dayUrl(t.day, t.month, t.year);
+      stale.hidden = false;
+    }
+  }
+
+  // Date jump: open the day page when one exists, otherwise that month.
+  const form = document.querySelector<HTMLFormElement>('[data-jump]');
+  form?.addEventListener('submit', (event) => {
+    const value = (form.elements.namedItem('d') as HTMLInputElement).value;
+    const [y, m, d] = value.split('-').map(Number);
+    if (!y || y < YEAR_FROM || y > YEAR_TO) return;
+    event.preventDefault();
+    window.location.href = y >= DAY_FROM && y <= DAY_TO ? dayUrl(d, m, y) : monthUrl(m, y);
+  });
+</script>

@@ -1,0 +1,50 @@
+---
+import { monthWeeks } from '../../lib/lich/engine';
+import { dayUrl, hasDayPage, monthUrl } from '../../lib/lich/urls';
+
+interface Props {
+  month: number;
+  year: number;
+  /** Julian day to mark as selected. */
+  selected?: number;
+  compact?: boolean;
+  /** Heading level for the caption link. */
+  caption?: boolean;
+}
+const { month, year, selected, compact = false, caption = false } = Astro.props;
+const weeks = monthWeeks(month, year);
+const linkDays = hasDayPage(year);
+const heads = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+---
+<table class:list={['la-grid', { 'la-grid-compact': compact }]} data-month={`${year}-${month}`}>
+  {caption && <caption><a href={monthUrl(month, year)}>Tháng {month}</a></caption>}
+  <thead><tr>{heads.map((h, i) => <th scope="col" class:list={{ 'la-sun': i === 6 }}>{h}</th>)}</tr></thead>
+  <tbody>
+    {weeks.map((week) => (
+      <tr>
+        {week.map((c, i) => {
+          if (!c) return <td class="la-empty"></td>;
+          const firstLunar = c.lunar.day === 1;
+          const lunarLabel = firstLunar ? `${c.lunar.day}/${c.lunar.month}${c.lunar.leap ? 'N' : ''}` : String(c.lunar.day);
+          const title = `${c.day}/${c.month}/${c.year}: ngày ${c.lunar.day}/${c.lunar.month}${c.lunar.leap ? ' nhuận' : ''} âm lịch, ${c.canChi}${c.hoangDao ? ', hoàng đạo' : ''}${c.holidays.length ? `, ${c.holidays.map((h) => h.title).join(', ')}` : ''}`;
+          const body = (
+            <Fragment>
+              <span class="la-solar">{c.day}</span>
+              <span class:list={['la-lunar', { 'la-lunar-first': firstLunar, 'la-full': c.lunar.day === 15 }]}>{lunarLabel}</span>
+              {!compact && <span class="la-cc">{c.canChi}</span>}
+              {!compact && c.holidays[0] && <span class="la-hol">{c.holidays[0].title}</span>}
+            </Fragment>
+          );
+          return (
+            <td
+              class:list={{ 'la-good': c.hoangDao, 'la-bad': !c.hoangDao, 'la-sel': c.jd === selected, 'la-sun': i === 6, 'la-has-hol': c.holidays.length > 0, 'la-off': !!c.off }}
+              data-jd={c.jd}
+            >
+              {linkDays ? <a href={dayUrl(c.day, c.month, c.year)} title={title}>{body}</a> : <span title={title}>{body}</span>}
+            </td>
+          );
+        })}
+      </tr>
+    ))}
+  </tbody>
+</table>

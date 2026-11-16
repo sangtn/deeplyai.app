@@ -1,0 +1,70 @@
+---
+import LichShell from './LichShell.astro';
+import DayView from './DayView.astro';
+import MonthGrid from './MonthGrid.astro';
+import { WEEKDAYS, almanac, lunarMonthName } from '../../lib/lich/engine';
+import { fromJd } from '../lich-viet/lunar';
+import { DAY_FROM, DAY_TO, dayUrl, dmy, monthUrl, yearUrl } from '../../lib/lich/urls';
+
+interface Props { d: number; m: number; y: number }
+const { d, m, y } = Astro.props;
+const a = almanac(d, m, y);
+const date = dmy(d, m, y);
+const lunarText = `${a.lunar.day}/${a.lunar.month}${a.lunar.leap ? ' nhuận' : ''}`;
+const goodHours = a.hours.filter((h) => h.good).map((h) => h.chi).join(', ');
+
+const title = `Lịch âm ngày ${date} – ${lunarText} âm lịch, ngày ${a.canChi}`;
+const description = `Lịch âm ${WEEKDAYS[a.weekday].toLowerCase()} ${date}: ngày ${lunarText} năm ${a.yearCanChi}, ngày ${a.canChi}, ${a.than} ${a.hoangDao ? 'hoàng đạo' : 'hắc đạo'}, trực ${a.truc.name}. Giờ hoàng đạo: ${goodHours}. Xem ngày tốt xấu, hướng xuất hành, tiết khí.`;
+
+const near = (offset: number) => fromJd(a.jd + offset);
+const prev = near(-1);
+const next = near(1);
+const inRange = (p: { year: number }) => p.year >= DAY_FROM && p.year <= DAY_TO;
+const otherYears = [y - 2, y - 1, y + 1, y + 2].filter((yy) => yy >= DAY_FROM && yy <= DAY_TO && !(d === 29 && m === 2 && new Date(Date.UTC(yy, 1, 29)).getUTCMonth() !== 1));
+
+const faq = [
+  [`Ngày ${date} là ngày bao nhiêu âm lịch?`, `Ngày ${date} dương lịch (${WEEKDAYS[a.weekday]}) là ngày ${a.lunar.day} ${lunarMonthName(a.lunar.month, a.lunar.leap).toLowerCase()} năm ${a.yearCanChi} âm lịch, tức ngày ${a.canChi}, tháng ${a.monthCanChi}.`],
+  [`Ngày ${date} có phải ngày tốt không?`, `Ngày ${date} là ngày ${a.than} ${a.hoangDao ? 'hoàng đạo' : 'hắc đạo'}, trực ${a.truc.name}, sao ${a.sao28.name.replace(/\s*\(.*\)$/, '')}${a.taboos.length ? `, phạm ngày ${a.taboos.map((t) => t.name).join(', ')}` : ''}. Nên xem thêm việc cụ thể và tuổi của mình trước khi quyết định.`],
+  [`Giờ hoàng đạo ngày ${date} là giờ nào?`, `Các giờ hoàng đạo ngày ${date} là ${a.hours.filter((h) => h.good).map((h) => `${h.chi} (${h.range})`).join(', ')}.`],
+];
+---
+<LichShell
+  title={title}
+  description={description}
+  path={dayUrl(d, m, y)}
+  crumbs={[{ name: `Năm ${y}`, href: yearUrl(y) }, { name: `Tháng ${m}/${y}`, href: monthUrl(m, y) }, { name: `Ngày ${date}` }]}
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Lịch âm ngày {date}</h1>
+      <p>{WEEKDAYS[a.weekday]}, ngày {a.lunar.day} {lunarMonthName(a.lunar.month, a.lunar.leap).toLowerCase()} năm {a.yearCanChi} âm lịch</p>
+    </header>
+    <nav class="la-pager" aria-label="Ngày khác">
+      {inRange(prev) ? <a href={dayUrl(prev.day, prev.month, prev.year)} rel="prev">← {dmy(prev.day, prev.month, prev.year)}</a> : <span></span>}
+      <a href={monthUrl(m, y)}>Lịch tháng {m}/{y}</a>
+      {inRange(next) ? <a href={dayUrl(next.day, next.month, next.year)} rel="next">{dmy(next.day, next.month, next.year)} →</a> : <span></span>}
+    </nav>
+
+    <DayView a={a} label={date} />
+
+    <section class="la-block la-two" aria-labelledby="lich-thang">
+      <div>
+        <h2 id="lich-thang" class="la-h2">Lịch âm tháng {m}/{y}</h2>
+        <MonthGrid month={m} year={y} selected={a.jd} compact />
+        <p class="la-legend"><span class="la-dot la-dot-good"></span>Ngày hoàng đạo <span class="la-dot la-dot-bad"></span>Ngày hắc đạo</p>
+      </div>
+      <div>
+        <h2 class="la-h2">Ngày {d}/{m} các năm khác</h2>
+        <ul class="la-links">
+          {otherYears.map((yy) => <li><a href={dayUrl(d, m, yy)}>Lịch âm ngày {dmy(d, m, yy)}</a></li>)}
+          <li><a href={yearUrl(y)}>Lịch âm năm {y}</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp về ngày {date}</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>

@@ -55,7 +55,7 @@ function newMoon(k: number) {
 const newMoonDay = (k: number) => INT(newMoon(k) + 0.5 + TZ / 24);
 
 /** Apparent solar longitude in radians, normalized to [0, 2π). */
-function sunLongitude(jdn: number) {
+export function sunLongitude(jdn: number) {
   const T = (jdn - 2451545.0) / 36525;
   const T2 = T * T;
   const dr = PI / 180;
@@ -122,6 +122,35 @@ export function solarToLunar(dd: number, mm: number, yy: number): LunarDate {
   return { day, month, year, leap, jd };
 }
 
+/** Lunar date to Gregorian, or null when the date does not exist (e.g. a leap month that year lacks). */
+export function lunarToSolar(lunarDay: number, lunarMonth: number, lunarYear: number, lunarLeap = false) {
+  let a11;
+  let b11;
+  if (lunarMonth < 11) {
+    a11 = lunarMonth11(lunarYear - 1);
+    b11 = lunarMonth11(lunarYear);
+  } else {
+    a11 = lunarMonth11(lunarYear);
+    b11 = lunarMonth11(lunarYear + 1);
+  }
+  const k = INT(0.5 + (a11 - 2415021.076998695) / 29.530588853);
+  let off = lunarMonth - 11;
+  if (off < 0) off += 12;
+  if (b11 - a11 > 365) {
+    const leapOff = leapMonthOffset(a11);
+    let leapMonth = leapOff - 2;
+    if (leapMonth < 0) leapMonth += 12;
+    if (lunarLeap && lunarMonth !== leapMonth) return null;
+    if (lunarLeap || off >= leapOff) off += 1;
+  } else if (lunarLeap) {
+    return null;
+  }
+  const monthStart = newMoonDay(k + off);
+  const out = fromJd(monthStart + lunarDay - 1);
+  const back = solarToLunar(out.day, out.month, out.year);
+  return back.day === lunarDay && back.month === lunarMonth && back.year === lunarYear && back.leap === lunarLeap ? out : null;
+}
+
 const canChi = (can: number, chi: number) => `${CAN[can]} ${CHI[chi]}`;
 
 export interface DayInfo {
@@ -138,7 +167,7 @@ export interface DayInfo {
   tet: { days: number; date: { day: number; month: number; year: number }; name: string };
 }
 
-const fromJd = (jd: number) => {
+export const fromJd = (jd: number) => {
   const a = jd + 32044;
   const b = INT((4 * a + 3) / 146097);
   const c = a - INT((b * 146097) / 4);

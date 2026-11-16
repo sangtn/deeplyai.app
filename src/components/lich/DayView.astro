@@ -1,0 +1,189 @@
+---
+import type { Almanac } from '../../lib/lich/engine';
+import { WEEKDAYS, lunarMonthName } from '../../lib/lich/engine';
+import { chiIcon, directionIcon, dmy, dayUrl, hasDayPage, termImage } from '../../lib/lich/urls';
+
+interface Props { a: Almanac; /** Short label used inside headings, e.g. "hôm nay" or "16/11/2026". */ label: string }
+const { a, label } = Astro.props;
+const date = dmy(a.day, a.month, a.year);
+const goodHours = a.hours.filter((h) => h.good);
+
+// Moon drawing: lit part of a disc of radius r, for the illuminated fraction and waxing flag.
+const r = 40;
+const k = a.moon.illumination;
+const rx = Math.abs(1 - 2 * k) * r;
+const litRight = a.moon.waxing;
+const moonPath = `M50 ${50 - r} A${r} ${r} 0 0 ${litRight ? 1 : 0} 50 ${50 + r} A${rx} ${r} 0 0 ${(k > 0.5) === litRight ? 1 : 0} 50 ${50 - r}Z`;
+
+// 24-hour ring with the daylight arc for Hà Nội.
+const sun = a.sun[0].times;
+const C = 2 * Math.PI * 44;
+const dayFrac = sun ? (sun.setMin - sun.riseMin) / 1440 : 0;
+// Midnight at the bottom and noon at the top, so daylight forms the upper arc.
+const startDeg = sun ? (sun.riseMin / 1440) * 360 + 90 : 0;
+const termRange = `${dmy(a.term.start.day, a.term.start.month, a.term.start.year)} đến ${dmy(a.term.next.day, a.term.next.month, a.term.next.year)}`;
+const linkDate = (d: { day: number; month: number; year: number }) => (hasDayPage(d.year) ? dayUrl(d.day, d.month, d.year) : null);
+const tetLink = linkDate(a.tet.date);
+---
+<div class="la-day">
+  <section class="la-sheet-wrap" aria-label={`Tờ lịch ngày ${date}`}>
+    <article class:list={['la-sheet', { 'la-sheet-good': a.hoangDao }]}>
+      <header><span>Tháng {a.month} năm {a.year}</span><span>{a.yearCanChi}</span></header>
+      <p class="la-sheet-wd">{WEEKDAYS[a.weekday]}</p>
+      <p class="la-sheet-day">{a.day}</p>
+      <div class="la-sheet-lunar">
+        <span>Âm lịch</span>
+        <b>{a.lunar.day}</b>
+        <span>{lunarMonthName(a.lunar.month, a.lunar.leap)}</span>
+      </div>
+      <dl class="la-sheet-cc">
+        <div><dt>Ngày</dt><dd>{a.canChi}</dd></div>
+        <div><dt>Tháng</dt><dd>{a.monthCanChi}</dd></div>
+        <div><dt>Năm</dt><dd>{a.yearCanChi}</dd></div>
+        <div><dt>Tiết khí</dt><dd>{a.term.name}</dd></div>
+      </dl>
+      <p class="la-sheet-badge"><img src={chiIcon(a.index60 % 12)} width="26" height="25" alt="" />{a.hoangDao ? 'Ngày hoàng đạo' : 'Ngày hắc đạo'} · {a.than}</p>
+    </article>
+
+    <div class="la-summary">
+      <h2 class="la-h2">Tóm tắt ngày {label}</h2>
+      <ul class="la-facts">
+        <li><span>Âm lịch</span><b>Ngày {a.lunar.day} {lunarMonthName(a.lunar.month, a.lunar.leap).toLowerCase()} năm {a.yearCanChi}</b></li>
+        <li><span>Ngày</span><b>{a.canChi}, hành {a.hanh}</b></li>
+        <li><span>Loại ngày</span><b class:list={{ 'la-pos': a.hoangDao, 'la-neg': !a.hoangDao }}>{a.than} {a.hoangDao ? 'hoàng đạo' : 'hắc đạo'}</b></li>
+        <li><span>Trực</span><b>{a.truc.name}</b></li>
+        <li><span>Sao (Nhị thập bát tú)</span><b>{a.sao28.name.replace(/\s*\(.*\)$/, '')}</b></li>
+        <li><span>Khổng Minh lục diệu</span><b class:list={{ 'la-pos': a.lucDieu.good, 'la-neg': !a.lucDieu.good }}>{a.lucDieu.name}</b></li>
+        <li><span>Giờ hoàng đạo</span><b class="la-hour-icons">{goodHours.map((h) => <span><img src={chiIcon(a.hours.indexOf(h))} width="24" height="23" alt="" />{h.chi} <small>{h.range}</small></span>)}</b></li>
+        {a.tuoiXung && <li><span>Tuổi xung khắc</span><b>{a.tuoiXung}</b></li>}
+      </ul>
+      {(a.holidays.length > 0 || a.off) && (
+        <div class="la-chips">
+          {a.holidays.map((h) => <span class="la-chip la-chip-hol">{h.title}</span>)}
+          {a.off && <span class="la-chip la-chip-off">{a.off.confirmed ? 'Nghỉ lễ' : 'Dự kiến nghỉ'}: {a.off.label}</span>}
+        </div>
+      )}
+      {a.taboos.length > 0 && (
+        <div class="la-chips">{a.taboos.map((t) => <span class="la-chip la-chip-bad">{t.name}</span>)}</div>
+      )}
+      <p class="la-tet">
+        {a.tet.days === 0 ? `Hôm nay là Tết ${a.tet.name}.` : <Fragment>Còn <b>{a.tet.days} ngày</b> đến Tết {a.tet.name} ({tetLink ? <a href={tetLink}>{dmy(a.tet.date.day, a.tet.date.month, a.tet.date.year)}</a> : dmy(a.tet.date.day, a.tet.date.month, a.tet.date.year)}).</Fragment>}
+      </p>
+    </div>
+  </section>
+
+  <section class="la-block" aria-labelledby="gio-hoang-dao">
+    <h2 id="gio-hoang-dao" class="la-h2">Giờ hoàng đạo ngày {label}</h2>
+    <p class="la-lead">Ngày {a.canChi} có 6 giờ hoàng đạo: {goodHours.map((h) => `${h.chi} (${h.range})`).join(', ')}. Các giờ còn lại là giờ hắc đạo.</p>
+    <div class="la-hours">
+      {a.hours.map((h, i) => (
+        <div class:list={['la-hour', { 'la-hour-good': h.good }]}>
+          <img src={chiIcon(i)} width="40" height="39" alt="" loading="lazy" decoding="async" />
+          <b>{h.chi}</b>
+          <span class="la-hour-range">{h.range}</span>
+          <span>{h.than}</span>
+          <small>{h.canChi}</small>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="la-block" aria-labelledby="tot-xau">
+    <h2 id="tot-xau" class="la-h2">Ngày {label} tốt hay xấu?</h2>
+    <div class="la-cards">
+      <article class="la-card">
+        <h3>Trực {a.truc.name}</h3>
+        <p>{a.truc.meaning}</p>
+        <p class="la-do"><b>Nên:</b> {a.truc.nen.join(', ')}.</p>
+        <p class="la-dont"><b>Kiêng:</b> {a.truc.kieng.join(', ')}.</p>
+      </article>
+      <article class="la-card">
+        <h3>Sao {a.sao28.name}</h3>
+        <p class="la-do"><b>Nên:</b> {a.sao28.nen.length ? a.sao28.nen.join(', ') : 'Không có việc đặc biệt'}.</p>
+        <p class="la-dont"><b>Kiêng:</b> {a.sao28.kieng.length ? a.sao28.kieng.join(', ') : 'Không có việc phải kiêng'}.</p>
+        {a.sao28.ngoaiLe && <details><summary>Ngoại lệ và thơ cổ</summary><p class="la-pre">{a.sao28.ngoaiLe}</p>{a.sao28.tho && <p class="la-pre la-poem">{a.sao28.tho}</p>}</details>}
+      </article>
+      <article class="la-card">
+        <h3>Sao tốt (Ngọc hạp thông thư)</h3>
+        {a.goodStars.length ? <ul class="la-stars">{a.goodStars.map((s) => <li><b>{s.n}</b>{s.h && <span lang="zh">{s.h}</span>}: {s.d}</li>)}</ul> : <p>Không có sao tốt.</p>}
+      </article>
+      <article class="la-card">
+        <h3>Sao xấu (Ngọc hạp thông thư)</h3>
+        {a.badStars.length ? <ul class="la-stars">{a.badStars.map((s) => <li><b>{s.n}</b>{s.h && <span lang="zh">{s.h}</span>}: {s.d}</li>)}</ul> : <p>Không có sao xấu.</p>}
+      </article>
+      <article class="la-card">
+        <h3>Ngày kỵ</h3>
+        {a.taboos.length ? <ul class="la-stars">{a.taboos.map((t) => <li><b>{t.name}</b>: {t.text}</li>)}</ul> : <p>Không phạm Tam Nương, Nguyệt Kỵ, Nguyệt Tận, Dương Công Kỵ, Sát Chủ, Thọ Tử, Trùng Tang, Trùng Phục hay Kim Thần Thất Sát.</p>}
+      </article>
+      <article class="la-card">
+        <h3>Bành Tổ bách kỵ</h3>
+        <ul class="la-stars">
+          <li><b>{a.banhTo.can[0]}</b>: {a.banhTo.can[1]}</li>
+          <li><b>{a.banhTo.chi[0]}</b>: {a.banhTo.chi[1]}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="la-block" aria-labelledby="xuat-hanh">
+    <h2 id="xuat-hanh" class="la-h2">Hướng và giờ xuất hành ngày {label}</h2>
+    <div class="la-dirs">
+      <div><img src={directionIcon('hy')} width="44" height="43" alt="" loading="lazy" /><span>Hỷ thần</span><b>{a.directions.hy}</b><small>Hướng đón may mắn, niềm vui</small></div>
+      <div><img src={directionIcon('tai')} width="44" height="43" alt="" loading="lazy" /><span>Tài thần</span><b>{a.directions.tai}</b><small>Hướng cầu tài lộc</small></div>
+      <div><img src={directionIcon('hac')} width="44" height="43" alt="" loading="lazy" /><span>Hạc thần</span><b>{a.directions.hac || 'Trên trời'}</b><small>{a.directions.hac ? 'Hướng nên tránh' : 'Hạc thần ở trên trời, không phải tránh hướng nào'}</small></div>
+    </div>
+    <p class="la-lead">Theo Khổng Minh lục diệu, ngày này là ngày <b>{a.lucDieu.name}</b>: {a.lucDieu.text}</p>
+    <h3 class="la-h3">Giờ xuất hành theo Lý Thuần Phong</h3>
+    <div class="la-table-wrap">
+      <table class="la-table">
+        <thead><tr><th scope="col">Giờ</th><th scope="col">Khắc</th><th scope="col">Ý nghĩa</th></tr></thead>
+        <tbody>
+          {a.hours.slice(0, 6).map((h, i) => (
+            <tr class:list={{ 'la-row-good': h.ltp.good }}>
+              <td>{h.chi} và {a.hours[i + 6].chi}<br /><small>{h.range}, {a.hours[i + 6].range}</small></td>
+              <td><b>{h.ltp.name}</b></td>
+              <td>{h.ltp.text}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="la-block" aria-labelledby="ngu-hanh">
+    <h2 id="ngu-hanh" class="la-h2">Ngũ hành và tuổi hợp, xung ngày {label}</h2>
+    <ul class="la-list">{a.napAm.map((line) => <li>{line}</li>)}</ul>
+  </section>
+
+  <section class="la-block la-two" aria-labelledby="thien-van">
+    <div>
+      <h2 id="thien-van" class="la-h2">Tiết khí, mặt trời và mặt trăng</h2>
+      <div class="la-term"><img src={termImage(a.term.name)} width="72" height="72" alt={`Tiết ${a.term.name}`} loading="lazy" decoding="async" /><p>Ngày {date} thuộc tiết <b>{a.term.name}</b>, kéo dài từ {termRange}. Tiết tiếp theo là {a.term.next.name}.</p></div>
+      <ul class="la-facts">
+        {a.sun.map((s) => s.times && <li><span>{s.city}</span><b>Mọc {s.times.rise} · Lặn {s.times.set} · Ngày dài {s.times.length}</b></li>)}
+        <li><span>Mặt trăng</span><b>{a.moon.name}, sáng {Math.round(a.moon.illumination * 100)}%</b></li>
+      </ul>
+    </div>
+    <div class="la-astro" aria-hidden="true">
+      {sun && (
+        <svg viewBox="0 0 100 100" width="150" height="150" class="la-ring">
+          <circle cx="50" cy="50" r="44" class="la-ring-night" />
+          <circle cx="50" cy="50" r="44" class="la-ring-day" stroke-dasharray={`${dayFrac * C} ${C}`} transform={`rotate(${startDeg} 50 50)`} />
+          <text x="50" y="46" text-anchor="middle">{sun.rise}</text>
+          <text x="50" y="60" text-anchor="middle">{sun.set}</text>
+        </svg>
+      )}
+      <svg viewBox="0 0 100 100" width="150" height="150" class="la-moon">
+        <circle cx="50" cy="50" r={r} class="la-moon-dark" />
+        <path d={moonPath} class="la-moon-lit" />
+      </svg>
+    </div>
+  </section>
+
+  {a.quote && (
+    <section class="la-block" aria-labelledby="loi-hay">
+      <h2 id="loi-hay" class="la-h2">Lời hay mỗi ngày</h2>
+      <blockquote class="la-quote">{a.quote}</blockquote>
+    </section>
+  )}
+</div>

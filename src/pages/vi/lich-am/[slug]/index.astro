@@ -1,0 +1,29 @@
+---
+// One route for the three page kinds, so URLs stay flat:
+//   /vi/lich-am/ngay-16-11-2026/  /vi/lich-am/thang-11-2026/  /vi/lich-am/nam-2026/
+import DayPage from '../../../../components/lich/DayPage.astro';
+import MonthPage from '../../../../components/lich/MonthPage.astro';
+import YearPage from '../../../../components/lich/YearPage.astro';
+import { daysInMonth } from '../../../../lib/lich/engine';
+import { DAY_FROM, DAY_TO, YEAR_FROM, YEAR_TO } from '../../../../lib/lich/urls';
+
+export function getStaticPaths() {
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  const paths = [];
+  for (let y = YEAR_FROM; y <= YEAR_TO; y += 1) {
+    paths.push({ params: { slug: `nam-${y}` }, props: { kind: 'year' as const, y, m: 0, d: 0 } });
+    for (let m = 1; m <= 12; m += 1) {
+      paths.push({ params: { slug: `thang-${p2(m)}-${y}` }, props: { kind: 'month' as const, y, m, d: 0 } });
+      if (y >= DAY_FROM && y <= DAY_TO) {
+        for (let d = 1; d <= daysInMonth(m, y); d += 1) paths.push({ params: { slug: `ngay-${p2(d)}-${p2(m)}-${y}` }, props: { kind: 'day' as const, y, m, d } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { kind, y, m, d } = Astro.props;
+---
+{kind === 'day' && <DayPage d={d} m={m} y={y} />}
+{kind === 'month' && <MonthPage m={m} y={y} />}
+{kind === 'year' && <YearPage y={y} />}

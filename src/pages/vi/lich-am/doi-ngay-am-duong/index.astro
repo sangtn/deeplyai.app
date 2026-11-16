@@ -1,0 +1,146 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { CAN, CHI, WEEKDAYS, dayLite, lunarMonthName, lunarToSolar } from '../../../../lib/lich/engine';
+import { jdFromDate, vietnamToday } from '../../../../components/lich-viet/lunar';
+import { CONVERT_URL, YEAR_FROM, YEAR_TO, dayUrl, dmy, hasDayPage, yearUrl } from '../../../../lib/lich/urls';
+
+const t = vietnamToday();
+const today = dayLite(t.day, t.month, t.year);
+const cc = (ly: number) => `${CAN[(ly + 6) % 10]} ${CHI[(ly + 8) % 12]}`;
+const tetYears = Array.from({ length: 16 }, (_, i) => t.year - 5 + i).map((y) => {
+  const s = lunarToSolar(1, 1, y)!;
+  return { y, s, wd: WEEKDAYS[(jdFromDate(s.day, s.month, s.year) + 1) % 7] };
+});
+
+const faq = [
+  ['Làm sao đổi ngày dương lịch sang âm lịch?', 'Chọn ngày dương lịch ở ô thứ nhất, kết quả hiện ngay ngày, tháng, năm âm lịch kèm can chi và tháng nhuận nếu có. Có thể đổi các ngày từ năm 1900 đến 2100.'],
+  ['Làm sao biết ngày giỗ âm lịch năm nay rơi vào ngày dương nào?', 'Nhập ngày và tháng âm lịch của ngày giỗ ở ô thứ hai, chọn năm âm lịch cần xem rồi bấm Đổi ngày. Nếu ngày giỗ rơi vào tháng nhuận, đánh dấu ô Tháng nhuận.'],
+  ['Vì sao có năm có tháng nhuận?', 'Mười hai tháng âm lịch ngắn hơn một năm dương lịch khoảng 11 ngày. Để lịch không lệch với mùa, cứ khoảng ba năm lịch âm thêm một tháng nhuận. Tháng nhuận là tháng không chứa trung khí.'],
+  ['Ngày 30 âm lịch có tháng không có?', 'Có. Tháng âm lịch dài 29 hoặc 30 ngày tùy chu kỳ trăng, nên có tháng không có ngày 30. Khi đó công cụ sẽ báo ngày không tồn tại.'],
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Đổi ngày âm dương', url: `https://deeplyai.app${CONVERT_URL}`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
+];
+const iso = `${t.year}-${String(t.month).padStart(2, '0')}-${String(t.day).padStart(2, '0')}`;
+---
+<LichShell
+  title="Đổi ngày âm sang dương, dương sang âm – Chuyển đổi lịch âm dương"
+  description="Công cụ đổi ngày dương lịch sang âm lịch và âm lịch sang dương lịch theo giờ Việt Nam, có can chi và tháng nhuận, từ năm 1900 đến 2100. Tra ngày giỗ, ngày Tết các năm."
+  path={CONVERT_URL}
+  crumbs={[{ name: 'Đổi ngày âm dương' }]}
+  jsonLd={jsonLd}
+  active="convert"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Đổi ngày âm dương</h1>
+      <p>Chuyển ngày dương lịch sang âm lịch và ngược lại, theo múi giờ Việt Nam, cho các năm {YEAR_FROM}–{YEAR_TO}.</p>
+    </header>
+
+    <div class="la-tools">
+      <form class="la-tool" data-s2l>
+        <h2 class="la-h2">Dương lịch sang âm lịch</h2>
+        <label>Ngày dương lịch<input type="date" name="date" value={iso} min={`${YEAR_FROM}-01-31`} max={`${YEAR_TO}-12-31`} required /></label>
+        <button type="submit">Đổi ngày</button>
+        <output class="la-result" data-out aria-live="polite">
+          <b>Ngày {today.lunar.day} {lunarMonthName(today.lunar.month, today.lunar.leap).toLowerCase()} năm {cc(today.lunar.year)}</b>
+          <span>{WEEKDAYS[today.weekday]}, {dmy(t.day, t.month, t.year)} · Ngày {today.canChi}</span>
+          <a href={dayUrl(t.day, t.month, t.year)}>Xem chi tiết ngày {dmy(t.day, t.month, t.year)}</a>
+        </output>
+      </form>
+
+      <form class="la-tool" data-l2s>
+        <h2 class="la-h2">Âm lịch sang dương lịch</h2>
+        <div class="la-fields">
+          <label>Ngày<input type="number" name="d" min="1" max="30" value={today.lunar.day} required inputmode="numeric" /></label>
+          <label>Tháng<input type="number" name="m" min="1" max="12" value={today.lunar.month} required inputmode="numeric" /></label>
+          <label>Năm<input type="number" name="y" min={YEAR_FROM} max={YEAR_TO - 1} value={today.lunar.year} required inputmode="numeric" /></label>
+        </div>
+        <label class="la-check"><input type="checkbox" name="leap" checked={today.lunar.leap} /> Tháng nhuận</label>
+        <button type="submit">Đổi ngày</button>
+        <output class="la-result" data-out aria-live="polite">
+          <b>{WEEKDAYS[today.weekday]}, {dmy(t.day, t.month, t.year)}</b>
+          <span>Ngày {today.lunar.day} {lunarMonthName(today.lunar.month, today.lunar.leap).toLowerCase()} năm {cc(today.lunar.year)}</span>
+          <a href={dayUrl(t.day, t.month, t.year)}>Xem chi tiết ngày {dmy(t.day, t.month, t.year)}</a>
+        </output>
+      </form>
+    </div>
+
+    <section class="la-block" aria-labelledby="ngay-tet">
+      <h2 id="ngay-tet" class="la-h2">Tết Nguyên Đán các năm</h2>
+      <div class="la-table-wrap">
+        <table class="la-table">
+          <thead><tr><th scope="col">Năm</th><th scope="col">Can chi</th><th scope="col">Mùng 1 Tết</th></tr></thead>
+          <tbody>
+            {tetYears.map(({ y, s, wd }) => (
+              <tr><td><a href={yearUrl(y)}>{y}</a></td><td>{cc(y)}</td><td>{hasDayPage(s.year) ? <a href={dayUrl(s.day, s.month, s.year)}>{wd}, {dmy(s.day, s.month, s.year)}</a> : `${wd}, ${dmy(s.day, s.month, s.year)}`}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { CAN, CHI, LUNAR_MONTHS, jdFromDate, lunarToSolar, solarToLunar } from '../../../../components/lich-viet/lunar';
+  import { dayUrl, monthUrl, hasDayPage } from '../../../../lib/lich/urls';
+
+  const WD = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  const dmy = (d: number, m: number, y: number) => `${p2(d)}/${p2(m)}/${y}`;
+  const yearCC = (y: number) => `${CAN[(y + 6) % 10]} ${CHI[(y + 8) % 12]}`;
+  const dayCC = (jd: number) => `${CAN[(jd + 9) % 10]} ${CHI[(jd + 1) % 12]}`;
+  const monthName = (m: number, leap: boolean) => LUNAR_MONTHS[m - 1].toLowerCase() + (leap ? ' (nhuận)' : '');
+
+  function render(out: Element, d: number, m: number, y: number, mode: 's2l' | 'l2s') {
+    const l = solarToLunar(d, m, y);
+    const wd = WD[(jdFromDate(d, m, y) + 1) % 7];
+    const lunarText = `Ngày ${l.day} ${monthName(l.month, l.leap)} năm ${yearCC(l.year)}`;
+    const solarText = `${wd}, ${dmy(d, m, y)}`;
+    const href = hasDayPage(y) ? dayUrl(d, m, y) : monthUrl(m, y);
+    const label = hasDayPage(y) ? `Xem chi tiết ngày ${dmy(d, m, y)}` : `Xem lịch tháng ${m}/${y}`;
+    const b = document.createElement('b');
+    const span = document.createElement('span');
+    b.textContent = mode === 's2l' ? lunarText : solarText;
+    span.textContent = mode === 's2l' ? `${solarText} · Ngày ${dayCC(l.jd)}` : `${lunarText} · Ngày ${dayCC(l.jd)}`;
+    const a = Object.assign(document.createElement('a'), { href, textContent: label });
+    out.replaceChildren(b, span, a);
+  }
+
+  const s2l = document.querySelector<HTMLFormElement>('[data-s2l]');
+  s2l?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const [y, m, d] = (s2l.elements.namedItem('date') as HTMLInputElement).value.split('-').map(Number);
+    if (y) render(s2l.querySelector('[data-out]')!, d, m, y, 's2l');
+  });
+
+  const l2s = document.querySelector<HTMLFormElement>('[data-l2s]');
+  l2s?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const get = (n: string) => Number((l2s.elements.namedItem(n) as HTMLInputElement).value);
+    const leap = (l2s.elements.namedItem('leap') as HTMLInputElement).checked;
+    const out = l2s.querySelector('[data-out]')!;
+    const s = lunarToSolar(get('d'), get('m'), get('y'), leap);
+    if (!s) {
+      const b = document.createElement('b');
+      b.textContent = leap ? `Năm ${get('y')} không có ${LUNAR_MONTHS[get('m') - 1].toLowerCase()} nhuận, hoặc tháng đó không có ngày ${get('d')}.` : `${LUNAR_MONTHS[get('m') - 1]} năm ${get('y')} không có ngày ${get('d')}.`;
+      out.replaceChildren(b);
+      return;
+    }
+    render(out, s.day, s.month, s.year, 'l2s');
+  });
+
+  // Converting from a ?d=YYYY-MM-DD link (the date jump on the Lịch âm page).
+  const q = new URLSearchParams(location.search).get('d');
+  if (q && s2l) {
+    (s2l.elements.namedItem('date') as HTMLInputElement).value = q;
+    s2l.requestSubmit();
+  }
+</script>

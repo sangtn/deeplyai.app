@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoreBadge from '../StoreBadge.astro';
+import { byId } from '../../data/catalog';
+import { BASE, CONVERT_URL, COUNT_URL, monthUrl, yearUrl } from '../../lib/lich/urls';
+import { vietnamToday } from '../lich-viet/lunar';
+import '../../styles/lich.css';
+
+interface Crumb { name: string; href?: string }
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  crumbs: Crumb[];
+  jsonLd?: object[];
+  active?: 'today' | 'month' | 'year' | 'convert' | 'count';
+}
+const { title, description, path, crumbs, jsonLd = [], active } = Astro.props;
+const site = 'https://deeplyai.app';
+const all: Crumb[] = [{ name: 'Lịch âm', href: BASE }, ...crumbs];
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: all.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href ?? path, site).href })),
+};
+const today = vietnamToday();
+const app = byId.get(6749473194);
+const nav = [
+  { id: 'today', href: BASE, label: 'Hôm nay' },
+  { id: 'month', href: monthUrl(today.month, today.year), label: 'Lịch tháng' },
+  { id: 'year', href: yearUrl(today.year), label: `Lịch năm ${today.year}` },
+  { id: 'convert', href: CONVERT_URL, label: 'Đổi ngày âm dương' },
+  { id: 'count', href: COUNT_URL, label: 'Đếm ngày' },
+];
+---
+<Base lang="vi" title={title} description={description} path={path} jsonLd={[breadcrumb, ...jsonLd]}>
+  <div class="la">
+    <div class="la-top">
+      <div class="wrap">
+        <nav class="la-crumbs" aria-label="Đường dẫn">
+          <a href="/vi/">Trang chủ</a>
+          {all.map((c, i) => (
+            <Fragment>
+              <span aria-hidden="true">/</span>
+              {c.href && i < all.length - 1 ? <a href={c.href}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+            </Fragment>
+          ))}
+        </nav>
+        <nav class="la-nav" aria-label="Lịch âm">
+          {nav.map((n) => <a href={n.href} aria-current={active === n.id ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+      </div>
+    </div>
+    <slot />
+    {app && (
+      <aside class="la-app" aria-labelledby="la-app-title">
+        <div class="wrap la-app-in">
+          <img src={app.iconLarge} width="96" height="96" alt="Biểu tượng ứng dụng Lịch Việt" loading="lazy" decoding="async" />
+          <div>
+            <h2 id="la-app-title">Mang lịch âm theo bên mình với ứng dụng Lịch Việt</h2>
+            <p>Cùng cách tính với trang này, kèm widget tờ lịch trên màn hình chính, nhắc ngày rằm, mùng một, ngày giỗ theo âm lịch, Lịch Nhà cho cả gia đình và Apple Watch.</p>
+            <div class="la-app-cta"><StoreBadge href={app.url} lang="vi" /><a href="/vi/apps/lich-van-nien/">Tìm hiểu ứng dụng</a></div>
+          </div>
+        </div>
+      </aside>
+    )}
+    <p class="wrap la-note">Ngày âm lịch tính theo múi giờ Việt Nam (UTC+7) bằng thuật toán thiên văn Hồ Ngọc Đức. Thông tin giờ tốt, ngày tốt mang tính tham khảo văn hóa.</p>
+  </div>
+</Base>

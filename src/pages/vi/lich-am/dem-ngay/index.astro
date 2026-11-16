@@ -1,0 +1,135 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { WEEKDAYS, dayLite } from '../../../../lib/lich/engine';
+import { fromJd, vietnamToday } from '../../../../components/lich-viet/lunar';
+import { COUNT_URL, YEAR_FROM, YEAR_TO, dayUrl, dmy } from '../../../../lib/lich/urls';
+
+const t = vietnamToday();
+const today = dayLite(t.day, t.month, t.year);
+// Countdown to the next occurrence of each holiday, computed at build time.
+const seen = new Set<string>();
+const countdowns = [];
+for (let j = today.jd + 1; j < today.jd + 370; j += 1) {
+  const s = fromJd(j);
+  for (const h of dayLite(s.day, s.month, s.year).holidays) {
+    if (seen.has(h.id)) continue;
+    seen.add(h.id);
+    countdowns.push({ h, s, days: j - today.jd, wd: WEEKDAYS[(j + 1) % 7] });
+  }
+}
+const tet = countdowns.find((c) => c.h.id === 'tet-nguyen-dan');
+const iso = (d: { day: number; month: number; year: number }) => `${d.year}-${String(d.month).padStart(2, '0')}-${String(d.day).padStart(2, '0')}`;
+
+const faq = [
+  ['Còn bao nhiêu ngày nữa đến Tết?', tet ? `Tính từ ngày ${dmy(t.day, t.month, t.year)}, còn ${tet.days} ngày nữa đến Tết Nguyên Đán (${tet.wd}, ${dmy(tet.s.day, tet.s.month, tet.s.year)}). Trang được cập nhật mỗi ngày.` : ''],
+  ['Đếm ngày có tính cả ngày bắt đầu không?', 'Kết quả chính là khoảng cách giữa hai ngày, không tính ngày bắt đầu. Nếu cần tính cả hai đầu (ví dụ số ngày nghỉ), cộng thêm 1; công cụ hiển thị sẵn con số này.'],
+  ['Có đếm được ngày âm lịch không?', 'Có. Mỗi mốc có thể chọn dương lịch hoặc âm lịch (kể cả tháng nhuận), công cụ tự đổi về dương lịch rồi đếm.'],
+].filter(([, ans]) => ans);
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Đếm ngày', url: `https://deeplyai.app${COUNT_URL}`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', inLanguage: 'vi', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) },
+];
+---
+<LichShell
+  title="Đếm ngày – Tính số ngày giữa hai ngày, còn bao nhiêu ngày đến Tết"
+  description={`Đếm số ngày giữa hai ngày dương lịch hoặc âm lịch. ${tet ? `Hôm nay ${dmy(t.day, t.month, t.year)}, còn ${tet.days} ngày đến Tết Nguyên Đán. ` : ''}Đếm ngược đến các ngày lễ Việt Nam.`}
+  path={COUNT_URL}
+  crumbs={[{ name: 'Đếm ngày' }]}
+  jsonLd={jsonLd}
+  active="count"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Đếm ngày</h1>
+      <p>Tính số ngày giữa hai mốc thời gian, mỗi mốc có thể là ngày dương lịch hoặc âm lịch.</p>
+    </header>
+
+    <form class="la-tool la-count" data-count>
+      {['a', 'b'].map((side, i) => (
+        <fieldset class="la-side" data-side={side}>
+          <legend>{i === 0 ? 'Từ ngày' : 'Đến ngày'}</legend>
+          <div class="la-seg" role="radiogroup">
+            <label><input type="radio" name={`${side}-kind`} value="solar" checked /> Dương lịch</label>
+            <label><input type="radio" name={`${side}-kind`} value="lunar" /> Âm lịch</label>
+          </div>
+          <label data-solar>Ngày<input type="date" name={`${side}-date`} value={iso(i === 0 ? t : tet ? tet.s : t)} min={`${YEAR_FROM}-01-31`} max={`${YEAR_TO}-12-31`} /></label>
+          <div class="la-fields" data-lunar hidden>
+            <label>Ngày<input type="number" name={`${side}-d`} min="1" max="30" value="1" inputmode="numeric" /></label>
+            <label>Tháng<input type="number" name={`${side}-m`} min="1" max="12" value="1" inputmode="numeric" /></label>
+            <label>Năm<input type="number" name={`${side}-y`} min={YEAR_FROM} max={YEAR_TO - 1} value={today.lunar.year + 1} inputmode="numeric" /></label>
+            <label class="la-check"><input type="checkbox" name={`${side}-leap`} /> Nhuận</label>
+          </div>
+        </fieldset>
+      ))}
+      <button type="submit">Đếm ngày</button>
+      <output class="la-result" data-out aria-live="polite">
+        {tet && <Fragment><b>{tet.days} ngày</b><span>Từ {dmy(t.day, t.month, t.year)} đến Tết Nguyên Đán {dmy(tet.s.day, tet.s.month, tet.s.year)}, tức {Math.floor(tet.days / 7)} tuần {tet.days % 7} ngày. Tính cả hai đầu: {tet.days + 1} ngày.</span></Fragment>}
+      </output>
+    </form>
+
+    <section class="la-block" aria-labelledby="dem-nguoc">
+      <h2 id="dem-nguoc" class="la-h2">Đếm ngược đến các ngày lễ</h2>
+      <p class="la-lead">Tính từ hôm nay, {WEEKDAYS[today.weekday].toLowerCase()} {dmy(t.day, t.month, t.year)}.</p>
+      <ul class="la-upcoming">
+        {countdowns.map(({ h, s, days, wd }) => (
+          <li><a href={dayUrl(s.day, s.month, s.year)}><b>{h.title}</b><span>{wd}, {dmy(s.day, s.month, s.year)}</span></a><em>Còn {days} ngày</em></li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="la-block" aria-labelledby="hoi-dap">
+      <h2 id="hoi-dap" class="la-h2">Hỏi đáp</h2>
+      <div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { jdFromDate, lunarToSolar } from '../../../../components/lich-viet/lunar';
+
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  const form = document.querySelector<HTMLFormElement>('[data-count]');
+  if (form) {
+    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement;
+    // Show the solar or lunar inputs for each side.
+    form.querySelectorAll<HTMLFieldSetElement>('[data-side]').forEach((set) => {
+      const side = set.dataset.side!;
+      const sync = () => {
+        const lunar = (form.querySelector<HTMLInputElement>(`input[name="${side}-kind"]:checked`)?.value ?? 'solar') === 'lunar';
+        set.querySelector<HTMLElement>('[data-solar]')!.hidden = lunar;
+        set.querySelector<HTMLElement>('[data-lunar]')!.hidden = !lunar;
+      };
+      set.addEventListener('change', sync);
+      sync();
+    });
+
+    const read = (side: string) => {
+      const lunar = form.querySelector<HTMLInputElement>(`input[name="${side}-kind"]:checked`)?.value === 'lunar';
+      if (!lunar) {
+        const [y, m, d] = field(`${side}-date`).value.split('-').map(Number);
+        return y ? { d, m, y } : null;
+      }
+      const s = lunarToSolar(Number(field(`${side}-d`).value), Number(field(`${side}-m`).value), Number(field(`${side}-y`).value), field(`${side}-leap`).checked);
+      return s ? { d: s.day, m: s.month, y: s.year } : null;
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const out = form.querySelector('[data-out]')!;
+      const a = read('a');
+      const b = read('b');
+      const bold = document.createElement('b');
+      const span = document.createElement('span');
+      if (!a || !b) {
+        bold.textContent = 'Ngày âm lịch đã nhập không tồn tại.';
+        out.replaceChildren(bold);
+        return;
+      }
+      const diff = jdFromDate(b.d, b.m, b.y) - jdFromDate(a.d, a.m, a.y);
+      const n = Math.abs(diff);
+      bold.textContent = `${n} ngày`;
+      span.textContent = `Từ ${p2(a.d)}/${p2(a.m)}/${a.y} ${diff >= 0 ? 'đến' : 'lùi về'} ${p2(b.d)}/${p2(b.m)}/${b.y}, tức ${Math.floor(n / 7)} tuần ${n % 7} ngày. Tính cả hai đầu: ${n + 1} ngày.`;
+      out.replaceChildren(bold, span);
+    });
+  }
+</script>
