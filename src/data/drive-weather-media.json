@@ -1,0 +1,222 @@
+{
+  "stills": {
+    "route": {
+      "width": 720,
+      "height": 812,
+      "widths": [
+        720,
+        480
+      ]
+    },
+    "ice": {
+      "width": 720,
+      "height": 812,
+      "widths": [
+        720,
+        480
+      ]
+    },
+    "later": {
+      "width": 720,
+      "height": 812,
+      "widths": [
+        720,
+        480
+      ]
+    },
+    "radar": {
+      "width": 720,
+      "height": 812,
+      "widths": [
+        720,
+        480
+      ]
+    },
+    "duo": {
+      "width": 720,
+      "height": 812,
+      "widths": [
+        720,
+        480
+      ]
+    }
+  },
+  "videos": {
+    "phone": {
+      "width": 432,
+      "height": 936,
+      "duration": 17,
+      "mp4": 426946,
+      "webm": 465347,
+      "poster": {
+        "width": 432,
+        "height": 936
+      }
+    },
+    "film": {
+      "width": 1280,
+      "height": 720,
+      "duration": 31.2,
+      "mp4": 2758600,
+      "webm": 2487548,
+      "poster": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "snow": {
+      "width": 600,
+      "height": 600,
+      "duration": 9,
+      "mp4": 417003,
+      "webm": 435977,
+      "poster": {
+        "width": 600,
+        "height": 600
+      }
+    },
+    "rain": {
+      "width": 600,
+      "height": 600,
+      "duration": 9,
+      "mp4": 853168,
+      "webm": 922491,
+      "poster": {
+        "width": 600,
+        "height": 600
+      }
+    },
+    "fog": {
+      "width": 600,
+      "height": 600,
+      "duration": 9,
+      "mp4": 300058,
+      "webm": 278587,
+      "poster": {
+        "width": 600,
+        "height": 600
+      }
+    },
+    "storm": {
+      "width": 600,
+      "height": 600,
+      "duration": 9,
+      "mp4": 320105,
+      "webm": 232471,
+      "poster": {
+        "width": 600,
+        "height": 600
+      }
+    },
+    "ipad": {
+      "width": 600,
+      "height": 800,
+      "duration": 16,
+      "mp4": 481207,
+      "webm": 516822,
+      "poster": {
+        "width": 600,
+        "height": 800
+      }
+    },
+    "windscreen": {
+      "width": 960,
+      "height": 540,
+      "duration": 12,
+      "mp4": 1093783,
+      "webm": 1046858,
+      "poster": {
+        "width": 960,
+        "height": 540
+      }
+    },
+    "dash": {
+      "width": 1600,
+      "height": 686,
+      "duration": 12,
+      "mp4": 916703,
+      "webm": 730164,
+      "poster": {
+        "width": 1600,
+        "height": 686
+      }
+    },
+    "cp0": {
+      "width": 736,
+      "height": 412,
+      "duration": 3.6,
+      "mp4": 145028,
+      "webm": 133375,
+      "poster": {
+        "width": 736,
+        "height": 412
+      }
+    },
+    "cp1": {
+      "width": 736,
+      "height": 412,
+      "duration": 3.6,
+      "mp4": 139822,
+      "webm": 126633,
+      "poster": {
+        "width": 736,
+        "height": 412
+      }
+    },
+    "cp2": {
+      "width": 736,
+      "height": 412,
+      "duration": 3.6,
+      "mp4": 121030,
+      "webm": 117031,
+      "poster": {
+        "width": 736,
+        "height": 412
+      }
+    },
+    "cp3": {
+      "width": 736,
+      "height": 412,
+      "duration": 3.6,
+      "mp4": 144554,
+      "webm": 133808,
+      "poster": {
+        "width": 736,
+        "height": 412
+      }
+    },
+    "ip0": {
+      "width": 302,
+      "height": 656,
+      "duration": 4.6,
+      "mp4": 64222,
+      "webm": 72939,
+      "poster": {
+        "width": 302,
+        "height": 656
+      }
+    },
+    "ip1": {
+      "width": 302,
+      "height": 656,
+      "duration": 4.7,
+      "mp4": 63281,
+      "webm": 73049,
+      "poster": {
+        "width": 302,
+        "height": 656
+      }
+    },
+    "ip2": {
+      "width": 302,
+      "height": 656,
+      "duration": 4.7,
+      "mp4": 63418,
+      "webm": 71757,
+      "poster": {
+        "width": 302,
+        "height": 656
+      }
+    }
+  }
+}

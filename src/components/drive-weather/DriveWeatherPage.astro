@@ -1,0 +1,543 @@
+---
+// Marketing page for Drive Weather (App Store id 6796624138) at /apps/drive-weather/.
+// Media comes from scripts/drive-weather-media.mjs; product facts from the app's own
+// settings copy and the content entry in src/content/apps/drive-weather.md.
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StoreBadge from '../StoreBadge.astro';
+import AppCard from '../AppCard.astro';
+import Pic from './Pic.astro';
+import Clip from './Clip.astro';
+import { GROUPS, byId, hasRating, inGroup } from '../../data/catalog';
+import { surfacesOf } from '../../data/surfaces';
+
+const ID = 6796624138;
+const app = byId.get(ID)!;
+const entry = (await getEntry('apps', 'drive-weather'))!;
+const { name, title, description } = entry.data;
+const site = 'https://deeplyai.app';
+const path = '/apps/drive-weather/';
+const group = GROUPS[app.group];
+const related = inGroup(app.group).filter((a) => a.id !== ID).slice(0, 3);
+const surfaces = surfacesOf(app);
+const showRating = hasRating(app);
+const updated = new Date(app.updated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const questions = [
+  { href: '#route', n: '01', q: 'What will I hit?', a: 'The forecast at every town on the way, for the hour you pass it.' },
+  { href: '#departure', n: '02', q: 'When should I leave?', a: 'Move the departure and watch the whole route recalculate.' },
+  { href: '#ahead', n: '03', q: 'What is just ahead?', a: 'Snow, rain, fog and wind flagged before you are in them.' },
+];
+
+const hazards = [
+  { clip: 'snow', label: 'Snow ahead', note: 'Shown on the route line before the road turns white.' },
+  { clip: 'rain', label: 'Heavy rain', note: 'Flagged with the distance and time until you reach it.' },
+  { clip: 'fog', label: 'Dense fog', note: 'A warning while visibility is still good.' },
+  { clip: 'storm', label: 'Thunderstorms and wind', note: 'Gusts called out for the stretch you are about to drive.' },
+];
+
+// The same hints the app shows in Settings → Vehicle.
+const vehicles = [
+  { id: 'sedan', name: 'Sedan', hint: 'Baseline thresholds for a car.' },
+  { id: 'suv', name: 'SUV', hint: 'Slightly higher wind tolerance.' },
+  { id: 'motorbike', name: 'Motorbike', hint: 'Light rain already flags caution; ice is always danger.' },
+  { id: 'rv', name: 'RV / van', hint: 'Crosswind is the main risk for tall vehicles.' },
+  { id: 'truck', name: 'Truck', hint: 'Gust-sensitive, plus fuel-freeze warnings in extreme cold.' },
+];
+
+// Real CarPlay Simulator and iPhone captures from the 1.3 build (AppStore/final-v13-film).
+const carplayLayouts = [
+  { clip: 'cp0', name: 'Status bar', note: 'Temperature, wind and the next warning in one strip under the map.' },
+  { clip: 'cp1', name: 'Route', note: 'The towns ahead with the forecast for when you reach each one.' },
+  { clip: 'cp2', name: 'Side panel', note: 'What is next on the route, how far away, and your arrival time.' },
+  { clip: 'cp3', name: 'Side rail', note: 'A slim column that keeps most of the screen for the map.' },
+];
+const phoneLayouts = [
+  { clip: 'ip0', name: 'Compact', note: 'Your turn and the weather now, side by side.' },
+  { clip: 'ip1', name: 'Detailed', note: 'Adds the next hazard and how far away it is.' },
+  { clip: 'ip2', name: 'Minimal', note: 'Just the turn, with weather as a small chip.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name,
+    alternateName: app.storeName,
+    description,
+    url: `${site}${path}`,
+    image: `${site}${app.iconLarge}`,
+    screenshot: ['route', 'ice', 'later', 'radar'].map((s) => `${site}/assets/apps/drive-weather/${s}-720.jpg`),
+    operatingSystem: `iOS ${app.minimumOs} or later`,
+    applicationCategory: 'TravelApplication',
+    applicationSubCategory: 'Navigation',
+    softwareVersion: app.version,
+    installUrl: app.url,
+    author: { '@type': 'Organization', name: 'DeeplyAi', url: `${site}/` },
+    offers: { '@type': 'Offer', price: app.price, priceCurrency: 'USD' },
+    ...(showRating && { aggregateRating: { '@type': 'AggregateRating', ratingValue: app.rating, ratingCount: app.ratingCount, bestRating: 5, worstRating: 1 } }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [['Home', '/'], ['Apps', '/apps/'], [group.name, `/apps/${app.group}/`], [name, path]].map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: `${site}${p}` })),
+  },
+];
+---
+<Base path={path} title={title} description={description} ogImage="/assets/apps/drive-weather/og.jpg" ogImageAlt="Drive Weather flagging heavy rain on a city street, shown on the car's screen" jsonLd={jsonLd}>
+  <div class="dw">
+    <!-- Hero -------------------------------------------------------------->
+    <section class="dw-hero">
+      <div class="dw-bg" aria-hidden="true"><Clip name="windscreen" label="" /></div>
+      <div class="dw-sky" aria-hidden="true"></div>
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/apps/">Apps</a><span>/</span><a href={`/apps/${app.group}/`}>{group.name}</a><span>/</span><span>{name}</span></nav>
+        <div class="dw-hero-in">
+          <div class="dw-hero-copy">
+            <p class="dw-app">
+              <img src={app.iconLarge} width="64" height="64" alt="" style={`view-transition-name:app-${ID}`} />
+              <span><strong>{name}</strong><span>Route forecast &amp; radar</span></span>
+            </p>
+            <h1>Know the weather <em>before you reach it.</em></h1>
+            <p class="lead">Drive Weather forecasts each point of your route for the moment you will get there, with live radar, turn-by-turn guidance and warnings tuned to what you drive.</p>
+            <div class="actions">
+              <StoreBadge href={app.url} tone="white" />
+              <a class="btn ghost" href="#film"><span class="dw-play" aria-hidden="true"></span>Watch the film</a>
+            </div>
+            <p class="dw-meta">
+              {showRating && <span>{app.rating.toFixed(1)} ★ from {app.ratingCount} ratings</span>}
+              <span>Free on the App Store</span>
+              <span>iOS {app.minimumOs}+</span>
+              <span>Version {app.version}, {updated}</span>
+            </p>
+          </div>
+          <div class="dw-hero-device">
+            <div class="dw-phone"><Clip name="phone" label="Drive Weather on iPhone: searching for a destination, then the route forecast and Departure Dial" eager /></div>
+            <div class="dw-alert" aria-hidden="true">
+              <span class="dw-alert-icon">☂</span>
+              <span><b>Heavy rain</b><small>32 km · ~24 min ahead</small></span>
+            </div>
+            <div class="dw-alert dw-alert-b" aria-hidden="true">
+              <span class="dw-alert-icon">❄</span>
+              <span><b>Caution: ice</b><small>Mount Hood · 6:08 AM</small></span>
+            </div>
+          </div>
+        </div>
+        <ol class="dw-questions">
+          {questions.map((x) => (
+            <li><a href={x.href}><span class="dw-n">{x.n}</span><strong>{x.q}</strong><span>{x.a}</span></a></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Film --------------------------------------------------------------->
+    <section id="film" class="dw-film" aria-labelledby="dw-film-title">
+      <div class="wrap">
+        <div class="dw-head">
+          <p class="dw-kicker">The film · 31 seconds</p>
+          <h2 id="dw-film-title" class="h-lg">One drive. Four kinds of weather.</h2>
+          <p class="lead">Clear skies where you start, rain in the city, fog on the hills, wind on the plain. Drive Weather calls out each one while there is still time to plan around it.</p>
+        </div>
+        <div class="dw-screen"><Clip name="film" label="Drive Weather film: clear skies, heavy rain, fog and strong wind, each flagged on the car's screen" /></div>
+      </div>
+    </section>
+
+    <!-- Route forecast ----------------------------------------------------->
+    <section id="route" class="dw-feature wrap">
+      <div class="dw-copy">
+        <p class="dw-kicker">Route forecast</p>
+        <h2 class="h-lg">The forecast that moves with you.</h2>
+        <p class="lead">A city forecast tells you about now. Drive Weather shows the conditions at each location for your expected arrival time there.</p>
+        <ul class="dw-list">
+          <li>Every town along the way, with the time you pass it and the weather then.</li>
+          <li>Ice, rain and wind marked on the route line and in a colour band for the whole trip.</li>
+          <li>Saved trips in one place, ready to check again before you go.</li>
+        </ul>
+      </div>
+      <div class="dw-pair">
+        <Pic name="route" alt="Route from Seattle to Bend with temperatures along the way and a clear-route summary" sizes="(min-width: 960px) 300px, 45vw" />
+        <Pic name="ice" alt="The same route flagged with Caution: Ice near Mount Hood at 6:08 AM" sizes="(min-width: 960px) 300px, 45vw" />
+      </div>
+    </section>
+
+    <!-- Departure ---------------------------------------------------------->
+    <section id="departure" class="dw-band">
+      <div class="wrap dw-feature dw-flip">
+        <div class="dw-copy">
+          <p class="dw-kicker">Departure Dial</p>
+          <h2 class="h-lg">Leave later, check again.</h2>
+          <p class="lead">Drag the Departure Dial up to 7 days forward or back. The weather along your whole route recalculates for the hour your vehicle passes each point.</p>
+          <div class="dw-dial" aria-hidden="true">
+            <span>Now</span><i><b></b></i><span>+7 days</span>
+          </div>
+        </div>
+        <div class="dw-single"><Pic name="later" alt="Departure moved to 8:00 PM; the route now reads clear along the way" sizes="(min-width: 960px) 340px, 70vw" /></div>
+      </div>
+    </section>
+
+    <!-- Hazards ------------------------------------------------------------>
+    <section id="ahead" class="dw-night" aria-labelledby="dw-ahead-title">
+      <div class="wrap">
+        <div class="dw-head">
+          <p class="dw-kicker">What is just ahead</p>
+          <h2 id="dw-ahead-title" class="h-lg">Flagged before you are in it.</h2>
+          <p class="lead">While you drive, the next hazard on your route sits beside your turn-by-turn, on your iPhone and on the car's screen.</p>
+        </div>
+        <ul class="dw-hazards">
+          {hazards.map((h) => (
+            <li>
+              <Clip name={h.clip} label={`${h.label}: the road ahead with Drive Weather's warning on the car's screen`} />
+              <h3>{h.label}</h3>
+              <p>{h.note}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div class="dw-vehicle" data-tabs>
+          <div>
+            <h3>Warnings for what you drive</h3>
+            <p>Set your vehicle type and hazard thresholds adapt to it.</p>
+          </div>
+          <div class="dw-tabs" role="tablist" aria-label="Vehicle type">
+            {vehicles.map((v, i) => (
+              <button type="button" role="tab" id={`dw-tab-${v.id}`} aria-controls={`dw-panel-${v.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{v.name}</button>
+            ))}
+          </div>
+          {vehicles.map((v, i) => (
+            <p class="dw-hint" role="tabpanel" id={`dw-panel-${v.id}`} aria-labelledby={`dw-tab-${v.id}`} hidden={i !== 0}>{v.hint}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Radar -------------------------------------------------------------->
+    <section id="radar" class="dw-feature wrap">
+      <div class="dw-copy">
+        <p class="dw-kicker">Live radar</p>
+        <h2 class="h-lg">Radar that is honest about itself.</h2>
+        <p class="lead">Radar draws on multiple sources, so coverage does not silently go stale mid-trip.</p>
+        <ul class="dw-list">
+          <li>Scrub recent frames, with a clear timestamp on each one.</li>
+          <li>Storm cells and fronts drawn over your route.</li>
+          <li>Plain labelling when short-term nowcasts are not available in your region.</li>
+        </ul>
+      </div>
+      <div class="dw-single"><Pic name="radar" alt="Live radar over the Midwest with a timeline scrubber" sizes="(min-width: 960px) 340px, 70vw" /></div>
+    </section>
+
+    <!-- Guidance + CarPlay ------------------------------------------------->
+    <section id="carplay" class="dw-night" aria-labelledby="dw-carplay-title">
+      <div class="wrap">
+        <div class="dw-head">
+          <p class="dw-kicker">Turn-by-turn · CarPlay</p>
+          <h2 id="dw-carplay-title" class="h-lg">Turn by turn, with the weather ahead.</h2>
+          <p class="lead">Start the trip and Drive Weather guides you, with live radar and the next stretch of weather in view: on the car screen with CarPlay, and on your iPhone.</p>
+        </div>
+        <div class="dw-dash"><Clip name="dash" label="Drive Weather on a car's CarPlay screen and an iPhone, with rain on the windscreen" /></div>
+
+        <div class="dw-layouts">
+          <div class="dw-layout" data-tabs>
+            <div class="dw-layout-head">
+              <h3>Four ways to fit CarPlay</h3>
+              <div class="dw-tabs" role="tablist" aria-label="CarPlay layout">
+                {carplayLayouts.map((l, i) => (
+                  <button type="button" role="tab" id={`dw-tab-${l.clip}`} aria-controls={`dw-panel-${l.clip}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{l.name}</button>
+                ))}
+              </div>
+            </div>
+            {carplayLayouts.map((l, i) => (
+              <div class="dw-panel" role="tabpanel" id={`dw-panel-${l.clip}`} aria-labelledby={`dw-tab-${l.clip}`} hidden={i !== 0}>
+                <div class="dw-carscreen"><Clip name={l.clip} label={`CarPlay, ${l.name} layout: ${l.note}`} /></div>
+                <p>{l.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="dw-layout dw-layout-phone" data-tabs>
+            <div class="dw-layout-head">
+              <h3>Drive Mode on iPhone</h3>
+              <div class="dw-tabs" role="tablist" aria-label="iPhone Drive Mode layout">
+                {phoneLayouts.map((l, i) => (
+                  <button type="button" role="tab" id={`dw-tab-${l.clip}`} aria-controls={`dw-panel-${l.clip}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{l.name}</button>
+                ))}
+              </div>
+            </div>
+            {phoneLayouts.map((l, i) => (
+              <div class="dw-panel" role="tabpanel" id={`dw-panel-${l.clip}`} aria-labelledby={`dw-tab-${l.clip}`} hidden={i !== 0}>
+                <div class="dw-phone dw-phone-sm"><Clip name={l.clip} label={`iPhone Drive Mode, ${l.name}: ${l.note}`} /></div>
+                <p>{l.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Devices ------------------------------------------------------------>
+    <section id="devices" class="dw-feature wrap">
+      <div class="dw-copy">
+        <p class="dw-kicker">Every screen on the trip</p>
+        <h2 class="h-lg">Plan on iPad. Drive with iPhone.</h2>
+        <p class="lead">The whole trip fits in one view on iPad, with the map beside the list. On a foldable iPhone the layout follows the screen, open or closed.</p>
+        <h3 class="surface-label" style="margin-top:28px">Available on</h3>
+        <ul class="chips">{surfaces.map((s) => <li><a href={`/platforms/${s.slug}/`}>{s.name}</a></li>)}</ul>
+      </div>
+      <div class="dw-pair dw-devices">
+        <div class="dw-ipad"><Clip name="ipad" label="Drive Weather on iPad: route planning with the map and list side by side" /></div>
+        <Pic name="duo" alt="Drive Weather on a foldable iPhone, open, showing the route card" sizes="(min-width: 960px) 260px, 40vw" />
+      </div>
+    </section>
+
+    <!-- CTA ---------------------------------------------------------------->
+    <section class="dw-cta">
+      <div class="wrap dw-cta-in">
+        <img src={app.iconLarge} width="96" height="96" alt="" loading="lazy" />
+        <div>
+          <h2 class="h-lg">Check the road before you take it.</h2>
+          <p class="lead">Free on the App Store for iPhone and iPad, with CarPlay.</p>
+        </div>
+        <StoreBadge href={app.url} tone="white" />
+      </div>
+    </section>
+
+    {related.length > 0 && (
+      <div class="wrap section">
+        <h2 class="h-lg" style="font-size:clamp(28px,3vw,40px);margin-bottom:12px">More from {group.name.toLowerCase()}</h2>
+        <ul class="app-grid">{related.map((a) => <li><AppCard app={a} /></li>)}</ul>
+      </div>
+    )}
+  </div>
+</Base>
+
+<script>
+  // Clips start only when on screen, after load, and never with reduced motion.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const clips = [...document.querySelectorAll<HTMLVideoElement>('.dw video[data-clip]')];
+
+  const load = (video: HTMLVideoElement) => {
+    if (video.dataset.loaded) return;
+    video.dataset.loaded = '1';
+    video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => { s.src = s.dataset.src!; });
+    video.load();
+    video.addEventListener('playing', () => video.parentElement!.classList.add('is-playing'), { once: true });
+  };
+
+  const setup = () => {
+    if (reduce.matches || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const video = entry.target as HTMLVideoElement;
+        if (video.dataset.paused) continue;
+        if (entry.isIntersecting) { load(video); video.play().catch(() => {}); }
+        else video.pause();
+      }
+    }, { rootMargin: '200px 0px', threshold: 0.25 });
+    clips.forEach((video) => {
+      observer.observe(video);
+      const button = video.parentElement!.querySelector<HTMLButtonElement>('.clip-toggle');
+      if (!button) return;
+      button.hidden = false;
+      button.addEventListener('click', () => {
+        const pausing = !video.paused;
+        if (pausing) { video.pause(); video.dataset.paused = '1'; }
+        else { delete video.dataset.paused; load(video); video.play().catch(() => {}); }
+        button.setAttribute('aria-label', pausing ? button.dataset.play! : button.dataset.pause!);
+        button.classList.toggle('is-paused', pausing);
+      });
+    });
+  };
+  if (document.readyState === 'complete') setup();
+  else addEventListener('load', setup, { once: true });
+
+  // Tab groups (vehicle type, CarPlay and iPhone layouts): WAI-ARIA tabs with arrow keys.
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((group) => {
+    const tabs = [...group.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+      });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        next.focus();
+        select(next);
+      });
+    });
+  });
+</script>
+
+<style>
+  .dw {
+    --sky-0: #050c1f;
+    --sky-1: #0a1f4d;
+    --sky-2: #12347a;
+    --rain: #4d8dff;
+    --amber: #ffb547;
+    --on-sky: #eef3ff;
+    --on-sky-2: #a9b8d6;
+    --sky-line: #ffffff1f;
+  }
+  .dw :global(.clip) { position: relative; overflow: hidden; background: var(--sky-0); }
+  .dw :global(.clip picture), .dw :global(.clip img) { width: 100%; height: 100%; object-fit: cover; }
+  .dw :global(.clip video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+  .dw :global(.clip.is-playing video) { opacity: 1; }
+  .dw :global(.clip-toggle) { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: #000a; color: #fff; cursor: pointer; opacity: .7; transition: opacity .2s; }
+  .dw :global(.clip-toggle:hover), .dw :global(.clip-toggle:focus-visible) { opacity: 1; }
+  .dw :global(.clip-toggle span) { width: 10px; height: 12px; border-inline: 3px solid currentColor; }
+  .dw :global(.clip-toggle.is-paused span) { width: 0; height: 0; border: 0; border-left: 11px solid currentColor; border-block: 7px solid transparent; margin-left: 3px; }
+
+  .dw-kicker { margin-bottom: 14px; font-size: 14px; font-weight: 600; letter-spacing: .02em; color: var(--signal); }
+  .dw-head { max-width: 46rem; margin-bottom: clamp(32px, 4vw, 56px); }
+  .dw-head .lead { margin-top: 20px; }
+
+  /* Hero */
+  .dw-hero { position: relative; overflow: hidden; background: radial-gradient(120% 90% at 85% 10%, var(--sky-2) 0%, var(--sky-1) 38%, var(--sky-0) 78%); color: var(--on-sky); }
+  .dw-sky { position: absolute; inset: 0; pointer-events: none; opacity: .5; background:
+      radial-gradient(40% 30% at 78% 38%, #4d8dff55, transparent 70%),
+      radial-gradient(30% 22% at 92% 70%, #ffb54722, transparent 70%),
+      repeating-linear-gradient(105deg, transparent 0 22px, #ffffff06 22px 23px); }
+  .dw-hero .wrap { position: relative; }
+  .dw-hero .crumbs { color: var(--on-sky-2); }
+  .dw-hero-in { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(32px, 5vw, 80px); padding-block: clamp(32px, 4vw, 56px) clamp(32px, 4vw, 48px); }
+  .dw-app { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .dw-app img { width: 64px; height: 64px; border-radius: 22.5%; box-shadow: 0 10px 30px #0008; }
+  .dw-app > span { display: grid; line-height: 1.3; }
+  .dw-app strong { font-family: var(--display); font-size: 20px; font-weight: 650; }
+  .dw-app > span > span { font-size: 14px; color: var(--on-sky-2); }
+  .dw-hero h1 { font-size: clamp(42px, 5.4vw, 80px); max-width: 10em; }
+  .dw-hero h1 em { display: block; font-style: normal; background: linear-gradient(90deg, #8fb6ff, var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .dw-hero .lead { margin-top: 24px; max-width: 32em; color: var(--on-sky-2); }
+  .dw-hero .actions { align-items: center; margin-top: 32px; }
+  .dw-hero .btn.ghost { border-color: #ffffff59; color: var(--on-sky); }
+  .dw-hero .btn.ghost:hover { background: var(--on-sky); border-color: var(--on-sky); color: var(--sky-0); }
+  .dw-play { width: 0; height: 0; border-left: 10px solid currentColor; border-block: 6px solid transparent; }
+  .dw-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 24px; font-size: 14px; color: var(--on-sky-2); }
+  .dw-meta span + span::before { content: '·'; margin-right: 18px; opacity: .6; }
+
+  .dw-hero-device { position: relative; justify-self: center; width: min(100%, 300px); }
+  .dw-phone { padding: 10px; border-radius: 52px; background: linear-gradient(145deg, #3a4357, #0d111b 60%); box-shadow: 0 50px 100px -30px #000c, 0 0 0 1px #ffffff22 inset; }
+  .dw-phone :global(.clip) { border-radius: 42px; }
+  .dw-alert { position: absolute; left: -22%; top: 22%; display: flex; align-items: center; gap: 12px; padding: 12px 16px 12px 12px; border: 1px solid var(--sky-line); border-radius: 18px; background: #0b1630d9; backdrop-filter: blur(12px); box-shadow: 0 20px 40px -12px #000a; animation: float 6s ease-in-out infinite; }
+  .dw-alert b { display: block; color: #ff6b5a; font-size: 15px; }
+  .dw-alert small { color: var(--on-sky-2); font-size: 13px; }
+  .dw-alert-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: #ff6b5a26; font-size: 20px; }
+  .dw-alert-b { left: auto; right: -16%; top: 64%; animation-delay: -3s; }
+  .dw-alert-b b { color: var(--amber); }
+  .dw-alert-b .dw-alert-icon { background: #ffb54726; }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+
+  .dw-questions { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-bottom: clamp(40px, 5vw, 72px); border: 1px solid var(--sky-line); border-radius: 22px; overflow: hidden; background: var(--sky-line); }
+  .dw-questions a { display: grid; gap: 6px; height: 100%; padding: 22px 24px; background: #08163a; text-decoration: none; transition: background-color .2s; }
+  .dw-questions a:hover { background: #0e2558; }
+  .dw-questions strong { font-family: var(--display); font-size: 22px; font-weight: 600; }
+  .dw-questions span:last-child { font-size: 15px; color: var(--on-sky-2); }
+  .dw-n { font-size: 13px; font-weight: 600; color: var(--amber); }
+
+  /* Film */
+  .dw-film .dw-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 16px 64px; max-width: none; }
+  .dw-film .dw-head .dw-kicker { grid-column: 1 / -1; margin: 0; }
+  .dw-film .dw-head .lead { margin: 0; }
+  .dw-film { padding-block: clamp(72px, 9vw, 130px); background: var(--sky-0); color: var(--on-sky); }
+  .dw-film .lead, .dw-night .lead { color: var(--on-sky-2); }
+  .dw-film .dw-kicker, .dw-night .dw-kicker { color: var(--amber); }
+  .dw-screen { border-radius: clamp(16px, 2vw, 28px); overflow: hidden; box-shadow: 0 40px 120px -40px #4d8dff66; }
+
+  /* Feature split */
+  .dw-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(40px, 6vw, 96px); padding-block: clamp(72px, 9vw, 130px); }
+  .dw-flip > :first-child { order: 2; }
+  .dw-copy .lead { margin-top: 20px; }
+  .dw-list { display: grid; gap: 14px; margin-top: 28px; }
+  .dw-list li { position: relative; padding-left: 30px; }
+  .dw-list li::before { content: ''; position: absolute; left: 0; top: .55em; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, var(--signal) 0 3px, #c8360b29 4px); }
+  .dw-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 24px); align-items: start; }
+  .dw-pair > :global(*) { display: block; }
+  .dw-pair > :global(:last-child) { margin-top: 18%; }
+  .dw-pair :global(img), .dw-single :global(img) { border-radius: clamp(14px, 1.6vw, 22px); box-shadow: 0 30px 60px -30px #06122b99; }
+  .dw-single { justify-self: center; width: min(100%, 420px); }
+  .dw-band { background: var(--paper-2); }
+
+  .dw-dial { display: flex; align-items: center; gap: 14px; margin-top: 32px; max-width: 420px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+  .dw-dial i { position: relative; flex: 1; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #3aa25c, #3aa25c 55%, var(--amber) 55%, var(--amber) 80%, #e5533d 80%); }
+  .dw-dial b { position: absolute; top: 50%; left: 30%; width: 26px; height: 26px; margin: -13px 0 0 -13px; border: 3px solid #fff; border-radius: 50%; background: #2f6bff; box-shadow: 0 4px 12px #0004; animation: dial 7s ease-in-out infinite; }
+  @keyframes dial { 0%, 100% { left: 18%; } 50% { left: 72%; } }
+
+  /* Night sections */
+  .dw-night { padding-block: clamp(72px, 9vw, 130px); background: linear-gradient(180deg, var(--sky-0), var(--sky-1)); color: var(--on-sky); }
+  .dw-hazards { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 20px); }
+  .dw-hazards :global(.clip) { border-radius: 20px; }
+  .dw-hazards h3 { margin-top: 16px; font-size: 22px; }
+  .dw-hazards p { margin-top: 6px; font-size: 15px; color: var(--on-sky-2); }
+
+  .dw-vehicle { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 20px 40px; margin-top: clamp(48px, 6vw, 80px); padding: clamp(24px, 3vw, 36px); border: 1px solid var(--sky-line); border-radius: 24px; background: #ffffff08; }
+  .dw-vehicle h3 { font-size: clamp(24px, 2.4vw, 32px); }
+  .dw-vehicle > div > p { margin-top: 6px; color: var(--on-sky-2); }
+  .dw-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dw-tabs button { min-height: 44px; padding: 0 18px; border: 1px solid var(--sky-line); border-radius: 999px; background: transparent; color: var(--on-sky); font: 600 15px var(--body); cursor: pointer; transition: background-color .2s, color .2s; }
+  .dw-tabs button:hover { border-color: #ffffff66; }
+  .dw-tabs button[aria-selected='true'] { border-color: var(--amber); background: var(--amber); color: var(--sky-0); }
+  .dw-hint { grid-column: 1 / -1; padding-top: 18px; border-top: 1px solid var(--sky-line); font-family: var(--display); font-size: clamp(20px, 2vw, 26px); }
+
+              
+  .dw-dash { border-radius: clamp(16px, 2vw, 28px); overflow: hidden; box-shadow: 0 40px 120px -40px #4d8dff55; }
+  .dw-layouts { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 24px); margin-top: clamp(16px, 2vw, 24px); }
+  .dw-layout { display: flex; flex-direction: column; gap: 20px; padding: clamp(20px, 2.4vw, 32px); border: 1px solid var(--sky-line); border-radius: 24px; background: #ffffff08; }
+  .dw-layout-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
+  .dw-layout h3 { font-size: clamp(22px, 2vw, 28px); }
+  .dw-panel { display: grid; gap: 16px; }
+  .dw-panel[hidden] { display: none; }
+  .dw-panel > p { color: var(--on-sky-2); }
+  .dw-carscreen { padding: 12px; border-radius: 22px; background: linear-gradient(160deg, #2a2f3a, #0b0d12 70%); box-shadow: 0 0 0 1px #ffffff1a inset, 0 30px 60px -30px #000; }
+  .dw-carscreen :global(.clip) { border-radius: 12px; }
+  .dw-layout-phone .dw-panel { justify-items: center; text-align: center; }
+  .dw-phone-sm { width: min(100%, 230px); padding: 8px; border-radius: 40px; }
+  .dw-phone-sm :global(.clip) { border-radius: 33px; }
+  .dw-layout-phone .dw-tabs { justify-content: center; }
+  .dw-layout-phone .dw-layout-head { justify-content: center; text-align: center; }
+
+  .dw-bg { position: absolute; inset: 0; }
+  .dw-bg :global(.clip) { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto !important; background: transparent; }
+  .dw-bg :global(.clip-toggle) { z-index: 5; right: var(--gutter); bottom: 16px; }
+  .dw-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #050c1ff2 0%, #050c1fd9 45%, #0a1f4d99 100%), linear-gradient(0deg, #050c1f 0%, transparent 35%); }
+
+  .dw-devices { grid-template-columns: 1.25fr 1fr; align-items: center; }
+  .dw-devices > :global(:last-child) { margin-top: 0; }
+  .dw-ipad { padding: 10px; border-radius: 30px; background: #111; box-shadow: 0 30px 60px -30px #06122b99; }
+  .dw-ipad :global(.clip) { border-radius: 22px; }
+
+  .dw-cta { padding-block: clamp(64px, 8vw, 110px); background: radial-gradient(90% 140% at 0% 0%, var(--sky-2), var(--sky-0) 70%); color: var(--on-sky); }
+  .dw-cta-in { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(20px, 3vw, 40px); }
+  .dw-cta img { width: 96px; height: 96px; border-radius: 22.5%; }
+  .dw-cta .lead { margin-top: 10px; color: var(--on-sky-2); }
+
+  @media (max-width: 959px) {
+    .dw-hero-in, .dw-feature { grid-template-columns: 1fr; }
+    .dw-flip > :first-child { order: 0; }
+    .dw-hero-device { width: min(78vw, 320px); margin-top: 16px; }
+    .dw-alert { left: -14%; }
+    .dw-alert-b { right: -10%; }
+    .dw-questions { grid-template-columns: 1fr; }
+    .dw-film .dw-head { grid-template-columns: 1fr; }
+    .dw-hazards { grid-template-columns: 1fr 1fr; }
+    .dw-vehicle { grid-template-columns: 1fr; }
+    .dw-layouts { grid-template-columns: 1fr; }
+    .dw-cta-in { grid-template-columns: 1fr; justify-items: start; }
+  }
+  @media (max-width: 520px) {
+    .dw-alert { left: -6%; top: 14%; padding: 8px 12px 8px 8px; }
+    .dw-alert-b { right: -6%; left: auto; top: 70%; }
+    .dw-alert-icon { width: 32px; height: 32px; font-size: 17px; }
+    .dw-hazards h3 { font-size: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dw-alert, .dw-dial b { animation: none; }
+  }
+</style>
