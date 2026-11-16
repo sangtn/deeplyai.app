@@ -1,0 +1,89 @@
+---
+import LichShell from '../../../../components/lich/LichShell.astro';
+import { exchangeRates, vnd } from '../../../../lib/lich/market';
+import { FX_URL, TOOLS_URL } from '../../../../lib/lich/urls';
+import { LICH_API } from '../../../../lib/lich/config';
+
+const table = await exchangeRates();
+const usd = table?.rates.find((r) => r.code === 'USD');
+const when = table?.updatedAt ? new Date(table.updatedAt) : null;
+const p2 = (n: number) => String(n).padStart(2, '0');
+const whenText = when ? (() => { const v = new Date(when.getTime() + 7 * 3600 * 1000); return `${p2(v.getUTCHours())}:${p2(v.getUTCMinutes())} ngày ${p2(v.getUTCDate())}/${p2(v.getUTCMonth() + 1)}/${v.getUTCFullYear()}`; })() : '';
+const faq = [
+  ['Tỷ giá mua tiền mặt và mua chuyển khoản khác nhau thế nào?', 'Giá mua tiền mặt là giá ngân hàng mua ngoại tệ bằng tiền giấy; giá mua chuyển khoản áp dụng khi ngoại tệ chuyển vào tài khoản, thường cao hơn một chút. Giá bán là giá ngân hàng bán ngoại tệ cho bạn.'],
+  ['Tỷ giá trên trang được cập nhật khi nào?', 'Trang lấy bảng tỷ giá niêm yết của Vietcombank mỗi ngày một lần và ghi rõ thời điểm niêm yết. Tỷ giá có thể thay đổi nhiều lần trong ngày; hãy xem tại ngân hàng trước khi giao dịch.'],
+];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }];
+---
+<LichShell
+  title="Tỷ giá Vietcombank hôm nay – Giá USD, Euro, Yên, Won và đổi ngoại tệ"
+  description={usd ? `Tỷ giá Vietcombank niêm yết ${whenText}: USD mua ${vnd(usd.transferBuy)}, bán ${vnd(usd.sell)} đồng. Bảng 20 ngoại tệ và công cụ đổi ngoại tệ sang VND.` : 'Tỷ giá Vietcombank 20 ngoại tệ: giá mua tiền mặt, mua chuyển khoản, giá bán và công cụ đổi ngoại tệ sang VND.'}
+  path={FX_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Tỷ giá' }]}
+  jsonLd={jsonLd}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Tỷ giá Vietcombank hôm nay</h1>
+      <p>{table ? `Bảng tỷ giá niêm yết lúc ${whenText}.` : 'Chưa lấy được bảng tỷ giá trong lần cập nhật gần nhất.'} Đơn vị: đồng Việt Nam cho 1 đơn vị ngoại tệ.</p>
+    </header>
+    {LICH_API && <div class="la-cards la-mt" data-mk data-api={LICH_API} hidden></div>}
+    {table && (
+      <Fragment>
+        <form class="la-tool la-tool-wide" data-fx>
+          <h2 class="la-h2">Đổi ngoại tệ sang VND</h2>
+          <div class="la-fields la-fields-wrap">
+            <label>Số tiền<input name="amount" type="number" min="0" step="any" value="100" inputmode="decimal" /></label>
+            <label>Ngoại tệ<select name="code">{table.rates.map((r) => <option value={r.code} data-buy={r.transferBuy ?? r.cashBuy ?? ''} data-sell={r.sell ?? ''}>{r.code} · {r.name}</option>)}</select></label>
+            <label>Theo giá<select name="side"><option value="buy">Ngân hàng mua (bạn bán)</option><option value="sell">Ngân hàng bán (bạn mua)</option></select></label>
+          </div>
+          <output class="la-result" data-out aria-live="polite">{usd && <b>{vnd(100 * (usd.transferBuy ?? usd.cashBuy ?? 0))} đ</b>}</output>
+        </form>
+        <div class="la-table-wrap">
+          <table class="la-table">
+            <thead><tr><th scope="col">Ngoại tệ</th><th scope="col">Mua tiền mặt</th><th scope="col">Mua chuyển khoản</th><th scope="col">Bán</th></tr></thead>
+            <tbody>{table.rates.map((r) => <tr><td><b>{r.code}</b><br /><small>{r.name}</small></td><td>{vnd(r.cashBuy, r.cashBuy && r.cashBuy < 1000 ? 2 : 0)}</td><td>{vnd(r.transferBuy, r.transferBuy && r.transferBuy < 1000 ? 2 : 0)}</td><td>{vnd(r.sell, r.sell && r.sell < 1000 ? 2 : 0)}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </Fragment>
+    )}
+    <section class="la-block"><h2 class="la-h2">Hỏi đáp</h2><div class="la-faq">{faq.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}</div></section>
+    <p class="la-note">Nguồn: bảng tỷ giá công bố trên vietcombank.com.vn. Số liệu để tham khảo, không phải báo giá giao dịch.</p>
+  </div>
+</LichShell>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-fx]');
+  if (form) {
+    const update = () => {
+      const amount = Number((form.elements.namedItem('amount') as HTMLInputElement).value) || 0;
+      const opt = (form.elements.namedItem('code') as HTMLSelectElement).selectedOptions[0];
+      const side = (form.elements.namedItem('side') as HTMLSelectElement).value;
+      const rate = Number(side === 'sell' ? opt.dataset.sell : opt.dataset.buy) || 0;
+      const b = document.createElement('b');
+      b.textContent = rate ? `${Math.round(amount * rate).toLocaleString('vi-VN')} đ` : 'Không có giá cho lựa chọn này';
+      const s = document.createElement('span');
+      s.textContent = rate ? `${amount.toLocaleString('vi-VN')} ${opt.value} × ${rate.toLocaleString('vi-VN')}` : '';
+      form.querySelector('[data-out]')!.replaceChildren(b, s);
+    };
+    form.addEventListener('input', update);
+    update();
+  }
+</script>
+
+<script>
+  // Gold and VN-Index appear only when the API has those sources enabled.
+  const mk = document.querySelector<HTMLElement>('[data-mk]');
+  if (mk) {
+    fetch(`${mk.dataset.api}/v1/market`).then((r) => r.json()).then((m) => {
+      const cards: [string, string, string][] = [];
+      const f = (n: number) => Math.round(n).toLocaleString('vi-VN');
+      if (m.goldSJC) cards.push(['Vàng miếng SJC', `Mua ${f(m.goldSJC.buy)} · Bán ${f(m.goldSJC.sell)} đ/lượng`, `Nguồn: ${m.goldSJC.source}`]);
+      if (m.vnindex?.value) cards.push(['VN-Index', `${m.vnindex.value.toLocaleString('vi-VN')} điểm (${m.vnindex.change >= 0 ? '+' : ''}${m.vnindex.change.toLocaleString('vi-VN', { maximumFractionDigits: 2 })}, ${m.vnindex.percent >= 0 ? '+' : ''}${m.vnindex.percent.toLocaleString('vi-VN', { maximumFractionDigits: 2 })}%)`, `Nguồn: ${m.vnindex.source}${m.vnindex.date ? `, phiên ${m.vnindex.date}` : ''}`]);
+      if (!cards.length) return;
+      mk.replaceChildren(...cards.map(([t, v, s]) => { const a = document.createElement('article'); a.className = 'la-card'; const h = document.createElement('h2'); h.className = 'la-h3'; h.textContent = t; const p = document.createElement('p'); p.textContent = v; const sm = document.createElement('small'); sm.textContent = s; a.append(h, p, sm); return a; }));
+      mk.hidden = false;
+    }).catch(() => {});
+  }
+</script>

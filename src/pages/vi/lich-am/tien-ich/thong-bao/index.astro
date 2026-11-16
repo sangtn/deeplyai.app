@@ -1,0 +1,94 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { PLACES } from '../../../../../lib/lich/weather';
+import { LICH_API } from '../../../../../lib/lich/config';
+import { PUSH_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+---
+<LichShell
+  title="Nhắc rằm, mùng 1 và thời tiết buổi sáng qua thông báo"
+  description="Nhận thông báo trên điện thoại hoặc máy tính vào 6 giờ sáng: nhắc ngày rằm, mùng 1 âm lịch và thời tiết hôm nay nơi bạn ở. Miễn phí, tắt bất cứ lúc nào."
+  path={PUSH_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Thông báo' }]}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Thông báo mỗi sáng</h1>
+      <p>Đúng 6 giờ sáng, Lịch Việt gửi một thông báo ngắn: hôm nay có phải rằm, mùng 1 không, và thời tiết nơi bạn chọn. Chúng tôi chỉ lưu địa chỉ nhận thông báo do trình duyệt cấp và các mục bạn chọn, không lưu tên hay số điện thoại.</p>
+    </header>
+    {!LICH_API ? (
+      <p class="la-stale">Tính năng thông báo đang được chuẩn bị. Trong lúc chờ, bạn có thể <a href="/vi/lich-am/tien-ich/lich-am-google-calendar/">thêm lịch rằm, mùng 1 vào Google Calendar</a> để được nhắc.</p>
+    ) : (
+      <form class="la-tool la-tool-wide" data-push data-api={LICH_API}>
+        <label class="la-check"><input type="checkbox" name="ram" checked /> Nhắc ngày rằm và mùng 1 âm lịch</label>
+        <label>Thời tiết buổi sáng
+          <select name="place">
+            <option value="">Không nhận</option>
+            {PLACES.map((p) => <option value={p.slug}>{p.name}</option>)}
+          </select>
+        </label>
+        <div class="la-ev-actions">
+          <button type="submit" data-push-on>Bật thông báo</button>
+          <button type="button" class="la-copy" data-push-off hidden>Tắt thông báo</button>
+        </div>
+        <p class="la-age-note" data-push-msg aria-live="polite"></p>
+        <p class="la-lead" data-push-ios hidden>Trên iPhone (iOS 16.4 trở lên): mở trang này bằng Safari, bấm Chia sẻ › “Thêm vào MH chính”, rồi mở Lịch Việt từ màn hình chính và bật thông báo tại đây.</p>
+      </form>
+    )}
+  </div>
+</LichShell>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-push]');
+  if (form) {
+    const API = form.dataset.api!;
+    const msg = form.querySelector<HTMLElement>('[data-push-msg]')!;
+    const off = form.querySelector<HTMLButtonElement>('[data-push-off]')!;
+    const supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+    const standalone = matchMedia('(display-mode: standalone)').matches;
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !standalone) form.querySelector<HTMLElement>('[data-push-ios]')!.hidden = false;
+    if (!supported) msg.textContent = 'Trình duyệt này chưa hỗ trợ thông báo web.';
+
+    const keyBytes = (b64: string) => { const s = atob(b64.replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(s, (c) => c.charCodeAt(0)); };
+    const registration = () => navigator.serviceWorker.register(`/vi/lich-am/sw.js?api=${encodeURIComponent(API)}`, { scope: '/vi/lich-am/' }).then(() => navigator.serviceWorker.ready);
+
+    (async () => {
+      if (!supported) return;
+      const reg = await navigator.serviceWorker.getRegistration('/vi/lich-am/');
+      if (await reg?.pushManager.getSubscription()) { off.hidden = false; msg.textContent = 'Thông báo đang bật trên thiết bị này.'; }
+    })();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!supported) return;
+      const topics = [
+        ...((form.elements.namedItem('ram') as HTMLInputElement).checked ? ['ram-mung-1'] : []),
+        ...((form.elements.namedItem('place') as HTMLSelectElement).value ? [`thoi-tiet:${(form.elements.namedItem('place') as HTMLSelectElement).value}`] : []),
+      ];
+      if (!topics.length) { msg.textContent = 'Hãy chọn ít nhất một loại thông báo.'; return; }
+      try {
+        if ((await Notification.requestPermission()) !== 'granted') { msg.textContent = 'Bạn chưa cho phép thông báo. Có thể bật lại trong cài đặt trang của trình duyệt.'; return; }
+        const { key } = await fetch(`${API}/v1/push/key`).then((r) => r.json());
+        if (!key) { msg.textContent = 'Máy chủ thông báo chưa sẵn sàng.'; return; }
+        const reg = await registration();
+        const sub = (await reg.pushManager.getSubscription()) ?? await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(key) });
+        const res = await fetch(`${API}/v1/push/subscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subscription: sub.toJSON(), topics }) });
+        msg.textContent = res.ok ? 'Đã bật. Thông báo đầu tiên sẽ đến vào 6 giờ sáng (nếu hôm đó có nội dung).' : 'Không lưu được đăng ký, vui lòng thử lại.';
+        off.hidden = !res.ok;
+      } catch {
+        msg.textContent = 'Không bật được thông báo trên thiết bị này.';
+      }
+    });
+
+    off.addEventListener('click', async () => {
+      const reg = await navigator.serviceWorker.getRegistration('/vi/lich-am/');
+      const sub = await reg?.pushManager.getSubscription();
+      if (sub) {
+        await fetch(`${API}/v1/push/unsubscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: sub.endpoint }) }).catch(() => {});
+        await sub.unsubscribe();
+      }
+      off.hidden = true;
+      msg.textContent = 'Đã tắt thông báo.';
+    });
+  }
+</script>

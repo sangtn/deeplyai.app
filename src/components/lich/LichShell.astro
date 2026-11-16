@@ -78,8 +78,10 @@ const nav = [
 </Base>
 
 <script>
-  // Offline support and "add to home screen" for the Lịch âm section. Skipped on localhost.
+  // Offline support, "add to home screen" and push reminders for the Lịch âm section. Skipped on localhost.
+  import { LICH_API } from '../../lib/lich/config';
   if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(location.hostname)) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('/vi/lich-am/sw.js', { scope: '/vi/lich-am/' }).catch(() => {}));
+    const sw = `/vi/lich-am/sw.js${LICH_API ? `?api=${encodeURIComponent(LICH_API)}` : ''}`;
+    window.addEventListener('load', () => navigator.serviceWorker.register(sw, { scope: '/vi/lich-am/' }).catch(() => {}));
   }
 </script>

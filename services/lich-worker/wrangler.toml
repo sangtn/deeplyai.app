@@ -1,0 +1,23 @@
+# Lịch âm web services: weather by location, market data, Web Push reminders.
+# Deploy: see README.md. Nothing here is required for the static site to work.
+name = "lich-api"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+[vars]
+# Origins allowed to call the API from a browser.
+ALLOWED_ORIGINS = "https://deeplyai.app,http://localhost:4321"
+# Extra market sources, comma separated: "pnj" (SJC gold via PNJ), "vndirect" (VN-Index).
+# Leave empty until you have confirmed you may use them.
+MARKET_SOURCES = ""
+# VAPID public key (base64url). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
+VAPID_PUBLIC_KEY = ""
+VAPID_SUBJECT = "https://deeplyai.app/vi/lich-am/"
+
+[[kv_namespaces]]
+binding = "PUSH"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[triggers]
+# 23:00 UTC = 06:00 Vietnam time.
+crons = ["0 23 * * *"]

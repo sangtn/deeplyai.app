@@ -56,6 +56,9 @@ export const FEEDS_URL = `${TOOLS_URL}lich-am-google-calendar/`;
 // Services
 export const WEATHER_URL = `${BASE}thoi-tiet/`;
 export const weatherUrl = (slug: string) => `${WEATHER_URL}${slug}/`;
+export const FX_URL = `${BASE}ty-gia/`;
+export const PUSH_URL = `${TOOLS_URL}thong-bao/`;
+export const ICLOUD_URL = `${TOOLS_URL}icloud/`;
 
 export const hasDayPage = (y: number) => y >= DAY_FROM && y <= DAY_TO;
 export const hasMonthPage = (y: number) => y >= YEAR_FROM && y <= YEAR_TO;

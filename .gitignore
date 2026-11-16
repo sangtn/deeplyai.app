@@ -2,3 +2,7 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# Local service configuration (PUBLIC_LICH_API, PUBLIC_CLOUDKIT_TOKEN)
+.env
+.env.*

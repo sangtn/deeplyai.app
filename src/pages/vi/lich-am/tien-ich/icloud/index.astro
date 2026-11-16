@@ -1,0 +1,100 @@
+---
+import LichShell from '../../../../../components/lich/LichShell.astro';
+import { CLOUDKIT_CONTAINER, CLOUDKIT_ENV, CLOUDKIT_TOKEN } from '../../../../../lib/lich/config';
+import { EVENTS_URL, ICLOUD_URL, TOOLS_URL } from '../../../../../lib/lich/urls';
+---
+<LichShell
+  title="Xem ngày giỗ và Lịch Nhà từ ứng dụng Lịch Việt trên web"
+  description="Đăng nhập Apple ID để xem trên máy tính các ngày giỗ, kỷ niệm và Lịch Nhà đã lưu trong ứng dụng Lịch Việt trên iPhone. Chỉ đọc, không thay đổi dữ liệu iCloud."
+  path={ICLOUD_URL}
+  crumbs={[{ name: 'Tiện ích', href: TOOLS_URL }, { name: 'Dữ liệu từ iCloud' }]}
+  active="tools"
+>
+  <div class="wrap">
+    <header class="la-head">
+      <h1>Dữ liệu Lịch Việt từ iCloud</h1>
+      <p>Xem trên web những ngày giỗ, kỷ niệm và Lịch Nhà bạn đã lưu trong ứng dụng Lịch Việt trên iPhone, iPad. Trang chỉ đọc dữ liệu, không sửa hay xóa gì trong iCloud.</p>
+    </header>
+    {!CLOUDKIT_TOKEN ? (
+      <p class="la-stale">Kết nối iCloud trên web đang được chuẩn bị. Trong lúc chờ, bạn có thể dùng <a href={EVENTS_URL}>công cụ nhắc ngày giỗ</a> ngay trên trình duyệt.</p>
+    ) : (
+      <section class="la-tool la-tool-wide" data-ck data-container={CLOUDKIT_CONTAINER} data-token={CLOUDKIT_TOKEN} data-env={CLOUDKIT_ENV}>
+        <div id="apple-sign-in-button"></div>
+        <div id="apple-sign-out-button"></div>
+        <p class="la-age-note" data-ck-msg aria-live="polite">Đang kết nối iCloud…</p>
+        <div data-ck-out></div>
+        <button type="button" data-ck-import hidden>Chép vào công cụ ngày giỗ trên máy này</button>
+      </section>
+    )}
+    <section class="la-block">
+      <h2 class="la-h2">Cần biết</h2>
+      <ul class="la-list">
+        <li>Dùng đúng Apple ID đang đăng nhập iCloud trên iPhone có cài Lịch Việt, và đã bật đồng bộ iCloud trong ứng dụng.</li>
+        <li>Lịch Nhà chỉ hiện khi bạn là người tạo hoặc đã nhận lời mời tham gia.</li>
+        <li>Muốn thêm, sửa ngày, hãy làm trong ứng dụng; trang này cập nhật theo khi bạn tải lại.</li>
+      </ul>
+    </section>
+  </div>
+</LichShell>
+
+<script>
+  import { loadCloudKit, readAppData, toPersonalEvent, type CkRecord } from '../../../../../lib/lich/cloudkit';
+  import { dateLabel, kindOf, type PersonalEvent } from '../../../../../lib/lich/anniversary';
+  import { load, save } from '../../../../../lib/lich/store';
+  import { EVENTS_URL } from '../../../../../lib/lich/urls';
+
+  const box = document.querySelector<HTMLElement>('[data-ck]');
+  if (box) {
+    const msg = box.querySelector<HTMLElement>('[data-ck-msg]')!;
+    const out = box.querySelector<HTMLElement>('[data-ck-out]')!;
+    const importBtn = box.querySelector<HTMLButtonElement>('[data-ck-import]')!;
+    let collected: PersonalEvent[] = [];
+
+    const list = (title: string, records: CkRecord[]) => {
+      const events = records.map(toPersonalEvent).filter((e): e is PersonalEvent => !!e);
+      collected.push(...events);
+      const h = document.createElement('h2'); h.className = 'la-h3'; h.textContent = `${title} (${events.length})`;
+      const ul = document.createElement('ul'); ul.className = 'la-list';
+      ul.append(...events.map((e) => { const li = document.createElement('li'); li.textContent = `${kindOf(e.kind).emoji} ${e.title} · ${dateLabel(e)}${e.note ? ` · ${e.note}` : ''}`; return li; }));
+      return [h, ul];
+    };
+
+    const show = async (container: any) => {
+      msg.textContent = 'Đang đọc dữ liệu…';
+      collected = [];
+      try {
+        const { personal, families } = await readAppData(container);
+        out.replaceChildren(...list('Sự kiện của bạn', personal), ...families.flatMap((f) => list(`Lịch Nhà: ${f.title}`, f.events)));
+        msg.textContent = collected.length ? 'Đã đọc xong.' : 'Chưa thấy dữ liệu. Hãy kiểm tra đồng bộ iCloud trong ứng dụng.';
+        importBtn.hidden = !collected.length;
+      } catch {
+        msg.textContent = 'Không đọc được dữ liệu iCloud. Vui lòng thử lại.';
+      }
+    };
+
+    importBtn.addEventListener('click', () => {
+      const existing = load<PersonalEvent[]>('events', []);
+      const ids = new Set(existing.map((e) => e.id));
+      const added = collected.filter((e) => !ids.has(e.id));
+      save('events', [...existing, ...added]);
+      msg.innerHTML = '';
+      msg.append(`Đã chép ${added.length} ngày. `, Object.assign(document.createElement('a'), { href: EVENTS_URL, textContent: 'Mở công cụ ngày giỗ' }));
+    });
+
+    loadCloudKit().then(async (CloudKit) => {
+      CloudKit.configure({ containers: [{ containerIdentifier: box.dataset.container, environment: box.dataset.env, apiTokenAuth: { apiToken: box.dataset.token, persist: true, signInButton: { id: 'apple-sign-in-button', theme: 'black' }, signOutButton: { id: 'apple-sign-out-button', theme: 'white' } } }] });
+      const container = CloudKit.getDefaultContainer();
+      const watch = async () => {
+        const user = await container.setUpAuth();
+        if (user) {
+          await show(container);
+          container.whenUserSignsOut().then(() => { out.replaceChildren(); importBtn.hidden = true; watch(); });
+        } else {
+          msg.textContent = 'Đăng nhập Apple ID để xem dữ liệu.';
+          container.whenUserSignsIn().then(watch);
+        }
+      };
+      await watch();
+    }).catch(() => { msg.textContent = 'Không tải được thư viện iCloud của Apple.'; });
+  }
+</script>

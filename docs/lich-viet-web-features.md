@@ -218,3 +218,17 @@ Mục `/vi/lich-am/` gồm:
 | Giá vàng, tỷ giá, VN-Index | Nguồn dữ liệu được phép dùng, và một máy chủ trung gian (ví dụ Cloudflare Worker) vì trình duyệt bị chặn CORS. Khóa API BTMC trong app đã lộ, nên đổi. |
 | Thời tiết theo vị trí người dùng, chất lượng không khí, cảnh báo | Máy chủ trung gian, hoặc WeatherKit (khóa `.p8`). |
 | Nhắc thời tiết hằng ngày (Web Push) | Máy chủ có lịch chạy và nơi lưu đăng ký (ví dụ Cloudflare Workers + KV). |
+
+### Cập nhật nhóm 4: phần còn lại đã viết xong, chờ cấu hình
+
+- **Tỷ giá Vietcombank** (`/vi/lich-am/ty-gia/`): đã chạy, không cần máy chủ. 20 ngoại tệ, lấy lúc build, có công cụ đổi sang VND.
+- **Cloudflare Worker** (`services/lich-worker/`):
+  - Thời tiết theo vị trí, giá thị trường, thông báo đẩy mỗi sáng (rằm, mùng 1, thời tiết).
+  - Đã chạy thử với KV và cache giả lập, chữ ký VAPID hợp lệ.
+  - Hướng dẫn triển khai nằm trong README của thư mục đó.
+- **Giá vàng SJC (PNJ), VN-Index (VNDirect):** viết sẵn trong Worker, tắt mặc định (`MARKET_SOURCES`). Không dùng BTMC (khóa đã lộ) và không đọc trang HTML.
+- **Kết nối iCloud chỉ đọc** (`/vi/lich-am/tien-ich/icloud/`):
+  - Đọc sự kiện cá nhân và Lịch Nhà bằng CloudKit JS, rồi chép được vào công cụ ngày giỗ trên máy.
+  - Không ghi gì lên iCloud.
+  - Cần `PUBLIC_CLOUDKIT_TOKEN`. Chưa thử được với dữ liệu thật vì chưa có token.
+- Trang Thông báo và iCloud ẩn khỏi trang Tiện ích và sitemap cho đến khi có cấu hình.

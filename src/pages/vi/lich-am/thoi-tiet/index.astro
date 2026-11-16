@@ -3,6 +3,7 @@ import LichShell from '../../../../components/lich/LichShell.astro';
 import WeatherAttribution from '../../../../components/lich/WeatherAttribution.astro';
 import { PLACES, allForecasts, describe } from '../../../../lib/lich/weather';
 import { WEATHER_URL, weatherUrl } from '../../../../lib/lich/urls';
+import { LICH_API } from '../../../../lib/lich/config';
 
 const all = await allForecasts();
 const rows = PLACES.map((p) => ({ p, f: all.get(p.slug) ?? null }));
@@ -22,6 +23,12 @@ const updated = rows.find((r) => r.f)?.f?.updatedAt;
       <h1>Thời tiết hôm nay</h1>
       <p>Nhiệt độ cao nhất, thấp nhất và thời tiết ban ngày hôm nay ở 34 tỉnh thành. Chọn một nơi để xem từng giờ và 7 ngày tới.</p>
     </header>
+    {LICH_API && (
+      <section class="la-wx-here" data-wx-here data-api={LICH_API}>
+        <button type="button" class="la-btn" data-wx-locate>📍 Thời tiết tại vị trí của tôi</button>
+        <div data-wx-out aria-live="polite"></div>
+      </section>
+    )}
     {[['Tỉnh thành', provinces], ['Điểm du lịch', tourist]].map(([label, list]) => (
       <section class="la-block" aria-label={label as string}>
         <h2 class="la-h2">{label}</h2>
@@ -41,3 +48,30 @@ const updated = rows.find((r) => r.f)?.f?.updatedAt;
     <WeatherAttribution updatedAt={updated} />
   </div>
 </LichShell>
+
+<script>
+  import { describe } from '../../../../lib/lich/weather';
+  const box = document.querySelector<HTMLElement>('[data-wx-here]');
+  if (box) {
+    const out = box.querySelector<HTMLElement>('[data-wx-out]')!;
+    const say = (text: string) => { const p = document.createElement('p'); p.textContent = text; out.replaceChildren(p); };
+    box.querySelector('[data-wx-locate]')!.addEventListener('click', () => {
+      if (!navigator.geolocation) return say('Trình duyệt không hỗ trợ định vị.');
+      say('Đang lấy vị trí…');
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        try {
+          const res = await fetch(`${box.dataset.api}/v1/weather?lat=${pos.coords.latitude.toFixed(2)}&lon=${pos.coords.longitude.toFixed(2)}`);
+          if (!res.ok) return say('Chưa lấy được dự báo, vui lòng thử lại.');
+          const f = await res.json();
+          const rows = f.days.slice(0, 4).map((d: { date: { day: number; month: number }; min: number; max: number; rain: number; symbol?: string }) => {
+            const li = document.createElement('li');
+            li.textContent = `${d.date.day}/${d.date.month}: ${describe(d.symbol).icon} ${describe(d.symbol).text}, ${d.min}–${d.max}°C${d.rain >= 0.5 ? `, mưa ${d.rain} mm` : ''}`;
+            return li;
+          });
+          const ul = document.createElement('ul'); ul.className = 'la-list'; ul.append(...rows);
+          out.replaceChildren(ul);
+        } catch { say('Chưa lấy được dự báo, vui lòng thử lại.'); }
+      }, () => say('Bạn chưa cho phép truy cập vị trí.'), { maximumAge: 600000, timeout: 15000 });
+    });
+  }
+</script>
