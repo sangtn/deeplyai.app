@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '30 20 * * *'
+        # 00:05 Vietnam time, so the Lịch âm "hôm nay" page turns over at midnight.
+    - cron: '5 17 * * *'
   workflow_dispatch:
 
 permissions:
