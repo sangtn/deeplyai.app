@@ -1,0 +1,771 @@
+{
+  "stills": {
+    "w-thanksgiving-countdown": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-thanksgiving-maple-drive": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-thanksgiving-grateful-calendar": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-thanksgiving-harvest-moon": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-thanksgiving-cozy-cocoa": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-christmas-countdown": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-christmas-snowy-drive": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-christmas-advent-calendar": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-christmas-fireplace": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-christmas-twinkle-tree": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-newyear-countdown": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-newyear-fireworks": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-newyear-year-progress": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-newyear-champagne": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-newyear-fresh-start": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-lunar-countdown": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-lunar-zodiac": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-lunar-lantern-night": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-lunar-blossom-calendar": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "w-lunar-lucky-envelope": {
+      "width": 240,
+      "height": 240,
+      "widths": [
+        240
+      ]
+    },
+    "editor": {
+      "width": 720,
+      "height": 794,
+      "widths": [
+        720,
+        1080
+      ]
+    },
+    "screens": {
+      "width": 720,
+      "height": 794,
+      "widths": [
+        720,
+        1080
+      ]
+    }
+  },
+  "videos": {
+    "drive": {
+      "width": 1600,
+      "height": 686,
+      "duration": 15,
+      "mp4": 2195587,
+      "webm": 1686786,
+      "poster": {
+        "width": 1600,
+        "height": 686
+      }
+    },
+    "library": {
+      "width": 390,
+      "height": 848,
+      "duration": 21.3,
+      "mp4": 379175,
+      "webm": 291463,
+      "poster": {
+        "width": 390,
+        "height": 848
+      }
+    },
+    "rotation": {
+      "width": 390,
+      "height": 848,
+      "duration": 17.6,
+      "mp4": 233989,
+      "webm": 306841,
+      "poster": {
+        "width": 390,
+        "height": 848
+      }
+    },
+    "t-auto-tacho-clock": {
+      "width": 288,
+      "height": 288,
+      "duration": 7,
+      "mp4": 15616,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-auto-neon-tuner": {
+      "width": 288,
+      "height": 288,
+      "duration": 7,
+      "mp4": 16731,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-auto-touge-night": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 15480,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-auto-boost-gauge": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 15650,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-auto-concept-hud": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 14548,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-hyper-gauge": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 21840,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-y2k-chrome": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.4,
+      "mp4": 17354,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-pixel-sunset": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.4,
+      "mp4": 20045,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-bento-day": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 15486,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-dreamcore": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 14787,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-vapor-weather": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 13601,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-glass-weather": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 14444,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-bubble-kitty": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 47591,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-strawberry-milk": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 32382,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-teddy-cafe": {
+      "width": 288,
+      "height": 288,
+      "duration": 6.3,
+      "mp4": 22266,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-sparkle-princess": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 37209,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-bunny-hop": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 18929,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-cute-cotton-candy": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.7,
+      "mp4": 28895,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-autumn-fox": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 58534,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-panda-bamboo": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 55573,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-puppy-wag": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 33031,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-sleepy-cat": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 30634,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-penguin-slide": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 33867,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-pet-goldfish-bowl": {
+      "width": 288,
+      "height": 288,
+      "duration": 6.3,
+      "mp4": 50925,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neon-cityscape-race": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 24944,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neon-pink-pulse": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 14852,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-purple-plasma": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 14992,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-electric-storm-cards": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 30629,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-clock-face-neon": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 27537,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-night-drift": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.4,
+      "mp4": 18643,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-love-heartbeat-timer": {
+      "width": 288,
+      "height": 288,
+      "duration": 6.3,
+      "mp4": 73536,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-love-meter-animated": {
+      "width": 288,
+      "height": 288,
+      "duration": 6.3,
+      "mp4": 37927,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-love-floating-hearts": {
+      "width": 288,
+      "height": 288,
+      "duration": 6.3,
+      "mp4": 50227,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-love-letter": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.1,
+      "mp4": 13278,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-cupid-glow": {
+      "width": 288,
+      "height": 288,
+      "duration": 8,
+      "mp4": 23330,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "t-neo-heartbeat": {
+      "width": 288,
+      "height": 288,
+      "duration": 7.4,
+      "mp4": 16179,
+      "poster": {
+        "width": 288,
+        "height": 288
+      }
+    },
+    "s-thanksgiving": {
+      "width": 960,
+      "height": 540,
+      "duration": 16,
+      "mp4": 1485176,
+      "poster": {
+        "width": 960,
+        "height": 540
+      }
+    },
+    "s-christmas": {
+      "width": 960,
+      "height": 540,
+      "duration": 16,
+      "mp4": 1776176,
+      "poster": {
+        "width": 960,
+        "height": 540
+      }
+    },
+    "s-newyear": {
+      "width": 960,
+      "height": 540,
+      "duration": 16,
+      "mp4": 1689448,
+      "poster": {
+        "width": 960,
+        "height": 540
+      }
+    },
+    "s-lunar": {
+      "width": 960,
+      "height": 540,
+      "duration": 16,
+      "mp4": 2095016,
+      "poster": {
+        "width": 960,
+        "height": 540
+      }
+    }
+  },
+  "tiles": [
+    {
+      "name": "t-auto-tacho-clock",
+      "group": "racing"
+    },
+    {
+      "name": "t-auto-neon-tuner",
+      "group": "racing"
+    },
+    {
+      "name": "t-auto-touge-night",
+      "group": "racing"
+    },
+    {
+      "name": "t-auto-boost-gauge",
+      "group": "racing"
+    },
+    {
+      "name": "t-auto-concept-hud",
+      "group": "racing"
+    },
+    {
+      "name": "t-neo-hyper-gauge",
+      "group": "racing"
+    },
+    {
+      "name": "t-neo-y2k-chrome",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-neo-pixel-sunset",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-neo-bento-day",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-neo-dreamcore",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-neo-vapor-weather",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-glass-weather",
+      "group": "aesthetic"
+    },
+    {
+      "name": "t-cute-bubble-kitty",
+      "group": "cute"
+    },
+    {
+      "name": "t-cute-strawberry-milk",
+      "group": "cute"
+    },
+    {
+      "name": "t-cute-teddy-cafe",
+      "group": "cute"
+    },
+    {
+      "name": "t-cute-sparkle-princess",
+      "group": "cute"
+    },
+    {
+      "name": "t-cute-bunny-hop",
+      "group": "cute"
+    },
+    {
+      "name": "t-cute-cotton-candy",
+      "group": "cute"
+    },
+    {
+      "name": "t-pet-autumn-fox",
+      "group": "animals"
+    },
+    {
+      "name": "t-pet-panda-bamboo",
+      "group": "animals"
+    },
+    {
+      "name": "t-pet-puppy-wag",
+      "group": "animals"
+    },
+    {
+      "name": "t-pet-sleepy-cat",
+      "group": "animals"
+    },
+    {
+      "name": "t-pet-penguin-slide",
+      "group": "animals"
+    },
+    {
+      "name": "t-pet-goldfish-bowl",
+      "group": "animals"
+    },
+    {
+      "name": "t-neon-cityscape-race",
+      "group": "neon"
+    },
+    {
+      "name": "t-neon-pink-pulse",
+      "group": "neon"
+    },
+    {
+      "name": "t-purple-plasma",
+      "group": "neon"
+    },
+    {
+      "name": "t-electric-storm-cards",
+      "group": "neon"
+    },
+    {
+      "name": "t-clock-face-neon",
+      "group": "neon"
+    },
+    {
+      "name": "t-neo-night-drift",
+      "group": "neon"
+    },
+    {
+      "name": "t-love-heartbeat-timer",
+      "group": "love"
+    },
+    {
+      "name": "t-love-meter-animated",
+      "group": "love"
+    },
+    {
+      "name": "t-love-floating-hearts",
+      "group": "love"
+    },
+    {
+      "name": "t-neo-love-letter",
+      "group": "love"
+    },
+    {
+      "name": "t-neo-cupid-glow",
+      "group": "love"
+    },
+    {
+      "name": "t-neo-heartbeat",
+      "group": "love"
+    }
+  ],
+  "seasons": {
+    "thanksgiving": [
+      "w-thanksgiving-countdown",
+      "w-thanksgiving-maple-drive",
+      "w-thanksgiving-grateful-calendar",
+      "w-thanksgiving-harvest-moon",
+      "w-thanksgiving-cozy-cocoa"
+    ],
+    "christmas": [
+      "w-christmas-countdown",
+      "w-christmas-snowy-drive",
+      "w-christmas-advent-calendar",
+      "w-christmas-fireplace",
+      "w-christmas-twinkle-tree"
+    ],
+    "newyear": [
+      "w-newyear-countdown",
+      "w-newyear-fireworks",
+      "w-newyear-year-progress",
+      "w-newyear-champagne",
+      "w-newyear-fresh-start"
+    ],
+    "lunar": [
+      "w-lunar-countdown",
+      "w-lunar-zodiac",
+      "w-lunar-lantern-night",
+      "w-lunar-blossom-calendar",
+      "w-lunar-lucky-envelope"
+    ]
+  }
+}

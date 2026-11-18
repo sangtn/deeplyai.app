@@ -1,0 +1,553 @@
+---
+// Marketing page for Car Widget Studio (App Store id 6757487560) at /apps/carwidget/.
+// Media comes from scripts/carwidget-media.mjs (the marketing folder of the iOS repo);
+// product facts from the App Store description and release notes in that repo's docs/.
+// Copy rule from the app's own marketing README: CarPlay shows still images that update
+// every few minutes. Animation happens in the app only; never say "animated on CarPlay".
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StoreBadge from '../StoreBadge.astro';
+import AppCard from '../AppCard.astro';
+import Pic from './Pic.astro';
+import Clip from './Clip.astro';
+import media from '../../data/carwidget-media.json';
+import { GROUPS, byId, hasRating, inGroup } from '../../data/catalog';
+import { surfacesOf } from '../../data/surfaces';
+
+const ID = 6757487560;
+const app = byId.get(ID)!;
+const entry = (await getEntry('apps', 'carwidget'))!;
+const { title, description } = entry.data;
+const name = 'Car Widget Studio';
+const site = 'https://deeplyai.app';
+const path = '/apps/carwidget/';
+const group = GROUPS[app.group];
+const related = inGroup(app.group).filter((a) => a.id !== ID).slice(0, 3);
+const surfaces = surfacesOf(app);
+const showRating = hasRating(app);
+const updated = new Date(app.updated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+// Version 11.2026.1 brings the holiday collections and Dreamy (352 templates). Until the
+// App Store data says it is live, the page keeps the live count and marks holidays as next.
+const v11 = Number(app.version.split('.')[0]) >= 11;
+const templates = v11 ? '350+' : '316';
+
+const stats = [
+  { n: templates, l: 'templates to start from' },
+  { n: '2–10', l: 'designs in one rotation' },
+  { n: '~2 min', l: 'to get them onto CarPlay' },
+  { n: '10', l: 'languages in the app' },
+];
+
+const collections = [
+  { id: 'racing', name: 'Racing', note: 'Tachometers, boost gauges, lap timers and night-highway HUDs.' },
+  { id: 'aesthetic', name: 'Aesthetic', note: 'Y2K chrome, pixel sunsets, bento calendars and soft glass.' },
+  { id: 'cute', name: 'Cute', note: 'Kittens, teddy bears, strawberry milk and sparkles.' },
+  { id: 'animals', name: 'Animals', note: 'A fox, a panda, a puppy, a sleepy cat and more along for the ride.' },
+  { id: 'neon', name: 'Neon', note: 'City lights, plasma and electric glow for night drives.' },
+  { id: 'love', name: 'Love', note: 'Heartbeats, love meters and countdowns to a date that matters.' },
+];
+const tileLabel = (tile: string) =>
+  tile.replace(/^t-/, '').replace(/^(auto|neo|cute|pet|love|clock-face|glass)-/, '').split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+
+const seasons = [
+  { id: 'thanksgiving', name: 'Thanksgiving', note: 'A turkey countdown, a maple-lined drive, a grateful calendar, the harvest moon and cozy cocoa.' },
+  { id: 'christmas', name: 'Christmas', note: 'A Santa countdown, a snowy drive, an advent calendar, a fireplace and a twinkling tree.' },
+  { id: 'newyear', name: 'New Year', note: 'A midnight countdown, a fireworks clock, the year so far, a champagne toast and a fresh start.' },
+  { id: 'lunar', name: 'Lunar New Year', note: 'A Lunar New Year countdown, the zodiac animal of the year, lanterns, blossoms and a lucky envelope.' },
+];
+const seasonWidgets = media.seasons as Record<string, string[]>;
+const seasonLabel = (w: string) => w.replace(/^w-(thanksgiving|christmas|newyear|lunar)-/, '').split('-').map((x) => x[0].toUpperCase() + x.slice(1)).join(' ');
+
+const steps = [
+  { n: '1', t: 'Pick or design a widget', d: `Choose one of ${templates} templates, or build your own in the editor.` },
+  { n: '2', t: 'Settings → General → CarPlay', d: 'Choose your car, open Widgets and tap +.' },
+  { n: '3', t: 'Choose Car Widget Studio', d: 'Add the Gallery, Rotation or Custom widget. The in-app CarPlay Setup guide walks you through it.' },
+];
+
+const good = [
+  { t: 'Still images on CarPlay', d: 'CarPlay shows widgets as still images that iOS refreshes on its own schedule. Designs change every few minutes, not every second, and video never plays on the car screen. Animation is something you see inside the app.' },
+  { t: 'iOS 26 for the car screen', d: `The app runs on iOS ${app.minimumOs} and later. Widgets in CarPlay need iOS 26 or later and a car with CarPlay. On older versions they still work on your Home Screen.` },
+  { t: 'Free to start', d: 'The free version includes 3 custom widgets and 1 Widget Rotation. Pro unlocks every template, unlimited widgets and rotations, Motion Slideshows and no ads.' },
+  // Version 11 replaced the last placeholder numbers in widgets with real data.
+  ...(v11 ? [{ t: 'Real data only', d: 'Weather comes from Apple WeatherKit, calendar events from your own calendar, and every countdown is computed from the date.' }] : [
+    { t: 'Weather and calendar', d: 'Weather comes from Apple WeatherKit and events from your own calendar. Location is asked for only when you use weather, calendar access only when you add an events widget.' },
+  ]),
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name,
+    alternateName: app.storeName,
+    description,
+    url: `${site}${path}`,
+    image: `${site}${app.iconLarge}`,
+    screenshot: [...app.screenshots, '/assets/apps/carwidget/editor-720.jpg', '/assets/apps/carwidget/screens-720.jpg'].map((s) => `${site}${s}`),
+    operatingSystem: `iOS ${app.minimumOs} or later`,
+    applicationCategory: 'LifestyleApplication',
+    softwareVersion: app.version,
+    installUrl: app.url,
+    author: { '@type': 'Organization', name: 'DeeplyAi', url: `${site}/` },
+    offers: { '@type': 'Offer', price: app.price, priceCurrency: 'USD' },
+    ...(showRating && { aggregateRating: { '@type': 'AggregateRating', ratingValue: app.rating, ratingCount: app.ratingCount, bestRating: 5, worstRating: 1 } }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [['Home', '/'], ['Apps', '/apps/'], [group.name, `/apps/${app.group}/`], [entry.data.name, path]].map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: `${site}${p}` })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: good.map((g) => ({ '@type': 'Question', name: g.t, acceptedAnswer: { '@type': 'Answer', text: g.d } })),
+  },
+];
+---
+<Base path={path} title={title} description={description} ogImage="/assets/apps/carwidget/og.jpg" ogImageAlt="Car Widget Studio widgets on a car's CarPlay screen during a night drive" jsonLd={jsonLd}>
+  <div class="cw">
+    <!-- Hero -------------------------------------------------------------->
+    <section class="cw-hero">
+      <div class="cw-glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/apps/">Apps</a><span>/</span><a href={`/apps/${app.group}/`}>{group.name}</a><span>/</span><span>{entry.data.name}</span></nav>
+        <div class="cw-hero-in">
+          <div class="cw-hero-copy">
+            <p class="cw-app">
+              <img src={app.iconLarge} width="64" height="64" alt="" style={`view-transition-name:app-${ID}`} />
+              <span><strong>{name}</strong><span>Widgets for CarPlay &amp; iPhone</span></span>
+            </p>
+            <h1>Your car. <em>Your widgets.</em></h1>
+            <p class="lead">Put clocks, calendars, weather, countdowns and your own photos on the car screen. Start from {templates} templates, design your own, or let Widget Rotation switch designs for you as you drive.</p>
+            <div class="actions">
+              <StoreBadge href={app.url} tone="white" />
+              <a class="btn ghost" href="#drive"><span class="cw-play" aria-hidden="true"></span>See it on the road</a>
+            </div>
+            <p class="cw-meta">
+              {showRating && <span>{app.rating.toFixed(1)} ★ from {app.ratingCount} ratings</span>}
+              <span>Free on the App Store</span>
+              <span>iOS {app.minimumOs}+</span>
+              <span>Version {app.version}, {updated}</span>
+            </p>
+          </div>
+          <div class="cw-hero-device">
+            <div class="cw-phone"><Clip name="library" label="The Widgets tab in Car Widget Studio: scrolling through animated templates" eager /></div>
+            <div class="cw-float cw-float-a" aria-hidden="true"><Clip name="t-pet-sleepy-cat" label="" toggle={false} /></div>
+            <div class="cw-float cw-float-b" aria-hidden="true"><Clip name="t-auto-neon-tuner" label="" toggle={false} /></div>
+            <div class="cw-float cw-float-c" aria-hidden="true"><Clip name="t-neo-bento-day" label="" toggle={false} /></div>
+          </div>
+        </div>
+        <ul class="cw-stats">
+          {stats.map((s) => <li><strong>{s.n}</strong><span>{s.l}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- On the road --------------------------------------------------------->
+    <section id="drive" class="cw-dark" aria-labelledby="cw-drive-title">
+      <div class="wrap">
+        <div class="cw-head cw-head-split">
+          <p class="cw-kicker">On the road</p>
+          <h2 id="cw-drive-title" class="h-lg">The car screen, finally yours.</h2>
+          <p class="lead">Three widgets sit beside your apps on CarPlay. Put a rotation on them and the screen keeps feeling new, drive after drive.</p>
+        </div>
+        <figure class="cw-film">
+          <div class="cw-screen"><Clip name="drive" label="A night drive with Car Widget Studio widgets on the car's CarPlay screen, changing designs" /></div>
+          <figcaption>Shown as a time-lapse. On CarPlay, each design stays up for a few minutes before the next one appears.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Library ------------------------------------------------------------->
+    <section id="library" class="cw-library" aria-labelledby="cw-library-title">
+      <div class="wrap">
+        <div class="cw-head">
+          <p class="cw-kicker">The library · {templates} templates</p>
+          <h2 id="cw-library-title" class="h-lg">A style for every mood, and every drive.</h2>
+          <p class="lead">Clocks, calendars, weather, countdowns and photo widgets, in collections you can browse, search and favourite. Many templates move inside the app, as below.</p>
+        </div>
+        <div class="cw-collections" data-tabs>
+          <div class="cw-tabs" role="tablist" aria-label="Collections">
+            {collections.map((c, i) => (
+              <button type="button" role="tab" id={`cw-tab-${c.id}`} aria-controls={`cw-panel-${c.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{c.name}</button>
+            ))}
+          </div>
+          {collections.map((c, i) => (
+            <div class="cw-panel" role="tabpanel" id={`cw-panel-${c.id}`} aria-labelledby={`cw-tab-${c.id}`} hidden={i !== 0}>
+              <p class="cw-panel-note">{c.note}</p>
+              <ul class="cw-tiles">
+                {media.tiles.filter((t) => t.group === c.id).map((t) => (
+                  <li><Clip name={t.name} label={`${tileLabel(t.name)} template, ${c.name} collection`} toggle={false} /><span>{tileLabel(t.name)}</span></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Rotation ------------------------------------------------------------>
+    <section id="rotation" class="cw-feature wrap">
+      <div class="cw-copy">
+        <p class="cw-kicker">Widget Rotation</p>
+        <h2 class="h-lg">Can’t pick one? Don’t.</h2>
+        <p class="lead">Put 2 to 10 designs on a rotation and your car screen switches between them on its own, like a playlist for your dashboard.</p>
+        <ul class="cw-list">
+          <li>Play in order or on shuffle.</li>
+          <li>Auto timing shows every design over a typical drive, or set an interval from 5 minutes to 1 hour.</li>
+          <li>Pin the design you love, or skip ahead with a tap.</li>
+          <li>Keeps working while your iPhone is locked.</li>
+        </ul>
+        <div class="cw-chips" aria-hidden="true">
+          <span class="on">Auto</span><span>5 min</span><span>15 min</span><span>30 min</span><span>1 h</span>
+          <i></i>
+          <span class="on">In order</span><span>Shuffle</span>
+        </div>
+      </div>
+      <div class="cw-device-col">
+        <div class="cw-phone cw-phone-md"><Clip name="rotation" label="Creating a Widget Rotation: picking five designs, a sped-up preview, order or shuffle, then the rotation on Home" /></div>
+        <p class="cw-device-note">Real screen recording. The preview in the app is sped up.</p>
+      </div>
+    </section>
+
+    <!-- Design your own ----------------------------------------------------->
+    <section id="design" class="cw-band">
+      <div class="wrap cw-feature cw-flip">
+        <div class="cw-copy">
+          <p class="cw-kicker">Design your own</p>
+          <h2 class="h-lg">Your photo. Your clock. Your widget.</h2>
+          <p class="lead">Start from scratch or from any template, and see it on a live CarPlay preview while you edit.</p>
+          <ul class="cw-list">
+            <li>Add photos, text, a live clock, the date, weather and today’s calendar events.</li>
+            <li>Edit photos first: filters, crop and one-tap background removal.</li>
+            <li>Turn a GIF or video into a widget by picking the perfect frame, or make a Motion Slideshow that changes frame every few minutes.</li>
+          </ul>
+        </div>
+        <div class="cw-wide"><Pic name="editor" alt="The widget editor on iPad: a Sleepy Cat clock with font, size and colour controls, above a live CarPlay preview" sizes="(min-width: 960px) 600px, 92vw" /></div>
+      </div>
+    </section>
+
+    <!-- Seasons ------------------------------------------------------------->
+    <section id="seasons" class="cw-dark" aria-labelledby="cw-seasons-title">
+      <div class="wrap">
+        <div class="cw-head cw-head-split">
+          <p class="cw-kicker">{v11 ? 'Holiday collections · free' : 'Coming in version 11.2026.1'}</p>
+          <h2 id="cw-seasons-title" class="h-lg">Dress the dashboard for the season.</h2>
+          <p class="lead">Four free holiday collections, five designs each, every one with a real countdown. In season they appear first in the app, so they are one tap away.</p>
+        </div>
+        <div class="cw-seasons" data-tabs>
+          <div class="cw-tabs" role="tablist" aria-label="Holiday collections">
+            {seasons.map((s, i) => (
+              <button type="button" role="tab" id={`cw-tab-${s.id}`} aria-controls={`cw-panel-${s.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{s.name}</button>
+            ))}
+          </div>
+          {seasons.map((s, i) => (
+            <div class="cw-panel cw-season" role="tabpanel" id={`cw-panel-${s.id}`} aria-labelledby={`cw-tab-${s.id}`} hidden={i !== 0}>
+              <div class="cw-screen"><Clip name={`s-${s.id}`} label={`${s.name} widgets on a car screen in an illustrated driving scene`} /></div>
+              <div class="cw-season-side">
+                <p>{s.note}</p>
+                <ul class="cw-mini">
+                  {(seasonWidgets[s.id] ?? []).map((w) => (
+                    <li><Pic name={w} alt={`${s.name}: ${seasonLabel(w)} widget`} sizes="120px" /><span>{seasonLabel(w)}</span></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Setup --------------------------------------------------------------->
+    <section id="setup" class="cw-setup wrap" aria-labelledby="cw-setup-title">
+      <div class="cw-head">
+        <p class="cw-kicker">Setup</p>
+        <h2 id="cw-setup-title" class="h-lg">On your car screen in about two minutes.</h2>
+      </div>
+      <ol class="cw-steps">
+        {steps.map((s) => <li><span class="cw-n">{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></li>)}
+      </ol>
+    </section>
+
+    <!-- Devices ------------------------------------------------------------->
+    <section id="devices" class="cw-band">
+      <div class="wrap cw-feature">
+        <div class="cw-copy">
+          <p class="cw-kicker">iPhone, iPad and the car</p>
+          <h2 class="h-lg">Made for every screen you use.</h2>
+          <p class="lead">Build widgets on iPhone or iPad, put them on your Home Screen, and send them to the car. On a foldable iPhone the layout follows the screen, open or closed.</p>
+          <h3 class="surface-label" style="margin-top:28px">Available on</h3>
+          <ul class="chips">{surfaces.map((s) => <li><a href={`/platforms/${s.slug}/`}>{s.name}</a></li>)}</ul>
+        </div>
+        <div class="cw-wide"><Pic name="screens" alt="Car Widget Studio on iPad and iPhone, Home with My Widgets and For You, and three widgets on a CarPlay screen" sizes="(min-width: 960px) 600px, 92vw" /></div>
+      </div>
+    </section>
+
+    <!-- Good to know -------------------------------------------------------->
+    <section id="good-to-know" class="wrap cw-good" aria-labelledby="cw-good-title">
+      <div class="cw-head">
+        <p class="cw-kicker">Good to know</p>
+        <h2 id="cw-good-title" class="h-lg">Straight answers before you download.</h2>
+      </div>
+      <dl class="cw-faq">
+        {good.map((g) => <div><dt>{g.t}</dt><dd>{g.d}</dd></div>)}
+      </dl>
+    </section>
+
+    <!-- CTA ----------------------------------------------------------------->
+    <section class="cw-cta">
+      <div class="wrap cw-cta-in">
+        <img src={app.iconLarge} width="96" height="96" alt="" loading="lazy" />
+        <div>
+          <h2 class="h-lg">Make the car screen yours.</h2>
+          <p class="lead">Free on the App Store for iPhone and iPad, with CarPlay.</p>
+        </div>
+        <StoreBadge href={app.url} tone="white" />
+      </div>
+    </section>
+
+    {related.length > 0 && (
+      <div class="wrap section">
+        <h2 class="h-lg" style="font-size:clamp(28px,3vw,40px);margin-bottom:12px">More from {group.name.toLowerCase()}</h2>
+        <ul class="app-grid">{related.map((a) => <li><AppCard app={a} /></li>)}</ul>
+      </div>
+    )}
+  </div>
+</Base>
+
+<script>
+  // Clips start only when on screen (and in a visible tab panel), after load, and never
+  // with reduced motion.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const clips = [...document.querySelectorAll<HTMLVideoElement>('.cw video[data-clip]')];
+
+  const load = (video: HTMLVideoElement) => {
+    if (video.dataset.loaded) return;
+    video.dataset.loaded = '1';
+    video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => { s.src = s.dataset.src!; });
+    video.load();
+    video.addEventListener('playing', () => video.parentElement!.classList.add('is-playing'), { once: true });
+  };
+
+  const setup = () => {
+    if (reduce.matches || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const video = entry.target as HTMLVideoElement;
+        if (video.dataset.paused) continue;
+        if (entry.isIntersecting) { load(video); video.play().catch(() => {}); }
+        else video.pause();
+      }
+    }, { rootMargin: '200px 0px', threshold: 0.2 });
+    clips.forEach((video) => {
+      observer.observe(video);
+      const button = video.parentElement!.querySelector<HTMLButtonElement>('.clip-toggle');
+      if (!button) return;
+      button.hidden = false;
+      button.addEventListener('click', () => {
+        const pausing = !video.paused;
+        if (pausing) { video.pause(); video.dataset.paused = '1'; }
+        else { delete video.dataset.paused; load(video); video.play().catch(() => {}); }
+        button.setAttribute('aria-label', pausing ? button.dataset.play! : button.dataset.pause!);
+        button.classList.toggle('is-paused', pausing);
+      });
+    });
+  };
+  if (document.readyState === 'complete') setup();
+  else addEventListener('load', setup, { once: true });
+
+  // Tab groups (collections, holidays): WAI-ARIA tabs with arrow keys.
+  document.querySelectorAll<HTMLElement>('.cw [data-tabs]').forEach((group) => {
+    const tabs = [...group.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls')!)!;
+        panel.hidden = !on;
+        if (!on) panel.querySelectorAll('video').forEach((v) => v.pause());
+      });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        next.focus();
+        select(next);
+      });
+    });
+  });
+</script>
+
+<style>
+  .cw {
+    --night-0: #07060d;
+    --night-1: #110e22;
+    --night-2: #1d1640;
+    --go: #34c759;
+    --pink: #ff5fa2;
+    --amber: #ffb547;
+    --sky: #5aa8ff;
+    --on-dark: #f4f1ff;
+    --on-dark-2: #aaa4c4;
+    --dark-line: #ffffff1c;
+  }
+  .cw :global(.clip) { position: relative; overflow: hidden; background: var(--night-0); }
+  .cw :global(.clip picture), .cw :global(.clip img) { width: 100%; height: 100%; object-fit: cover; }
+  .cw :global(.clip video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+  .cw :global(.clip.is-playing video) { opacity: 1; }
+  .cw :global(.clip-toggle) { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: #000a; color: #fff; cursor: pointer; opacity: .7; transition: opacity .2s; }
+  .cw :global(.clip-toggle:hover), .cw :global(.clip-toggle:focus-visible) { opacity: 1; }
+  .cw :global(.clip-toggle span) { width: 10px; height: 12px; border-inline: 3px solid currentColor; }
+  .cw :global(.clip-toggle.is-paused span) { width: 0; height: 0; border: 0; border-left: 11px solid currentColor; border-block: 7px solid transparent; margin-left: 3px; }
+
+  .cw-kicker { margin-bottom: 14px; font-size: 14px; font-weight: 600; letter-spacing: .02em; color: var(--signal); }
+  .cw-head { max-width: 46rem; margin-bottom: clamp(32px, 4vw, 56px); }
+  .cw-head .lead { margin-top: 20px; }
+  .cw-head-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 16px 64px; max-width: none; }
+  .cw-head-split .cw-kicker { grid-column: 1 / -1; margin: 0; }
+  .cw-head-split .lead { margin: 0; }
+
+  /* Hero */
+  .cw-hero { position: relative; overflow: hidden; background: radial-gradient(110% 90% at 80% 0%, var(--night-2) 0%, var(--night-1) 40%, var(--night-0) 80%); color: var(--on-dark); }
+  .cw-glow { position: absolute; inset: 0; pointer-events: none; background:
+      radial-gradient(28% 26% at 74% 34%, #ff5fa233, transparent 70%),
+      radial-gradient(26% 24% at 92% 72%, #34c75926, transparent 70%),
+      radial-gradient(30% 30% at 60% 80%, #5aa8ff1f, transparent 70%); }
+  .cw-hero .wrap { position: relative; }
+  .cw-hero .crumbs { color: var(--on-dark-2); }
+  .cw-hero-in { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(32px, 5vw, 80px); padding-block: clamp(32px, 4vw, 56px); }
+  .cw-app { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .cw-app img { width: 64px; height: 64px; border-radius: 22.5%; box-shadow: 0 10px 30px #0008; }
+  .cw-app > span { display: grid; line-height: 1.3; }
+  .cw-app strong { font-family: var(--display); font-size: 20px; font-weight: 650; }
+  .cw-app > span > span { font-size: 14px; color: var(--on-dark-2); }
+  .cw-hero h1 { font-size: clamp(44px, 5.8vw, 88px); max-width: 9em; }
+  .cw-hero h1 em { display: block; font-style: normal; background: linear-gradient(90deg, var(--go), var(--sky) 45%, var(--pink) 80%, var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cw-hero .lead { margin-top: 24px; max-width: 32em; color: var(--on-dark-2); }
+  .cw-hero .actions { align-items: center; margin-top: 32px; }
+  .cw-hero .btn.ghost, .cw-cta .btn.ghost { border-color: #ffffff59; color: var(--on-dark); }
+  .cw-hero .btn.ghost:hover { background: var(--on-dark); border-color: var(--on-dark); color: var(--night-0); }
+  .cw-play { width: 0; height: 0; border-left: 10px solid currentColor; border-block: 6px solid transparent; }
+  .cw-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 24px; font-size: 14px; color: var(--on-dark-2); }
+  .cw-meta span + span::before { content: '·'; margin-right: 18px; opacity: .6; }
+
+  .cw-hero-device { position: relative; justify-self: center; width: min(100%, 290px); }
+  .cw-phone { padding: 10px; border-radius: 52px; background: linear-gradient(145deg, #3d3a52, #0e0c18 60%); box-shadow: 0 50px 100px -30px #000c, 0 0 0 1px #ffffff22 inset; }
+  .cw-phone :global(.clip) { border-radius: 42px; }
+  .cw-float { position: absolute; width: 34%; border-radius: 24%; overflow: hidden; box-shadow: 0 24px 48px -16px #000c, 0 0 0 1px #ffffff1f; animation: float 7s ease-in-out infinite; }
+  .cw-float :global(.clip) { border-radius: inherit; }
+  .cw-float-a { left: -26%; top: 14%; transform: rotate(-8deg); }
+  .cw-float-b { right: -24%; top: 40%; animation-delay: -2.3s; }
+  .cw-float-c { left: -18%; bottom: 8%; width: 30%; animation-delay: -4.6s; }
+  @keyframes float { 50% { translate: 0 -12px; } }
+
+  .cw-stats { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-bottom: clamp(40px, 5vw, 72px); border: 1px solid var(--dark-line); border-radius: 22px; overflow: hidden; background: var(--dark-line); }
+  .cw-stats li { display: grid; gap: 4px; padding: 22px 24px; background: #0e0b1d; }
+  .cw-stats strong { font-family: var(--display); font-size: clamp(28px, 3vw, 40px); font-weight: 650; line-height: 1; }
+  .cw-stats li:nth-child(1) strong { color: var(--go); }
+  .cw-stats li:nth-child(2) strong { color: var(--sky); }
+  .cw-stats li:nth-child(3) strong { color: var(--pink); }
+  .cw-stats li:nth-child(4) strong { color: var(--amber); }
+  .cw-stats span { font-size: 15px; color: var(--on-dark-2); }
+
+  /* Dark sections */
+  .cw-dark { padding-block: clamp(72px, 9vw, 130px); background: linear-gradient(180deg, var(--night-0), var(--night-1)); color: var(--on-dark); }
+  .cw-dark .lead { color: var(--on-dark-2); }
+  .cw-dark .cw-kicker, .cw-cta .cw-kicker { color: var(--go); }
+  .cw-film { margin: 0; }
+  .cw-screen { border-radius: clamp(16px, 2vw, 28px); overflow: hidden; box-shadow: 0 40px 120px -40px #ff5fa255, 0 0 0 1px var(--dark-line); }
+  .cw-film figcaption { margin-top: 16px; font-size: 14px; color: var(--on-dark-2); }
+
+  /* Library */
+  .cw-library { padding-block: clamp(72px, 9vw, 130px); }
+  .cw-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cw-tabs button { min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 600 15px var(--body); cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+  .cw-tabs button:hover { border-color: var(--ink-2); }
+  .cw-tabs button[aria-selected='true'] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .cw-dark .cw-tabs button { border-color: var(--dark-line); color: var(--on-dark); }
+  .cw-dark .cw-tabs button:hover { border-color: #ffffff66; }
+  .cw-dark .cw-tabs button[aria-selected='true'] { border-color: var(--go); background: var(--go); color: var(--night-0); }
+  .cw-panel { padding-top: 24px; }
+  .cw-panel[hidden] { display: none; }
+  .cw-panel-note { font-family: var(--display); font-size: clamp(20px, 2vw, 26px); margin-bottom: 24px; }
+  .cw-tiles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(12px, 1.6vw, 22px); }
+  .cw-tiles li { display: grid; gap: 10px; justify-items: center; }
+  .cw-tiles :global(.clip) { width: 100%; border-radius: 22%; box-shadow: 0 24px 40px -24px #15140f99; }
+  .cw-tiles span { font-size: 14px; color: var(--ink-2); text-align: center; }
+
+  /* Feature split */
+  .cw-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(40px, 6vw, 96px); padding-block: clamp(72px, 9vw, 130px); }
+  .cw-flip > :first-child { order: 2; }
+  .cw-copy .lead { margin-top: 20px; }
+  .cw-list { display: grid; gap: 14px; margin-top: 28px; }
+  .cw-list li { position: relative; padding-left: 30px; }
+  .cw-list li::before { content: ''; position: absolute; left: 0; top: .55em; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, var(--signal) 0 3px, #c8360b29 4px); }
+  .cw-band { background: var(--paper-2); }
+  .cw-device-col { display: grid; justify-items: center; gap: 14px; }
+  .cw-phone-md { width: min(100%, 300px); }
+  .cw-device-note { font-size: 14px; color: var(--ink-2); }
+  .cw-wide :global(img) { border-radius: clamp(16px, 2vw, 28px); box-shadow: 0 30px 70px -30px #07060dcc; }
+
+  .cw-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 32px; }
+  .cw-chips span { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+  .cw-chips span.on { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .cw-chips i { width: 1px; height: 22px; margin-inline: 6px; background: var(--line); }
+
+  /* Seasons */
+  .cw-season { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: start; gap: clamp(20px, 3vw, 40px); }
+  .cw-season-side > p { font-family: var(--display); font-size: clamp(19px, 1.8vw, 24px); }
+  .cw-mini { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+  .cw-mini li { display: grid; gap: 6px; justify-items: center; text-align: center; font-size: 13px; color: var(--on-dark-2); }
+  .cw-mini :global(img) { border-radius: 22%; box-shadow: 0 16px 30px -18px #000; }
+
+  /* Setup */
+  .cw-setup { padding-block: clamp(72px, 9vw, 130px); }
+  .cw-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 24px); }
+  .cw-steps li { padding: clamp(22px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: 24px; background: #fffaf2; }
+  .cw-steps h3 { margin-top: 18px; font-size: clamp(20px, 1.9vw, 26px); }
+  .cw-steps p { margin-top: 8px; color: var(--ink-2); }
+  .cw-n { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--go); color: #fff; font: 700 20px var(--display); }
+  .cw-steps li:nth-child(2) .cw-n { background: var(--sky); }
+  .cw-steps li:nth-child(3) .cw-n { background: var(--pink); }
+
+  /* Good to know */
+  .cw-good { padding-block: clamp(72px, 9vw, 130px); }
+  .cw-faq { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin: 0; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: var(--line); }
+  .cw-faq > div { padding: clamp(22px, 2.6vw, 32px); background: var(--paper); }
+  .cw-faq dt { font-family: var(--display); font-size: clamp(20px, 1.9vw, 24px); font-weight: 600; }
+  .cw-faq dd { margin: 8px 0 0; color: var(--ink-2); }
+
+  /* CTA */
+  .cw-cta { padding-block: clamp(64px, 8vw, 110px); background: radial-gradient(90% 140% at 0% 0%, var(--night-2), var(--night-0) 70%); color: var(--on-dark); }
+  .cw-cta-in { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(20px, 3vw, 40px); }
+  .cw-cta img { width: 96px; height: 96px; border-radius: 22.5%; }
+  .cw-cta .lead { margin-top: 10px; color: var(--on-dark-2); }
+
+  @media (max-width: 959px) {
+    .cw-hero-in, .cw-feature, .cw-season { grid-template-columns: 1fr; }
+    .cw-flip > :first-child { order: 0; }
+    .cw-hero-device { width: min(62vw, 280px); margin-top: 16px; }
+    .cw-stats { grid-template-columns: 1fr 1fr; }
+    .cw-head-split { grid-template-columns: 1fr; }
+    .cw-tiles { grid-template-columns: repeat(3, 1fr); }
+    .cw-steps, .cw-faq { grid-template-columns: 1fr; }
+    .cw-mini { grid-template-columns: repeat(5, 1fr); }
+    .cw-cta-in { grid-template-columns: 1fr; justify-items: start; }
+  }
+  @media (max-width: 520px) {
+    .cw-float-a { left: -22%; }
+    .cw-float-b { right: -20%; }
+    .cw-float-c { left: -14%; }
+    .cw-mini { grid-template-columns: repeat(3, 1fr); }
+    .cw-stats li { padding: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cw-float { animation: none; }
+  }
+</style>
