@@ -14,9 +14,9 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 const SRC = process.env.CARWIDGET_MARKETING ?? '/Users/alextran/Desktop/2025/CarPlayWidgets/marketing';
-// The in-car film: the final ASC header (V4, daytime mockup) with the app's real CarPlay
+// The in-car film: the final ASC header (V5, reference style) with the app's real CarPlay
 // widgets on the car's screen. Its music track is dropped; the page plays it muted.
-const FILM = process.env.FILM ?? join(SRC, 'Final/Header-Search/V4_Mockup-daytime/header-3840x1646-15s-asc-music.mp4');
+const FILM = process.env.FILM ?? join(SRC, 'Final/Header-Search/V5_Reference-style/header-3840x1646-15s-asc-music.mp4');
 const OUT = new URL('../public/assets/apps/carwidget/', import.meta.url).pathname;
 const MANIFEST = new URL('../src/data/carwidget-media.json', import.meta.url);
 mkdirSync(OUT, { recursive: true });
