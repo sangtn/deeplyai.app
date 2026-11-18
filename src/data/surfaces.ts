@@ -94,7 +94,7 @@ export const SURFACES: Surface[] = [
     title: 'iPhone Widget Apps by DeeplyAi',
     description: 'DeeplyAi apps with Home Screen and Lock Screen widgets for weather, wind, stars, fuel prices, EVs, planners and more.',
     intro: 'The best widget means you never have to open the app. These extensions put live information on your Home Screen and Lock Screen.',
-    detail: 'Weather Widgets offers more than 50 styles, Sky Map has 13 widgets, and CarWidget gives you 316 templates for your Home Screen and CarPlay.',
+    detail: 'Weather Widgets offers more than 50 styles, Sky Map has 13 widgets, and CarWidget gives you hundreds of templates for your Home Screen and CarPlay.',
     matches: inList(WIDGETS),
   },
   {

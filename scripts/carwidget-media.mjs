@@ -14,9 +14,9 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 const SRC = process.env.CARWIDGET_MARKETING ?? '/Users/alextran/Desktop/2025/CarPlayWidgets/marketing';
-// The in-car film (Mixkit 42039, Mixkit Stock Video Free License; real CarPlay UI tracked
-// onto the car's screen). Point FILM at a newer render when one is final.
-const FILM = process.env.FILM ?? join(SRC, 'asc-header-search-film/out/20261118-1421/header-3840x1646-15s.mp4');
+// The in-car film: the final ASC header (V4, daytime mockup) with the app's real CarPlay
+// widgets on the car's screen. Its music track is dropped; the page plays it muted.
+const FILM = process.env.FILM ?? join(SRC, 'Final/Header-Search/V4_Mockup-daytime/header-3840x1646-15s-asc-music.mp4');
 const OUT = new URL('../public/assets/apps/carwidget/', import.meta.url).pathname;
 const MANIFEST = new URL('../src/data/carwidget-media.json', import.meta.url);
 mkdirSync(OUT, { recursive: true });
@@ -89,7 +89,7 @@ const SEASONS = {
 const tmp = mkdtempSync(join(tmpdir(), 'cw-media-'));
 try {
   if (run('film')) {
-    // Night drive with Widget Rotation on the car's CarPlay screen, 21:9.
+    // Daytime drive with Widget Rotation on the car's CarPlay screen, 21:9.
     encode('drive', FILM, 'scale=1600:-2:flags=lanczos', { crf: [27, 38] });
     await poster('drive', 0.5, tmp);
     // Open Graph card: the widget wall on the car screen.

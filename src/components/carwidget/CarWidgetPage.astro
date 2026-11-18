@@ -27,13 +27,13 @@ const surfaces = surfacesOf(app);
 const showRating = hasRating(app);
 const updated = new Date(app.updated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
-// Version 11.2026.1 brings the holiday collections and Dreamy (352 templates). Until the
-// App Store data says it is live, the page keeps the live count and marks holidays as next.
+// Version 11.2026.1 brings the holiday collections. Until the App Store data says it is
+// live, the page marks them as coming next. The template count grows with each update,
+// so the page never states a number.
 const v11 = Number(app.version.split('.')[0]) >= 11;
-const templates = v11 ? '350+' : '316';
 
 const stats = [
-  { n: templates, l: 'templates to start from' },
+  { n: 'Hundreds', l: 'of templates, with more each update' },
   { n: '2–10', l: 'designs in one rotation' },
   { n: '~2 min', l: 'to get them onto CarPlay' },
   { n: '10', l: 'languages in the app' },
@@ -60,7 +60,7 @@ const seasonWidgets = media.seasons as Record<string, string[]>;
 const seasonLabel = (w: string) => w.replace(/^w-(thanksgiving|christmas|newyear|lunar)-/, '').split('-').map((x) => x[0].toUpperCase() + x.slice(1)).join(' ');
 
 const steps = [
-  { n: '1', t: 'Pick or design a widget', d: `Choose one of ${templates} templates, or build your own in the editor.` },
+  { n: '1', t: 'Pick or design a widget', d: 'Choose a template from the library, or build your own in the editor.' },
   { n: '2', t: 'Settings → General → CarPlay', d: 'Choose your car, open Widgets and tap +.' },
   { n: '3', t: 'Choose Car Widget Studio', d: 'Add the Gallery, Rotation or Custom widget. The in-app CarPlay Setup guide walks you through it.' },
 ];
@@ -105,7 +105,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base path={path} title={title} description={description} ogImage="/assets/apps/carwidget/og.jpg" ogImageAlt="Car Widget Studio widgets on a car's CarPlay screen during a night drive" jsonLd={jsonLd}>
+<Base path={path} title={title} description={description} ogImage="/assets/apps/carwidget/og.jpg" ogImageAlt="Car Widget Studio widgets on a car's CarPlay screen during a daytime drive" jsonLd={jsonLd}>
   <div class="cw">
     <!-- Hero -------------------------------------------------------------->
     <section class="cw-hero">
@@ -119,7 +119,7 @@ const jsonLd = [
               <span><strong>{name}</strong><span>Widgets for CarPlay &amp; iPhone</span></span>
             </p>
             <h1>Your car. <em>Your widgets.</em></h1>
-            <p class="lead">Put clocks, calendars, weather, countdowns and your own photos on the car screen. Start from {templates} templates, design your own, or let Widget Rotation switch designs for you as you drive.</p>
+            <p class="lead">Put clocks, calendars, weather, countdowns and your own photos on the car screen. Start from a library of hundreds of templates, design your own, or let Widget Rotation switch designs for you as you drive.</p>
             <div class="actions">
               <StoreBadge href={app.url} tone="white" />
               <a class="btn ghost" href="#drive"><span class="cw-play" aria-hidden="true"></span>See it on the road</a>
@@ -150,10 +150,10 @@ const jsonLd = [
         <div class="cw-head cw-head-split">
           <p class="cw-kicker">On the road</p>
           <h2 id="cw-drive-title" class="h-lg">The car screen, finally yours.</h2>
-          <p class="lead">Three widgets sit beside your apps on CarPlay. Put a rotation on them and the screen keeps feeling new, drive after drive.</p>
+          <p class="lead">Your widgets sit right beside your apps on CarPlay. Put a rotation on them and the screen keeps feeling new, drive after drive.</p>
         </div>
         <figure class="cw-film">
-          <div class="cw-screen"><Clip name="drive" label="A night drive with Car Widget Studio widgets on the car's CarPlay screen, changing designs" /></div>
+          <div class="cw-screen"><Clip name="drive" label="A daytime drive through autumn trees with Car Widget Studio widgets on the car's CarPlay screen, changing designs" /></div>
           <figcaption>Shown as a time-lapse. On CarPlay, each design stays up for a few minutes before the next one appears.</figcaption>
         </figure>
       </div>
@@ -163,7 +163,7 @@ const jsonLd = [
     <section id="library" class="cw-library" aria-labelledby="cw-library-title">
       <div class="wrap">
         <div class="cw-head">
-          <p class="cw-kicker">The library · {templates} templates</p>
+          <p class="cw-kicker">The library · new designs every update</p>
           <h2 id="cw-library-title" class="h-lg">A style for every mood, and every drive.</h2>
           <p class="lead">Clocks, calendars, weather, countdowns and photo widgets, in collections you can browse, search and favourite. Many templates move inside the app, as below.</p>
         </div>

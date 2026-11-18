@@ -3,14 +3,14 @@ id: 6757487560
 order: 9
 name: "CarWidget"
 title: "CarWidget – CarPlay Widget Maker & Templates | DeeplyAi"
-description: "Make your CarPlay screen your own with CarWidget: 316 templates, your own designs and a rotation that switches widgets automatically as you drive."
+description: "Make your CarPlay screen your own with CarWidget: hundreds of templates, your own designs and a rotation that switches widgets automatically as you drive."
 tagline: "Make your CarPlay screen yours."
 taglineVi: "Cá nhân hóa màn hình CarPlay theo phong cách của bạn."
 ---
 
 ## Widgets designed for a glance
 
-CarWidget brings customizable widgets to CarPlay and your iPhone Home Screen. Start from one of 316 templates or design your own.
+CarWidget brings customizable widgets to CarPlay and your iPhone Home Screen. Start from a library of hundreds of templates, with new ones in each update, or design your own.
 
 ## A library worth browsing
 
