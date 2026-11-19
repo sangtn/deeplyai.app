@@ -1335,5 +1335,31 @@
       "visionOS": "2.6",
       "watchOS": null
     }
+  },
+  {
+    "id": 6819389627,
+    "storeName": "Car.TV: Cast & M3U IPTV Player",
+    "genre": "Entertainment",
+    "rating": 0,
+    "ratingCount": 0,
+    "version": "1.0",
+    "updated": "2026-11-19",
+    "minimumOs": "26.0",
+    "price": 0,
+    "url": "https://apps.apple.com/app/id6819389627?itscg=30200&itsct=apps_box_badge&mttnsubad=6819389627",
+    "icon": "/assets/apps/icons/6819389627.webp",
+    "iconLarge": "/assets/apps/icons/6819389627@512.webp",
+    "screenshots": [
+      "/assets/apps/shots/6819389627-1.webp",
+      "/assets/apps/shots/6819389627-2.webp",
+      "/assets/apps/shots/6819389627-3.webp",
+      "/assets/apps/shots/6819389627-4.webp",
+      "/assets/apps/shots/6819389627-5.webp"
+    ],
+    "compatibility": {
+      "macOS": "26.0",
+      "visionOS": "26.0",
+      "watchOS": "26.0"
+    }
   }
 ]
