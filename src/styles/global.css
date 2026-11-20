@@ -147,11 +147,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .spec img.icon { width: 64px; height: 64px; border-radius: 15px; }
 .spec h3 { margin-top: 18px; font-size: clamp(28px, 2.6vw, 38px); }
 .spec p { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.45; }
-.spec .shot { width: 62%; max-width: 230px; margin: auto auto -130px; padding-top: 22px; }
+.spec .shot { display: block; width: 62%; max-width: 230px; margin: auto auto -130px; padding-top: 22px; }
 .spec .shot img { border-radius: 22px 22px 0 0; box-shadow: 0 16px 34px #15140f33; transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
 .spec:hover .shot img { transform: translateY(-14px); }
 @media (max-width: 1000px) { .spec, .spec:nth-child(n) { grid-column: span 6; } }
-@media (max-width: 620px) { .spec, .spec:nth-child(n) { grid-column: 1 / -1; min-height: 400px; } }
+@media (max-width: 620px) {
+  .spec, .spec:nth-child(n) { grid-column: 1 / -1; min-height: 0; }
+  .spec .shot { width: 70%; max-width: 250px; margin: 0 auto -150px; padding-top: 28px; }
+}
 .center-cta { display: flex; justify-content: center; margin-top: 48px; }
 
 /* Band and generic grids */
@@ -279,6 +282,36 @@ ul { margin: 0; padding: 0; list-style: none; }
 .lich img { width: clamp(96px, 12vw, 140px); height: auto; border-radius: 22.5%; }
 .lich h2 { margin: 8px 0 12px; }
 .lich .actions { align-items: center; margin-top: 22px; }
+
+/* Car.TV launch spotlight on the home page */
+.cartv { padding-block: clamp(40px, 6vw, 80px) 0; }
+.cartv-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 4vw, 56px); align-items: center; overflow: hidden; padding: clamp(28px, 4.5vw, 64px); border-radius: 32px; color: #f1f6f3; background: radial-gradient(80% 100% at 85% 0%, #0adb4238, transparent 60%), radial-gradient(60% 80% at 0% 100%, #0a6e2a40, transparent 70%), #07090a; box-shadow: 0 30px 80px -30px #0a6e2a80; }
+.cartv-new { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #0adb42; }
+.cartv-new span { width: 8px; height: 8px; border-radius: 50%; background: #0adb42; box-shadow: 0 0 0 0 #0adb42aa; animation: cartv-ping 2s infinite; }
+@keyframes cartv-ping { 70% { box-shadow: 0 0 0 10px #0adb4200; } 100% { box-shadow: 0 0 0 0 #0adb4200; } }
+.cartv-id { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
+.cartv-id img { width: 64px; height: 64px; border-radius: 23%; box-shadow: 0 12px 30px #0adb4240; }
+.cartv-id h2 { margin: 0; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -.03em; color: #fff; }
+.cartv-tag { margin: 18px 0 0; font-size: clamp(22px, 2.3vw, 30px); font-weight: 700; line-height: 1.2; letter-spacing: -.015em; }
+.cartv-tag em { font-style: normal; color: #0adb42; }
+.cartv-lead { margin: 12px 0 0; color: #b3c1b9; font-size: 17px; line-height: 1.5; }
+.cartv-points { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.cartv-points li { position: relative; padding-left: 26px; color: #dfe8e3; font-size: 15.5px; line-height: 1.4; }
+.cartv-points li::before { content: ""; position: absolute; left: 0; top: 6px; width: 10px; height: 10px; border-radius: 3px; background: #0adb42; }
+.cartv .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+.cartv-btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; border-radius: 999px; background: #0adb42; color: #03170a; font-weight: 700; text-decoration: none; transition: filter .2s; }
+.cartv-btn:hover { filter: brightness(1.08); }
+.cartv-media { position: relative; padding-right: clamp(36px, 6vw, 80px); padding-bottom: clamp(20px, 3vw, 40px); }
+.cartv-media video { width: 100%; aspect-ratio: 1080 / 464; object-fit: cover; border-radius: 20px; background: #000; box-shadow: 0 0 0 1px #ffffff18, 0 30px 70px #000; }
+.cartv-phone { position: absolute; right: 0; bottom: 0; width: clamp(96px, 22%, 180px); border-radius: 18px; box-shadow: 0 0 0 1px #ffffff20, 0 24px 50px #000c; }
+@media (max-width: 900px) {
+  .cartv-card { grid-template-columns: 1fr; }
+  .cartv-media { order: -1; }
+}
+@media (max-width: 620px) {
+  .cartv-media { padding: 0; }
+  .cartv-phone { display: none; }
+}
 .lich .store-badge img { height: 52px; border-radius: 0; width: auto; }
 @media (max-width: 620px) { .lich-in { grid-template-columns: 1fr; } }
 

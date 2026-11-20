@@ -25,8 +25,21 @@ const stories = [
 
 const lich = byId.get(6749473194);
 
+// Card artwork overrides. RoadCam's first two store screenshots are halves of one panorama,
+// so on their own the phone mockup is cut off at the edge; its third shot is a centred phone.
+const cardShot: Record<number, string> = {
+  6755303976: '/assets/apps/car-connect/store-02-392.webp',
+  6788231631: '/assets/apps/shots/6788231631-3.webp',
+};
+
+const CARTV_STORE = 'https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627';
+const cartvPoints = vi
+  ? ['Danh sách M3U, Xtream Codes, Plex, Jellyfin, Emby và WebDAV của bạn', 'Lịch phát sóng XMLTV thật cho từng kênh', 'Trên màn hình xe với CarPlay khi đỗ xe', 'Truyền lên TV qua AirPlay, Google Cast và DLNA']
+  : ['Your own M3U, Xtream Codes, Plex, Jellyfin, Emby and WebDAV', 'A real XMLTV guide for every channel', 'On the car screen with CarPlay while parked', 'Cast to any TV with AirPlay, Google Cast and DLNA'];
+
 // Apps that have their own in-depth page on this site, beyond the standard catalog page.
 const deepPages = [
+  { id: 6819389627, href: '/cartv-support.html', line: vi ? 'Mới: xem TV, phim và danh sách phát trên mọi màn hình' : 'New: live TV, films and your playlists on every screen' },
   { id: 6755303976, href: vi ? '/vi/apps/car-play-connect/' : '/apps/car-play-connect/', line: vi ? 'Bảng điều khiển lái xe, xem trước từng màn hình' : 'The driving dashboard, screen by screen' },
   { id: 6796624138, href: '/apps/drive-weather/', line: vi ? 'Thời tiết dọc lộ trình, có video từ ứng dụng' : 'Route weather, shown with real app footage' },
   { id: 6749473194, href: vi ? '/vi/apps/lich-van-nien/' : '/apps/lich-van-nien/', line: vi ? 'Lịch âm, ngày tốt và giờ Hoàng Đạo hôm nay' : 'Lunar dates, good days and today’s hours' },
@@ -84,6 +97,33 @@ const jsonLd = {
       </div>
     </section>
   )}
+
+  <section class="cartv" aria-labelledby="cartv-title">
+    <div class="wrap">
+      <div class="cartv-card">
+        <div class="cartv-copy">
+          <p class="cartv-new"><span></span>{vi ? 'Mới trên App Store' : 'New on the App Store'}</p>
+          <div class="cartv-id">
+            <img src="/assets/images/cartv/icon.png" width="72" height="72" alt="" loading="lazy" decoding="async" />
+            <h2 id="cartv-title">Car.TV</h2>
+          </div>
+          <p class="cartv-tag">{vi ? <Fragment>Danh sách phát của bạn. <em>Mọi màn hình.</em></Fragment> : <Fragment>Your playlists. <em>Every screen.</em></Fragment>}</p>
+          <p class="cartv-lead">{vi ? 'TV trực tiếp, phim, phim bộ và video của chính bạn trên iPhone, iPad, Apple Watch, TV và trong xe hơi.' : 'Live TV, films, series and your own videos on iPhone, iPad, Apple Watch, your TV and in the car.'}</p>
+          <ul class="cartv-points">{cartvPoints.map((p) => <li>{p}</li>)}</ul>
+          <div class="actions">
+            <a class="cartv-btn" href="/cartv-support.html">{vi ? 'Khám phá Car.TV' : 'Explore Car.TV'}</a>
+            <StoreBadge href={CARTV_STORE} lang={lang} tone="white" />
+          </div>
+        </div>
+        <div class="cartv-media">
+          <video autoplay muted loop playsinline preload="none" poster="/assets/images/cartv/film-poster.webp" data-cartv-film aria-label={vi ? 'Car.TV trên màn hình CarPlay và iPhone' : 'Car.TV on a CarPlay screen and an iPhone'}>
+            <source src="/assets/images/cartv/film-1080.mp4" type="video/mp4" />
+          </video>
+          <img class="cartv-phone" src="/assets/images/cartv/iphone-01.webp" width="640" height="1391" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section wrap" aria-labelledby="index-title">
     <div class="index-head">
@@ -147,7 +187,7 @@ const jsonLd = {
             <span class="spec-top"><img class="icon" src={app.icon} width="64" height="64" alt="" loading="lazy" style={`view-transition-name:app-${app.id}`} /><span>{vi ? 'Số' : 'No.'} {String(i + 1).padStart(2, '0')}</span></span>
             <h3>{entry.data.name}</h3>
             <p>{vi ? entry.data.taglineVi : entry.data.tagline}</p>
-            <span class="shot"><img src={app.id === 6755303976 ? '/assets/apps/car-connect/store-02-392.webp' : app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
+            <span class="shot"><img src={cardShot[app.id] ?? app.screenshots[0]} width="392" height="850" alt="" loading="lazy" decoding="async" /></span>
           </a>
         );
       })}
@@ -208,6 +248,16 @@ const jsonLd = {
     }).observe(wall);
     if (document.readyState === 'complete') requestAnimationFrame(start);
     else window.addEventListener('load', () => requestAnimationFrame(start), { once: true });
+  }
+
+  // The Car.TV film loads and plays only while it is on screen.
+  const cartvFilm = document.querySelector<HTMLVideoElement>('[data-cartv-film]');
+  if (cartvFilm) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) cartvFilm.removeAttribute('autoplay');
+    else new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) cartvFilm.play().catch(() => {});
+      else cartvFilm.pause();
+    }, { rootMargin: '200px 0px' }).observe(cartvFilm);
   }
 
   // Swaps the sticky phone screen as each story step reaches the middle of the viewport.

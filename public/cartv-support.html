@@ -2,187 +2,605 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Support — Car.TV: Cast &amp; M3U IPTV Player</title>
-<meta name="description" content="Get started with Car.TV: the sample playlist, adding sources, CarPlay, casting and Car.TV Pro.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Car.TV – Your playlists on every screen, CarPlay included | Support</title>
+<meta name="description" content="Car.TV plays your own M3U playlists, Xtream Codes, Plex, Jellyfin, Emby and WebDAV on iPhone, iPad, Apple Watch, your TV and in the car with CarPlay. Help, setup and answers.">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F3F7F4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E110F" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07090A">
+<meta name="apple-itunes-app" content="app-id=6819389627">
 <link rel="canonical" href="https://deeplyai.app/cartv-support.html">
-<link rel="icon" type="image/png" href="./assets/images/cartv/icon.png">
-<link rel="apple-touch-icon" href="./assets/images/cartv/icon.png">
+<link rel="icon" type="image/png" href="/assets/images/cartv/icon.png">
+<link rel="apple-touch-icon" href="/assets/images/cartv/icon.png">
+<link rel="preload" as="image" href="/assets/images/cartv/film-poster.webp">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DeeplyAi">
-<meta property="og:title" content="Support — Car.TV: Cast &amp; M3U IPTV Player">
-<meta property="og:description" content="Get started with Car.TV: the sample playlist, adding sources, CarPlay, casting and Car.TV Pro.">
+<meta property="og:title" content="Car.TV – Your playlists. Every screen.">
+<meta property="og:description" content="Live TV, films and your own videos on iPhone, iPad, Apple Watch, your TV and in the car.">
 <meta property="og:url" content="https://deeplyai.app/cartv-support.html">
 <meta property="og:image" content="https://deeplyai.app/assets/images/cartv/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://deeplyai.app/assets/images/cartv/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"MobileApplication","name":"Car.TV: Cast & M3U IPTV Player","operatingSystem":"iOS, iPadOS, watchOS","applicationCategory":"EntertainmentApplication","url":"https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627","image":"https://deeplyai.app/assets/images/cartv/icon.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DeeplyAi","url":"https://deeplyai.app/"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I try Car.TV without my own playlist?","acceptedAnswer":{"@type":"Answer","text":"Tap the blue + then Sample & free channels, then Add sample playlist. It adds four free live news channels from the broadcasters themselves and two Blender open movies."}},
+{"@type":"Question","name":"Why is Car.TV not on my car screen?","acceptedAnswer":{"@type":"Answer","text":"Car.TV appears in cars whose CarPlay supports video, with iOS 26.4 or later. Video plays while parked; while driving only the sound continues."}},
+{"@type":"Question","name":"How do I restore or cancel Car.TV Pro?","acceptedAnswer":{"@type":"Answer","text":"Restore: Settings, Restore purchases. Cancel: Settings, Manage subscription, or in your Apple Account settings."}}
+]}]}
+</script>
 <style>
-/* Car.TV: the icon's charcoal and green. Light by default like the rest of
-   the site, dark for readers whose system is set to dark. */
-:root{color-scheme:light;
-  --bg:#F3F7F4; --bg-2:#FFFFFF; --bg-3:#E3EEE6; --rule:#D2E1D6; --rule-2:#A9C4B1;
-  --ink:#121614; --ink-soft:#3B4741; --ink-faint:#56635C;
-  --green:#0A8F33; --on-green:#FFFFFF; --link:#08782B; --neon:#0ADB42;
-  --gold:#E3A008;
-  --foot-bg:#E6EEE8; --foot-ink:#18201B; --foot-soft:#46534B; --foot-line:#56635C; --foot-strong:#121614;
-  --radius:18px; --max:1120px}
-@media (prefers-color-scheme:dark){
-  :root{color-scheme:dark;
-    --bg:#0E110F; --bg-2:#151A17; --bg-3:#1C241F; --rule:#26302A; --rule-2:#38473E;
-    --ink:#EEF4F0; --ink-soft:#A9B7AF; --ink-faint:#8B9A92;
-    --green:#0ADB42; --on-green:#06210E; --link:#4BE57A;
-    --foot-bg:#0A0D0B; --foot-ink:#DCE6E0; --foot-soft:#A9B7AF; --foot-line:#8B9A92; --foot-strong:#EEF4F0}}
+:root{
+  --bg:#07090A; --bg-1:#0C100E; --bg-2:#121815; --bg-3:#18201C; --line:#1F2924; --line-2:#2C3933;
+  --ink:#F1F6F3; --ink-2:#B3C1B9; --ink-3:#7F8F87;
+  --green:#0ADB42; --green-2:#07B536; --green-deep:#0A6E2A; --on-green:#03170A;
+  --red:#FF453A; --gold:#F5B70A;
+  --radius:24px; --max:1200px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
-img{max-width:100%;height:auto;display:block}
-a{color:var(--link);text-decoration:none}
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+img{height:auto}
+a{color:var(--green);text-decoration:none}
 a:hover{text-decoration:underline}
-:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:8px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-@media (max-width:420px){.wrap{padding:0 16px}}
-.top{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(14px);-webkit-backdrop-filter:saturate(140%) blur(14px);
-  background:color-mix(in srgb,var(--bg) 84%,transparent);border-bottom:1px solid var(--rule)}
-.top .wrap{display:flex;align-items:center;gap:20px;min-height:66px;flex-wrap:wrap}
-.top .logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
-.top .logo img{height:28px;width:auto}
-.top nav{margin-left:auto;display:flex;gap:20px;font-size:15px;font-weight:500;align-items:center}
-.top nav a{color:var(--ink-soft)}
-.top nav a:hover{color:var(--ink);text-decoration:none}
-.top nav a[aria-current="page"]{color:var(--ink)}
-@media (max-width:640px){.top nav .hide-s{display:none}}
+@media (max-width:480px){.wrap{padding:0 16px}}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:14px;top:14px;background:var(--green);color:var(--on-green);padding:10px 16px;border-radius:10px;z-index:100}
-.appid{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.appid img{width:60px;height:60px;border-radius:22.5%;box-shadow:0 12px 30px rgba(10,60,25,.18);background:var(--bg-3)}
-.appid b{display:block;font-size:15px;line-height:1.25}
-.appid span{display:block;font-size:13.5px;color:var(--ink-faint)}
-.doc{max-width:46rem;margin:0 auto;padding:3rem 1.25rem 5rem}
-@media (max-width:420px){.doc{padding:2.2rem 1rem 4rem}}
-.doc h1{font-size:clamp(1.9rem,5vw,2.4rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 .4rem}
-.doc h2{font-size:1.2rem;line-height:1.3;margin:2.4rem 0 .6rem}
-.doc h3{font-size:1.05rem;margin:1.6rem 0 .4rem}
-.doc p,.doc li{color:var(--ink-soft)}
-.doc p{margin:0 0 1rem}
-.doc ul,.doc ol{margin:0 0 1rem;padding-left:1.3rem}
-.doc li{margin:0 0 .5rem}
-.doc li b,.doc p b,.doc li strong{color:var(--ink)}
-.doc .meta{color:var(--ink-faint);font-size:.92rem;margin-bottom:2rem}
-.doc .back{margin:0 0 1.4rem;font-size:.95rem}
-.doc .box{background:var(--bg-2);border:1px solid var(--rule);border-radius:16px;padding:20px 22px;margin:0 0 1.6rem}
-.doc .box h2{margin-top:0}
-.doc .box p:last-child,.doc .box ul:last-child,.doc .box ol:last-child{margin-bottom:0}
-.doc .box.info{border-left:3px solid var(--green)}
-.doc .box.warn{border-left:3px solid var(--gold)}
-.doc code{font-size:.92em;background:var(--bg-3);padding:.1em .4em;border-radius:6px;word-break:break-all}
-.doc .button{display:inline-block;border:0;font:inherit;cursor:pointer;background:var(--green);color:var(--on-green);font-weight:700;padding:11px 20px;border-radius:999px;margin:.2rem 0 1rem}
-.doc .button:hover{text-decoration:none;filter:brightness(1.05)}
-footer{background:var(--foot-bg);color:var(--foot-ink);padding:56px 0 40px;font-size:15px;border-top:1px solid var(--rule)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.eyebrow::before{content:"";width:28px;height:3px;border-radius:3px;background:var(--green)}
+h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.04;font-weight:800}
+.h-xl{font-size:clamp(44px,7.4vw,96px)}
+.h-lg{font-size:clamp(34px,5vw,64px)}
+.h-md{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.015em;line-height:1.15}
+.lead{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);max-width:36em;margin:18px 0 0}
+.hl{background:linear-gradient(90deg,#3DFF7A,#0ADB42 60%,#08B53A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section{padding:clamp(80px,11vw,150px) 0}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:saturate(160%) blur(18px);-webkit-backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid #ffffff10}
+.top .wrap{display:flex;align-items:center;gap:22px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700;font-size:17px}
+.brand:hover{text-decoration:none}
+.brand img{width:32px;height:32px;border-radius:8px}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:24px;font-size:15px}
+.top nav a{color:var(--ink-2)}
+.top nav a:hover{color:var(--ink);text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:var(--on-green)!important;font-weight:700;padding:9px 16px;border-radius:999px;font-size:14px;white-space:nowrap}
+.pill:hover{text-decoration:none;filter:brightness(1.08)}
+@media (max-width:820px){.top nav .hide-s{display:none}}
+
+/* hero */
+.hero{position:relative;padding:clamp(56px,8vw,96px) 0 0;text-align:center;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-10% -20% auto;height:900px;z-index:-1;
+  background:radial-gradient(60% 50% at 50% 30%,#0ADB4230,transparent 70%),radial-gradient(40% 40% at 15% 10%,#0A6E2A40,transparent 70%),radial-gradient(40% 40% at 85% 20%,#0A6E2A30,transparent 70%)}
+.hero .app-icon{width:104px;height:104px;margin:0 auto 26px;border-radius:23%;box-shadow:0 24px 60px #0ADB4240,0 0 0 1px #ffffff14}
+.hero h1 .sub{display:block;font-size:.5em;color:var(--ink-2);font-weight:700;letter-spacing:-.02em;margin-top:.35em}
+.hero .lead{margin:22px auto 0;text-align:center}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:34px}
+.badge img{height:54px;width:auto}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:700;font-size:16px;border:1px solid var(--line-2);color:var(--ink);background:#ffffff08}
+.btn:hover{text-decoration:none;background:#ffffff14}
+.btn.primary{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.btn.primary:hover{filter:brightness(1.08);background:var(--green)}
+.devices{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:26px 0 0;padding:0;list-style:none}
+.devices li{font-size:13px;font-weight:600;color:var(--ink-2);padding:6px 12px;border:1px solid var(--line-2);border-radius:999px;background:#ffffff06}
+
+.film{position:relative;margin:clamp(48px,7vw,80px) auto 0;max-width:1320px;padding:0 24px}
+.film-frame{position:relative;border-radius:clamp(18px,2.4vw,32px);overflow:hidden;aspect-ratio:1920/824;background:#000;
+  box-shadow:0 0 0 1px #ffffff14,0 40px 120px -20px #0ADB4240,0 30px 80px #000}
+.film-frame video,.film-frame img{width:100%;height:100%;object-fit:cover}
+.film-ctrl{position:absolute;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
+  background:#000000a0;color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center}
+.film-ctrl svg{width:18px;height:18px}
+.film-cap{margin:16px 0 0;text-align:center;font-size:14px;color:var(--ink-3)}
+@media (max-width:640px){.film{padding:0 12px}.film-frame{border-radius:16px}.film-ctrl{width:36px;height:36px;right:10px;bottom:10px}}
+
+/* trust strip */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:clamp(56px,7vw,88px)}
+.trust div{background:var(--bg-1);padding:22px 20px}
+.trust b{display:block;font-size:17px}
+.trust span{display:block;font-size:14px;color:var(--ink-3);margin-top:2px}
+@media (max-width:820px){.trust{grid-template-columns:repeat(2,1fr)}}
+
+/* split sections */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(36px,6vw,90px);align-items:center}
+.split.rev>:first-child{order:2}
+@media (max-width:900px){.split,.split.rev{grid-template-columns:1fr}.split.rev>:first-child{order:0}}
+.ticks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.ticks li{position:relative;padding-left:34px;color:var(--ink-2)}
+.ticks li b{color:var(--ink)}
+.ticks li::before{content:"";position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;
+  background:#0ADB4220 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230ADB42' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+.note{margin-top:24px;padding:14px 18px;border-radius:14px;background:#F5B70A12;border:1px solid #F5B70A40;color:#F3D88A;font-size:15px}
+
+/* car panel */
+.car{position:relative;border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,#0F1A14,#070A08 60%);border:1px solid var(--line);padding:clamp(28px,4vw,48px)}
+.car .stage{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px #ffffff14,0 30px 80px #000}
+.car .split{grid-template-columns:.85fr 1.15fr}
+@media (max-width:900px){.car .split{grid-template-columns:1fr}}
+.steps{counter-reset:s;list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;color:var(--ink-2)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--bg-3);border:1px solid var(--line-2);color:var(--green);font-weight:800;font-size:15px}
+.steps b{color:var(--ink)}
+
+/* phone rail */
+.rail-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.rail-nav{display:flex;gap:10px}
+.rail-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:#ffffff08;color:var(--ink);cursor:pointer;font-size:20px}
+.rail-nav button:hover{background:#ffffff16}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,24vw,290px);gap:clamp(16px,2vw,26px);overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:44px max(24px,calc((100vw - var(--max))/2 + 24px)) 24px;scrollbar-width:none;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.rail figure{margin:0;scroll-snap-align:center}
+.rail img{border-radius:28px;box-shadow:0 0 0 1px #ffffff12,0 30px 60px -10px #000;transition:transform .5s var(--ease)}
+.rail figure:hover img{transform:translateY(-8px)}
+.rail figcaption{margin-top:16px;font-size:15px;color:var(--ink-2)}
+.rail figcaption b{display:block;color:var(--ink);font-size:16px}
+
+/* iPad tabs */
+.ipad{margin-top:44px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
+.tabs button{font:inherit;font-size:15px;font-weight:600;color:var(--ink-2);background:#ffffff08;border:1px solid var(--line-2);padding:10px 18px;border-radius:999px;cursor:pointer;transition:all .25s}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.screen{position:relative;max-width:1080px;margin:0 auto;aspect-ratio:1400/1050;border-radius:var(--radius);overflow:hidden;box-shadow:0 0 0 1px #ffffff14,0 50px 120px -30px #0ADB4255}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.screen img.on{opacity:1;transform:none}
+
+/* watch */
+.watch-row{display:flex;justify-content:center;align-items:center;gap:clamp(10px,2vw,24px);padding-top:22px}
+.watch{flex:0 1 31%;max-width:190px;min-width:0;padding:12px;border-radius:30%/26%;background:linear-gradient(145deg,#2A2F2D,#0D0F0E);box-shadow:inset 0 0 0 1px #ffffff1c,0 30px 60px #000}
+.watch img{border-radius:24%/20%}
+.watch:nth-child(2){transform:translateY(-22px)}
+
+/* cast */
+.cast-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.cast-list div{padding:18px;border-radius:16px;background:var(--bg-2);border:1px solid var(--line)}
+.cast-list b{display:block}
+.cast-list span{font-size:14px;color:var(--ink-3)}
+@media (max-width:560px){.cast-list{grid-template-columns:1fr}}
+.phone-solo{max-width:320px;margin:0 auto;border-radius:34px;box-shadow:0 0 0 1px #ffffff14,0 40px 100px -20px #0ADB4250}
+
+/* features */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.card{padding:24px;border-radius:20px;background:linear-gradient(180deg,var(--bg-2),var(--bg-1));border:1px solid var(--line);transition:border-color .3s,transform .3s var(--ease)}
+.card:hover{border-color:#0ADB4260;transform:translateY(-3px)}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#0ADB421c;color:var(--green);margin-bottom:16px}
+.card .ic svg{width:22px;height:22px}
+.card h3{font-size:18px;letter-spacing:-.01em;line-height:1.25}
+.card p{margin:6px 0 0;font-size:15px;color:var(--ink-3)}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* every screen */
+.every{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 0 0 1px #ffffff14}
+.every img{width:100%}
+
+/* pro */
+.pro{display:grid;grid-template-columns:1fr 1.25fr;gap:16px;margin-top:48px}
+.plan{padding:30px;border-radius:var(--radius);background:var(--bg-1);border:1px solid var(--line)}
+.plan.p{background:radial-gradient(120% 90% at 100% 0%,#0ADB4224,transparent 60%),var(--bg-2);border-color:#0ADB4250}
+.plan h3{font-size:24px}
+.plan .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--on-green);background:var(--green);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+.plan .tag.free{background:var(--bg-3);color:var(--ink-2)}
+.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 0}
+.prices div{padding:14px;border-radius:14px;background:#00000040;border:1px solid var(--line-2);text-align:center}
+.prices b{display:block;font-size:20px}
+.prices span{font-size:13px;color:var(--ink-3)}
+.fine{font-size:13.5px;color:var(--ink-3);margin-top:16px}
+@media (max-width:900px){.pro{grid-template-columns:1fr}}
+@media (max-width:520px){.prices{grid-template-columns:repeat(2,1fr)}}
+
+/* help */
+.help{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,72px);align-items:start}
+@media (max-width:900px){.help{grid-template-columns:1fr}}
+.help-side{position:sticky;top:96px}
+@media (max-width:900px){.help-side{position:static}}
+.sample{margin-top:28px;padding:24px;border-radius:20px;background:linear-gradient(160deg,#0ADB4222,#0ADB4206);border:1px solid #0ADB4250}
+.sample h3{font-size:20px}
+.sample p{color:var(--ink-2);font-size:15.5px;margin:8px 0 16px}
+.contact{margin-top:16px;padding:20px 24px;border-radius:20px;background:var(--bg-2);border:1px solid var(--line);font-size:15.5px;color:var(--ink-2)}
+.contact b{color:var(--ink)}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-size:18px;font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--bg-3);color:var(--green);font-size:20px;font-weight:500;transition:transform .3s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+.ans{padding:0 0 24px;color:var(--ink-2)}
+.ans p{margin:0 0 12px}
+.ans ol,.ans ul{margin:0 0 12px;padding-left:1.3rem}
+.ans li{margin-bottom:8px}
+.ans b{color:var(--ink)}
+code{font-size:.9em;background:var(--bg-3);padding:.1em .45em;border-radius:6px}
+
+/* final band */
+.band{position:relative;text-align:center;border-radius:32px;overflow:hidden;padding:clamp(56px,8vw,100px) 24px;
+  background:radial-gradient(70% 90% at 50% 0%,#0ADB4240,transparent 70%),linear-gradient(180deg,#0E1A13,#07090A);border:1px solid var(--line)}
+.band img.app-icon{width:88px;height:88px;border-radius:23%;margin:0 auto 22px;box-shadow:0 20px 50px #0ADB4240}
+
+.credits{font-size:13.5px;color:var(--ink-3);max-width:62em;margin:48px auto 0;text-align:center}
+
+footer{border-top:1px solid var(--line);padding:56px 0 40px;font-size:15px;background:#050706}
 footer .cols{display:flex;flex-wrap:wrap;gap:28px 56px;margin-bottom:28px}
-footer .logo img{height:35px;width:auto;display:block}
-footer nav{display:flex;flex-direction:column;gap:11px;min-width:148px}
-footer nav a{color:var(--foot-ink)}
-footer .legalline{padding-top:20px;border-top:1px solid var(--rule)}
-footer .disclaimer{color:var(--foot-soft);font-size:13.5px;line-height:1.55;margin:0 0 14px;max-width:62em}
-footer .copy{color:var(--foot-line);font-size:12.5px;margin:0}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+footer .logo img{height:32px;width:auto}
+footer nav{display:flex;flex-direction:column;gap:10px;min-width:150px}
+footer nav a{color:var(--ink-2)}
+footer .disclaimer{color:var(--ink-3);font-size:13px;line-height:1.55;max-width:64em;margin:0 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+footer .copy{color:var(--ink-3);font-size:12.5px;margin:0}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.rail img,.screen img{transition:none}}
+.no-js .reveal{opacity:1;transform:none}
 </style>
 </head>
-<body>
+<body class="no-js">
 <a class="skip" href="#main">Skip to content</a>
+
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="./index.html"><picture><source srcset="./assets/images/brand/logo-white.svg" media="(prefers-color-scheme: dark)"><img src="./assets/images/brand/logo-black.svg" width="129" height="28" alt="DeeplyAi"></picture></a>
+    <a class="brand" href="#top"><img src="/assets/images/cartv/icon.png" width="32" height="32" alt="">Car.TV</a>
     <nav aria-label="Car.TV">
-      <a class="hide-s" href="./index.html">DeeplyAi</a>
-      <a class="hide-s" href="./cartv-support.html" aria-current="page">Support</a>
-      <a class="hide-s" href="./cartv-privacy.html">Privacy Policy</a>
+      <a class="hide-s" href="#car">CarPlay</a>
+      <a class="hide-s" href="#features">Features</a>
+      <a class="hide-s" href="#pro">Pro</a>
+      <a href="#help">Help</a>
+      <a class="pill" href="https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627" rel="noopener">Get the app</a>
     </nav>
   </div>
 </header>
-<main id="main" class="doc">
-<p class="back"><a href="./index.html">&larr; DeeplyAi</a></p>
-<div class="appid"><img src="./assets/images/cartv/icon.png" width="60" height="60" alt=""><div><b>Car.TV: Cast &amp; M3U IPTV Player</b><span>iPhone &middot; iPad &middot; Apple Watch &middot; CarPlay</span></div></div>
-<h1>Car.TV Support</h1>
-<p class="meta">Answers to common questions. Still stuck? Write to <a href="mailto:info@deeplyai.app">info@deeplyai.app</a>, or in the app use Settings &rsaquo; Contact support.</p>
 
-<div class="box info">
-<h2>Try Car.TV in one tap</h2>
-<p>Car.TV comes with no channels. To see every feature right away, tap the blue <b>+</b> &rsaquo; <b>Sample &amp; free channels</b> &rsaquo; <b>Add sample playlist</b>. It contains four free live news channels published by the broadcasters themselves and two Blender open movies, and does not count toward the free plan&rsquo;s one source. On the same screen, <b>Add Free-TV channels</b> adds the open-source Free-TV list of about 2,000 free-to-air channels.</p>
-<p><a class="button" href="./review-playlist.m3u">Sample playlist (M3U)</a></p>
-</div>
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <img class="app-icon reveal" src="/assets/images/cartv/icon.png" width="104" height="104" alt="Car.TV app icon">
+    <h1 class="h-xl reveal">Your playlists.<br><span class="hl">Every screen.</span></h1>
+    <p class="lead reveal">Car.TV plays the video you already have: live TV with a real guide, films, series and your own clips. Watch on iPhone, iPad and Apple Watch, cast to the TV, and in the car with CarPlay.</p>
+    <div class="cta reveal">
+      <a class="badge" href="https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627" rel="noopener"><img src="/assets/images/stores/app-store-white-en-us.svg" width="162" height="54" alt="Download Car.TV on the App Store"></a>
+      <a class="btn" href="#help">Help &amp; setup</a>
+    </div>
+    <ul class="devices reveal" aria-label="Works on">
+      <li>iPhone</li><li>iPad</li><li>Apple Watch</li><li>CarPlay</li><li>AirPlay</li><li>Google Cast</li><li>DLNA</li>
+    </ul>
+  </div>
+  <div class="film reveal">
+    <div class="film-frame">
+      <video id="film" autoplay muted loop playsinline preload="metadata" poster="/assets/images/cartv/film-poster.webp" aria-label="Car.TV on a CarPlay screen next to an iPhone">
+        <source src="/assets/images/cartv/film-1080.mp4" type="video/mp4" media="(max-width: 900px)">
+        <source src="/assets/images/cartv/film-1920.mp4" type="video/mp4">
+      </video>
+      <button class="film-ctrl" type="button" aria-label="Pause video" data-film-toggle>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      </button>
+    </div>
+    <p class="film-cap">Recorded in the app with CarPlay Simulator. Video shows on the car screen while parked.</p>
+  </div>
+  <div class="wrap">
+    <div class="trust reveal">
+      <div><b>No account</b><span>Open it and press play</span></div>
+      <div><b>No ads, no tracking</b><span>Nothing leaves your devices</span></div>
+      <div><b>Free to start</b><span>One source free, forever</span></div>
+      <div><b>Your sources</b><span>M3U, Xtream, Plex, Jellyfin, Emby</span></div>
+    </div>
+  </div>
+</section>
 
-<h2>Add your own playlist or server</h2>
-<ol>
-<li>Tap the blue <b>+</b> at the top of any tab (Home, Live TV, Library, Saved).</li>
-<li>Choose the type: an M3U/M3U8 link, a file, a QR code, Xtream Codes, Plex, Jellyfin, Emby or a WebDAV share.</li>
-<li>Paste the link your provider gave you (and an XMLTV guide link if you have one), then tap <b>Test &amp; add</b>.</li>
-</ol>
+<section class="section" id="car" aria-labelledby="car-title">
+  <div class="wrap">
+    <div class="car reveal">
+      <div class="split">
+        <div>
+          <p class="eyebrow">In the car</p>
+          <h2 id="car-title" class="h-lg" style="margin-top:16px">Live TV and films, <span class="hl">on the car’s screen.</span></h2>
+          <ul class="ticks">
+            <li><b>Built for CarPlay.</b> Browse Home, Live TV, Movies and Series on the car display, then press play.</li>
+            <li><b>Parked: full picture.</b> In cars whose CarPlay supports video (iOS 26.4 or later).</li>
+            <li><b>Driving: sound only.</b> Now Playing and steering-wheel buttons keep working.</li>
+            <li><b>Your own clips, upright.</b> Turn portrait videos for the wide screen, or play a playlist on repeat.</li>
+            <li><b>Car Mode.</b> A big, glanceable player for a phone in a dash mount.</li>
+          </ul>
+          <p class="note">Never watch video while driving. CarPlay removes the picture as soon as the car moves.</p>
+        </div>
+        <div class="stage">
+          <img src="/assets/images/cartv/universal.webp" width="1800" height="1013" alt="Car.TV on iPhone and iPad: home screen with Continue Watching and a film playing" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Car.TV in your car</h2>
-<p>Car.TV is a CarPlay video app. It appears on the car screen in cars whose CarPlay supports video, with iOS 26.4 or later. Never watch while driving.</p>
-<ol>
-<li>Connect your iPhone to the car with a cable, or wirelessly if your car supports it, and allow CarPlay when your iPhone asks.</li>
-<li>On the car screen, open <b>Car.TV</b>.</li>
-<li>Browse <b>Home</b>, <b>Live TV</b>, <b>Movies</b> and <b>Series</b> and choose something to play. Videos you added from Files or Photos are at the top of Home, under <b>My videos</b>.</li>
-<li>When the car is parked, the video plays on the car display. When the car moves, CarPlay takes the picture away and the sound keeps playing, with Now Playing and the steering-wheel buttons. The video comes back when you park.</li>
-</ol>
-<p>If Car.TV is not on your car screen, your car&rsquo;s CarPlay may not support video yet. Car Mode and casting still work on your iPhone.</p>
+<section aria-labelledby="iphone-title">
+  <div class="wrap rail-head">
+    <div>
+      <p class="eyebrow">iPhone</p>
+      <h2 id="iphone-title" class="h-lg" style="margin-top:16px">Everything you watch,<br>one fast library.</h2>
+    </div>
+    <div class="rail-nav" aria-hidden="true"><button type="button" data-rail="-1">‹</button><button type="button" data-rail="1">›</button></div>
+  </div>
+  <div class="rail" id="rail" tabindex="0" role="group" aria-label="Car.TV on iPhone">
+    <figure><img src="/assets/images/cartv/iphone-01.webp" width="640" height="1391" alt="Home with Continue Watching, On now and Recently added" loading="lazy" decoding="async"><figcaption><b>Home</b>Continue watching, what’s on now, new arrivals</figcaption></figure>
+    <figure><img src="/assets/images/cartv/iphone-02.webp" width="640" height="1391" alt="Live TV list where every channel shows its guide" loading="lazy" decoding="async"><figcaption><b>The Lane</b>Every channel with its own strip of the guide</figcaption></figure>
+    <figure><img src="/assets/images/cartv/iphone-03.webp" width="640" height="1391" alt="TV guide grid for the evening" loading="lazy" decoding="async"><figcaption><b>A real TV guide</b>XMLTV, matched to your channels</figcaption></figure>
+    <figure><img src="/assets/images/cartv/iphone-04.webp" width="640" height="1391" alt="Film details with Play, Add to Saved and Download for offline" loading="lazy" decoding="async"><figcaption><b>Film pages</b>Play, save for later, download for the road</figcaption></figure>
+    <figure><img src="/assets/images/cartv/iphone-05.webp" width="640" height="1391" alt="Library of films with posters" loading="lazy" decoding="async"><figcaption><b>Library</b>Posters, progress and offline downloads</figcaption></figure>
+    <figure><img src="/assets/images/cartv/iphone-06.webp" width="640" height="1391" alt="Cast sheet listing AirPlay and smart TVs" loading="lazy" decoding="async"><figcaption><b>Cast</b>AirPlay, Google Cast and DLNA TVs</figcaption></figure>
+  </div>
+</section>
 
-<h2>Cast to a TV</h2>
-<p>In the player, tap the cast button at the top right (it appears as soon as a TV is found on your Wi-Fi). Car.TV lists AirPlay devices, Chromecast and Google TV, and DLNA smart TVs. If none appear, check the TV is on, on the same Wi-Fi, and that Local Network is allowed for Car.TV in Settings.</p>
+<section class="section" aria-labelledby="ipad-title">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow reveal">iPad</p>
+    <h2 id="ipad-title" class="h-lg reveal" style="margin-top:16px">Big-screen TV, <span class="hl">on your iPad.</span></h2>
+    <p class="lead reveal" style="margin-left:auto;margin-right:auto">A sidebar for every part of your library, and a full-screen player with audio, subtitles, speed and A/V sync at hand.</p>
+    <div class="ipad reveal">
+      <div class="tabs" role="tablist" aria-label="iPad screens">
+        <button type="button" role="tab" aria-selected="true" data-tab="0">Home</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="1">Player</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="2">Live TV</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="3">Guide</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="4">Library</button>
+      </div>
+      <div class="screen" data-screens>
+        <img class="on" src="/assets/images/cartv/ipad-01.webp" width="1400" height="1050" alt="Car.TV on iPad: Home" loading="lazy" decoding="async">
+        <img src="/assets/images/cartv/ipad-02.webp" width="1400" height="1050" alt="Car.TV on iPad: full-screen player" loading="lazy" decoding="async">
+        <img src="/assets/images/cartv/ipad-03.webp" width="1400" height="1050" alt="Car.TV on iPad: Live TV" loading="lazy" decoding="async">
+        <img src="/assets/images/cartv/ipad-04.webp" width="1400" height="1050" alt="Car.TV on iPad: TV guide" loading="lazy" decoding="async">
+        <img src="/assets/images/cartv/ipad-05.webp" width="1400" height="1050" alt="Car.TV on iPad: Library" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Car.TV Pro</h2>
-<ul>
-<li>Pro unlocks unlimited sources, Plex and WebDAV servers, the guide for the next 2 days, unlimited downloads, iCloud sync, the parental lock, and A/V sync with the stats overlay.</li>
-<li>Weekly, monthly and yearly plans renew automatically unless cancelled at least 24 hours before the end of the period. Lifetime is a one-time purchase.</li>
-<li><b>Restore:</b> Settings &rsaquo; Restore purchases. <b>Cancel:</b> Settings &rsaquo; Manage subscription, or in your Apple Account settings.</li>
-<li>For a refund, use <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>; Apple handles all payments.</li>
-</ul>
+<section class="section" style="padding-top:0" aria-labelledby="watch-title">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow reveal">Apple Watch</p>
+      <h2 id="watch-title" class="h-lg reveal" style="margin-top:16px">A remote <span class="hl">on your wrist.</span></h2>
+      <ul class="ticks reveal">
+        <li><b>Control playback</b> on the phone, the TV or the car without reaching for your iPhone.</li>
+        <li><b>Change channel</b> with a tap on the up and down buttons.</li>
+        <li><b>Listen here.</b> Send the sound of a live channel to your AirPods.</li>
+      </ul>
+    </div>
+    <div class="watch-row reveal">
+      <div class="watch"><img src="/assets/images/cartv/watch-01.webp" width="422" height="514" alt="Watch: Now playing a film with skip controls" loading="lazy" decoding="async"></div>
+      <div class="watch"><img src="/assets/images/cartv/watch-02.webp" width="422" height="514" alt="Watch: live channel with channel up and down" loading="lazy" decoding="async"></div>
+      <div class="watch"><img src="/assets/images/cartv/watch-03.webp" width="422" height="514" alt="Watch: listening to a live channel on AirPods" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
 
-<h2>A channel won&rsquo;t play</h2>
-<ul>
-<li>Test the same link in another player; if it fails there too, the provider is down or the link has expired.</li>
-<li>Some formats (for example MKV with DTS audio) can&rsquo;t be decoded by iOS. Car.TV marks them &ldquo;Phone only&rdquo; or says so instead of showing a black screen.</li>
-<li>Settings &rsaquo; Diagnostics shows what the last attempt returned; include it when you write to us.</li>
-</ul>
+<section class="section" style="padding-top:0" aria-labelledby="cast-title">
+  <div class="wrap split rev">
+    <div>
+      <p class="eyebrow reveal">Cast</p>
+      <h2 id="cast-title" class="h-lg reveal" style="margin-top:16px">Send it to <span class="hl">any TV.</span></h2>
+      <p class="lead reveal">Tap the cast button in the player and pick a screen on your Wi-Fi. Your iPhone becomes the remote.</p>
+      <div class="cast-list reveal">
+        <div><b>AirPlay</b><span>Apple TV, AirPlay TVs</span></div>
+        <div><b>Google Cast</b><span>Chromecast, Google TV</span></div>
+        <div><b>DLNA</b><span>Smart TVs on your network</span></div>
+      </div>
+    </div>
+    <img class="phone-solo reveal" src="/assets/images/cartv/iphone-06.webp" width="640" height="1391" alt="Car.TV cast sheet" loading="lazy" decoding="async">
+  </div>
+</section>
 
-<h2>Credits</h2>
-<p>The films seen in Car.TV&rsquo;s App Store screenshots and in its sample playlist are open movies by the Blender Foundation / Blender Studio, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (Big Buck Bunny, Elephants Dream and Sintel under CC BY 3.0): Big Buck Bunny, Elephants Dream, Sintel, Tears of Steel, Cosmos Laundromat, Caminandes, Hero, Spring and Sprite Fright &mdash; <a href="https://studio.blender.org/films/">studio.blender.org</a>. Channel names in the screenshots (Atlas News, Velocity Sports and others) are invented for the demonstration.</p>
+<section class="section" id="features" style="padding-top:0" aria-labelledby="feat-title">
+  <div class="wrap">
+    <p class="eyebrow reveal">Features</p>
+    <h2 id="feat-title" class="h-lg reveal" style="margin-top:16px;max-width:14em">Everything a great player should do.</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><h3>Every source</h3><p>M3U/M3U8 links or files, QR codes, Xtream Codes, Plex, Jellyfin, Emby, WebDAV, Files and Photos.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/></svg></div><h3>TV guide</h3><p>XMLTV matched automatically. Today free, the next 2 days with Pro.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg></div><h3>Offline</h3><p>Download films and episodes for road trips and flights.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 18a5 5 0 01-.6-9.96A6 6 0 0118 9a4.5 4.5 0 01-1 9H7z"/></svg></div><h3>iCloud sync</h3><p>Resume where you stopped, on every device. Passwords are never synced.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><h3>Parental lock</h3><p>Keep what children can open under a lock.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></div><h3>A/V sync &amp; stats</h3><p>Fix lip sync, and check a stream with the stats overlay.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg></div><h3>Widgets &amp; Siri</h3><p>Widgets, Live Activities, Siri and Shortcuts.</p></div>
+      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div><h3>Private by design</h3><p>No account, no tracking, no ads. Passwords stay in the Keychain.</p></div>
+    </div>
+  </div>
+</section>
 
-<p class="meta">Car.TV by DeeplyAi. <a href="./cartv-privacy.html">Privacy Policy</a> &middot; <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a></p>
+<section class="section" id="pro" style="padding-top:0" aria-labelledby="pro-title">
+  <div class="wrap">
+    <p class="eyebrow reveal">Car.TV Pro</p>
+    <h2 id="pro-title" class="h-lg reveal" style="margin-top:16px">Free to start. <span class="hl">Pro when you want more.</span></h2>
+    <div class="pro">
+      <div class="plan reveal">
+        <span class="tag free">Free</span>
+        <h3>Everything you need for one source</h3>
+        <ul class="ticks">
+          <li>One playlist, portal or server</li>
+          <li>Today’s TV guide</li>
+          <li>CarPlay, casting and Apple Watch</li>
+          <li>The sample playlist and Free-TV list don’t count</li>
+        </ul>
+      </div>
+      <div class="plan p reveal">
+        <span class="tag">Pro</span>
+        <h3>Unlimited, on every device</h3>
+        <ul class="ticks">
+          <li>Unlimited sources, Plex and WebDAV servers</li>
+          <li>The guide for the next 2 days</li>
+          <li>Unlimited downloads and iCloud sync</li>
+          <li>Parental lock, A/V sync and the stats overlay</li>
+        </ul>
+        <div class="prices">
+          <div><b>$2.99</b><span>per week</span></div>
+          <div><b>$7.99</b><span>per month</span></div>
+          <div><b>$29.99</b><span>per year</span></div>
+          <div><b>$59.99</b><span>lifetime</span></div>
+        </div>
+        <p class="fine">US prices; the App Store shows the price in your country. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Lifetime is a one-time purchase. Payment is charged to your Apple Account.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="section" id="help" style="padding-top:0" aria-labelledby="help-title">
+  <div class="wrap help">
+    <div class="help-side">
+      <p class="eyebrow">Support</p>
+      <h2 id="help-title" class="h-lg" style="margin-top:16px">Help &amp; answers.</h2>
+      <div class="sample">
+        <h3>Try Car.TV in one tap</h3>
+        <p>Car.TV comes with no channels. Tap the blue <b>+</b> › <b>Sample &amp; free channels</b> › <b>Add sample playlist</b>: four free live news channels published by the broadcasters themselves and two Blender open movies. It doesn’t count toward the free plan’s one source.</p>
+        <a class="btn primary" href="/review-playlist.m3u">Sample playlist (M3U)</a>
+      </div>
+      <div class="contact">Still stuck? Write to <a href="mailto:info@deeplyai.app"><b>info@deeplyai.app</b></a>, or in the app use <b>Settings › Contact support</b>.</div>
+    </div>
+    <div>
+      <details open>
+        <summary>Add your own playlist or server</summary>
+        <div class="ans"><ol>
+          <li>Tap the blue <b>+</b> at the top of any tab (Home, Live TV, Library, Saved).</li>
+          <li>Choose the type: an M3U/M3U8 link, a file, a QR code, Xtream Codes, Plex, Jellyfin, Emby or a WebDAV share.</li>
+          <li>Paste the link your provider gave you (and an XMLTV guide link if you have one), then tap <b>Test &amp; add</b>.</li>
+        </ol>
+        <p>On the <b>Sample &amp; free channels</b> screen, <b>Add Free-TV channels</b> adds the open-source Free-TV list of about 2,000 free-to-air channels.</p></div>
+      </details>
+      <details>
+        <summary>Use Car.TV in your car</summary>
+        <div class="ans">
+          <p>Car.TV is a CarPlay video app. It appears on the car screen in cars whose CarPlay supports video, with iOS 26.4 or later.</p>
+          <ol>
+            <li>Connect your iPhone to the car with a cable, or wirelessly if your car supports it, and allow CarPlay when your iPhone asks.</li>
+            <li>On the car screen, open <b>Car.TV</b>.</li>
+            <li>Browse <b>Home</b>, <b>Live TV</b>, <b>Movies</b> and <b>Series</b> and choose something to play. Videos you added from Files or Photos are at the top of Home, under <b>My videos</b>.</li>
+            <li>When the car is parked, the video plays on the car display. When the car moves, CarPlay takes the picture away and the sound keeps playing, with Now Playing and the steering-wheel buttons. The video comes back when you park.</li>
+          </ol>
+          <p>If Car.TV is not on your car screen, your car’s CarPlay may not support video yet. Car Mode and casting still work on your iPhone.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Cast to a TV</summary>
+        <div class="ans"><p>In the player, tap the cast button at the top right (it appears as soon as a TV is found on your Wi-Fi). Car.TV lists AirPlay devices, Chromecast and Google TV, and DLNA smart TVs. If none appear, check that the TV is on and on the same Wi-Fi, and that <b>Local Network</b> is allowed for Car.TV in Settings.</p></div>
+      </details>
+      <details>
+        <summary>A channel won’t play</summary>
+        <div class="ans"><ul>
+          <li>Test the same link in another player. If it fails there too, the provider is down or the link has expired.</li>
+          <li>Some formats (for example MKV with DTS audio) can’t be decoded by iOS. Car.TV marks them “Phone only” or says so instead of showing a black screen.</li>
+          <li><b>Settings › Diagnostics</b> shows what the last attempt returned. Include it when you write to us.</li>
+        </ul></div>
+      </details>
+      <details>
+        <summary>Restore, cancel or get a refund for Pro</summary>
+        <div class="ans"><ul>
+          <li><b>Restore:</b> Settings › Restore purchases, or Restore on the paywall.</li>
+          <li><b>Cancel:</b> Settings › Manage subscription, or in your Apple Account settings, at least 24 hours before the period ends.</li>
+          <li><b>Refund:</b> use <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. Apple handles all payments.</li>
+        </ul></div>
+      </details>
+      <details>
+        <summary>Does Car.TV include channels?</summary>
+        <div class="ans"><p>No. Car.TV is a player: it does not provide, host, sell or recommend any channels, films or series. You add your own sources and are responsible for having the right to watch them. The sample playlist and the Free-TV list only point to free streams published by their owners.</p></div>
+      </details>
+      <details>
+        <summary>What happens to my data?</summary>
+        <div class="ans"><p>Car.TV collects no data. Your playlists, favourites and watch history stay on your devices; passwords and tokens stay in the iOS Keychain. iCloud sync (Pro) uses your own private iCloud database. Read the <a href="/cartv-privacy.html">Privacy Policy</a>.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="band reveal">
+      <img class="app-icon" src="/assets/images/cartv/icon.png" width="88" height="88" alt="">
+      <h2 class="h-lg">Press play, <span class="hl">anywhere.</span></h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Free on the App Store for iPhone, iPad and Apple Watch, with CarPlay.</p>
+      <div class="cta"><a class="badge" href="https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627" rel="noopener"><img src="/assets/images/stores/app-store-white-en-us.svg" width="162" height="54" alt="Download Car.TV on the App Store"></a></div>
+    </div>
+    <p class="credits">The films in Car.TV’s screenshots and sample playlist are open movies by the Blender Foundation / Blender Studio, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (Big Buck Bunny, Elephants Dream and Sintel under CC BY 3.0): Big Buck Bunny, Elephants Dream, Sintel, Tears of Steel, Cosmos Laundromat, Caminandes, Hero, Spring and Sprite Fright, <a href="https://studio.blender.org/films/">studio.blender.org</a>. Channel names in the screenshots (Atlas News, Velocity Sports and others) are invented for the demonstration.</p>
+  </div>
+</section>
 </main>
+
 <footer>
   <div class="wrap">
     <div class="cols">
-      <a class="logo" href="./index.html"><picture><source srcset="./assets/images/brand/logo-white.svg" media="(prefers-color-scheme: dark)"><img src="./assets/images/brand/logo-black.svg" width="161" height="35" alt="DeeplyAi"></picture></a>
+      <a class="logo" href="/"><img src="/assets/images/brand/logo-white.svg" width="148" height="32" alt="DeeplyAi"></a>
       <nav aria-label="DeeplyAi">
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-        <a href="./privacy.html">Privacy Policy</a>
-        <a href="./terms.html">Terms of Services</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Services</a>
       </nav>
       <nav aria-label="Car.TV links">
-        <a href="./cartv-support.html">Car.TV Support</a>
-        <a href="./cartv-privacy.html">Car.TV Privacy Policy</a>
+        <a href="https://apps.apple.com/us/app/car-tv-cast-m3u-iptv-player/id6819389627">Car.TV on the App Store</a>
+        <a href="/cartv-support.html">Car.TV Support</a>
+        <a href="/cartv-privacy.html">Car.TV Privacy Policy</a>
         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a>
         <a href="mailto:info@deeplyai.app">info@deeplyai.app</a>
       </nav>
     </div>
-    <div class="legalline">
-      <p class="disclaimer">Car.TV is a media player. It does not provide, host, sell or recommend any channels, films or series; you add your own sources and are responsible for having the right to watch them. Never watch video while driving. Apple, iPhone, iPad, Apple Watch, CarPlay, AirPlay and Apple TV are trademarks of Apple Inc. Google Cast and Chromecast are trademarks of Google LLC. Car.TV is not affiliated with Apple or Google.</p>
-      <p class="copy">Copyright &copy; 2026 DeeplyAi. All rights reserved.</p>
-    </div>
+    <p class="disclaimer">Car.TV is a media player. It does not provide, host, sell or recommend any channels, films or series; you add your own sources and are responsible for having the right to watch them. Never watch video while driving. Apple, iPhone, iPad, Apple Watch, CarPlay, AirPlay and Apple TV are trademarks of Apple Inc. Google Cast and Chromecast are trademarks of Google LLC. Plex, Jellyfin and Emby are trademarks of their respective owners. Car.TV is not affiliated with Apple, Google or any of these companies.</p>
+    <p class="copy">Copyright © 2026 DeeplyAi. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+(() => {
+  document.body.classList.remove('no-js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Fade sections in as they scroll into view.
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Hero film: pause off-screen, respect reduced motion, manual toggle.
+  const film = document.getElementById('film');
+  const toggle = document.querySelector('[data-film-toggle]');
+  let userPaused = reduce;
+  const icon = (playing) => {
+    toggle.innerHTML = playing
+      ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    toggle.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+  };
+  if (reduce) { film.removeAttribute('autoplay'); film.pause(); icon(false); }
+  toggle.addEventListener('click', () => {
+    if (film.paused) { userPaused = false; film.play(); icon(true); } else { userPaused = true; film.pause(); icon(false); }
+  });
+  new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) film.pause(); else if (!userPaused) film.play().catch(() => {});
+  }).observe(film);
+
+  // iPhone rail arrows.
+  const rail = document.getElementById('rail');
+  document.querySelectorAll('[data-rail]').forEach((b) => b.addEventListener('click', () => {
+    rail.scrollBy({ left: Number(b.dataset.rail) * rail.clientWidth * 0.7, behavior: reduce ? 'auto' : 'smooth' });
+  }));
+
+  // iPad tabs, with a slow auto-advance until the visitor picks one.
+  const tabs = [...document.querySelectorAll('[data-tab]')];
+  const shots = [...document.querySelectorAll('[data-screens] img')];
+  shots.forEach((s) => { s.loading = 'eager'; });
+  const show = (i) => {
+    tabs.forEach((t, j) => t.setAttribute('aria-selected', String(i === j)));
+    shots.forEach((s, j) => s.classList.toggle('on', i === j));
+  };
+  let current = 0, timer = reduce ? null : setInterval(() => show(current = (current + 1) % shots.length), 4200);
+  tabs.forEach((t, i) => t.addEventListener('click', () => { clearInterval(timer); show(current = i); }));
+})();
+</script>
 </body>
 </html>

@@ -1,4 +1,9 @@
-node_modules/
+node_modules
+# iCloud Drive skips *.nosync, so dependencies are kept there and symlinked as node_modules.
+*.nosync
+# Damaged copies kept after the iCloud repair of 20 Nov 2026; safe to delete once not needed.
+.git-icloud-broken/
+*.icloud-broken/
 dist/
 .astro/
 .DS_Store
