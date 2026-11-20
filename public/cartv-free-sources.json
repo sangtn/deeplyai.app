@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "updated": "2026-11-20",
+  "sections": [
+    {
+      "id": "music",
+      "title": "Free music",
+      "items": [
+        { "title": "Free Music Archive", "url": "https://freemusicarchive.org", "icon": "music.note" },
+        { "title": "Jamendo", "url": "https://www.jamendo.com", "icon": "music.note" },
+        { "title": "NCS", "url": "https://ncs.io", "icon": "music.note" },
+        { "title": "ccMixter", "url": "https://ccmixter.org", "icon": "music.note" },
+        { "title": "Incompetech", "url": "https://incompetech.com/music/", "icon": "music.note" },
+        { "title": "Free Stock Music", "url": "https://www.free-stock-music.com", "icon": "music.note" },
+        { "title": "Internet Archive Audio", "url": "https://archive.org/details/audio", "icon": "waveform" }
+      ]
+    },
+    {
+      "id": "video",
+      "title": "Free videos",
+      "items": [
+        { "title": "Internet Archive Movies", "url": "https://archive.org/details/movies", "icon": "film" },
+        { "title": "Wikimedia Commons", "url": "https://commons.wikimedia.org", "icon": "photo.on.rectangle" }
+      ]
+    },
+    {
+      "id": "audiobooks",
+      "title": "Audiobooks",
+      "items": [
+        { "title": "LibriVox", "url": "https://librivox.org", "icon": "book" }
+      ]
+    }
+  ]
+}
