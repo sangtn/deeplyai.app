@@ -42,7 +42,7 @@ function lichPaths() {
 }
 
 const site = 'https://deeplyai.app';
-const STATIC_PAGES = ['/', '/vi/', '/vi/apps/', '/vi/apps/lich-van-nien/', '/vi/apps/car-play-connect/', '/apps/', '/platforms/', '/vi/platforms/', '/about.html', '/services.html', '/solutions.html', '/contact.html', '/privacy.html', '/terms.html', '/cartv-support.html', '/cartv-privacy.html', '/cartv-review.html'];
+const STATIC_PAGES = ['/', '/vi/', '/vi/apps/', '/vi/apps/lich-van-nien/', '/vi/apps/car-play-connect/', '/apps/', '/platforms/', '/vi/platforms/', '/about.html', '/services.html', '/solutions.html', '/contact.html', '/privacy.html', '/terms.html', '/cartv-support.html', '/cartv-privacy.html', '/cartv-review.html', '/cartv-faq.html', '/cartv-faq.tr.html', '/cartv-faq.pt-BR.html', '/cartv-faq.es.html', '/cartv-faq.de.html', '/cartv-faq.ar.html', '/cartv-carplay-video.html', '/cartv-carplay-video.tr.html', '/cartv-carplay-video.pt-BR.html', '/cartv-carplay-video.es.html', '/cartv-carplay-video.de.html', '/cartv-carplay-video.ar.html', '/cartv-guide.html', '/cartv-guide.es.html', '/cartv-guide.pt-BR.html', '/cartv-guide.de.html', '/cartv-guide.fr.html', '/cartv-guide.it.html', '/cartv-guide.tr.html', '/cartv-guide.ar.html', '/cartv-guide.zh-Hans.html', '/cartv-guide.ja.html', '/cartv-guide.ko.html', '/cartv-guide.vi.html'];
 
 export async function GET() {
   const entries = await getCollection('apps');
