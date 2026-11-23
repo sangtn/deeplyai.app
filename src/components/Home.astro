@@ -63,7 +63,7 @@ const jsonLd = {
   alternates={{ en: '/', vi: '/vi/' }}
   jsonLd={jsonLd}
   title={vi ? 'DeeplyAi – Ứng dụng cho iPhone, Apple Watch & CarPlay' : 'DeeplyAi – Apps for iPhone, Apple Watch & CarPlay'}
-  description={vi ? 'DeeplyAi xây dựng một gia đình ứng dụng không ngừng lớn mạnh cho iPhone, iPad, Apple Watch và CarPlay, đã đến với hơn 2 triệu người dùng.' : 'DeeplyAi builds a growing family of apps for iPhone, iPad, Apple Watch and CarPlay, already used by more than 2 million people.'}
+  description={vi ? 'DeeplyAi xây dựng một gia đình ứng dụng không ngừng lớn mạnh cho iPhone, iPad, Apple Watch, CarPlay và giờ là cả Android, đã đến với hơn 2 triệu người dùng.' : 'DeeplyAi builds a growing family of apps for iPhone, iPad, Apple Watch, CarPlay and now Android, already used by more than 2 million people.'}
 >
   <section class="hero">
     <div class="wall" aria-hidden="true">
@@ -76,10 +76,13 @@ const jsonLd = {
     <div class="wrap hero-in">
       <p class="eyebrow">DeeplyAi</p>
       <h1 class="display">{vi ? <Fragment>Gia đình ứng dụng <em>không ngừng lớn mạnh</em> cho cuộc sống mỗi ngày.</Fragment> : <Fragment>A <em>growing</em> family of apps for everyday life.</Fragment>}</h1>
-      <p class="lead">{vi ? 'Các ứng dụng của chúng tôi đã đến với hơn 2 triệu người dùng. Từ con đường phía trước đến bầu trời đêm, chúng tôi xây dựng cho iPhone, iPad, Apple Watch và CarPlay.' : 'Together, our apps have reached over 2 million users. From the road ahead to the night sky, we build for iPhone, iPad, Apple Watch and CarPlay.'}</p>
+      <p class="lead">{vi ? 'Các ứng dụng của chúng tôi đã đến với hơn 2 triệu người dùng. Từ con đường phía trước đến bầu trời đêm, chúng tôi xây dựng cho iPhone, iPad, Apple Watch, CarPlay và giờ là cả Android.' : 'Together, our apps have reached over 2 million users. From the road ahead to the night sky, we build for iPhone, iPad, Apple Watch, CarPlay and now Android.'}</p>
       <div class="actions">
         <a class="btn" href={vi ? '/vi/apps/' : '/apps/'}>{vi ? 'Xem tất cả ứng dụng' : 'Browse all apps'}</a>
         <StoreBadge lang={lang} />
+        <a class="store-badge play-badge" href="https://play.google.com/store/apps/details?id=com.orientpro.globalsdr" rel="noopener">
+          <img src={`/assets/images/stores/google-play-badge-${vi ? 'vi' : 'en'}.png`} width="564" height="168" alt={vi ? 'Tải GlobalSDR trên Google Play' : 'Get GlobalSDR on Google Play'} />
+        </a>
       </div>
     </div>
   </section>

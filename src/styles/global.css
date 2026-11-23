@@ -260,7 +260,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .road h3 { font-size: clamp(34px, 4vw, 52px); }
 .road p { color: var(--on-night-2); }
 .status { padding: 4px 12px; border-radius: 999px; background: #f3efe61f; font-size: 13px; font-weight: 600; }
-.gp { width: auto; height: 76px; margin: auto 0 -10px -12px; }
+.gp-link { display: inline-block; margin-top: 6px; border-radius: 8px; transition: transform .2s; }
+.gp-link:hover { transform: translateY(-2px); }
+.gp-link .gp-badge { display: block; width: auto; height: 52px; }
+.gp-link:focus-visible { outline: 2px solid #ff8a62; outline-offset: 3px; }
 .road-live { border: 1px solid #ff8a6280; background: #f3efe60a; }
 .status-live { display: inline-flex; align-items: center; gap: 8px; background: #ff8a6226; color: #ffb59c; }
 .status-live i { width: 8px; height: 8px; border-radius: 50%; background: #ff8a62; box-shadow: 0 0 0 4px #ff8a6233; }
