@@ -13,31 +13,18 @@ const today = vietnamToday();
 const info = dayInfo(today.day, today.month, today.year);
 const lunarDate = (d: number, m: number, leap: boolean) => (vi ? `${d} ${LUNAR_MONTHS[m - 1]}` : `Month ${m}, day ${d}`) + (leap ? (vi ? ' (nhuận)' : ' (leap)') : '');
 const lichHref = vi ? '/vi/lich-am/' : '/apps/lich-van-nien/#hom-nay';
-const GLOBALSDR_URL = 'https://play.google.com/store/apps/details?id=com.orientpro.globalsdr';
 ---
 <section class="roadmap" aria-labelledby="roadmap-title">
   <div class="wrap">
-    <p class="eyebrow">{vi ? 'Ngoài App Store' : 'Beyond the App Store'}</p>
+    <p class="eyebrow">{vi ? 'Sắp ra mắt' : 'Coming next'}</p>
     <h2 id="roadmap-title" class="h-lg">{vi ? 'Vượt ra ngoài hệ sinh thái Apple.' : 'Beyond the Apple ecosystem.'}</h2>
-    <p class="lead">{vi ? 'Ứng dụng DeeplyAi giờ đã có trên Android và web, để nhiều người hơn có thể sử dụng.' : 'DeeplyAi apps now reach Android and the web, so more people can use them.'}</p>
+    <p class="lead">{vi ? 'Chúng tôi đang phát triển cho những môi trường mới để nhiều người hơn có thể dùng ứng dụng của DeeplyAi.' : 'We are building for new environments so more people can use DeeplyAi apps.'}</p>
     <div class="roadmap-grid">
-      <article class="road road-live">
-        <span class="status status-live"><i aria-hidden="true"></i>{vi ? 'Đã có trên Google Play' : 'Now on Google Play'}</span>
+      <article class="road">
+        <span class="status">{vi ? 'Đang phát triển' : 'In development'}</span>
         <h3>Android</h3>
-        <p>{vi ? 'Ứng dụng Android đầu tiên của chúng tôi: nghe radio sóng ngắn, ham và hàng không trực tiếp từ hơn 1.300 máy thu thật trên khắp thế giới.' : 'Our first Android app: live shortwave, ham and aviation radio from more than 1,300 real receivers around the world.'}</p>
-        <a class="web-tile" href={GLOBALSDR_URL} rel="noopener">
-          <img src="/assets/images/android/globalsdr.png" width="52" height="52" alt="" loading="lazy" decoding="async" />
-          <span class="web-tile-body">
-            <small>{vi ? 'Ứng dụng Android' : 'Android app'}</small>
-            <b>Shortwave SDR Radio: GlobalSDR</b>
-            <span class="web-tile-cc">{vi ? 'Biết đài nào đang phát, xem phổ và thác nước tín hiệu, theo dõi điều kiện truyền sóng. Có widget và Wear OS.' : 'See which station is on air, tune on a live waterfall and check band conditions. Widgets and Wear OS included.'}</span>
-          </span>
-          <span class="web-tile-go">{vi ? 'Xem trên Google Play' : 'View on Google Play'} <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="gp-link" href={GLOBALSDR_URL} rel="noopener">
-          <img class="gp-badge" src={`/assets/images/stores/google-play-badge-${vi ? 'vi' : 'en'}.png`} width="564" height="168" loading="lazy" alt={vi ? 'Tải GlobalSDR trên Google Play' : 'Get GlobalSDR on Google Play'} />
-        </a>
-        <p class="web-next">{vi ? 'Tiếp theo: thêm nhiều ứng dụng DeeplyAi cho Android.' : 'Next: more DeeplyAi apps for Android.'}</p>
+        <p>{vi ? 'Đưa ứng dụng của chúng tôi đến người dùng điện thoại Android thông qua Google Play.' : 'Bringing our apps to Android phones through Google Play.'}</p>
+        <img class="gp" src={`/assets/images/stores/google-play-${vi ? 'vi' : 'en'}.png`} width="646" height="250" loading="lazy" alt={vi ? 'Google Play, sắp ra mắt' : 'Google Play, coming soon'} />
       </article>
       <article class="road road-live">
         <span class="status status-live"><i aria-hidden="true"></i>{vi ? 'Đã có bản đầu tiên' : 'First one is live'}</span>
@@ -56,7 +43,7 @@ const GLOBALSDR_URL = 'https://play.google.com/store/apps/details?id=com.orientp
         <p class="web-next">{vi ? 'Tiếp theo: các công cụ web nhỏ cho những ứng dụng khác.' : 'Next: small web tools for more of our apps.'}</p>
       </article>
     </div>
-    <p class="fine">{vi ? 'Trên Google Play hiện có GlobalSDR; trên web, hiện có lịch âm của Lịch Vạn Niên. Các kế hoạch tiếp theo có thể thay đổi về phạm vi và thời gian.' : 'GlobalSDR is live on Google Play, and the Lịch Vạn Niên lunar calendar is live on the web. Further plans may change in scope and timing.'}</p>
+    <p class="fine">{vi ? 'Đây là kế hoạch đang thực hiện; phạm vi và thời gian có thể thay đổi. Chưa có ứng dụng DeeplyAi nào trên Google Play; trên web, hiện mới có lịch âm của Lịch Vạn Niên.' : 'These plans are in progress, and scope and timing may change. No DeeplyAi apps are on Google Play yet; on the web, the Lịch Vạn Niên lunar calendar is the first to go live.'}</p>
   </div>
 </section>
 
