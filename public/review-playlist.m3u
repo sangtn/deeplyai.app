@@ -1,13 +1,23 @@
-#EXTM3U
-#EXTINF:-1 tvg-id="DWEnglish.de" tvg-chno="1" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Deutsche_Welle_symbol_2012.svg/500px-Deutsche_Welle_symbol_2012.svg.png" group-title="News",DW English
-https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8
-#EXTINF:-1 tvg-id="AlJazeeraEnglish.qa" tvg-chno="2" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera_eng.svg/500px-Aljazeera_eng.svg.png" group-title="News",Al Jazeera English
-https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8
-#EXTINF:-1 tvg-id="BloombergTelevision.us" tvg-chno="3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/New_Bloomberg_Logo.svg/500px-New_Bloomberg_Logo.svg.png" group-title="Business",Bloomberg TV
-https://bloomberg.com/media-manifest/streams/us.m3u8
-#EXTINF:-1 tvg-id="TRTWorld.tr" tvg-chno="4" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/500px-TRT_World.svg.png" group-title="News",TRT World
-https://tv-trtworld.medya.trt.com.tr/master.m3u8
-#EXTINF:634 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/500px-Big_buck_bunny_poster_big.jpg" group-title="Movies",Big Buck Bunny
-https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
-#EXTINF:734 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tos-poster.png/500px-Tos-poster.png" group-title="Movies",Tears of Steel
-https://test-streams.mux.dev/tos_ismc/main.m3u8
+#EXTM3U url-tvg="https://deeplyai.app/cartv-demo/epg.xml"
+# Car.TV sample playlist, hosted by DeeplyAi. Every video is stock footage from
+# Pexels (Pexels License, free for commercial use), re-encoded by DeeplyAi.
+#EXTINF:-1 tvg-id="cartv-nature" tvg-name="Car.TV Nature" tvg-chno="1" tvg-logo="https://deeplyai.app/cartv-demo/logos/nature.png" group-title="Demo channels",Car.TV Nature
+https://deeplyai.app/cartv-demo/nature/play.m3u8
+#EXTINF:-1 tvg-id="cartv-ocean" tvg-name="Car.TV Ocean" tvg-chno="2" tvg-logo="https://deeplyai.app/cartv-demo/logos/ocean.png" group-title="Demo channels",Car.TV Ocean
+https://deeplyai.app/cartv-demo/ocean/play.m3u8
+#EXTINF:-1 tvg-id="cartv-city" tvg-name="Car.TV City" tvg-chno="3" tvg-logo="https://deeplyai.app/cartv-demo/logos/city.png" group-title="Demo channels",Car.TV City
+https://deeplyai.app/cartv-demo/city/play.m3u8
+#EXTINF:-1 tvg-id="cartv-road" tvg-name="Car.TV Road" tvg-chno="4" tvg-logo="https://deeplyai.app/cartv-demo/logos/road.png" group-title="Demo channels",Car.TV Road
+https://deeplyai.app/cartv-demo/road/play.m3u8
+#EXTINF:730 tvg-name="Northern Lights" tvg-logo="https://deeplyai.app/cartv-demo/art/aurora.jpg" group-title="Movies",Northern Lights
+https://deeplyai.app/cartv-demo/film-aurora/play.m3u8
+#EXTINF:545 tvg-name="Coastal Drive" tvg-logo="https://deeplyai.app/cartv-demo/art/highway.jpg" group-title="Movies",Coastal Drive
+https://deeplyai.app/cartv-demo/film-highway/play.m3u8
+#EXTINF:666 tvg-name="Desert Gold" tvg-logo="https://deeplyai.app/cartv-demo/art/dunes.jpg" group-title="Movies",Desert Gold
+https://deeplyai.app/cartv-demo/film-dunes/play.m3u8
+#EXTINF:611 tvg-name="Reef Life" tvg-logo="https://deeplyai.app/cartv-demo/art/reef.jpg" group-title="Movies",Reef Life
+https://deeplyai.app/cartv-demo/film-reef/play.m3u8
+#EXTINF:485 tvg-name="Lavender Fields" tvg-logo="https://deeplyai.app/cartv-demo/art/lavender.jpg" group-title="Movies",Lavender Fields
+https://deeplyai.app/cartv-demo/film-lavender/play.m3u8
+#EXTINF:604 tvg-name="Balloon Morning" tvg-logo="https://deeplyai.app/cartv-demo/art/balloons.jpg" group-title="Movies",Balloon Morning
+https://deeplyai.app/cartv-demo/film-balloons/play.m3u8
