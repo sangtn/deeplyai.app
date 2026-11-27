@@ -207,16 +207,16 @@
       ]
     },
     {
-      "h": "6. Fotocamera, foto del viaggio e facecam",
+      "h": "6. Fotocamera, screenshot e facecam",
       "p": [
-        "ROAMO usa la fotocamera solo quando lo chiedi tu: per scattare una foto del viaggio, registrare la facecam opzionale del viaggio o fotografare le tue texture in World Studio. La facecam registra con la fotocamera frontale pochi fotogrammi al secondo, senza audio, solo mentre un viaggio viene registrato, e iOS la mette in pausa quando ROAMO non è sullo schermo dell'iPhone. Foto e clip della facecam restano solo sul tuo iPhone: non vengono mai caricate a noi o ad altri, non vengono analizzate per riconoscere volti e servono solo a creare il video del viaggio. Decidi tu se condividere il video; chiedi ai passeggeri prima di riprenderli o condividerli. Puoi eliminare la facecam di un viaggio nell'editor video e modificare l'accesso alla fotocamera in qualsiasi momento nelle Impostazioni di iOS."
+        "ROAMO usa la fotocamera solo quando lo chiedi tu: per registrare la facecam opzionale del viaggio o fotografare le tue texture in World Studio. Il pulsante screenshot della schermata di navigazione non usa la fotocamera; cattura ciò che mostra ROAMO. La facecam registra con la fotocamera frontale pochi fotogrammi al secondo, senza audio, solo mentre un viaggio viene registrato, e iOS la mette in pausa quando ROAMO non è sullo schermo dell'iPhone. Screenshot e clip della facecam restano solo sul tuo iPhone: non vengono mai caricati a noi o ad altri, non vengono analizzati per riconoscere volti e servono solo per le tue immagini e il video del viaggio. Decidi tu se salvarli o condividerli; chiedi ai passeggeri prima di riprenderli o condividerli. Puoi eliminare la facecam di un viaggio nell'editor video e modificare l'accesso alla fotocamera in qualsiasi momento nelle Impostazioni di iOS."
       ]
     },
     {
       "h": "7. Dati salvati sul dispositivo",
       "p": [
         "ROAMO salva in locale alcune informazioni perché l’app resti come l’hai lasciata: i luoghi Casa, Lavoro e preferiti, il parcheggio salvato, il mondo scelto e le impostazioni (come voce, unità e lingua). Questi dati restano sul tuo iPhone e vengono eliminati quando cancelli l’app. Possono essere inclusi nei tuoi backup in base alle impostazioni di iOS; noi non vi abbiamo accesso.",
-        "I viaggi registrati (percorso, orari, velocità, altitudine, foto e clip della facecam) restano anch'essi solo sul tuo iPhone; le clip della facecam sono escluse dai backup iCloud."
+        "I viaggi registrati (percorso, orari, velocità, altitudine, screenshot e clip della facecam) restano anch'essi solo sul tuo iPhone; le clip della facecam sono escluse dai backup iCloud."
       ]
     },
     {

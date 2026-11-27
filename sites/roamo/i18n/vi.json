@@ -207,16 +207,16 @@
       ]
     },
     {
-      "h": "6. Camera, ảnh chuyến đi và facecam",
+      "h": "6. Camera, ảnh chụp màn hình và facecam",
       "p": [
-        "ROAMO chỉ dùng camera khi bạn yêu cầu: chụp ảnh chuyến đi, quay facecam chuyến đi (tuỳ chọn), hoặc chụp họa tiết của riêng bạn trong World Studio. Facecam quay bằng camera trước vài hình mỗi giây, không có tiếng, chỉ trong lúc đang ghi chuyến đi, và iOS tạm dừng nó mỗi khi ROAMO không hiện trên màn hình iPhone. Ảnh chuyến đi và các đoạn facecam chỉ lưu trên iPhone của bạn: không bao giờ được tải lên cho chúng tôi hay bất kỳ ai, không bị phân tích khuôn mặt, và chỉ dùng để tạo video chuyến đi. Bạn tự quyết định có chia sẻ video hay không; hãy hỏi ý hành khách trước khi quay hoặc chia sẻ hình ảnh của họ. Bạn có thể xoá facecam của một chuyến trong trình dựng video, và có thể đổi quyền camera bất cứ lúc nào trong Cài đặt iOS."
+        "ROAMO chỉ dùng camera khi bạn yêu cầu: quay facecam chuyến đi (tuỳ chọn), hoặc chụp họa tiết của riêng bạn trong World Studio. Nút chụp màn hình trên màn dẫn đường không dùng camera; nó chụp lại những gì ROAMO đang hiển thị. Facecam quay bằng camera trước vài hình mỗi giây, không có tiếng, chỉ trong lúc đang ghi chuyến đi, và iOS tạm dừng nó mỗi khi ROAMO không hiện trên màn hình iPhone. Ảnh chụp màn hình và các đoạn facecam chỉ lưu trên iPhone của bạn: không bao giờ được tải lên cho chúng tôi hay bất kỳ ai, không bị phân tích khuôn mặt, và chỉ dùng cho ảnh và video chuyến đi của chính bạn. Bạn tự quyết định có lưu hay chia sẻ hay không; hãy hỏi ý hành khách trước khi quay hoặc chia sẻ hình ảnh của họ. Bạn có thể xoá facecam của một chuyến trong trình dựng video, và có thể đổi quyền camera bất cứ lúc nào trong Cài đặt iOS."
       ]
     },
     {
       "h": "7. Dữ liệu lưu trên thiết bị",
       "p": [
         "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập.",
-        "Các chuyến đi bạn ghi (tuyến đường, thời gian, tốc độ, độ cao, ảnh và đoạn facecam) cũng chỉ lưu trên iPhone của bạn; đoạn facecam không nằm trong bản sao lưu iCloud."
+        "Các chuyến đi bạn ghi (tuyến đường, thời gian, tốc độ, độ cao, ảnh chụp màn hình và đoạn facecam) cũng chỉ lưu trên iPhone của bạn; đoạn facecam không nằm trong bản sao lưu iCloud."
       ]
     },
     {

@@ -207,16 +207,16 @@
       ]
     },
     {
-      "h": "6. Kamera, Fahrtfotos und Facecam",
+      "h": "6. Kamera, Bildschirmfotos und Facecam",
       "p": [
-        "ROAMO nutzt die Kamera nur, wenn du es willst: für ein Fahrtfoto, für die optionale Fahrt-Facecam oder um im World Studio eigene Texturen zu fotografieren. Die Facecam nimmt mit der Frontkamera einige Bilder pro Sekunde ohne Ton auf, nur während eine Fahrt aufgezeichnet wird, und iOS pausiert sie, sobald ROAMO nicht auf dem Bildschirm deines iPhones ist. Fahrtfotos und Facecam-Clips werden nur auf deinem iPhone gespeichert: Sie werden nie an uns oder andere hochgeladen, nicht auf Gesichter analysiert und nur für dein Fahrtvideo verwendet. Du entscheidest, ob du ein fertiges Video teilst; frag bitte Mitfahrende, bevor du sie aufnimmst oder teilst. Die Facecam einer Fahrt kannst du im Video-Editor löschen, den Kamerazugriff jederzeit in den iOS-Einstellungen ändern."
+        "ROAMO nutzt die Kamera nur, wenn du es willst: für die optionale Fahrt-Facecam oder um im World Studio eigene Texturen zu fotografieren. Die Bildschirmfoto-Taste im Navigationsbildschirm nutzt keine Kamera; sie hält fest, was ROAMO anzeigt. Die Facecam nimmt mit der Frontkamera einige Bilder pro Sekunde ohne Ton auf, nur während eine Fahrt aufgezeichnet wird, und iOS pausiert sie, sobald ROAMO nicht auf dem Bildschirm deines iPhones ist. Bildschirmfotos und Facecam-Clips werden nur auf deinem iPhone gespeichert: Sie werden nie an uns oder andere hochgeladen, nicht auf Gesichter analysiert und nur für deine eigenen Bilder und dein Fahrtvideo verwendet. Du entscheidest, ob du sie sicherst oder teilst; frag bitte Mitfahrende, bevor du sie aufnimmst oder teilst. Die Facecam einer Fahrt kannst du im Video-Editor löschen, den Kamerazugriff jederzeit in den iOS-Einstellungen ändern."
       ]
     },
     {
       "h": "7. Auf deinem Gerät gespeicherte Daten",
       "p": [
         "ROAMO speichert einige Dinge lokal, damit die App so bleibt, wie du sie verlassen hast: deine Orte Zuhause, Arbeit und Favoriten, deinen gemerkten Parkplatz, die gewählte Welt und deine Einstellungen (z. B. Stimme, Einheiten und Sprache). Diese Daten bleiben auf deinem iPhone und werden beim Löschen der App entfernt. Je nach iOS-Einstellungen können sie in deinen eigenen Geräte-Backups enthalten sein; wir haben keinen Zugriff darauf.",
-        "Aufgezeichnete Fahrten (Route, Zeiten, Geschwindigkeit, Höhe, Fotos und Facecam-Clips) werden ebenfalls nur auf deinem iPhone gespeichert; Facecam-Clips sind von iCloud-Backups ausgenommen."
+        "Aufgezeichnete Fahrten (Route, Zeiten, Geschwindigkeit, Höhe, Bildschirmfotos und Facecam-Clips) werden ebenfalls nur auf deinem iPhone gespeichert; Facecam-Clips sind von iCloud-Backups ausgenommen."
       ]
     },
     {

@@ -207,16 +207,16 @@
       ]
     },
     {
-      "h": "6. Câmera, fotos da viagem e facecam",
+      "h": "6. Câmera, capturas de tela e facecam",
       "p": [
-        "O ROAMO só usa a câmera quando você pede: para tirar uma foto da viagem, gravar a facecam opcional da viagem ou fotografar suas próprias texturas no World Studio. A facecam grava com a câmera frontal poucos quadros por segundo, sem som, somente enquanto uma viagem é gravada, e o iOS a pausa sempre que o ROAMO não está na tela do iPhone. Fotos e clipes da facecam ficam salvos só no seu iPhone: nunca são enviados para nós nem para ninguém, não passam por análise de rosto e servem apenas para criar o vídeo da viagem. Você decide se compartilha o vídeo; peça permissão aos passageiros antes de gravá-los ou compartilhá-los. Você pode apagar a facecam de uma viagem no editor de vídeo e mudar o acesso à câmera a qualquer momento nos Ajustes do iOS."
+        "O ROAMO só usa a câmera quando você pede: para gravar a facecam opcional da viagem ou fotografar suas próprias texturas no World Studio. O botão de captura da tela de navegação não usa a câmera; ele captura o que o ROAMO mostra. A facecam grava com a câmera frontal poucos quadros por segundo, sem som, somente enquanto uma viagem é gravada, e o iOS a pausa sempre que o ROAMO não está na tela do iPhone. Capturas e clipes da facecam ficam salvos só no seu iPhone: nunca são enviados para nós nem para ninguém, não passam por análise de rosto e servem apenas para suas próprias imagens e o vídeo da viagem. Você decide se salva ou compartilha; peça permissão aos passageiros antes de gravá-los ou compartilhá-los. Você pode apagar a facecam de uma viagem no editor de vídeo e mudar o acesso à câmera a qualquer momento nos Ajustes do iOS."
       ]
     },
     {
       "h": "7. Dados armazenados no seu aparelho",
       "p": [
         "O ROAMO salva algumas coisas localmente para que o app fique do jeito que você deixou: seus lugares Casa, Trabalho e favoritos, a vaga onde estacionou, o mundo escolhido e seus ajustes (como voz, unidades e idioma). Esses dados ficam no seu iPhone e são apagados quando você exclui o app. Eles podem entrar nos seus próprios backups, conforme os ajustes do iOS; nós não temos acesso a eles.",
-        "As viagens gravadas (rota, horários, velocidade, altitude, fotos e clipes da facecam) também ficam só no seu iPhone; os clipes da facecam ficam fora dos backups do iCloud."
+        "As viagens gravadas (rota, horários, velocidade, altitude, capturas e clipes da facecam) também ficam só no seu iPhone; os clipes da facecam ficam fora dos backups do iCloud."
       ]
     },
     {

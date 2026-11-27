@@ -207,16 +207,16 @@
       ]
     },
     {
-      "h": "6. Appareil photo, photos de trajet et facecam",
+      "h": "6. Appareil photo, captures d'écran et facecam",
       "p": [
-        "ROAMO n'utilise l'appareil photo que lorsque vous le demandez : pour prendre une photo de trajet, enregistrer la facecam de trajet (facultative) ou photographier vos propres textures dans World Studio. La facecam filme avec la caméra avant quelques images par seconde, sans son, uniquement pendant l'enregistrement d'un trajet, et iOS la met en pause dès que ROAMO n'est pas à l'écran de l'iPhone. Les photos et clips facecam sont enregistrés uniquement sur votre iPhone : ils ne sont jamais envoyés à nous ni à quiconque, ne font l'objet d'aucune analyse de visage et servent uniquement à créer la vidéo du trajet. Vous décidez de partager ou non la vidéo ; demandez l'accord des passagers avant de les filmer ou de partager leur image. Vous pouvez supprimer la facecam d'un trajet dans l'éditeur vidéo et modifier l'accès à l'appareil photo à tout moment dans les Réglages iOS."
+        "ROAMO n'utilise l'appareil photo que lorsque vous le demandez : pour enregistrer la facecam de trajet (facultative) ou photographier vos propres textures dans World Studio. Le bouton de capture de l'écran de navigation n'utilise pas l'appareil photo ; il capture ce qu'affiche ROAMO. La facecam filme avec la caméra avant quelques images par seconde, sans son, uniquement pendant l'enregistrement d'un trajet, et iOS la met en pause dès que ROAMO n'est pas à l'écran de l'iPhone. Les captures et clips facecam sont enregistrés uniquement sur votre iPhone : ils ne sont jamais envoyés à nous ni à quiconque, ne font l'objet d'aucune analyse de visage et servent uniquement à vos propres images et à la vidéo du trajet. Vous décidez de les enregistrer ou de les partager ; demandez l'accord des passagers avant de les filmer ou de partager leur image. Vous pouvez supprimer la facecam d'un trajet dans l'éditeur vidéo et modifier l'accès à l'appareil photo à tout moment dans les Réglages iOS."
       ]
     },
     {
       "h": "7. Données stockées sur votre appareil",
       "p": [
         "ROAMO enregistre localement quelques éléments pour que l’app reste telle que vous l’avez laissée : vos lieux Domicile, Travail et favoris, votre place de stationnement, le monde choisi et vos réglages (voix, unités, langue…). Ces données restent sur votre iPhone et sont supprimées avec l’app. Elles peuvent figurer dans vos propres sauvegardes selon vos réglages iOS ; nous n’y avons pas accès.",
-        "Les trajets enregistrés (itinéraire, heures, vitesse, altitude, photos et clips facecam) restent aussi uniquement sur votre iPhone ; les clips facecam sont exclus des sauvegardes iCloud."
+        "Les trajets enregistrés (itinéraire, heures, vitesse, altitude, captures et clips facecam) restent aussi uniquement sur votre iPhone ; les clips facecam sont exclus des sauvegardes iCloud."
       ]
     },
     {
