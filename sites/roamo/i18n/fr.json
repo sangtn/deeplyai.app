@@ -156,7 +156,7 @@
   "attr_engine": "Moteur cartographique : {maplibre}",
   "disclaimer": "ROAMO est une app indépendante et n’est affiliée à aucun éditeur de jeux vidéo.",
   "trademark": "Apple, App Store et iPhone sont des marques d’Apple Inc.",
-  "updated": "Dernière mise à jour : 26 novembre 2026",
+  "updated": "Dernière mise à jour : 27 novembre 2026",
   "back": "Retour à ROAMO",
   "translation_note": "Cette traduction est fournie pour plus de commodité. En cas de divergence avec la version anglaise, la version anglaise prévaut.",
   "privacy_page_title": "Politique de confidentialité",
@@ -207,49 +207,56 @@
       ]
     },
     {
-      "h": "6. Données stockées sur votre appareil",
+      "h": "6. Appareil photo, photos de trajet et facecam",
       "p": [
-        "ROAMO enregistre localement quelques éléments pour que l’app reste telle que vous l’avez laissée : vos lieux Domicile, Travail et favoris, votre place de stationnement, le monde choisi et vos réglages (voix, unités, langue…). Ces données restent sur votre iPhone et sont supprimées avec l’app. Elles peuvent figurer dans vos propres sauvegardes selon vos réglages iOS ; nous n’y avons pas accès."
+        "ROAMO n'utilise l'appareil photo que lorsque vous le demandez : pour prendre une photo de trajet, enregistrer la facecam de trajet (facultative) ou photographier vos propres textures dans World Studio. La facecam filme avec la caméra avant quelques images par seconde, sans son, uniquement pendant l'enregistrement d'un trajet, et iOS la met en pause dès que ROAMO n'est pas à l'écran de l'iPhone. Les photos et clips facecam sont enregistrés uniquement sur votre iPhone : ils ne sont jamais envoyés à nous ni à quiconque, ne font l'objet d'aucune analyse de visage et servent uniquement à créer la vidéo du trajet. Vous décidez de partager ou non la vidéo ; demandez l'accord des passagers avant de les filmer ou de partager leur image. Vous pouvez supprimer la facecam d'un trajet dans l'éditeur vidéo et modifier l'accès à l'appareil photo à tout moment dans les Réglages iOS."
       ]
     },
     {
-      "h": "7. Achats",
+      "h": "7. Données stockées sur votre appareil",
+      "p": [
+        "ROAMO enregistre localement quelques éléments pour que l’app reste telle que vous l’avez laissée : vos lieux Domicile, Travail et favoris, votre place de stationnement, le monde choisi et vos réglages (voix, unités, langue…). Ces données restent sur votre iPhone et sont supprimées avec l’app. Elles peuvent figurer dans vos propres sauvegardes selon vos réglages iOS ; nous n’y avons pas accès.",
+        "Les trajets enregistrés (itinéraire, heures, vitesse, altitude, photos et clips facecam) restent aussi uniquement sur votre iPhone ; les clips facecam sont exclus des sauvegardes iCloud."
+      ]
+    },
+    {
+      "h": "8. Achats",
       "p": [
         "Les abonnements ROAMO Pro et l’achat à vie sont entièrement traités par Apple via l’App Store. Nous ne recevons jamais votre nom, vos informations de paiement ni votre identifiant Apple. L’app vérifie uniquement auprès d’Apple, depuis votre appareil, si Pro est actif. Le traitement des achats par Apple relève de la politique de confidentialité d’Apple."
       ]
     },
     {
-      "h": "8. Ni pistage, ni publicité, ni vente de données",
+      "h": "9. Ni pistage, ni publicité, ni vente de données",
       "p": [
         "ROAMO ne contient aucune publicité, aucune statistique d’usage et aucun SDK tiers de pistage ou de rapport de plantage. Nous ne vous suivons pas d’une app ou d’un site à l’autre, ne créons pas de profils et ne vendons ni ne partageons d’informations personnelles au sens de lois comme le RGPD ou le CCPA/CPRA."
       ]
     },
     {
-      "h": "9. Enfants",
+      "h": "10. Enfants",
       "p": [
         "ROAMO est une app de navigation grand public qui ne s’adresse pas aux enfants de moins de 13 ans. L’app ne collectant aucune donnée personnelle, elle ne recueille pas sciemment d’informations sur des enfants."
       ]
     },
     {
-      "h": "10. Vos droits",
+      "h": "11. Vos droits",
       "p": [
         "Selon votre lieu de résidence, vous pouvez disposer de droits d’accès, de rectification ou d’effacement de vos données personnelles. Comme nous ne collectons ni ne conservons de données personnelles vous concernant, il n’y a rien à consulter ni à effacer de notre côté ; les données enregistrées sur votre appareil restent sous votre contrôle et disparaissent avec l’app. Pour les données traitées par Geoapify ou OpenFreeMap, contactez directement ces services. Vous pouvez toujours nous écrire à {email_link}."
       ]
     },
     {
-      "h": "11. Sécurité",
+      "h": "12. Sécurité",
       "p": [
         "Toutes les requêtes vers le service cartographique et les serveurs de tuiles utilisent des connexions HTTPS chiffrées."
       ]
     },
     {
-      "h": "12. Modifications de cette politique",
+      "h": "13. Modifications de cette politique",
       "p": [
         "Si la façon dont ROAMO traite les données change, nous mettrons à jour cette page et la date ci-dessus avant que le changement ne prenne effet dans l’app."
       ]
     },
     {
-      "h": "13. Contact",
+      "h": "14. Contact",
       "p": [
         "DeeplyAi — {email_link}"
       ]

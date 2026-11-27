@@ -156,7 +156,7 @@
   "attr_engine": "Công cụ bản đồ: {maplibre}",
   "disclaimer": "ROAMO là ứng dụng độc lập và không liên kết với bất kỳ nhà phát hành game nào.",
   "trademark": "Apple, App Store và iPhone là nhãn hiệu của Apple Inc.",
-  "updated": "Cập nhật lần cuối: 26 tháng 11 năm 2026",
+  "updated": "Cập nhật lần cuối: 27 tháng 11 năm 2026",
   "back": "Quay lại ROAMO",
   "translation_note": "Bản dịch này chỉ nhằm thuận tiện cho bạn đọc. Nếu có khác biệt, bản tiếng Anh được ưu tiên áp dụng.",
   "privacy_page_title": "Chính sách quyền riêng tư",
@@ -207,49 +207,56 @@
       ]
     },
     {
-      "h": "6. Dữ liệu lưu trên thiết bị",
+      "h": "6. Camera, ảnh chuyến đi và facecam",
       "p": [
-        "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập."
+        "ROAMO chỉ dùng camera khi bạn yêu cầu: chụp ảnh chuyến đi, quay facecam chuyến đi (tuỳ chọn), hoặc chụp họa tiết của riêng bạn trong World Studio. Facecam quay bằng camera trước vài hình mỗi giây, không có tiếng, chỉ trong lúc đang ghi chuyến đi, và iOS tạm dừng nó mỗi khi ROAMO không hiện trên màn hình iPhone. Ảnh chuyến đi và các đoạn facecam chỉ lưu trên iPhone của bạn: không bao giờ được tải lên cho chúng tôi hay bất kỳ ai, không bị phân tích khuôn mặt, và chỉ dùng để tạo video chuyến đi. Bạn tự quyết định có chia sẻ video hay không; hãy hỏi ý hành khách trước khi quay hoặc chia sẻ hình ảnh của họ. Bạn có thể xoá facecam của một chuyến trong trình dựng video, và có thể đổi quyền camera bất cứ lúc nào trong Cài đặt iOS."
       ]
     },
     {
-      "h": "7. Mua hàng",
+      "h": "7. Dữ liệu lưu trên thiết bị",
+      "p": [
+        "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập.",
+        "Các chuyến đi bạn ghi (tuyến đường, thời gian, tốc độ, độ cao, ảnh và đoạn facecam) cũng chỉ lưu trên iPhone của bạn; đoạn facecam không nằm trong bản sao lưu iCloud."
+      ]
+    },
+    {
+      "h": "8. Mua hàng",
       "p": [
         "Gói đăng ký ROAMO Pro và gói mua trọn đời do Apple xử lý hoàn toàn qua App Store. Chúng tôi không bao giờ nhận tên, thông tin thanh toán hay Apple ID của bạn. Ứng dụng chỉ kiểm tra với Apple, ngay trên thiết bị, xem Pro có đang hoạt động không. Việc Apple xử lý giao dịch tuân theo chính sách quyền riêng tư của Apple."
       ]
     },
     {
-      "h": "8. Không theo dõi, không quảng cáo, không bán dữ liệu",
+      "h": "9. Không theo dõi, không quảng cáo, không bán dữ liệu",
       "p": [
         "ROAMO không chứa quảng cáo, phân tích hay SDK bên thứ ba để theo dõi hoặc báo cáo sự cố. Chúng tôi không theo dõi bạn qua các ứng dụng hay website, không lập hồ sơ người dùng và không bán hay chia sẻ thông tin cá nhân theo định nghĩa của các luật như GDPR hay CCPA/CPRA."
       ]
     },
     {
-      "h": "9. Trẻ em",
+      "h": "10. Trẻ em",
       "p": [
         "ROAMO là ứng dụng dẫn đường dành cho mọi người và không hướng tới trẻ em dưới 13 tuổi. Vì ứng dụng không thu thập dữ liệu cá nhân nên không cố ý thu thập thông tin của trẻ em."
       ]
     },
     {
-      "h": "10. Quyền của bạn",
+      "h": "11. Quyền của bạn",
       "p": [
         "Tuỳ nơi bạn sống, bạn có thể có quyền truy cập, chỉnh sửa hoặc xoá dữ liệu cá nhân. Vì chúng tôi không thu thập hay lưu giữ dữ liệu cá nhân của bạn, phía chúng tôi không có gì để cung cấp hay xoá; dữ liệu trên thiết bị nằm trong tầm kiểm soát của bạn và bị xoá cùng ứng dụng. Với dữ liệu do Geoapify hoặc OpenFreeMap xử lý, vui lòng liên hệ trực tiếp các dịch vụ đó. Bạn luôn có thể gửi câu hỏi cho chúng tôi tại {email_link}."
       ]
     },
     {
-      "h": "11. Bảo mật",
+      "h": "12. Bảo mật",
       "p": [
         "Mọi yêu cầu tới dịch vụ bản đồ và máy chủ ô bản đồ đều dùng kết nối HTTPS được mã hoá."
       ]
     },
     {
-      "h": "12. Thay đổi chính sách",
+      "h": "13. Thay đổi chính sách",
       "p": [
         "Nếu cách ROAMO xử lý dữ liệu thay đổi, chúng tôi sẽ cập nhật trang này và ngày ở trên cùng trước khi thay đổi có hiệu lực trong ứng dụng."
       ]
     },
     {
-      "h": "13. Liên hệ",
+      "h": "14. Liên hệ",
       "p": [
         "DeeplyAi — {email_link}"
       ]

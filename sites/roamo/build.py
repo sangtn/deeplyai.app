@@ -202,7 +202,7 @@ EN = {
     "attr_engine": "Map engine: {maplibre}",
     "disclaimer": "ROAMO is an independent app and is not affiliated with any game publisher.",
     "trademark": "Apple, App Store and iPhone are trademarks of Apple Inc.",
-    "updated": "Last updated: November 26, 2026",
+    "updated": "Last updated: November 27, 2026",
     "back": "Back to ROAMO",
     "translation_note": "",
     # ---- Privacy policy ----
@@ -231,21 +231,24 @@ EN = {
             "The map images (tiles) are downloaded from {ofm}, using {omt} and {osm} data. Like any website or server on the internet, these services receive standard connection information such as your IP address and which map tiles are requested, which can reveal the general area you are viewing. ROAMO does not add any identifier to these requests. See {ofm_privacy}."]},
         {"h": "5. Voice search and voice prompts", "p": [
             "Voice search uses Apple's on-device speech recognition. Your voice is not sent to us or to the map service; only the resulting text is used as a normal search. If on-device recognition is not available for your language, the microphone button is hidden. Spoken turn-by-turn prompts are generated on your device. Microphone access is requested only when you use voice search and can be changed in iOS Settings."]},
-        {"h": "6. Data stored on your device", "p": [
-            "ROAMO saves a few things locally so the app works the way you left it: your Home, Work and favorite places, your saved parking spot, the world you chose, and your settings (such as voice, units and language). This data stays on your iPhone and is removed when you delete the app. It may be included in your own device backups according to your iOS settings; we cannot access it."]},
-        {"h": "7. Purchases", "p": [
+        {"h": "6. Camera, trip photos and facecam", "p": [
+            "ROAMO uses the camera only when you ask: to take a trip photo, to record the optional trip facecam, or to photograph your own textures in World Studio. The facecam records the front camera at a few frames per second, without sound, only while a trip is being recorded, and iOS pauses it whenever ROAMO is not on your iPhone's screen. Trip photos and facecam clips are saved only on your iPhone: they are never uploaded to us or to anyone else, are not analysed for faces, and are used only to make your trip video. You decide whether to share a finished video; please ask passengers before you record or share them. You can delete a trip's facecam in the trip video editor, and camera access can be changed at any time in iOS Settings."]},
+        {"h": "7. Data stored on your device", "p": [
+            "ROAMO saves a few things locally so the app works the way you left it: your Home, Work and favorite places, your saved parking spot, the world you chose, and your settings (such as voice, units and language). This data stays on your iPhone and is removed when you delete the app. It may be included in your own device backups according to your iOS settings; we cannot access it.",
+            "Trips you record (route, times, speed, altitude, photos and facecam clips) are also stored only on your iPhone; facecam clips are excluded from iCloud backups."]},
+        {"h": "8. Purchases", "p": [
             "ROAMO Pro subscriptions and the lifetime purchase are processed entirely by Apple through the App Store. We never receive your name, payment details or Apple ID. The app only checks with Apple, on your device, whether Pro is active. Apple's handling of purchases is covered by Apple's privacy policy."]},
-        {"h": "8. No tracking, no advertising, no sale of data", "p": [
+        {"h": "9. No tracking, no advertising, no sale of data", "p": [
             "ROAMO contains no advertising, no analytics and no third-party tracking or crash-reporting SDKs. We do not track you across apps or websites, we do not build profiles, and we do not sell or share personal information as those terms are defined in laws such as the GDPR or the CCPA/CPRA."]},
-        {"h": "9. Children", "p": [
+        {"h": "10. Children", "p": [
             "ROAMO is a general-audience navigation app and is not directed at children under 13. Because the app collects no personal data, it does not knowingly collect information from children."]},
-        {"h": "10. Your rights", "p": [
+        {"h": "11. Your rights", "p": [
             "Depending on where you live, you may have rights to access, correct or delete personal data. Because we do not collect or hold personal data about you, there is nothing for us to access or delete; the data saved on your device is under your control and is erased when you delete the app. For requests about data processed by Geoapify or OpenFreeMap, contact those services directly. You can always contact us with questions at {email_link}."]},
-        {"h": "11. Security", "p": [
+        {"h": "12. Security", "p": [
             "All requests to the map service and tile servers use encrypted HTTPS connections."]},
-        {"h": "12. Changes to this policy", "p": [
+        {"h": "13. Changes to this policy", "p": [
             "If the way ROAMO handles data changes, we will update this page and the date at the top before the change takes effect in the app."]},
-        {"h": "13. Contact", "p": [
+        {"h": "14. Contact", "p": [
             "DeeplyAi — {email_link}"]},
     ],
     # ---- Terms ----
