@@ -23,13 +23,13 @@ from pathlib import Path
 # --------------------------------------------------------------------------
 # Constants — change these in ONE place.
 # --------------------------------------------------------------------------
-APP_STORE_URL = "https://apps.apple.com/app/roamo/id0000000000"  # PLACEHOLDER until the listing is live
+APP_STORE_URL = "https://apps.apple.com/app/roamo/id6839851483"  # ROAMO Apple ID (App Store Connect)
 SUPPORT_EMAIL = "info@deeplyai.app"                                # DeeplyAi mailbox used across deeplyai.app
 SITE_URL = os.environ.get("SITE_URL", "https://deeplyai.app/roamo/").rstrip("/") + "/"
 # The DeeplyAi site root that holds roamo/ (https://deeplyai.app/).
 ROOT_URL = os.environ.get("ROOT_URL", SITE_URL.rstrip("/").rsplit("/", 1)[0] + "/")
-# Support lives at the site root with the other app support pages (cartv-support.html):
-# roam-support.html (EN) and roam-support.<lang>.html. The old roamo/[<lang>/]support[/]
+# Support is a section of the landing page (roamo/[<lang>/]#support). The short URLs
+# roam-support.html (EN) and roam-support.<lang>.html, and the old roamo/[<lang>/]support[/]
 # URLs, which the app links to, become redirects.
 SUPPORT_FILE = "roam-support"
 MANAGE_SUBS_URL = "https://apps.apple.com/account/subscriptions"
@@ -42,7 +42,7 @@ ROOT = Path(__file__).resolve().parent
 # Output goes straight into the Astro site's public/ folder, so it is served at
 # https://deeplyai.app/roamo/ (override with ROAMO_OUT=/some/dir for a preview).
 DIST = Path(os.environ.get("ROAMO_OUT", ROOT.parents[1] / "public" / "roamo")).resolve()
-PUBLIC = DIST.parent  # site root; the support pages are written here
+PUBLIC = DIST.parent  # site root; the roam-support*.html redirects are written here
 ASSETS = ROOT / "assets"
 
 # (code used in folder names + hreflang, Open Graph locale)
@@ -113,7 +113,7 @@ EN = {
     "hero_title": "Your city, <mark>restyled as a game world.</mark>",
     "hero_sub": "ROAMO is a real turn-by-turn map app — search, routes, voice guidance — where every street, park and river is redrawn in the style of your favorite kind of game.",
     "hero_note": "2 worlds free forever · No account · No ads",
-    "hero_req": "Requires iOS 17 or later",
+    "hero_req": "iPhone and iPad with iOS 17 or later · CarPlay · Apple Watch",
     "switch_title": "Tap a world to restyle the map",
     "now_showing": "Now showing: {world}",
     "phone_aria": "ROAMO app preview in the {world} world, showing a route and a turn card",
@@ -162,6 +162,8 @@ EN = {
     "f_reroute_t": "Auto rerouting", "f_reroute_d": "Missed a turn? ROAMO finds a new route automatically.",
     "f_night_t": "Night tint", "f_night_d": "The map dims automatically after sunset, easy on your eyes.",
     "f_3d_t": "3D buildings", "f_3d_d": "Buildings rise in 3D in selected worlds.",
+    "f_copilot_t": "Co-pilot voices", "f_copilot_d": "Each world can speak with its own co-pilot. Classic is free; character voices come with Pro.",
+    "f_icons_t": "Unlock app icons", "f_icons_d": "Six alternate app icons unlock as you drive, from 10 to 1,000 km.",
     "f_lang_t": "11 languages", "f_lang_d": "English, Spanish, French, German, Portuguese, Italian, Japanese, Korean, Chinese, Russian and Vietnamese.",
     "privacy_kicker": "Privacy promise",
     "privacy_title": "Your trips are nobody's business.",
@@ -169,23 +171,23 @@ EN = {
     "pp1_t": "No account", "pp1_d": "Open the app and go. No sign-up, no email, no login.",
     "pp2_t": "No analytics, no ads", "pp2_d": "No advertising, no analytics and no tracking SDKs of any kind.",
     "pp3_t": "Location stays on your phone", "pp3_d": "Your GPS position is used on your device to guide you. It is never stored on any server.",
-    "pp4_t": "Only what a request needs", "pp4_d": "To find a place or a route, only the search text or the route's start and end points are sent to the map service ({geoapify}) to answer that request.",
+    "pp4_t": "Only what a request needs", "pp4_d": "To find a place or a route, only what that request needs (the words you search, a nearby point, or the route's start, stops and destination) is sent to the map service ({geoapify}).",
     "privacy_label_note": "App Store privacy label",
     "privacy_label": "Data Not Collected",
     "privacy_more": "Read the full privacy policy",
     "pricing_title": "Start free. Unlock every world.",
-    "pricing_sub": "Block World and Doodle Notebook are free forever. ROAMO Pro unlocks all 22 worlds.",
+    "pricing_sub": "Block World and Doodle Notebook are free forever. ROAMO Pro unlocks all 22 worlds, World Studio and the character co-pilot voices.",
     "plan_free": "Free", "plan_free_desc": "Block World + Doodle Notebook, free forever, with full search and navigation.",
     "plan_weekly": "Weekly", "plan_monthly": "Monthly", "plan_yearly": "Yearly", "plan_lifetime": "Lifetime",
     "per_week": "/ week", "per_month": "/ month", "per_year": "/ year", "one_time": "one-time",
     "best_badge": "Best value",
-    "pro_includes": "All 22 worlds",
+    "pro_includes": "All 22 worlds + World Studio",
     "pricing_note": "Prices shown in US dollars; your local App Store price may differ. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel anytime in your App Store account settings.",
     "faq_title": "Questions? Answered.",
     "faq": [
-        {"q": "Is ROAMO free?", "a": "Yes. Block World and Doodle Notebook are free forever, with search and turn-by-turn navigation. ROAMO Pro unlocks the other 13 worlds."},
+        {"q": "Is ROAMO free?", "a": "Yes. Block World and Doodle Notebook are free forever, with search and turn-by-turn navigation. ROAMO Pro unlocks the other 20 worlds."},
         {"q": "Do I need an account?", "a": "No. There is no sign-up and no login. Purchases are handled by Apple through your App Store account."},
-        {"q": "Which devices are supported?", "a": "iPhone with iOS 17 or later."},
+        {"q": "Which devices are supported?", "a": "iPhone and iPad with iOS 17 or later, CarPlay, and Apple Watch with watchOS 10 or later."},
         {"q": "Does ROAMO track me?", "a": "No. ROAMO has no ads, no analytics and no tracking SDKs, and its App Store privacy label is “Data Not Collected”."},
         {"q": "Where does the map data come from?", "a": "Map data © {osm} contributors, tiles from {ofm} / {omt}, search and routing powered by {geoapify}, rendered with {maplibre}."},
         {"q": "Is ROAMO connected to any video game?", "a": "No. ROAMO is an independent app and is not affiliated with any game publisher. The worlds are original styles inspired by game genres."},
@@ -193,13 +195,14 @@ EN = {
     "faq_more": "More help on the support page",
     "cta_title": "Ready to roam?",
     "cta_sub": "Turn your next drive, ride or walk into a level.",
-    "footer_tag": "Game-style map worlds for iPhone.",
+    "footer_tag": "Game-style map worlds for iPhone, iPad, CarPlay and Apple Watch.",
     "footer_legal": "Legal", "footer_privacy": "Privacy Policy", "footer_terms": "Terms of Use", "footer_support": "Support",
     "footer_credits": "Map credits",
     "attr_osm": "Map data © {osm} contributors",
     "attr_tiles": "Tiles: {ofm} / {omt}",
     "attr_geo": "Search & routing powered by {geoapify}",
     "attr_engine": "Map engine: {maplibre}",
+    "attr_terrain": "Terrain: Mapzen / {aws_terrain}",
     "disclaimer": "ROAMO is an independent app and is not affiliated with any game publisher.",
     "trademark": "Apple, App Store and iPhone are trademarks of Apple Inc.",
     "updated": "Last updated: November 27, 2026",
@@ -218,37 +221,42 @@ EN = {
             "The app's App Store privacy label is “Data Not Collected”."]},
         {"h": "2. Location", "p": [
             "If you allow location access, ROAMO uses your device's GPS position to show where you are, guide you turn by turn, show your speed, reroute you, and suggest places near you. This happens on your iPhone. We never receive, store or log your location history.",
-            "You can change or revoke location access at any time in iOS Settings › Privacy & Security › Location Services › ROAMO. Features that depend on your position will not work without it."]},
+            "You can change or revoke location access at any time in iOS Settings › Privacy & Security › Location Services › ROAMO. Features that depend on your position will not work without it.",
+            "While you navigate, ROAMO keeps using your location when the screen is locked or you switch to another app, so voice guidance, the Live Activity and CarPlay keep working. iOS shows that ROAMO is using your location, and this stops when the trip ends."]},
         {"h": "3. What is sent to the map service", "p": [
             "Search and routing are provided by {geoapify}. To answer a request, the app sends only what that request needs:"],
          "ul": [
             "Search: the text you type or say, plus a reference point (your position or the map area) so nearby results come first.",
             "Nearby: the category you choose (for example “coffee”) and the point to search around.",
-            "Routes: the start and end points of the route and the travel mode (drive, bike or walk). When you leave the route, your current position is sent as the new start point to calculate a new route."],
+            "Routes: the start and end points of the route, any stops you add, and the travel mode (drive, bike or walk). When you leave the route, your current position is sent as the new start point to calculate a new route."],
          "p2": [
             "These requests are not linked to any account or identifier of yours. Geoapify processes them under its own privacy policy: {geoapify_privacy}."]},
         {"h": "4. Map tiles", "p": [
-            "The map images (tiles) are downloaded from {ofm}, using {omt} and {osm} data. Like any website or server on the internet, these services receive standard connection information such as your IP address and which map tiles are requested, which can reveal the general area you are viewing. ROAMO does not add any identifier to these requests. See {ofm_privacy}."]},
+            "The map images (tiles) are downloaded from {ofm}, using {omt} and {osm} data. Like any website or server on the internet, these services receive standard connection information such as your IP address and which map tiles are requested, which can reveal the general area you are viewing. ROAMO does not add any identifier to these requests. See {ofm_privacy}.",
+            "In worlds with 3D terrain, elevation tiles are also downloaded from the Terrain Tiles open dataset on Amazon Web Services (Mapzen / AWS Terrain Tiles), which likewise receives your IP address and the requested area, without any identifier added by ROAMO."]},
         {"h": "5. Voice search and voice prompts", "p": [
             "Voice search uses Apple's on-device speech recognition. Your voice is not sent to us or to the map service; only the resulting text is used as a normal search. If on-device recognition is not available for your language, the microphone button is hidden. Spoken turn-by-turn prompts are generated on your device. Microphone access is requested only when you use voice search and can be changed in iOS Settings."]},
         {"h": "6. Camera, screenshots and facecam", "p": [
             "ROAMO uses the camera only when you ask: to record the optional trip facecam, or to photograph your own textures in World Studio. The screenshot button on the navigation screen does not use the camera; it captures what ROAMO shows. The facecam records the front camera at a few frames per second, without sound, only while a trip is being recorded, and iOS pauses it whenever ROAMO is not on your iPhone's screen. Screenshots and facecam clips are saved only on your iPhone: they are never uploaded to us or to anyone else, are not analysed for faces, and are used only for your own pictures and trip video. You decide whether to save or share them; please ask passengers before you record or share them. You can delete a trip's facecam in the trip video editor, and camera access can be changed at any time in iOS Settings."]},
-        {"h": "7. Data stored on your device", "p": [
+        {"h": "7. Photos, files and sharing", "p": [
+            "In World Studio you pick images with Apple's photo picker, from Files or from the clipboard; ROAMO receives only the images you choose, not your photo library. When you save a trip video, poster, screenshot or custom icon, ROAMO asks for add-only access to Photos, which lets it add items but not see your library. Music you import for a trip video and world files (.roamoworld) you open are copied into ROAMO on your device. A world file you share goes only to the people and apps you send it to, through AirDrop, Messages or Files; it never passes through our servers."]},
+        {"h": "8. Data stored on your device", "p": [
             "ROAMO saves a few things locally so the app works the way you left it: your Home, Work and favorite places, your saved parking spot, the world you chose, and your settings (such as voice, units and language). This data stays on your iPhone and is removed when you delete the app. It may be included in your own device backups according to your iOS settings; we cannot access it.",
-            "Trips you record (route, times, speed, altitude, screenshots and facecam clips) are also stored only on your iPhone; facecam clips are excluded from iCloud backups."]},
-        {"h": "8. Purchases", "p": [
+            "Trips you record (route, times, speed, altitude, screenshots and facecam clips) are also stored only on your iPhone; facecam clips are excluded from iCloud backups.",
+            "To show your trip on widgets, the Live Activity, CarPlay and Apple Watch, ROAMO shares the current route, the next turn, your saved places and the distance you have explored between the app and its own extensions on your iPhone, and sends them directly to your paired Apple Watch. Your saved places and worlds are added to the on-device Spotlight index so you can find them in Search, and Siri requests are handled by Apple. None of this goes through our servers."]},
+        {"h": "9. Purchases", "p": [
             "ROAMO Pro subscriptions and the lifetime purchase are processed entirely by Apple through the App Store. We never receive your name, payment details or Apple ID. The app only checks with Apple, on your device, whether Pro is active. Apple's handling of purchases is covered by Apple's privacy policy."]},
-        {"h": "9. No tracking, no advertising, no sale of data", "p": [
+        {"h": "10. No tracking, no advertising, no sale of data", "p": [
             "ROAMO contains no advertising, no analytics and no third-party tracking or crash-reporting SDKs. We do not track you across apps or websites, we do not build profiles, and we do not sell or share personal information as those terms are defined in laws such as the GDPR or the CCPA/CPRA."]},
-        {"h": "10. Children", "p": [
+        {"h": "11. Children", "p": [
             "ROAMO is a general-audience navigation app and is not directed at children under 13. Because the app collects no personal data, it does not knowingly collect information from children."]},
-        {"h": "11. Your rights", "p": [
+        {"h": "12. Your rights", "p": [
             "Depending on where you live, you may have rights to access, correct or delete personal data. Because we do not collect or hold personal data about you, there is nothing for us to access or delete; the data saved on your device is under your control and is erased when you delete the app. For requests about data processed by Geoapify or OpenFreeMap, contact those services directly. You can always contact us with questions at {email_link}."]},
-        {"h": "12. Security", "p": [
-            "All requests to the map service and tile servers use encrypted HTTPS connections."]},
-        {"h": "13. Changes to this policy", "p": [
+        {"h": "13. Security", "p": [
+            "All requests to the map service, tile servers and terrain tiles use encrypted HTTPS connections."]},
+        {"h": "14. Changes to this policy", "p": [
             "If the way ROAMO handles data changes, we will update this page and the date at the top before the change takes effect in the app."]},
-        {"h": "14. Contact", "p": [
+        {"h": "15. Contact", "p": [
             "DeeplyAi — {email_link}"]},
     ],
     # ---- Terms ----
@@ -377,6 +385,7 @@ LINKS = {
     "omt": '<a href="https://openmaptiles.org" rel="noopener">OpenMapTiles</a>',
     "geoapify": '<a href="https://www.geoapify.com" rel="noopener">Geoapify</a>',
     "maplibre": '<a href="https://maplibre.org" rel="noopener">MapLibre</a>',
+    "aws_terrain": '<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>',
     "geoapify_privacy": '<a href="https://www.geoapify.com/privacy-policy/" rel="noopener">geoapify.com/privacy-policy</a>',
     "ofm_privacy": '<a href="https://openfreemap.org" rel="noopener">openfreemap.org</a>',
     "email": SUPPORT_EMAIL,
@@ -441,7 +450,7 @@ def support_file(code):
 def url_of(code, page):
     """Where a page lives, relative to the site root (public/)."""
     if page == "support":
-        return support_file(code)
+        return "roamo/" + lang_dir(code) + "index.html#support"
     return "roamo/" + lang_dir(code) + ("index.html" if page == "index" else page + ".html")
 
 
@@ -453,7 +462,7 @@ def rel(here, target):
 
 def canonical(code, page):
     if page == "support":
-        return ROOT_URL + support_file(code)
+        return SITE_URL + lang_dir(code) + "#support"
     return SITE_URL + lang_dir(code) + ("" if page == "index" else page + "/")
 
 
@@ -576,15 +585,15 @@ def head(T, code, og_locale, page, title, desc, prefix):
                 {"@type": "Offer", "name": "ROAMO Pro Lifetime", "price": "79.99", "priceCurrency": "USD"},
             ],
         }
-    elif page == "support":
-        data = {
-            "@context": "https://schema.org",
+        faq = {
             "@type": "FAQPage",
             "inLanguage": code,
             "mainEntity": [{"@type": "Question", "name": strip_tags(x["q"]),
                             "acceptedAnswer": {"@type": "Answer", "text": strip_tags(fill(x["a"], T))}}
-                           for x in T["support_faq"] + T["sup"]["faq_extra"]],
+                           for x in faq_items(T)],
         }
+        app = {k: v for k, v in data.items() if k != "@context"}
+        data = {"@context": "https://schema.org", "@graph": [app, faq]}
     else:
         data = None
     if data:
@@ -687,6 +696,7 @@ def footer(T, code, prefix, here):
         <li>{fill(T["attr_tiles"])}</li>
         <li>{fill(T["attr_geo"])}</li>
         <li>{fill(T["attr_engine"])}</li>
+        <li>{fill(T["attr_terrain"])}</li>
       </ul>
     </div>
     <div>
@@ -767,7 +777,7 @@ def index_body(T, code, prefix, here):
     for key, ic in [("search", "search"), ("voice", "voice"), ("nearby", "nearby"), ("saved", "saved"),
                     ("parking", "parking"), ("pin", "pin"), ("routes", "routes"), ("turns", "turns"),
                     ("prompts", "prompts"), ("speed", "speed"), ("reroute", "reroute"), ("night", "night"),
-                    ("3d", "3d"), ("lang", "lang")]:
+                    ("3d", "3d"), ("copilot", "prompts"), ("icons", "check"), ("lang", "lang")]:
         feats += f'<li class="feat">{icon(ic)}<h3>{T["f_" + key + "_t"]}</h3><p>{T["f_" + key + "_d"]}</p></li>'
     pps = ""
     for i, ic in zip(range(1, 5), ["user", "eye", "phone", "send"]):
@@ -783,8 +793,10 @@ def index_body(T, code, prefix, here):
                   f'<p class="price">{PRICES[p]} <small>{T[per]}</small></p>'
                   f'<p class="incl">{icon("check")} {T["pro_includes"]}</p>'
                   + "</li>")
-    faq = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"])}</div></details>' for x in T["faq"])
+    faq = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"], T)}</div></details>'
+                  for x in faq_items(T))
     u = lambda page: rel(here, url_of(code, page))
+    G = guide_sections(T, code, prefix, here)
     return f"""<main id="main">
 <section class="hero">
   <div class="wrap hero-grid">
@@ -806,6 +818,8 @@ def index_body(T, code, prefix, here):
   </div>
 </section>
 
+{G["film"]}
+
 <section class="sec" id="worlds" aria-labelledby="worlds-h">
   <div class="wrap">
     <h2 class="sec-h" id="worlds-h">{T["worlds_title"]}</h2>
@@ -814,6 +828,8 @@ def index_body(T, code, prefix, here):
   </div>
 </section>
 
+{G["start"]}
+
 <section class="sec sec-alt" id="features" aria-labelledby="features-h">
   <div class="wrap">
     <h2 class="sec-h" id="features-h">{T["features_title"]}</h2>
@@ -821,6 +837,14 @@ def index_body(T, code, prefix, here):
     <ul role="list" class="feats">{feats}</ul>
   </div>
 </section>
+
+{G["carplay"]}
+
+{G["watch"]}
+
+{G["studio"]}
+
+{G["trips"]}
 
 <section class="sec sec-dark" id="privacy" aria-labelledby="privacy-h">
   <div class="wrap priv-grid">
@@ -848,9 +872,10 @@ def index_body(T, code, prefix, here):
   <div class="wrap narrow">
     <h2 class="sec-h" id="faq-h">{T["faq_title"]}</h2>
     {faq}
-    <p><a class="more" href="{u("support")}">{T["faq_more"]} →</a></p>
   </div>
 </section>
+
+{G["support"]}
 
 <section class="sec cta-band" aria-labelledby="cta-h">
   <div class="wrap cta-in">
@@ -887,7 +912,7 @@ def doc_body(T, code, page, prefix, here):
     elif page == "terms":
         title, inner = T["terms_page_title"], f'<p class="lead">{fill(T["terms_intro"], T)}</p>' + sections_html(T, T["terms_sections"])
     else:
-        return support_body(T, code, prefix, here)
+        raise ValueError("support is a section of the landing page")
     return f"""<main id="main" class="doc">
   <div class="wrap narrow">
     <p><a class="back" href="{u("index")}">← {T["back"]}</a></p>
@@ -900,14 +925,17 @@ def doc_body(T, code, page, prefix, here):
 
 
 # --------------------------------------------------------------------------
-# Support page: ROAMO 1.0 help center with the App Store media (assets/support/,
-# made from the ROAMO repo's Final/ folder: screenshots, App Preview, CarPlay ad, header film)
+# Guides + Support section of the landing page
 # --------------------------------------------------------------------------
-def support_body(T, code, prefix, here):
+def guide_sections(T, code, prefix, here):
+    """ROAMO 1.0 guides and the Support section, shown on the landing page.
+
+    Media in assets/support/ come from the ROAMO repo's Final/ folder (App Store screenshots,
+    App Preview, CarPlay ad, header film). Returns a dict of section HTML by name.
+    """
     S = T["sup"]
     u = lambda p: rel(here, url_of(code, p))
     m = lambda name: f"{prefix}assets/support/{name}"
-    note = f'<p class="tnote">{T["translation_note"]}</p>' if T["translation_note"] else ""
 
     def shot(name, alt, w=560, h=1217, cls="shot"):
         return (f'<img class="{cls}" src="{m(name)}" width="{w}" height="{h}" alt="{esc(alt)}" '
@@ -927,29 +955,18 @@ def support_body(T, code, prefix, here):
               ("watch", "t_watch", "phone"), ("studio", "t_studio", "saved"), ("trips", "t_trips", "play"),
               ("faq", "t_faq", "search"), ("contact", "t_contact", "mail")]
     nav = "".join(f'<li><a href="#{a}">{icon(ic)}<span>{S[k]}</span></a></li>' for a, k, ic in topics)
-    qa = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"], T)}</div></details>'
-                 for x in T["support_faq"] + S["faq_extra"])
     links = (f'<li><a href="{u("privacy")}">{T["footer_privacy"]}</a></li>'
              f'<li><a href="{u("terms")}">{T["footer_terms"]}</a></li>'
              f'<li><a href="{MANAGE_SUBS_URL}" rel="noopener">{T["manage_subs"]}</a></li>'
              f'<li><a href="{APP_STORE_URL}" rel="noopener">{T["badge_aria"]}</a></li>')
-    return f"""<main id="main" class="sup">
-<section class="sup-hero" aria-labelledby="sup-h">
-  <div class="wrap">
-    <p><a class="back" href="{u("index")}">← {T["back"]}</a></p>
-    <p class="kicker">{S["kicker"]}</p>
-    <h1 id="sup-h">{S["title"]}</h1>
-    <p class="lead">{S["lead"]}</p>
-    {note}
-    <nav aria-label="{esc(S["topics"])}"><ul role="list" class="topics">{nav}</ul></nav>
-  </div>
+    return {
+        "film": f"""<section class="film-sec" aria-label="{esc(S["film_cap"])}">
   <figure class="wrap film">
     {video("film-header.mp4", "film-header.webp", 1600, 686, S["film_cap"], "vid-film", eager=True)}
     <figcaption>{S["film_cap"]}</figcaption>
   </figure>
-</section>
-
-<section class="sec guide" id="start" aria-labelledby="start-h">
+</section>""",
+        "start": f"""<section class="sec guide" id="start" aria-labelledby="start-h">
   <div class="wrap g-split">
     <div class="g-copy">
       <h2 class="sec-h" id="start-h">{S["start_h"]}</h2>
@@ -961,20 +978,8 @@ def support_body(T, code, prefix, here):
       <figcaption>{S["tour_cap"]}</figcaption>
     </figure>
   </div>
-</section>
-
-<section class="sec sec-alt guide" id="worlds" aria-labelledby="worlds-h2">
-  <div class="wrap g-split g-rev">
-    <div class="g-copy">
-      <h2 class="sec-h" id="worlds-h2">{S["worlds_h"]}</h2>
-      <p class="sec-sub">{S["worlds_p"]}</p>
-      {ticks(S["worlds_ul"])}
-    </div>
-    <div class="g-media pair">{shot("iphone-03-22-worlds.webp", S["worlds_alt1"])}{shot("iphone-07-night-worlds.webp", S["worlds_alt2"])}</div>
-  </div>
-</section>
-
-<section class="sec sec-night guide" id="carplay" aria-labelledby="carplay-h">
+</section>""",
+        "carplay": f"""<section class="sec sec-night guide" id="carplay" aria-labelledby="carplay-h">
   <div class="wrap">
     <div class="g-copy g-wide">
       <h2 class="sec-h" id="carplay-h">{S["carplay_h"]}</h2>
@@ -986,9 +991,8 @@ def support_body(T, code, prefix, here):
       <div class="g-media">{shot("iphone-04-carplay.webp", S["carplay_h"], cls="shot shot-sm")}</div>
     </div>
   </div>
-</section>
-
-<section class="sec guide" id="watch" aria-labelledby="watch-h">
+</section>""",
+        "watch": f"""<section class="sec guide" id="watch" aria-labelledby="watch-h">
   <div class="wrap g-split">
     <div class="g-copy">
       <h2 class="sec-h" id="watch-h">{S["watch_h"]}</h2>
@@ -1000,9 +1004,8 @@ def support_body(T, code, prefix, here):
       <div class="wrist">{shot("watch-01-turn-by-turn.webp", S["watch_alt"], 280, 341, "w")}{shot("watch-02-world-map.webp", "", 280, 341, "w")}{shot("watch-03-quick-places.webp", "", 280, 341, "w")}</div>
     </div>
   </div>
-</section>
-
-<section class="sec sec-alt guide" id="studio" aria-labelledby="studio-h">
+</section>""",
+        "studio": f"""<section class="sec sec-alt guide" id="studio" aria-labelledby="studio-h">
   <div class="wrap">
     <div class="g-copy g-wide">
       <h2 class="sec-h" id="studio-h">{S["studio_h"]}</h2>
@@ -1010,9 +1013,8 @@ def support_body(T, code, prefix, here):
     </div>
     <div class="trio">{shot("iphone-02-make-your-own-map.webp", S["studio_alt1"])}{shot("iphone-08-make-it-yours.webp", S["studio_alt2"])}{shot("iphone-10-pick-your-ride.webp", S["studio_alt3"])}</div>
   </div>
-</section>
-
-<section class="sec guide" id="trips" aria-labelledby="trips-h">
+</section>""",
+        "trips": f"""<section class="sec guide" id="trips" aria-labelledby="trips-h">
   <div class="wrap g-split g-rev">
     <div class="g-copy">
       <h2 class="sec-h" id="trips-h">{S["trips_h"]}</h2>
@@ -1022,20 +1024,34 @@ def support_body(T, code, prefix, here):
     </div>
     <div class="g-media">{shot("iphone-09-trip-videos.webp", S["trips_alt"])}</div>
   </div>
-</section>
-
-<section class="sec sec-alt" id="faq" aria-labelledby="faq-h2">
-  <div class="wrap narrow">
-    <h2 class="sec-h" id="faq-h2">{S["faq_h"]}</h2>
-    {qa}
-    <section class="links" aria-labelledby="links-h"><h2 id="links-h">{T["support_links"]}</h2>
-      <ul role="list" class="link-list">{links}</ul></section>
-    <section class="contact" id="contact"><h2>{T["contact_title"]}</h2><p>{fill(T["contact_text"], T)}</p>
-      <p><a class="btn" href="mailto:{SUPPORT_EMAIL}?subject=ROAMO%20support">{icon("mail")} {T["contact_btn"]}</a></p></section>
-    <p class="muted small">{S["shot_note"]}</p>
+</section>""",
+        "support": f"""<section class="sec sup-hero" id="support" aria-labelledby="support-h">
+  <div class="wrap">
+    <p class="kicker">{S["kicker"]}</p>
+    <h2 class="sec-h" id="support-h">{S["title"]}</h2>
+    <p class="lead">{S["lead"]}</p>
+    <nav aria-label="{esc(S["topics"])}"><ul role="list" class="topics">{nav}</ul></nav>
+    <div class="sup-grid">
+      <section class="links" aria-labelledby="links-h"><h3 id="links-h">{T["support_links"]}</h3>
+        <ul role="list" class="link-list">{links}</ul></section>
+      <section class="contact" id="contact" aria-labelledby="contact-h"><h3 id="contact-h">{T["contact_title"]}</h3><p>{fill(T["contact_text"], T)}</p>
+        <p><a class="btn" href="mailto:{SUPPORT_EMAIL}?subject=ROAMO%20support">{icon("mail")} {T["contact_btn"]}</a></p></section>
+    </div>
+    <p class="small">{S["shot_note"]}</p>
   </div>
-</section>
-</main>"""
+</section>""",
+    }
+
+
+def faq_items(T):
+    """One FAQ for the landing page: the general questions, then the support ones without repeats."""
+    support = [x for i, x in enumerate(T["support_faq"]) if i != 2]  # [2] "What can I do for free?" repeats faq[0]
+    return T["faq"] + support + T["sup"]["faq_extra"][1:]            # faq_extra[0] (devices) repeats faq[2]
+
+
+def support_redirect(code, here):
+    """roam-support[.<lang>].html and roamo/[<lang>/]support[/]: Support is a section of the landing page."""
+    return redirect(code, here, url_of(code, "index"), "#support")
 
 
 # --------------------------------------------------------------------------
@@ -1055,10 +1071,11 @@ def render(code, og_locale, page, here):
             + "\n" + body + "\n" + footer(T, code, prefix, here))
 
 
-def redirect(code, here, target):
-    """Stub kept at an old URL (the app links to roamo/support/): sends visitors to `target`."""
+def redirect(code, here, target, hash=""):
+    """Stub kept at an old URL (the app links to roamo/support/): sends visitors to `target`.
+    A #fragment on the old URL wins over `hash`."""
     to = rel(here, target)
-    url = canonical(code, "support")
+    url = canonical(code, "index") + hash
     return f"""<!doctype html>
 <html lang="{code}">
 <head>
@@ -1067,11 +1084,11 @@ def redirect(code, here, target):
 <title>ROAMO Support</title>
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="{url}">
-<meta http-equiv="refresh" content="0; url={to}">
-<script>location.replace("{to}" + location.hash);</script>
+<meta http-equiv="refresh" content="0; url={to}{hash}">
+<script>location.replace("{to}" + (location.hash || "{hash}"));</script>
 </head>
 <body>
-<p><a href="{to}">{esc(url)}</a></p>
+<p><a href="{to}{hash}">{esc(url)}</a></p>
 </body>
 </html>
 """
@@ -1115,10 +1132,9 @@ def main():
             if page == "index":
                 write(base + "index.html", render(code, og, page, base + "index.html")); count += 1
             elif page == "support":
-                target = url_of(code, "support")
-                write(target, render(code, og, page, target)); count += 1
-                for old in (base + "support.html", base + "support/index.html"):
-                    write(old, redirect(code, old, target))
+                # Support is the #support section of the landing page; these URLs only redirect.
+                for old in (support_file(code), base + "support.html", base + "support/index.html"):
+                    write(old, support_redirect(code, old))
             else:
                 # flat file (used by internal links, works from file://) + clean folder URL
                 for f in (base + page + ".html", base + page + "/index.html"):

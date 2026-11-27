@@ -17,7 +17,7 @@
   "hero_title": "Votre ville, <mark>transformée en monde de jeu vidéo.</mark>",
   "hero_sub": "ROAMO est une vraie app de navigation — recherche, itinéraires, guidage vocal — où chaque rue, parc et rivière est redessiné dans le style de jeu que vous préférez.",
   "hero_note": "2 mondes gratuits pour toujours · Sans compte · Sans pub",
-  "hero_req": "Nécessite iOS 17 ou version ultérieure",
+  "hero_req": "iPhone et iPad sous iOS 17 ou ultérieur · CarPlay · Apple Watch",
   "switch_title": "Touchez un monde pour changer la carte",
   "now_showing": "Monde affiché : {world}",
   "phone_aria": "Aperçu de ROAMO dans le monde {world}, avec un itinéraire et une carte de direction",
@@ -95,12 +95,12 @@
   "pp3_t": "Votre position reste sur votre téléphone",
   "pp3_d": "Votre position GPS sert sur votre appareil à vous guider. Elle n’est jamais stockée sur un serveur.",
   "pp4_t": "Juste ce qu’il faut",
-  "pp4_d": "Pour trouver un lieu ou un itinéraire, seuls le texte recherché ou les points de départ et d’arrivée sont envoyés au service cartographique ({geoapify}) pour répondre à cette demande.",
+  "pp4_d": "Pour trouver un lieu ou un itinéraire, seul ce dont la requête a besoin (les mots recherchés, un point à proximité, ou le départ, les étapes et la destination) est envoyé au service de carte ({geoapify}).",
   "privacy_label_note": "Étiquette de confidentialité de l’App Store",
   "privacy_label": "Données non collectées",
   "privacy_more": "Lire la politique de confidentialité complète",
   "pricing_title": "Commencez gratuitement. Débloquez tous les mondes.",
-  "pricing_sub": "Block World et Doodle Notebook sont gratuits pour toujours. ROAMO Pro débloque les 22 mondes.",
+  "pricing_sub": "Block World et Doodle Notebook sont gratuits pour toujours. ROAMO Pro débloque les 22 mondes, World Studio et les voix de copilote à personnage.",
   "plan_free": "Gratuit",
   "plan_free_desc": "Block World + Doodle Notebook, gratuits pour toujours, avec recherche et navigation complètes.",
   "plan_weekly": "Hebdo",
@@ -112,13 +112,13 @@
   "per_year": "/ an",
   "one_time": "paiement unique",
   "best_badge": "Meilleure offre",
-  "pro_includes": "Les 22 mondes",
+  "pro_includes": "Les 22 mondes + World Studio",
   "pricing_note": "Prix indiqués en dollars américains ; le prix de votre App Store local peut différer. Les abonnements se renouvellent automatiquement sauf annulation au moins 24 heures avant la fin de la période en cours. Gérez-les ou annulez-les à tout moment dans les réglages de votre compte App Store.",
   "faq_title": "Des questions ? Des réponses.",
   "faq": [
     {
       "q": "ROAMO est-elle gratuite ?",
-      "a": "Oui. Block World et Doodle Notebook sont gratuits pour toujours, avec la recherche et la navigation étape par étape. ROAMO Pro débloque les 13 autres mondes."
+      "a": "Oui. Block World et Doodle Notebook sont gratuits pour toujours, avec la recherche et la navigation étape par étape. ROAMO Pro débloque les 20 autres mondes."
     },
     {
       "q": "Faut-il un compte ?",
@@ -126,7 +126,7 @@
     },
     {
       "q": "Quels appareils sont compatibles ?",
-      "a": "Les iPhone sous iOS 17 ou version ultérieure."
+      "a": "Les iPhone et iPad sous iOS 17 ou ultérieur, CarPlay, et l’Apple Watch sous watchOS 10 ou ultérieur."
     },
     {
       "q": "ROAMO me piste-t-elle ?",
@@ -144,7 +144,7 @@
   "faq_more": "Plus d’aide sur la page d’assistance",
   "cta_title": "Prêt à explorer ?",
   "cta_sub": "Faites de votre prochain trajet en voiture, à vélo ou à pied un niveau de jeu.",
-  "footer_tag": "Des cartes façon jeu vidéo pour iPhone.",
+  "footer_tag": "Des mondes de carte façon jeu vidéo pour iPhone, iPad, CarPlay et Apple Watch.",
   "footer_legal": "Mentions légales",
   "footer_privacy": "Politique de confidentialité",
   "footer_terms": "Conditions d’utilisation",
@@ -177,7 +177,8 @@
       "h": "2. Localisation",
       "p": [
         "Si vous autorisez l’accès à la localisation, ROAMO utilise la position GPS de votre appareil pour afficher où vous êtes, vous guider étape par étape, indiquer votre vitesse, recalculer l’itinéraire et suggérer des lieux à proximité. Tout se passe sur votre iPhone. Nous ne recevons, ne stockons ni n’enregistrons jamais votre historique de positions.",
-        "Vous pouvez modifier ou retirer l’accès à tout moment dans Réglages iOS › Confidentialité et sécurité › Service de localisation › ROAMO. Les fonctions qui dépendent de votre position ne fonctionneront pas sans cet accès."
+        "Vous pouvez modifier ou retirer l’accès à tout moment dans Réglages iOS › Confidentialité et sécurité › Service de localisation › ROAMO. Les fonctions qui dépendent de votre position ne fonctionneront pas sans cet accès.",
+        "Pendant la navigation, ROAMO continue d’utiliser votre position quand l’écran est verrouillé ou que vous passez à une autre app, afin que le guidage vocal, l’Activité en direct et CarPlay continuent de fonctionner. iOS indique que ROAMO utilise votre position, et cela s’arrête à la fin du trajet."
       ]
     },
     {
@@ -188,7 +189,7 @@
       "ul": [
         "Recherche : le texte saisi ou dicté, ainsi qu’un point de référence (votre position ou la zone de la carte) pour afficher d’abord les résultats proches.",
         "À proximité : la catégorie choisie (par exemple « café ») et le point autour duquel chercher.",
-        "Itinéraires : les points de départ et d’arrivée et le mode de déplacement (voiture, vélo ou à pied). Si vous quittez l’itinéraire, votre position actuelle est envoyée comme nouveau point de départ pour en calculer un nouveau."
+        "Itinéraires : les points de départ et d’arrivée, les étapes que vous ajoutez et le mode de déplacement (voiture, vélo ou à pied). Si vous quittez l’itinéraire, votre position actuelle est envoyée comme nouveau point de départ pour en calculer un nouveau."
       ],
       "p2": [
         "Ces demandes ne sont liées à aucun compte ni identifiant vous concernant. Geoapify les traite selon sa propre politique de confidentialité : {geoapify_privacy}."
@@ -197,7 +198,8 @@
     {
       "h": "4. Tuiles de carte",
       "p": [
-        "Les images de la carte (tuiles) sont téléchargées depuis {ofm}, à partir de données {omt} et {osm}. Comme tout site ou serveur sur Internet, ces services reçoivent des informations de connexion standard, comme votre adresse IP et les tuiles demandées, ce qui peut révéler la zone générale consultée. ROAMO n’ajoute aucun identifiant à ces requêtes. Voir {ofm_privacy}."
+        "Les images de la carte (tuiles) sont téléchargées depuis {ofm}, à partir de données {omt} et {osm}. Comme tout site ou serveur sur Internet, ces services reçoivent des informations de connexion standard, comme votre adresse IP et les tuiles demandées, ce qui peut révéler la zone générale consultée. ROAMO n’ajoute aucun identifiant à ces requêtes. Voir {ofm_privacy}.",
+        "Dans les mondes avec relief 3D, des tuiles d’altitude sont aussi téléchargées depuis le jeu de données ouvert Terrain Tiles sur Amazon Web Services (Mapzen / AWS Terrain Tiles), qui reçoit de même votre adresse IP et la zone demandée, sans identifiant ajouté par ROAMO."
       ]
     },
     {
@@ -213,50 +215,57 @@
       ]
     },
     {
-      "h": "7. Données stockées sur votre appareil",
+      "h": "7. Photos, fichiers et partage",
       "p": [
-        "ROAMO enregistre localement quelques éléments pour que l’app reste telle que vous l’avez laissée : vos lieux Domicile, Travail et favoris, votre place de stationnement, le monde choisi et vos réglages (voix, unités, langue…). Ces données restent sur votre iPhone et sont supprimées avec l’app. Elles peuvent figurer dans vos propres sauvegardes selon vos réglages iOS ; nous n’y avons pas accès.",
-        "Les trajets enregistrés (itinéraire, heures, vitesse, altitude, captures et clips facecam) restent aussi uniquement sur votre iPhone ; les clips facecam sont exclus des sauvegardes iCloud."
+        "Dans World Studio, vous choisissez des images avec le sélecteur de photos d’Apple, depuis Fichiers ou le presse-papiers ; ROAMO ne reçoit que les images choisies, pas votre photothèque. Quand vous enregistrez une vidéo de trajet, une affiche, une capture ou une icône personnelle, ROAMO demande un accès en ajout seul à Photos, qui permet d’ajouter des éléments sans voir votre photothèque. La musique importée pour une vidéo et les fichiers de monde (.roamoworld) que vous ouvrez sont copiés dans ROAMO sur votre appareil. Un fichier de monde partagé ne va qu’aux personnes et apps à qui vous l’envoyez, par AirDrop, Messages ou Fichiers ; il ne passe jamais par nos serveurs."
       ]
     },
     {
-      "h": "8. Achats",
+      "h": "8. Données stockées sur votre appareil",
+      "p": [
+        "ROAMO enregistre localement quelques éléments pour que l’app reste telle que vous l’avez laissée : vos lieux Domicile, Travail et favoris, votre place de stationnement, le monde choisi et vos réglages (voix, unités, langue…). Ces données restent sur votre iPhone et sont supprimées avec l’app. Elles peuvent figurer dans vos propres sauvegardes selon vos réglages iOS ; nous n’y avons pas accès.",
+        "Les trajets enregistrés (itinéraire, heures, vitesse, altitude, captures et clips facecam) restent aussi uniquement sur votre iPhone ; les clips facecam sont exclus des sauvegardes iCloud.",
+        "Pour afficher votre trajet dans les widgets, l’Activité en direct, CarPlay et l’Apple Watch, ROAMO partage l’itinéraire en cours, le prochain virage, vos lieux enregistrés et la distance parcourue entre l’app et ses propres extensions sur votre iPhone, et les envoie directement à votre Apple Watch jumelée. Vos lieux enregistrés et vos mondes sont ajoutés à l’index Spotlight de l’appareil pour les retrouver dans Recherche, et les requêtes Siri sont traitées par Apple. Rien de tout cela ne passe par nos serveurs."
+      ]
+    },
+    {
+      "h": "9. Achats",
       "p": [
         "Les abonnements ROAMO Pro et l’achat à vie sont entièrement traités par Apple via l’App Store. Nous ne recevons jamais votre nom, vos informations de paiement ni votre identifiant Apple. L’app vérifie uniquement auprès d’Apple, depuis votre appareil, si Pro est actif. Le traitement des achats par Apple relève de la politique de confidentialité d’Apple."
       ]
     },
     {
-      "h": "9. Ni pistage, ni publicité, ni vente de données",
+      "h": "10. Ni pistage, ni publicité, ni vente de données",
       "p": [
         "ROAMO ne contient aucune publicité, aucune statistique d’usage et aucun SDK tiers de pistage ou de rapport de plantage. Nous ne vous suivons pas d’une app ou d’un site à l’autre, ne créons pas de profils et ne vendons ni ne partageons d’informations personnelles au sens de lois comme le RGPD ou le CCPA/CPRA."
       ]
     },
     {
-      "h": "10. Enfants",
+      "h": "11. Enfants",
       "p": [
         "ROAMO est une app de navigation grand public qui ne s’adresse pas aux enfants de moins de 13 ans. L’app ne collectant aucune donnée personnelle, elle ne recueille pas sciemment d’informations sur des enfants."
       ]
     },
     {
-      "h": "11. Vos droits",
+      "h": "12. Vos droits",
       "p": [
         "Selon votre lieu de résidence, vous pouvez disposer de droits d’accès, de rectification ou d’effacement de vos données personnelles. Comme nous ne collectons ni ne conservons de données personnelles vous concernant, il n’y a rien à consulter ni à effacer de notre côté ; les données enregistrées sur votre appareil restent sous votre contrôle et disparaissent avec l’app. Pour les données traitées par Geoapify ou OpenFreeMap, contactez directement ces services. Vous pouvez toujours nous écrire à {email_link}."
       ]
     },
     {
-      "h": "12. Sécurité",
+      "h": "13. Sécurité",
       "p": [
         "Toutes les requêtes vers le service cartographique et les serveurs de tuiles utilisent des connexions HTTPS chiffrées."
       ]
     },
     {
-      "h": "13. Modifications de cette politique",
+      "h": "14. Modifications de cette politique",
       "p": [
         "Si la façon dont ROAMO traite les données change, nous mettrons à jour cette page et la date ci-dessus avant que le changement ne prenne effet dans l’app."
       ]
     },
     {
-      "h": "14. Contact",
+      "h": "15. Contact",
       "p": [
         "DeeplyAi — {email_link}"
       ]
@@ -448,5 +457,10 @@
         "a": "Non. Les trajets, les vidéos de trajet, les mondes que vous créez et vos lieux enregistrés restent sur votre appareil. ROAMO n’a ni compte ni serveur qui les reçoit."
       }
     ]
-  }
+  },
+  "f_copilot_t": "Voix de copilote",
+  "f_copilot_d": "Chaque monde peut parler avec son propre copilote. Classique est gratuite ; les voix de personnages sont incluses dans Pro.",
+  "f_icons_t": "Icônes à débloquer",
+  "f_icons_d": "Six icônes alternatives se débloquent en roulant, de 10 à 1 000 km.",
+  "attr_terrain": "Relief : Mapzen / {aws_terrain}"
 }

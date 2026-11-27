@@ -19,18 +19,18 @@ Pages: `index.html` (EN) and `<lang>/index.html` for es, fr, de, pt-BR, it, ja, 
 each language has `privacy.html`, `terms.html` **and** the folder form `privacy/`, `terms/`,
 which the app links to (`https://deeplyai.app/roamo/privacy/`).
 
-**Support** sits at the site root like the other DeeplyAi app pages (`cartv-support.html`):
-`https://deeplyai.app/roam-support.html` (EN) and `roam-support.<lang>.html`. The old
-`roamo/[<lang>/]support.html` and `support/` are redirect stubs (noindex, keep `#hash`), so the
-app's `deeplyai.app/roamo/support/` link keeps working. The support URLs are in the main
-sitemap (`src/pages/sitemap.xml.ts`); `public/robots.txt` lists `roamo/sitemap.xml` for the rest.
+**Support** is the `#support` section of the landing page (with the guides and the FAQ), not a page
+of its own. `roam-support.html` / `roam-support.<lang>.html` and the old `roamo/[<lang>/]support.html`
+and `support/` (the app and App Store Connect link there) are noindex redirects to
+`roamo/[<lang>/]#support`; a `#hash` on the old URL is kept.
 
-The support page is the ROAMO 1.0 help center (`support_body()` in `build.py`, strings under
-`sup` in `EN` and in each `i18n/<lang>.json`). Its media in `assets/support/` come from the ROAMO
-repo's `Final/` folder (App Store screenshots, App Preview, CarPlay ad, header film), resized for
-the web: screenshots as WebP 560 px wide (watch 280 px, iPad 1200 px) with sharp, videos as
-H.264 without sound (`-crf 26–32 -movflags +faststart`, `setsar=1`). Videos are muted, play only
-while on screen and never with reduced motion (`assets/site.js`). Screenshots are English only.
+The landing page shows the ROAMO 1.0 guides (`guide_sections()` in `build.py`, strings under
+`sup` in `EN` and in each `i18n/<lang>.json`): header film, getting started, CarPlay, Lock Screen
+and Watch, World Studio, trip videos. Their media in `assets/support/` come from the ROAMO repo's
+`Final/` folder (App Store screenshots, App Preview, CarPlay ad, header film), resized for the
+web: screenshots as WebP 560 px wide (watch 280 px, iPad 1200 px) with sharp, videos as H.264
+without sound (`-crf 26–32 -movflags +faststart`, `setsar=1`). Videos are muted, play only while
+on screen and never with reduced motion (`assets/site.js`). Screenshots are English only.
 
 Brand: the publisher is written **DeeplyAi**, as on the rest of deeplyai.app; `og:site_name` is
 DeeplyAi and the footer links back to deeplyai.app (all apps, About, Contact).

@@ -17,7 +17,7 @@
   "hero_title": "Thành phố của bạn, <mark>hoá thành thế giới game.</mark>",
   "hero_sub": "ROAMO là ứng dụng bản đồ thực thụ — tìm kiếm, chỉ đường, dẫn đường bằng giọng nói — nơi mọi con phố, công viên và dòng sông được vẽ lại theo phong cách thể loại game bạn yêu thích.",
   "hero_note": "2 thế giới miễn phí mãi mãi · Không cần tài khoản · Không quảng cáo",
-  "hero_req": "Yêu cầu iOS 17 trở lên",
+  "hero_req": "iPhone và iPad chạy iOS 17 trở lên · CarPlay · Apple Watch",
   "switch_title": "Chạm vào một thế giới để đổi giao diện bản đồ",
   "now_showing": "Đang hiển thị: {world}",
   "phone_aria": "Xem trước ROAMO trong thế giới {world}, có tuyến đường và thẻ rẽ",
@@ -95,12 +95,12 @@
   "pp3_t": "Vị trí ở lại trên điện thoại",
   "pp3_d": "Vị trí GPS chỉ được dùng trên máy để dẫn đường. Không bao giờ lưu trên bất kỳ máy chủ nào.",
   "pp4_t": "Chỉ gửi đúng thứ cần",
-  "pp4_d": "Khi tìm địa điểm hay tuyến đường, chỉ nội dung tìm kiếm hoặc điểm đầu và điểm cuối của tuyến được gửi tới dịch vụ bản đồ ({geoapify}) để trả lời đúng yêu cầu đó.",
+  "pp4_d": "Để tìm địa điểm hay tuyến đường, chỉ những gì yêu cầu đó cần (từ khoá bạn tìm, một điểm lân cận, hoặc điểm đi, điểm dừng và điểm đến của tuyến) được gửi tới dịch vụ bản đồ ({geoapify}).",
   "privacy_label_note": "Nhãn quyền riêng tư trên App Store",
   "privacy_label": "Không thu thập dữ liệu",
   "privacy_more": "Đọc toàn bộ chính sách quyền riêng tư",
   "pricing_title": "Bắt đầu miễn phí. Mở khoá mọi thế giới.",
-  "pricing_sub": "Block World và Doodle Notebook miễn phí mãi mãi. ROAMO Pro mở khoá cả 22 thế giới.",
+  "pricing_sub": "Block World và Doodle Notebook miễn phí mãi mãi. ROAMO Pro mở cả 22 thế giới, World Studio và các giọng hoa tiêu nhân vật.",
   "plan_free": "Miễn phí",
   "plan_free_desc": "Block World + Doodle Notebook, miễn phí mãi mãi, đầy đủ tìm kiếm và dẫn đường.",
   "plan_weekly": "Theo tuần",
@@ -112,13 +112,13 @@
   "per_year": "/ năm",
   "one_time": "trả một lần",
   "best_badge": "Tiết kiệm nhất",
-  "pro_includes": "Cả 22 thế giới",
+  "pro_includes": "Cả 22 thế giới + World Studio",
   "pricing_note": "Giá niêm yết bằng đô la Mỹ; giá trên App Store tại nước bạn có thể khác. Gói đăng ký tự động gia hạn trừ khi được huỷ ít nhất 24 giờ trước khi kỳ hiện tại kết thúc. Bạn có thể quản lý hoặc huỷ bất cứ lúc nào trong cài đặt tài khoản App Store.",
   "faq_title": "Thắc mắc? Có lời giải.",
   "faq": [
     {
       "q": "ROAMO có miễn phí không?",
-      "a": "Có. Block World và Doodle Notebook miễn phí mãi mãi, kèm tìm kiếm và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 13 thế giới còn lại."
+      "a": "Có. Block World và Doodle Notebook miễn phí mãi mãi, kèm tìm kiếm và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 20 thế giới còn lại."
     },
     {
       "q": "Có cần tài khoản không?",
@@ -126,7 +126,7 @@
     },
     {
       "q": "Hỗ trợ những thiết bị nào?",
-      "a": "iPhone chạy iOS 17 trở lên."
+      "a": "iPhone và iPad chạy iOS 17 trở lên, CarPlay, và Apple Watch chạy watchOS 10 trở lên."
     },
     {
       "q": "ROAMO có theo dõi tôi không?",
@@ -144,7 +144,7 @@
   "faq_more": "Xem thêm trợ giúp ở trang hỗ trợ",
   "cta_title": "Sẵn sàng lên đường?",
   "cta_sub": "Biến chuyến lái xe, đạp xe hay đi bộ tiếp theo thành một màn chơi.",
-  "footer_tag": "Bản đồ thế giới phong cách game cho iPhone.",
+  "footer_tag": "Thế giới bản đồ phong cách game cho iPhone, iPad, CarPlay và Apple Watch.",
   "footer_legal": "Pháp lý",
   "footer_privacy": "Chính sách quyền riêng tư",
   "footer_terms": "Điều khoản sử dụng",
@@ -177,7 +177,8 @@
       "h": "2. Vị trí",
       "p": [
         "Nếu bạn cho phép truy cập vị trí, ROAMO dùng vị trí GPS của thiết bị để hiển thị nơi bạn đang ở, dẫn đường từng ngã rẽ, hiện tốc độ, tìm đường lại và gợi ý địa điểm gần đây. Tất cả diễn ra trên iPhone của bạn. Chúng tôi không bao giờ nhận, lưu hay ghi lại lịch sử vị trí của bạn.",
-        "Bạn có thể thay đổi hoặc thu hồi quyền truy cập vị trí bất cứ lúc nào tại Cài đặt iOS › Quyền riêng tư & Bảo mật › Dịch vụ định vị › ROAMO. Khi không có quyền này, các tính năng cần vị trí sẽ không hoạt động."
+        "Bạn có thể thay đổi hoặc thu hồi quyền truy cập vị trí bất cứ lúc nào tại Cài đặt iOS › Quyền riêng tư & Bảo mật › Dịch vụ định vị › ROAMO. Khi không có quyền này, các tính năng cần vị trí sẽ không hoạt động.",
+        "Khi đang dẫn đường, ROAMO tiếp tục dùng vị trí của bạn cả khi màn hình khoá hay bạn chuyển sang ứng dụng khác, để giọng hướng dẫn, Live Activity và CarPlay vẫn hoạt động. iOS sẽ hiển thị rằng ROAMO đang dùng vị trí, và việc này dừng khi chuyến đi kết thúc."
       ]
     },
     {
@@ -188,7 +189,7 @@
       "ul": [
         "Tìm kiếm: nội dung bạn gõ hoặc nói, kèm một điểm tham chiếu (vị trí của bạn hoặc vùng bản đồ) để ưu tiên kết quả gần.",
         "Quanh đây: danh mục bạn chọn (ví dụ “cà phê”) và điểm làm tâm tìm kiếm.",
-        "Chỉ đường: điểm đầu và điểm cuối của tuyến cùng phương tiện (ô tô, xe đạp hoặc đi bộ). Khi bạn đi lệch tuyến, vị trí hiện tại được gửi làm điểm xuất phát mới để tính tuyến mới."
+        "Chỉ đường: điểm đầu và điểm cuối của tuyến, các điểm dừng bạn thêm, cùng phương tiện (ô tô, xe đạp hoặc đi bộ). Khi bạn đi lệch tuyến, vị trí hiện tại được gửi làm điểm xuất phát mới để tính tuyến mới."
       ],
       "p2": [
         "Các yêu cầu này không gắn với bất kỳ tài khoản hay mã định danh nào của bạn. Geoapify xử lý chúng theo chính sách quyền riêng tư của họ: {geoapify_privacy}."
@@ -197,7 +198,8 @@
     {
       "h": "4. Ô bản đồ",
       "p": [
-        "Hình ảnh bản đồ (ô bản đồ) được tải từ {ofm}, dùng dữ liệu {omt} và {osm}. Như mọi website hay máy chủ trên internet, các dịch vụ này nhận thông tin kết nối thông thường như địa chỉ IP và những ô bản đồ được yêu cầu, từ đó có thể biết khu vực chung bạn đang xem. ROAMO không gắn thêm mã định danh nào vào các yêu cầu này. Xem {ofm_privacy}."
+        "Hình ảnh bản đồ (ô bản đồ) được tải từ {ofm}, dùng dữ liệu {omt} và {osm}. Như mọi website hay máy chủ trên internet, các dịch vụ này nhận thông tin kết nối thông thường như địa chỉ IP và những ô bản đồ được yêu cầu, từ đó có thể biết khu vực chung bạn đang xem. ROAMO không gắn thêm mã định danh nào vào các yêu cầu này. Xem {ofm_privacy}.",
+        "Ở các thế giới có địa hình 3D, ô độ cao cũng được tải từ bộ dữ liệu mở Terrain Tiles trên Amazon Web Services (Mapzen / AWS Terrain Tiles); dịch vụ này cũng nhận địa chỉ IP và vùng được yêu cầu, ROAMO không thêm bất kỳ định danh nào."
       ]
     },
     {
@@ -213,50 +215,57 @@
       ]
     },
     {
-      "h": "7. Dữ liệu lưu trên thiết bị",
+      "h": "7. Ảnh, tệp và chia sẻ",
       "p": [
-        "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập.",
-        "Các chuyến đi bạn ghi (tuyến đường, thời gian, tốc độ, độ cao, ảnh chụp màn hình và đoạn facecam) cũng chỉ lưu trên iPhone của bạn; đoạn facecam không nằm trong bản sao lưu iCloud."
+        "Trong World Studio, bạn chọn ảnh bằng trình chọn ảnh của Apple, từ Tệp hoặc từ bộ nhớ tạm; ROAMO chỉ nhận những ảnh bạn chọn, không truy cập thư viện ảnh. Khi bạn lưu video chuyến đi, poster, ảnh chụp màn hình hay icon tự làm, ROAMO xin quyền chỉ-thêm vào Ảnh: được thêm mục mới nhưng không xem được thư viện. Nhạc bạn nhập cho video chuyến đi và tệp thế giới (.roamoworld) bạn mở được sao chép vào ROAMO trên thiết bị. Tệp thế giới bạn chia sẻ chỉ đến người và ứng dụng bạn gửi tới, qua AirDrop, Tin nhắn hoặc Tệp; không bao giờ đi qua máy chủ của chúng tôi."
       ]
     },
     {
-      "h": "8. Mua hàng",
+      "h": "8. Dữ liệu lưu trên thiết bị",
+      "p": [
+        "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập.",
+        "Các chuyến đi bạn ghi (tuyến đường, thời gian, tốc độ, độ cao, ảnh chụp màn hình và đoạn facecam) cũng chỉ lưu trên iPhone của bạn; đoạn facecam không nằm trong bản sao lưu iCloud.",
+        "Để hiển thị chuyến đi trên widget, Live Activity, CarPlay và Apple Watch, ROAMO chia sẻ tuyến hiện tại, ngã rẽ tiếp theo, địa điểm đã lưu và quãng đường đã khám phá giữa ứng dụng và các tiện ích mở rộng của chính nó trên iPhone, và gửi trực tiếp tới Apple Watch đã ghép đôi. Địa điểm đã lưu và các thế giới được thêm vào chỉ mục Spotlight trên thiết bị để bạn tìm thấy trong Tìm kiếm; yêu cầu Siri do Apple xử lý. Không có dữ liệu nào trong số này đi qua máy chủ của chúng tôi."
+      ]
+    },
+    {
+      "h": "9. Mua hàng",
       "p": [
         "Gói đăng ký ROAMO Pro và gói mua trọn đời do Apple xử lý hoàn toàn qua App Store. Chúng tôi không bao giờ nhận tên, thông tin thanh toán hay Apple ID của bạn. Ứng dụng chỉ kiểm tra với Apple, ngay trên thiết bị, xem Pro có đang hoạt động không. Việc Apple xử lý giao dịch tuân theo chính sách quyền riêng tư của Apple."
       ]
     },
     {
-      "h": "9. Không theo dõi, không quảng cáo, không bán dữ liệu",
+      "h": "10. Không theo dõi, không quảng cáo, không bán dữ liệu",
       "p": [
         "ROAMO không chứa quảng cáo, phân tích hay SDK bên thứ ba để theo dõi hoặc báo cáo sự cố. Chúng tôi không theo dõi bạn qua các ứng dụng hay website, không lập hồ sơ người dùng và không bán hay chia sẻ thông tin cá nhân theo định nghĩa của các luật như GDPR hay CCPA/CPRA."
       ]
     },
     {
-      "h": "10. Trẻ em",
+      "h": "11. Trẻ em",
       "p": [
         "ROAMO là ứng dụng dẫn đường dành cho mọi người và không hướng tới trẻ em dưới 13 tuổi. Vì ứng dụng không thu thập dữ liệu cá nhân nên không cố ý thu thập thông tin của trẻ em."
       ]
     },
     {
-      "h": "11. Quyền của bạn",
+      "h": "12. Quyền của bạn",
       "p": [
         "Tuỳ nơi bạn sống, bạn có thể có quyền truy cập, chỉnh sửa hoặc xoá dữ liệu cá nhân. Vì chúng tôi không thu thập hay lưu giữ dữ liệu cá nhân của bạn, phía chúng tôi không có gì để cung cấp hay xoá; dữ liệu trên thiết bị nằm trong tầm kiểm soát của bạn và bị xoá cùng ứng dụng. Với dữ liệu do Geoapify hoặc OpenFreeMap xử lý, vui lòng liên hệ trực tiếp các dịch vụ đó. Bạn luôn có thể gửi câu hỏi cho chúng tôi tại {email_link}."
       ]
     },
     {
-      "h": "12. Bảo mật",
+      "h": "13. Bảo mật",
       "p": [
         "Mọi yêu cầu tới dịch vụ bản đồ và máy chủ ô bản đồ đều dùng kết nối HTTPS được mã hoá."
       ]
     },
     {
-      "h": "13. Thay đổi chính sách",
+      "h": "14. Thay đổi chính sách",
       "p": [
         "Nếu cách ROAMO xử lý dữ liệu thay đổi, chúng tôi sẽ cập nhật trang này và ngày ở trên cùng trước khi thay đổi có hiệu lực trong ứng dụng."
       ]
     },
     {
-      "h": "14. Liên hệ",
+      "h": "15. Liên hệ",
       "p": [
         "DeeplyAi — {email_link}"
       ]
@@ -448,5 +457,10 @@
         "a": "Không. Chuyến đi, video chuyến đi, các thế giới bạn tạo và địa điểm đã lưu đều ở trên thiết bị của bạn. ROAMO không có tài khoản và không có máy chủ nhận những dữ liệu này."
       }
     ]
-  }
+  },
+  "f_copilot_t": "Giọng hoa tiêu",
+  "f_copilot_d": "Mỗi thế giới có thể nói bằng giọng hoa tiêu riêng. Giọng Cổ điển miễn phí; các giọng nhân vật có trong Pro.",
+  "f_icons_t": "Mở khoá biểu tượng ứng dụng",
+  "f_icons_d": "Sáu biểu tượng ứng dụng thay thế mở khoá khi bạn lái, từ 10 tới 1.000 km.",
+  "attr_terrain": "Địa hình: Mapzen / {aws_terrain}"
 }
