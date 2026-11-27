@@ -51,7 +51,7 @@ PAGES = ["index", "privacy", "terms", "support"]
 # sites/roamo/assets/textures/. base/road/edge are web-only mock-up colors.
 # land/patch: a texture name, or a raw CSS image value for texture-less worlds.
 # --------------------------------------------------------------------------
-GROUPS = ["gamers", "cute", "students", "adventure", "seasonal"]
+GROUPS = ["gamers", "cute", "style", "students", "adventure", "seasonal"]
 WORLDS = [
     # id, name, group, free, accent, route, dark, base, land, patch, road, edge
     ("blockworld", "Block World", "gamers", True, "#FFD640", "#FFD640", False, "#5E9B3C", "bw_grass", "bw_water", "#A3A3A3", "#5C5C5C"),
@@ -65,9 +65,11 @@ WORLDS = [
     ("arcade", "8-Bit Arcade", "gamers", False, "#FCE21B", "#FCE21B", True, "#0E0E1C", "ar_scan", None, "#23234D", "#4D4DFF"),
     ("hacker", "Hacker Terminal", "gamers", False, "#39FF6A", "#39FF6A", True, "#020A04", "ht_grid", None, "#0B3A1A", "#1F8F40"),
     ("speedway", "Speedway", "gamers", False, "#E3242B", "#FFD400", True, "#2E2E2E", "sp_asphalt", "sp_curb", "#4A4A4A", "#E3242B"),
+    ("wasteland", "Wasteland", "gamers", False, "#E8892B", "#3FE0C5", False, "#C9A06A", "wl_dust", "wl_rust", "#8A7356", "#5A4630"),
     ("candycloud", "Candy Cloud", "cute", False, "#FF7EB6", "#FF5FA2", False, "#FFE3F0", "cc_sprinkles", "cc_hearts", "#FFFFFF", "#FFB3D4"),
     ("comicpop", "Comic Pop", "cute", False, "#FF3B30", "#FF3B30", False, "#FFF3C4", "cp_halftone", "cp_halftone_blue", "#FFFFFF", "#111111"),
     ("galaxy", "Galaxy Dream", "cute", False, "#B98CFF", "#FFD6FF", True, "#120A2E", "gx_stars", None, "#2A1B5E", "#B98CFF"),
+    ("luxury", "Luxury", "style", False, "#D4AF37", "#F5D77A", True, "#0E0C0A", "lx_quilt", "lx_marble", "#2A2418", "#D4AF37"),
     ("notebook", "Doodle Notebook", "students", True, "#2F6FE4", "#E8453C", False, "#FBFBF6", "nb_graph", "nb_hatch", "#FFFFFF", "#2F6FE4"),
     ("blueprint", "Blueprint", "students", False, "#FFFFFF", "#FFD23F", True, "#1D4E9E", "bp_grid", None, "#2A5DB0", "#FFFFFF"),
     ("frontier", "Frontier Paper", "adventure", False, "#8B2E1F", "#8B2E1F", False, "#E9DCC0", "fp_paper", "fp_water", "#F4EAD2", "#8A6D47"),
@@ -86,7 +88,7 @@ PRICES = {"weekly": "$3.99", "monthly": "$6.99", "yearly": "$39.99", "lifetime":
 EN = {
     "lang_name": "English",
     "title": "ROAMO — Game-style map worlds for iPhone",
-    "description": "ROAMO is GPS navigation for iPhone that restyles the whole map into a game-style world. 15 worlds, turn-by-turn voice guidance, no account, no ads, no tracking.",
+    "description": "ROAMO is GPS navigation for iPhone that restyles the whole map into a game-style world. 17 worlds, turn-by-turn voice guidance, no account, no ads, no tracking.",
     "skip": "Skip to content",
     "nav_worlds": "Worlds", "nav_features": "Features", "nav_privacy": "Privacy",
     "nav_pricing": "Pricing", "nav_faq": "FAQ", "nav_support": "Support",
@@ -104,11 +106,11 @@ EN = {
     "phone_dist": "500 ft", "phone_street": "Turn right onto Maple Ave", "phone_then": "Then turn left",
     "phone_eta": "12 min", "phone_trip": "4.3 mi", "phone_arrive": "Arrive 9:41",
     "phone_speed": "34", "phone_speed_unit": "mph", "phone_limit": "35",
-    "worlds_title": "15 worlds. One for every mood.",
+    "worlds_title": "17 worlds. One for every mood.",
     "worlds_sub": "Pick a world and the entire map changes — ground, water, roads, labels, even your route color. Tap any world to try it on the phone above.",
     "free": "Free", "pro": "Pro", "preview": "Preview",
     "grp_gamers": "For gamers", "grp_cute": "Cute & cozy", "grp_students": "For students",
-    "grp_adventure": "For adventurers", "grp_seasonal": "Seasonal",
+    "grp_style": "Stylish", "grp_adventure": "For adventurers", "grp_seasonal": "Seasonal",
     "w_blockworld": "Chunky grass, water and gravel blocks.",
     "w_neon": "Glowing streets on a midnight grid.",
     "w_urbanheist": "Gritty asphalt and getaway-yellow routes.",
@@ -124,6 +126,8 @@ EN = {
     "w_frontier": "Aged paper and ink, like an old trail map.",
     "w_fantasy": "Parchment, forests and a hero's road.",
     "w_snowday": "Fresh snow, frosty blues and cozy reds.",
+    "w_wasteland": "Dusty roads and rusted metal after the end of the world.",
+    "w_luxury": "Quilted leather, marble and gold-lined streets.",
     "features_title": "A real navigation app under the fun skin",
     "features_sub": "Everything you need to get from A to B, built for one-handed use in the car, on the bike or on foot.",
     "f_search_t": "Search anywhere", "f_search_d": "Find addresses and places with fast autocomplete.",
@@ -151,12 +155,12 @@ EN = {
     "privacy_label": "Data Not Collected",
     "privacy_more": "Read the full privacy policy",
     "pricing_title": "Start free. Unlock every world.",
-    "pricing_sub": "Block World and Doodle Notebook are free forever. ROAMO Pro unlocks all 15 worlds.",
+    "pricing_sub": "Block World and Doodle Notebook are free forever. ROAMO Pro unlocks all 17 worlds.",
     "plan_free": "Free", "plan_free_desc": "Block World + Doodle Notebook, free forever, with full search and navigation.",
     "plan_weekly": "Weekly", "plan_monthly": "Monthly", "plan_yearly": "Yearly", "plan_lifetime": "Lifetime",
     "per_week": "/ week", "per_month": "/ month", "per_year": "/ year", "one_time": "one-time",
     "best_badge": "Best value",
-    "pro_includes": "All 15 worlds",
+    "pro_includes": "All 17 worlds",
     "pricing_note": "Prices shown in US dollars; your local App Store price may differ. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel anytime in your App Store account settings.",
     "faq_title": "Questions? Answered.",
     "faq": [

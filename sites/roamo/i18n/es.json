@@ -1,7 +1,7 @@
 {
   "lang_name": "Español",
   "title": "ROAMO — Mundos de mapa estilo videojuego para iPhone",
-  "description": "ROAMO es navegación GPS para iPhone que convierte todo el mapa en un mundo estilo videojuego. 15 mundos, guía por voz giro a giro, sin cuenta, sin anuncios y sin rastreo.",
+  "description": "ROAMO es navegación GPS para iPhone que convierte todo el mapa en un mundo estilo videojuego. 17 mundos, guía por voz giro a giro, sin cuenta, sin anuncios y sin rastreo.",
   "skip": "Saltar al contenido",
   "nav_worlds": "Mundos",
   "nav_features": "Funciones",
@@ -30,7 +30,7 @@
   "phone_speed": "48",
   "phone_speed_unit": "km/h",
   "phone_limit": "50",
-  "worlds_title": "15 mundos. Uno para cada momento.",
+  "worlds_title": "17 mundos. Uno para cada momento.",
   "worlds_sub": "Elige un mundo y cambia todo el mapa: suelo, agua, carreteras, etiquetas y hasta el color de tu ruta. Toca cualquier mundo para probarlo en el teléfono de arriba.",
   "free": "Gratis",
   "pro": "Pro",
@@ -100,7 +100,7 @@
   "privacy_label": "Datos no recopilados",
   "privacy_more": "Lee la política de privacidad completa",
   "pricing_title": "Empieza gratis. Desbloquea todos los mundos.",
-  "pricing_sub": "Block World y Doodle Notebook son gratis para siempre. ROAMO Pro desbloquea los 15 mundos.",
+  "pricing_sub": "Block World y Doodle Notebook son gratis para siempre. ROAMO Pro desbloquea los 17 mundos.",
   "plan_free": "Gratis",
   "plan_free_desc": "Block World + Doodle Notebook, gratis para siempre, con búsqueda y navegación completas.",
   "plan_weekly": "Semanal",
@@ -112,7 +112,7 @@
   "per_year": "/ año",
   "one_time": "pago único",
   "best_badge": "Mejor precio",
-  "pro_includes": "Los 15 mundos",
+  "pro_includes": "Los 17 mundos",
   "pricing_note": "Precios en dólares estadounidenses; el precio en tu App Store local puede variar. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes del final del periodo en curso. Gestiónalas o cancélalas cuando quieras en los ajustes de tu cuenta del App Store.",
   "faq_title": "¿Dudas? Resueltas.",
   "faq": [
@@ -341,5 +341,8 @@
   ],
   "contact_title": "Contacto",
   "contact_text": "Escribe a {email_link}. Incluye el modelo de tu iPhone, la versión de iOS y una breve descripción del problema. Solemos responder en dos días laborables.",
-  "contact_btn": "Escribir a soporte"
+  "contact_btn": "Escribir a soporte",
+  "grp_style": "Con estilo",
+  "w_wasteland": "Caminos polvorientos y metal oxidado tras el fin del mundo.",
+  "w_luxury": "Cuero acolchado, mármol y calles con ribetes dorados."
 }

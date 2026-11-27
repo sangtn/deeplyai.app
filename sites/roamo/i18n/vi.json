@@ -1,7 +1,7 @@
 {
   "lang_name": "Tiếng Việt",
   "title": "ROAMO — Bản đồ dẫn đường phong cách game cho iPhone",
-  "description": "ROAMO là ứng dụng dẫn đường GPS cho iPhone, biến cả bản đồ thành một “thế giới” phong cách game. 15 thế giới, chỉ đường từng ngã rẽ bằng giọng nói, không cần tài khoản, không quảng cáo, không theo dõi.",
+  "description": "ROAMO là ứng dụng dẫn đường GPS cho iPhone, biến cả bản đồ thành một “thế giới” phong cách game. 17 thế giới, chỉ đường từng ngã rẽ bằng giọng nói, không cần tài khoản, không quảng cáo, không theo dõi.",
   "skip": "Chuyển đến nội dung",
   "nav_worlds": "Thế giới",
   "nav_features": "Tính năng",
@@ -30,7 +30,7 @@
   "phone_speed": "48",
   "phone_speed_unit": "km/h",
   "phone_limit": "50",
-  "worlds_title": "15 thế giới. Tâm trạng nào cũng có.",
+  "worlds_title": "17 thế giới. Tâm trạng nào cũng có.",
   "worlds_sub": "Chọn một thế giới và cả bản đồ đổi theo — mặt đất, sông nước, đường sá, nhãn tên, cả màu tuyến đường. Chạm vào bất kỳ thế giới nào để thử ngay trên điện thoại phía trên.",
   "free": "Miễn phí",
   "pro": "Pro",
@@ -100,7 +100,7 @@
   "privacy_label": "Không thu thập dữ liệu",
   "privacy_more": "Đọc toàn bộ chính sách quyền riêng tư",
   "pricing_title": "Bắt đầu miễn phí. Mở khoá mọi thế giới.",
-  "pricing_sub": "Block World và Doodle Notebook miễn phí mãi mãi. ROAMO Pro mở khoá cả 15 thế giới.",
+  "pricing_sub": "Block World và Doodle Notebook miễn phí mãi mãi. ROAMO Pro mở khoá cả 17 thế giới.",
   "plan_free": "Miễn phí",
   "plan_free_desc": "Block World + Doodle Notebook, miễn phí mãi mãi, đầy đủ tìm kiếm và dẫn đường.",
   "plan_weekly": "Theo tuần",
@@ -112,7 +112,7 @@
   "per_year": "/ năm",
   "one_time": "trả một lần",
   "best_badge": "Tiết kiệm nhất",
-  "pro_includes": "Cả 15 thế giới",
+  "pro_includes": "Cả 17 thế giới",
   "pricing_note": "Giá niêm yết bằng đô la Mỹ; giá trên App Store tại nước bạn có thể khác. Gói đăng ký tự động gia hạn trừ khi được huỷ ít nhất 24 giờ trước khi kỳ hiện tại kết thúc. Bạn có thể quản lý hoặc huỷ bất cứ lúc nào trong cài đặt tài khoản App Store.",
   "faq_title": "Thắc mắc? Có lời giải.",
   "faq": [
@@ -341,5 +341,8 @@
   ],
   "contact_title": "Liên hệ",
   "contact_text": "Gửi email tới {email_link}. Vui lòng ghi rõ đời iPhone, phiên bản iOS và mô tả ngắn về vấn đề. Chúng tôi thường trả lời trong vòng hai ngày làm việc.",
-  "contact_btn": "Gửi email hỗ trợ"
+  "contact_btn": "Gửi email hỗ trợ",
+  "grp_style": "Phong cách",
+  "w_wasteland": "Đường bụi mù và kim loại hoen gỉ sau ngày tận thế.",
+  "w_luxury": "Da trần trám, đá cẩm thạch và những con phố viền vàng."
 }

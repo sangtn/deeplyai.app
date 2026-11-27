@@ -1,7 +1,7 @@
 {
   "lang_name": "日本語",
   "title": "ROAMO — ゲーム風マップワールドで走るiPhoneナビ",
-  "description": "ROAMOは、地図全体をゲーム風の「ワールド」に塗り替えるiPhone用GPSナビ。15のワールド、音声ターンバイターン案内。アカウント不要、広告なし、トラッキングなし。",
+  "description": "ROAMOは、地図全体をゲーム風の「ワールド」に塗り替えるiPhone用GPSナビ。17のワールド、音声ターンバイターン案内。アカウント不要、広告なし、トラッキングなし。",
   "skip": "本文へスキップ",
   "nav_worlds": "ワールド",
   "nav_features": "機能",
@@ -30,7 +30,7 @@
   "phone_speed": "48",
   "phone_speed_unit": "km/h",
   "phone_limit": "50",
-  "worlds_title": "15のワールド。気分に合わせて。",
+  "worlds_title": "17のワールド。気分に合わせて。",
   "worlds_sub": "ワールドを選ぶと地図がまるごと変わります。地面、水辺、道路、ラベル、ルートの色まで。タップすると上のスマホで試せます。",
   "free": "無料",
   "pro": "Pro",
@@ -100,7 +100,7 @@
   "privacy_label": "データの収集なし",
   "privacy_more": "プライバシーポリシー全文を読む",
   "pricing_title": "無料で始めて、全ワールドを解放。",
-  "pricing_sub": "Block WorldとDoodle Notebookはずっと無料。ROAMO Proで15のワールドすべてが使えます。",
+  "pricing_sub": "Block WorldとDoodle Notebookはずっと無料。ROAMO Proで17のワールドすべてが使えます。",
   "plan_free": "無料",
   "plan_free_desc": "Block World + Doodle Notebookはずっと無料。検索とナビ機能もフルで使えます。",
   "plan_weekly": "週間",
@@ -112,7 +112,7 @@
   "per_year": "/ 年",
   "one_time": "1回払い",
   "best_badge": "いちばんお得",
-  "pro_includes": "全15ワールド",
+  "pro_includes": "全17ワールド",
   "pricing_note": "価格は米ドル表示です。お住まいの地域のApp Storeでは価格が異なる場合があります。サブスクリプションは、現在の期間が終了する24時間前までに解約しない限り自動更新されます。管理・解約はApp Storeのアカウント設定からいつでも行えます。",
   "faq_title": "よくある質問",
   "faq": [
@@ -341,5 +341,8 @@
   ],
   "contact_title": "お問い合わせ",
   "contact_text": "{email_link} までメールでご連絡ください。iPhoneの機種、iOSのバージョン、問題の簡単な説明を添えていただけると助かります。通常2営業日以内に返信します。",
-  "contact_btn": "サポートにメール"
+  "contact_btn": "サポートにメール",
+  "grp_style": "おしゃれ",
+  "w_wasteland": "世界の終わりのあとの、砂ぼこりの道と錆びた鉄。",
+  "w_luxury": "キルティングレザーと大理石、金で縁どられた街路。"
 }

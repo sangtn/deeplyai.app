@@ -1,7 +1,7 @@
 {
   "lang_name": "Deutsch",
   "title": "ROAMO — Kartenwelten im Game-Stil für das iPhone",
-  "description": "ROAMO ist GPS-Navigation für das iPhone, die die ganze Karte in eine Welt im Game-Stil verwandelt. 15 Welten, Sprachansagen Abbiegung für Abbiegung, kein Konto, keine Werbung, kein Tracking.",
+  "description": "ROAMO ist GPS-Navigation für das iPhone, die die ganze Karte in eine Welt im Game-Stil verwandelt. 17 Welten, Sprachansagen Abbiegung für Abbiegung, kein Konto, keine Werbung, kein Tracking.",
   "skip": "Zum Inhalt springen",
   "nav_worlds": "Welten",
   "nav_features": "Funktionen",
@@ -30,7 +30,7 @@
   "phone_speed": "48",
   "phone_speed_unit": "km/h",
   "phone_limit": "50",
-  "worlds_title": "15 Welten. Eine für jede Laune.",
+  "worlds_title": "17 Welten. Eine für jede Laune.",
   "worlds_sub": "Wähle eine Welt und die ganze Karte verwandelt sich – Boden, Wasser, Straßen, Beschriftungen, sogar die Farbe deiner Route. Tippe auf eine Welt, um sie oben auf dem Handy auszuprobieren.",
   "free": "Gratis",
   "pro": "Pro",
@@ -100,7 +100,7 @@
   "privacy_label": "Keine Daten erfasst",
   "privacy_more": "Vollständige Datenschutzerklärung lesen",
   "pricing_title": "Gratis starten. Alle Welten freischalten.",
-  "pricing_sub": "Block World und Doodle Notebook sind für immer gratis. ROAMO Pro schaltet alle 15 Welten frei.",
+  "pricing_sub": "Block World und Doodle Notebook sind für immer gratis. ROAMO Pro schaltet alle 17 Welten frei.",
   "plan_free": "Gratis",
   "plan_free_desc": "Block World + Doodle Notebook, für immer gratis, mit voller Suche und Navigation.",
   "plan_weekly": "Wöchentlich",
@@ -112,7 +112,7 @@
   "per_year": "/ Jahr",
   "one_time": "einmalig",
   "best_badge": "Bester Preis",
-  "pro_includes": "Alle 15 Welten",
+  "pro_includes": "Alle 17 Welten",
   "pricing_note": "Preise in US-Dollar; der Preis in deinem lokalen App Store kann abweichen. Abos verlängern sich automatisch, sofern sie nicht mindestens 24 Stunden vor Ende des laufenden Zeitraums gekündigt werden. Verwalten oder kündigen kannst du jederzeit in den Einstellungen deines App-Store-Kontos.",
   "faq_title": "Fragen? Antworten.",
   "faq": [
@@ -341,5 +341,8 @@
   ],
   "contact_title": "Kontakt",
   "contact_text": "Schreib an {email_link}. Gib bitte dein iPhone-Modell, die iOS-Version und eine kurze Beschreibung des Problems an. Wir antworten in der Regel innerhalb von zwei Werktagen.",
-  "contact_btn": "Support anschreiben"
+  "contact_btn": "Support anschreiben",
+  "grp_style": "Stylish",
+  "w_wasteland": "Staubige Straßen und rostiges Metall nach dem Weltuntergang.",
+  "w_luxury": "Gestepptes Leder, Marmor und goldgesäumte Straßen."
 }
