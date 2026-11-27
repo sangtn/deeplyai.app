@@ -314,7 +314,7 @@
     }
   ],
   "support_page_title": "Hỗ trợ",
-  "support_page_desc": "Trợ giúp ROAMO: khôi phục giao dịch mua, huỷ gói đăng ký, thế giới miễn phí, đổi ngôn ngữ và liên hệ.",
+  "support_page_desc": "Trợ giúp ROAMO 1.0: bắt đầu sử dụng, 22 thế giới bản đồ, CarPlay, Apple Watch, video chuyến đi, mua hàng và liên hệ.",
   "support_intro": "Giải đáp nhanh những câu hỏi thường gặp. Vẫn chưa xong? Hãy viết cho chúng tôi — mọi thư đều được đọc.",
   "support_faq": [
     {
@@ -327,7 +327,7 @@
     },
     {
       "q": "Tôi được dùng miễn phí những gì?",
-      "a": "Block World và Doodle Notebook miễn phí mãi mãi, có tìm kiếm, địa điểm quanh đây và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 13 thế giới còn lại."
+      "a": "Block World và Doodle Notebook miễn phí mãi mãi, có tìm kiếm, địa điểm quanh đây và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 20 thế giới còn lại."
     },
     {
       "q": "Vì sao hiện “Đã đạt giới hạn dịch vụ bản đồ trong ngày”?",
@@ -362,5 +362,91 @@
   "footer_about": "Giới thiệu",
   "footer_contact": "Liên hệ",
   "support_links": "Liên kết hữu ích",
-  "manage_subs": "Quản lý gói đăng ký"
+  "manage_subs": "Quản lý gói đăng ký",
+  "sup": {
+    "kicker": "Trung tâm trợ giúp ROAMO 1.0",
+    "title": "Chúng tôi có thể giúp gì?",
+    "lead": "Hướng dẫn từng bước cho ROAMO trên iPhone, iPad, CarPlay và Apple Watch, cùng câu trả lời về mua hàng và quyền riêng tư.",
+    "topics": "Chủ đề trợ giúp",
+    "t_start": "Bắt đầu",
+    "t_worlds": "Thế giới bản đồ",
+    "t_carplay": "CarPlay",
+    "t_watch": "Màn hình khoá & Watch",
+    "t_studio": "Cá nhân hoá",
+    "t_trips": "Video chuyến đi",
+    "t_faq": "Câu hỏi thường gặp",
+    "t_contact": "Liên hệ",
+    "film_cap": "ROAMO trên iPhone và CarPlay, trong thế giới Neon Night.",
+    "pause": "Tạm dừng video",
+    "play": "Phát video",
+    "shot_note": "Ảnh chụp màn hình là phiên bản tiếng Anh của ứng dụng.",
+    "start_h": "Bắt đầu trong một phút",
+    "start_p": "ROAMO là ứng dụng dẫn đường từng ngã rẽ thực thụ. Không cần tạo tài khoản: mở ra là đi.",
+    "start_steps": [
+      "<b>Cho phép vị trí</b> để ROAMO hiển thị bạn đang ở đâu và dẫn đường.",
+      "<b>Tìm hoặc nói</b>: gõ địa chỉ hay địa điểm, chạm micro, hoặc chọn một nhóm quanh đây như xăng, sạc xe hay cà phê.",
+      "<b>Xem trước tuyến đường</b> bằng ô tô, xe đạp hoặc đi bộ, so sánh tuyến nhanh nhất và ngắn nhất.",
+      "Chạm <b>Đi</b>. Thẻ rẽ lớn, tốc độ cạnh biển giới hạn và giọng hướng dẫn đưa bạn tới nơi."
+    ],
+    "tour_cap": "Dạo một vòng ROAMO trong 30 giây",
+    "worlds_h": "22 thế giới bản đồ, 2 thế giới miễn phí",
+    "worlds_p": "Chạm <b>Đổi thế giới</b> trên bản đồ là mọi thứ được vẽ lại: mặt đất, nước, đường, nhãn và màu tuyến đường. Block World và Doodle Notebook miễn phí mãi mãi; ROAMO Pro mở cả 22 thế giới.",
+    "worlds_ul": [
+      "Chọn một thế giới ban ngày và một thế giới ban đêm: các thế giới tối như Neon Night phát sáng sau hoàng hôn.",
+      "Đổi thế giới ngay giữa chuyến đi, trên iPhone hay trên CarPlay.",
+      "Mỗi thế giới có thể nói bằng giọng hoa tiêu riêng. Chọn giọng trong Cài đặt › Giọng hoa tiêu: Cổ điển miễn phí, các giọng nhân vật có trong Pro."
+    ],
+    "worlds_alt1": "Danh sách thế giới bản đồ của ROAMO",
+    "worlds_alt2": "Dẫn đường từng ngã rẽ trong một thế giới ban đêm",
+    "carplay_h": "ROAMO trên CarPlay",
+    "carplay_p": "Bản đồ phong cách game, tìm kiếm và chỉ đường từng ngã rẽ trên màn hình xe, đồng bộ với iPhone.",
+    "carplay_steps": [
+      "Kết nối iPhone với xe bằng cáp hoặc không dây.",
+      "Chạm <b>ROAMO</b> trên màn hình chính CarPlay.",
+      "Tìm bằng bàn phím của xe hoặc chọn địa điểm gần đây, yêu thích, rồi chạm <b>Đi</b>.",
+      "Chạm nút quả địa cầu để đổi thế giới khi đang lái, và <b>Kết thúc</b> để dừng."
+    ],
+    "carplay_note": "Không thấy ROAMO trên xe? Trên iPhone mở Cài đặt › Cài đặt chung › CarPlay, chọn xe của bạn, chạm Tuỳ chỉnh và thêm ROAMO.",
+    "watch_h": "Trên màn hình khoá và Apple Watch",
+    "watch_p": "Khi đang dẫn đường, ngã rẽ tiếp theo đi theo bạn cả khi ra khỏi ứng dụng.",
+    "watch_ul": [
+      "<b>Live Activity</b>: ngã rẽ tiếp theo và giờ đến trên màn hình khoá và Dynamic Island. Bật trong Cài đặt iPhone › ROAMO › Hoạt động trực tiếp.",
+      "<b>Widget</b>: thêm ROAMO vào màn hình chính để bắt đầu đường về nhà hoặc tới công ty chỉ với một chạm.",
+      "<b>Apple Watch</b>: thẻ rẽ, bản đồ, Nhà, Công ty và địa điểm yêu thích ngay trên cổ tay. Cài từ ứng dụng Watch trên iPhone, mục Ứng dụng có sẵn.",
+      "<b>Siri</b>: nói “Dẫn đường về nhà bằng ROAMO” hoặc “Tìm cà phê gần đây bằng ROAMO”."
+    ],
+    "watch_alt": "ROAMO trên Apple Watch: ngã rẽ tiếp theo, bản đồ và địa điểm",
+    "watch_alt2": "Live Activity của ROAMO trên màn hình khoá và Apple Watch",
+    "studio_h": "Cá nhân hoá theo ý bạn",
+    "studio_ul": [
+      "<b>World Studio</b> (Pro): bắt đầu từ bất kỳ thế giới nào trong 22 thế giới rồi đổi màu, dùng ảnh của bạn làm texture và tự vẽ icon địa điểm. Chạm <b>Đổi thế giới</b>, rồi <b>Tạo thế giới của riêng bạn</b>.",
+      "<b>Con trỏ</b>: chọn con trỏ kiểu game cho xe của bạn, hoặc tự làm từ một tấm ảnh.",
+      "<b>Biểu tượng ứng dụng</b>: sáu biểu tượng thay thế mở khoá khi bạn lái, ở mốc 10, 50, 100, 250, 500 và 1.000 km. Xem Cài đặt › Biểu tượng ứng dụng.",
+      "<b>Chia sẻ thế giới</b>: gửi tệp .roamoworld qua AirDrop, Tin nhắn hoặc Tệp. Tệp không bao giờ đi qua máy chủ."
+    ],
+    "studio_alt1": "World Studio: tạo bản đồ riêng từ ảnh của bạn",
+    "studio_alt2": "Cài đặt: biểu tượng ứng dụng, phông chữ và trạng thái Pro",
+    "studio_alt3": "Chọn con trỏ của bạn",
+    "trips_h": "Biến chuyến đi thành video",
+    "trips_p": "Mỗi chuyến đi có dẫn đường có thể thành một video phát lại hành trình trong thế giới của bạn, sẵn sàng cho TikTok, Reels hay Shorts.",
+    "trips_steps": [
+      "Chuyến đi được ghi lại khi bạn dẫn đường và chỉ lưu trên iPhone. Có thể tắt trong Cài đặt › Ghi lại chuyến đi.",
+      "Khi đến nơi, chạm <b>Tạo video chuyến đi</b>, hoặc mở Cài đặt › Chuyến đi & video sau.",
+      "Chọn khung hình (9:16, 1:1, 4:5 hoặc 16:9), độ dài, bộ lọc, tiêu đề và nhạc.",
+      "Lưu vào Ảnh hoặc chia sẻ. Với Pro, video không có watermark và có thể dùng nhạc của riêng bạn."
+    ],
+    "trips_note": "Bạn cũng có thể thêm một đoạn quay từ camera trước, không có tiếng. Đoạn này chỉ được quay khi bạn bật và chỉ lưu trên iPhone.",
+    "trips_alt": "Trình sửa video chuyến đi của ROAMO",
+    "faq_h": "Câu hỏi thường gặp",
+    "faq_extra": [
+      {
+        "q": "ROAMO chạy trên những thiết bị nào?",
+        "a": "iPhone và iPad chạy iOS 17 trở lên, CarPlay, và Apple Watch chạy watchOS 10 trở lên. Mua ROAMO Pro một lần dùng được trên mọi thiết bị cùng Apple ID."
+      },
+      {
+        "q": "Chuyến đi và video của tôi có bị tải lên đâu không?",
+        "a": "Không. Chuyến đi, video chuyến đi, các thế giới bạn tạo và địa điểm đã lưu đều ở trên thiết bị của bạn. ROAMO không có tài khoản và không có máy chủ nhận những dữ liệu này."
+      }
+    ]
+  }
 }

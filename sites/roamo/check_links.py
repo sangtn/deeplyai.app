@@ -6,7 +6,8 @@
 - every relative href/src resolves to a file (and #anchors exist)
 - no root-absolute paths ("/..."), so dist/ works under a sub-path
 - <html lang> is set and matches the folder
-- page weight (HTML + CSS + JS + images, textures excluded) < 300 KB
+- first-load weight (HTML + CSS + JS + eager images + video posters; textures, lazy images
+  and video files excluded) < 300 KB
 """
 import os
 import re
@@ -34,10 +35,12 @@ class P(HTMLParser):
             self.lang = a.get("lang")
         if "id" in a:
             self.ids.add(a["id"])
-        for k in ("href", "src"):
+        for k in ("href", "src", "poster"):
             if a.get(k) and not (tag == "link" and a.get("rel") in ("canonical", "alternate")) \
                     and not (tag == "meta"):
-                self.refs.append((tag, a.get("rel"), a[k]))
+                # lazy images load on scroll, so they do not count toward the first-load weight
+                kind = "lazy" if a.get("loading") == "lazy" else tag
+                self.refs.append((kind if tag == "img" else tag, a.get("rel"), a[k]))
 
 
 def parse(path):
@@ -60,6 +63,7 @@ for lang in LANGS:
 
 css_urls = re.findall(r"url\(([^)]+)\)", (DIST / "assets/site.css").read_text())
 for u in css_urls:
+    u = u.strip("'\"")
     if u.startswith(("data:", "http")):
         continue
     if not (DIST / "assets" / u.strip("'\"")).is_file():
@@ -95,7 +99,7 @@ for f, p in parsed.items():
             tp = parsed.get(target) or parse(target)
             if parts.fragment not in tp.ids:
                 errors.append(f"{rel}: missing anchor {url}")
-        if tag in ("img", "script") or (tag == "link" and rel_attr == "stylesheet"):
+        if tag in ("img", "script") or (tag == "video" and url.endswith(".webp")) or (tag == "link" and rel_attr == "stylesheet"):
             if target not in seen_assets:
                 seen_assets.add(target)
                 weight += target.stat().st_size

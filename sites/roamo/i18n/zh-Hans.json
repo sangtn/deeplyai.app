@@ -314,7 +314,7 @@
     }
   ],
   "support_page_title": "支持",
-  "support_page_desc": "ROAMO 帮助：恢复购买、取消订阅、免费世界、语言设置与联系方式。",
+  "support_page_desc": "ROAMO 1.0 帮助：入门、22 个地图世界、CarPlay、Apple Watch、行程视频、购买与联系。",
   "support_intro": "常见问题快速解答。还是没解决？给我们写信，每一封我们都会认真阅读。",
   "support_faq": [
     {
@@ -327,7 +327,7 @@
     },
     {
       "q": "免费可以用哪些功能？",
-      "a": "Block World 和 Doodle Notebook 永久免费，可使用搜索、附近地点和逐向导航。ROAMO Pro 解锁其余 13 个世界。"
+      "a": "Block World 和 Doodle Notebook 永久免费，可使用搜索、附近地点和逐向导航。ROAMO Pro 解锁其余 20 个世界。"
     },
     {
       "q": "为什么出现“地图服务已达每日上限”？",
@@ -362,5 +362,91 @@
   "footer_about": "关于我们",
   "footer_contact": "联系我们",
   "support_links": "实用链接",
-  "manage_subs": "管理订阅"
+  "manage_subs": "管理订阅",
+  "sup": {
+    "kicker": "ROAMO 1.0 帮助中心",
+    "title": "需要什么帮助？",
+    "lead": "在 iPhone、iPad、CarPlay 和 Apple Watch 上使用 ROAMO 的分步指南，以及关于购买和隐私的解答。",
+    "topics": "帮助主题",
+    "t_start": "入门",
+    "t_worlds": "地图世界",
+    "t_carplay": "CarPlay",
+    "t_watch": "锁定屏幕与手表",
+    "t_studio": "个性化",
+    "t_trips": "行程视频",
+    "t_faq": "常见问题",
+    "t_contact": "联系我们",
+    "film_cap": "在 Neon Night 世界中的 iPhone 与 CarPlay 版 ROAMO。",
+    "pause": "暂停视频",
+    "play": "播放视频",
+    "shot_note": "截图为英文版 App。",
+    "start_h": "一分钟上手",
+    "start_p": "ROAMO 是真正的逐向导航 App。无需注册账户：打开就能出发。",
+    "start_steps": [
+      "<b>允许访问位置</b>，ROAMO 才能显示你的位置并为你导航。",
+      "<b>搜索或说出目的地</b>：输入地址或地点，轻点麦克风，或选择加油、充电、咖啡等附近类别。",
+      "<b>预览路线</b>：选择驾车、骑行或步行，比较最快和最短路线。",
+      "轻点<b>出发</b>。大号转弯卡片、限速旁的当前车速和语音导航带你到达。"
+    ],
+    "tour_cap": "30 秒了解 ROAMO",
+    "worlds_h": "22 个地图世界，其中 2 个免费",
+    "worlds_p": "在地图上轻点<b>切换世界</b>，地面、水域、道路、标签和路线颜色都会重新绘制。Block World 和 Doodle Notebook 永久免费；ROAMO Pro 解锁全部 22 个世界。",
+    "worlds_ul": [
+      "分别选择白天和夜晚的世界：Neon Night 等暗色世界会在日落后发光。",
+      "行程中途也能在 iPhone 或 CarPlay 上切换世界。",
+      "每个世界都可以由专属副驾说话。在 设置 › 副驾语音 中选择：经典语音免费，角色语音包含在 Pro 中。"
+    ],
+    "worlds_alt1": "ROAMO 地图世界列表",
+    "worlds_alt2": "夜晚世界中的逐向导航",
+    "carplay_h": "CarPlay 上的 ROAMO",
+    "carplay_p": "游戏风格地图、搜索和逐向导航显示在车载屏幕上，并与 iPhone 同步。",
+    "carplay_steps": [
+      "用数据线或无线方式将 iPhone 连接到汽车。",
+      "在 CarPlay 主屏幕上轻点 <b>ROAMO</b>。",
+      "用车载键盘搜索，或选择最近或收藏的地点，然后轻点<b>出发</b>。",
+      "驾驶时轻点地球按钮切换世界，轻点<b>结束</b>停止导航。"
+    ],
+    "carplay_note": "车上看不到 ROAMO？在 iPhone 上打开 设置 › 通用 › CarPlay，选择你的车，轻点 自定，然后添加 ROAMO。",
+    "watch_h": "在锁定屏幕和 Apple Watch 上",
+    "watch_p": "导航时，下一个转弯会在 App 之外持续跟随你。",
+    "watch_ul": [
+      "<b>实时活动</b>：在锁定屏幕和灵动岛上显示下一个转弯和到达时间。在 iPhone 设置 › ROAMO › 实时活动 中允许。",
+      "<b>小组件</b>：把 ROAMO 添加到主屏幕，轻点一下即可开始回家或去公司的路线。",
+      "<b>Apple Watch</b>：转弯卡片、地图、家、公司和收藏地点尽在手腕。在 iPhone 的 Watch App 中“可用的 App”里安装。",
+      "<b>Siri</b>：说“用ROAMO导航回家”或“用ROAMO查找附近的咖啡”。"
+    ],
+    "watch_alt": "Apple Watch 上的 ROAMO：下一个转弯、地图和地点",
+    "watch_alt2": "ROAMO 在锁定屏幕和 Apple Watch 上的实时活动",
+    "studio_h": "打造你的专属风格",
+    "studio_ul": [
+      "<b>World Studio</b>（Pro）：从 22 个世界中任选一个开始，修改颜色，用你的照片做纹理，并绘制自己的地点图标。轻点<b>切换世界</b>，再选<b>创建你自己的世界</b>。",
+      "<b>位置标记</b>：为你的车选择游戏风格标记，或用照片制作专属标记。",
+      "<b>应用图标</b>：行驶满 10、50、100、250、500 和 1,000 公里时解锁 6 个备用图标。见 设置 › 应用图标。",
+      "<b>分享世界</b>：通过隔空投送、信息或文件发送 .roamoworld 文件。文件绝不经过服务器。"
+    ],
+    "studio_alt1": "World Studio：用你的照片制作专属地图",
+    "studio_alt2": "设置：应用图标、字体和 Pro 状态",
+    "studio_alt3": "选择你的位置标记",
+    "trips_h": "把行程变成视频",
+    "trips_p": "每次导航的行程都能变成一段在你的世界里回放路线的视频，可直接发布到 TikTok、Reels 或 Shorts。",
+    "trips_steps": [
+      "导航时会记录行程，且只保存在你的 iPhone 上。可在 设置 › 记录行程 中关闭。",
+      "到达后轻点<b>制作行程视频</b>，或稍后打开 设置 › 行程与视频。",
+      "选择画幅（9:16、1:1、4:5 或 16:9）、时长、滤镜、标题和音乐。",
+      "存储到“照片”或分享。使用 Pro 时视频无水印，还可使用你自己的音乐。"
+    ],
+    "trips_note": "你还可以加入一段前置摄像头拍摄的短片（无声音）。只有在你开启后才会拍摄，且只保存在 iPhone 上。",
+    "trips_alt": "ROAMO 行程视频编辑器",
+    "faq_h": "常见问题",
+    "faq_extra": [
+      {
+        "q": "ROAMO 支持哪些设备？",
+        "a": "运行 iOS 17 或更高版本的 iPhone 和 iPad、CarPlay，以及运行 watchOS 10 或更高版本的 Apple Watch。ROAMO Pro 只需购买一次，即可在使用同一 Apple 账户的所有设备上使用。"
+      },
+      {
+        "q": "我的行程和视频会被上传吗？",
+        "a": "不会。行程、行程视频、你创建的世界和保存的地点都留在你的设备上。ROAMO 没有账户，也没有接收这些数据的服务器。"
+      }
+    ]
+  }
 }

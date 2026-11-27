@@ -277,12 +277,12 @@ EN = {
     ],
     # ---- Support ----
     "support_page_title": "Support",
-    "support_page_desc": "Help for ROAMO: restore purchases, cancel a subscription, free worlds, language settings and contact.",
+    "support_page_desc": "Help for ROAMO 1.0: getting started, 22 map worlds, CarPlay, Apple Watch, trip videos, purchases and contact.",
     "support_intro": "Quick answers to the most common questions. Still stuck? Write to us, we read every message.",
     "support_faq": [
         {"q": "How do I restore my purchase?", "a": "Open ROAMO, tap the gear button to open Settings, then tap <b>Restore purchases</b>. Make sure you are signed in to the App Store with the same Apple ID you used to buy ROAMO Pro."},
         {"q": "How do I cancel my subscription?", "a": "Subscriptions are managed by Apple. On your iPhone open <b>Settings › [your name] › Subscriptions › ROAMO</b> and tap <b>Cancel Subscription</b>. Cancel at least 24 hours before the renewal date to avoid being charged for the next period. Deleting the app does not cancel a subscription."},
-        {"q": "What can I do for free?", "a": "Block World and Doodle Notebook are free forever, with search, nearby places and turn-by-turn navigation. ROAMO Pro unlocks the other 13 worlds."},
+        {"q": "What can I do for free?", "a": "Block World and Doodle Notebook are free forever, with search, nearby places and turn-by-turn navigation. ROAMO Pro unlocks the other 20 worlds."},
         {"q": "Why do I see “Daily map service limit reached”?", "a": "Search and routing use a shared map service with a daily request limit. If it is reached, try again later; the limit resets every day. The map itself and your saved places keep working."},
         {"q": "How do I change the language?", "a": "Open ROAMO, tap the gear button, and choose a language under <b>Language</b>. “System default” follows your iPhone's language. Some text may update after restarting ROAMO."},
         {"q": "How do I switch between miles and kilometers, or mute the voice?", "a": "In ROAMO Settings, under <b>Navigation</b>, choose <b>Units</b> and <b>Voice</b> (voice, chimes or muted). You can also hide the speedometer there."},
@@ -295,6 +295,80 @@ EN = {
     "manage_subs": "Manage subscriptions",
     "footer_company": "More from DeeplyAi",
     "footer_apps": "All apps", "footer_about": "About", "footer_contact": "Contact",
+    # ---- Support page (ROAMO 1.0 help center). Nested so a translation may miss single keys. ----
+    "sup": {
+        "kicker": "ROAMO 1.0 Help Center",
+        "title": "How can we help?",
+        "lead": "Step-by-step guides for ROAMO on iPhone, iPad, CarPlay and Apple Watch, and answers about purchases and privacy.",
+        "topics": "Help topics",
+        "t_start": "Get started", "t_worlds": "Map worlds", "t_carplay": "CarPlay", "t_watch": "Lock Screen & Watch",
+        "t_studio": "Make it yours", "t_trips": "Trip videos", "t_faq": "FAQ", "t_contact": "Contact us",
+        "film_cap": "ROAMO on iPhone and CarPlay, in the Neon Night world.",
+        "pause": "Pause video", "play": "Play video",
+        "shot_note": "Screenshots show the English version of the app.",
+        "start_h": "Get started in a minute",
+        "start_p": "ROAMO is a real turn-by-turn navigation app. There is no account to create: open it and go.",
+        "start_steps": [
+            "<b>Allow location</b> so ROAMO can show where you are and guide you.",
+            "<b>Search or speak</b>: type an address or a place, tap the microphone, or pick a Nearby category such as gas, charging or coffee.",
+            "<b>Preview the route</b> by car, bike or on foot, and compare the fastest and the shortest.",
+            "Tap <b>Go</b>. Big turn cards, your speed next to the limit and voice guidance take you there.",
+        ],
+        "tour_cap": "A 30-second tour of ROAMO",
+        "worlds_h": "22 map worlds, 2 of them free",
+        "worlds_p": "Tap <b>Switch world</b> on the map and everything is redrawn: ground, water, roads, labels and your route color. Block World and Doodle Notebook are free forever; ROAMO Pro unlocks all 22.",
+        "worlds_ul": [
+            "Pick a day world and a night world: dark worlds such as Neon Night glow after sunset.",
+            "Change world in the middle of a trip, on iPhone or on CarPlay.",
+            "Each world can speak with its own co-pilot. Choose a voice in Settings › Co-pilot voice: Classic is free, the character voices come with Pro.",
+        ],
+        "worlds_alt1": "The list of ROAMO map worlds",
+        "worlds_alt2": "Turn-by-turn navigation in a night world",
+        "carplay_h": "ROAMO on CarPlay",
+        "carplay_p": "Your game-style map, search and turn-by-turn guidance on the car screen, in sync with your iPhone.",
+        "carplay_steps": [
+            "Connect your iPhone to the car with a cable or wirelessly.",
+            "Tap <b>ROAMO</b> on the CarPlay Home Screen.",
+            "Search with the car keyboard or pick a recent or favorite place, then tap <b>Go</b>.",
+            "Tap the globe button to switch world while you drive, and <b>End</b> to stop.",
+        ],
+        "carplay_note": "Don't see ROAMO in the car? On your iPhone open Settings › General › CarPlay, choose your car, tap Customize and add ROAMO.",
+        "watch_h": "On your Lock Screen and Apple Watch",
+        "watch_p": "While you navigate, the next turn follows you outside the app.",
+        "watch_ul": [
+            "<b>Live Activity</b>: the next turn and your arrival time on the Lock Screen and in the Dynamic Island. Allow it in iPhone Settings › ROAMO › Live Activities.",
+            "<b>Widgets</b>: add ROAMO to the Home Screen to start a route home or to work with one tap.",
+            "<b>Apple Watch</b>: turn cards, the map, Home, Work and your favorites on your wrist. Install it from the Watch app on your iPhone, under Available Apps.",
+            "<b>Siri</b>: say “Navigate home with ROAMO” or “Find coffee nearby with ROAMO”.",
+        ],
+        "watch_alt": "ROAMO on Apple Watch: next turn, map and places",
+        "watch_alt2": "ROAMO Live Activity on the Lock Screen and Apple Watch",
+        "studio_h": "Make it yours",
+        "studio_ul": [
+            "<b>World Studio</b> (Pro): start from any of the 22 worlds and change colors, use your photos as textures, and draw your own place icons. Tap <b>Switch world</b>, then <b>Create your own world</b>.",
+            "<b>Pointer</b>: pick a game pointer for your car, or make your own from a photo.",
+            "<b>App icon</b>: six alternate icons unlock as you drive, at 10, 50, 100, 250, 500 and 1,000 km. See Settings › App icon.",
+            "<b>Share a world</b>: send the .roamoworld file by AirDrop, Messages or Files. It never goes through a server.",
+        ],
+        "studio_alt1": "World Studio: make your own map from your photos",
+        "studio_alt2": "Settings: app icons, fonts and Pro status",
+        "studio_alt3": "Choose your pointer",
+        "trips_h": "Turn your trips into videos",
+        "trips_p": "Each trip you navigate can become a replay of your route in your world, ready for TikTok, Reels or Shorts.",
+        "trips_steps": [
+            "Trips are recorded while you navigate and stay on your iPhone. You can turn this off in Settings › Record trips.",
+            "When you arrive, tap <b>Make trip video</b>, or open Settings › Trips & videos later.",
+            "Choose a format (9:16, 1:1, 4:5 or 16:9), a length, a filter, titles and music.",
+            "Save it to Photos or share it. With Pro, videos have no watermark and can use your own music.",
+        ],
+        "trips_note": "You can also add a short clip from the front camera, without sound. It is recorded only if you turn it on, and it stays on your iPhone.",
+        "trips_alt": "The ROAMO trip video editor",
+        "faq_h": "Frequently asked questions",
+        "faq_extra": [
+            {"q": "Which devices does ROAMO work on?", "a": "iPhone and iPad with iOS 17 or later, CarPlay, and Apple Watch with watchOS 10 or later. A single purchase of ROAMO Pro covers all your devices with the same Apple ID."},
+            {"q": "Are my trips and videos uploaded anywhere?", "a": "No. Trips, trip videos, the worlds you make and your saved places stay on your device. ROAMO has no account and no server that receives them."},
+        ],
+    },
 }
 
 LINKS = {
@@ -326,7 +400,10 @@ def load_translations():
         for k in EN:
             if k not in data:
                 WARNINGS.append(f"{code}: missing key '{k}' (English used)")
-        t[code] = {**EN, **data}
+        for k in EN["sup"]:
+            if k not in data.get("sup", {}):
+                WARNINGS.append(f"{code}: missing key 'sup.{k}' (English used)")
+        t[code] = {**EN, **data, "sup": {**EN["sup"], **data.get("sup", {})}}
     return t
 
 
@@ -448,6 +525,7 @@ def icon(name):
         "send": '<path d="M4 12h12M12 6l6 6-6 6"/>',
         "check": '<path d="m5 12 5 5L20 7"/>',
         "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>',
+        "play": '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/>',
         "mail": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     }
     return (f'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" '
@@ -505,7 +583,7 @@ def head(T, code, og_locale, page, title, desc, prefix):
             "inLanguage": code,
             "mainEntity": [{"@type": "Question", "name": strip_tags(x["q"]),
                             "acceptedAnswer": {"@type": "Answer", "text": strip_tags(fill(x["a"], T))}}
-                           for x in T["support_faq"]],
+                           for x in T["support_faq"] + T["sup"]["faq_extra"]],
         }
     else:
         data = None
@@ -809,18 +887,7 @@ def doc_body(T, code, page, prefix, here):
     elif page == "terms":
         title, inner = T["terms_page_title"], f'<p class="lead">{fill(T["terms_intro"], T)}</p>' + sections_html(T, T["terms_sections"])
     else:
-        title = T["support_page_title"]
-        qa = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"], T)}</div></details>'
-                     for x in T["support_faq"])
-        links = (f'<li><a href="{u("privacy")}">{T["footer_privacy"]}</a></li>'
-                 f'<li><a href="{u("terms")}">{T["footer_terms"]}</a></li>'
-                 f'<li><a href="{MANAGE_SUBS_URL}" rel="noopener">{T["manage_subs"]}</a></li>'
-                 f'<li><a href="{APP_STORE_URL}" rel="noopener">{T["badge_aria"]}</a></li>')
-        inner = (f'<p class="lead">{T["support_intro"]}</p>{qa}'
-                 f'<section class="links" aria-labelledby="links-h"><h2 id="links-h">{T["support_links"]}</h2>'
-                 f'<ul role="list" class="link-list">{links}</ul></section>'
-                 f'<section class="contact" id="contact"><h2>{T["contact_title"]}</h2><p>{fill(T["contact_text"], T)}</p>'
-                 f'<p><a class="btn" href="mailto:{SUPPORT_EMAIL}?subject=ROAMO%20support">{icon("mail")} {T["contact_btn"]}</a></p></section>')
+        return support_body(T, code, prefix, here)
     return f"""<main id="main" class="doc">
   <div class="wrap narrow">
     <p><a class="back" href="{u("index")}">← {T["back"]}</a></p>
@@ -829,6 +896,145 @@ def doc_body(T, code, page, prefix, here):
     {note}
     {inner}
   </div>
+</main>"""
+
+
+# --------------------------------------------------------------------------
+# Support page: ROAMO 1.0 help center with the App Store media (assets/support/,
+# made from the ROAMO repo's Final/ folder: screenshots, App Preview, CarPlay ad, header film)
+# --------------------------------------------------------------------------
+def support_body(T, code, prefix, here):
+    S = T["sup"]
+    u = lambda p: rel(here, url_of(code, p))
+    m = lambda name: f"{prefix}assets/support/{name}"
+    note = f'<p class="tnote">{T["translation_note"]}</p>' if T["translation_note"] else ""
+
+    def shot(name, alt, w=560, h=1217, cls="shot"):
+        return (f'<img class="{cls}" src="{m(name)}" width="{w}" height="{h}" alt="{esc(alt)}" '
+                f'loading="lazy" decoding="async">')
+
+    def video(name, poster, w, h, label, cls, eager=False):
+        # Muted, plays while on screen (assets/site.js), never with reduced motion; the button toggles it.
+        pre = "metadata" if eager else "none"
+        return (f'<div class="vid {cls}"><video src="{m(name)}" poster="{m(poster)}" width="{w}" height="{h}" '
+                f'muted loop playsinline preload="{pre}" data-auto aria-label="{esc(label)}"></video>'
+                f'<button type="button" class="vbtn" data-play="{esc(S["play"])}" data-pause="{esc(S["pause"])}" '
+                f'aria-label="{esc(S["play"])}"></button></div>')
+
+    steps = lambda xs: '<ol class="steps">' + "".join(f"<li>{x}</li>" for x in xs) + "</ol>"
+    ticks = lambda xs: '<ul class="ticks">' + "".join(f"<li>{x}</li>" for x in xs) + "</ul>"
+    topics = [("start", "t_start", "routes"), ("worlds", "t_worlds", "globe"), ("carplay", "t_carplay", "speed"),
+              ("watch", "t_watch", "phone"), ("studio", "t_studio", "saved"), ("trips", "t_trips", "play"),
+              ("faq", "t_faq", "search"), ("contact", "t_contact", "mail")]
+    nav = "".join(f'<li><a href="#{a}">{icon(ic)}<span>{S[k]}</span></a></li>' for a, k, ic in topics)
+    qa = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"], T)}</div></details>'
+                 for x in T["support_faq"] + S["faq_extra"])
+    links = (f'<li><a href="{u("privacy")}">{T["footer_privacy"]}</a></li>'
+             f'<li><a href="{u("terms")}">{T["footer_terms"]}</a></li>'
+             f'<li><a href="{MANAGE_SUBS_URL}" rel="noopener">{T["manage_subs"]}</a></li>'
+             f'<li><a href="{APP_STORE_URL}" rel="noopener">{T["badge_aria"]}</a></li>')
+    return f"""<main id="main" class="sup">
+<section class="sup-hero" aria-labelledby="sup-h">
+  <div class="wrap">
+    <p><a class="back" href="{u("index")}">← {T["back"]}</a></p>
+    <p class="kicker">{S["kicker"]}</p>
+    <h1 id="sup-h">{S["title"]}</h1>
+    <p class="lead">{S["lead"]}</p>
+    {note}
+    <nav aria-label="{esc(S["topics"])}"><ul role="list" class="topics">{nav}</ul></nav>
+  </div>
+  <figure class="wrap film">
+    {video("film-header.mp4", "film-header.webp", 1600, 686, S["film_cap"], "vid-film", eager=True)}
+    <figcaption>{S["film_cap"]}</figcaption>
+  </figure>
+</section>
+
+<section class="sec guide" id="start" aria-labelledby="start-h">
+  <div class="wrap g-split">
+    <div class="g-copy">
+      <h2 class="sec-h" id="start-h">{S["start_h"]}</h2>
+      <p class="sec-sub">{S["start_p"]}</p>
+      {steps(S["start_steps"])}
+    </div>
+    <figure class="g-media">
+      {video("tour.mp4", "tour.webp", 444, 962, S["tour_cap"], "vid-phone")}
+      <figcaption>{S["tour_cap"]}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec sec-alt guide" id="worlds" aria-labelledby="worlds-h2">
+  <div class="wrap g-split g-rev">
+    <div class="g-copy">
+      <h2 class="sec-h" id="worlds-h2">{S["worlds_h"]}</h2>
+      <p class="sec-sub">{S["worlds_p"]}</p>
+      {ticks(S["worlds_ul"])}
+    </div>
+    <div class="g-media pair">{shot("iphone-03-22-worlds.webp", S["worlds_alt1"])}{shot("iphone-07-night-worlds.webp", S["worlds_alt2"])}</div>
+  </div>
+</section>
+
+<section class="sec sec-night guide" id="carplay" aria-labelledby="carplay-h">
+  <div class="wrap">
+    <div class="g-copy g-wide">
+      <h2 class="sec-h" id="carplay-h">{S["carplay_h"]}</h2>
+      <p class="sec-sub">{S["carplay_p"]}</p>
+    </div>
+    {video("carplay.mp4", "carplay.webp", 1280, 720, S["carplay_h"], "vid-wide")}
+    <div class="g-split g-carplay">
+      <div>{steps(S["carplay_steps"])}<p class="hint">{S["carplay_note"]}</p></div>
+      <div class="g-media">{shot("iphone-04-carplay.webp", S["carplay_h"], cls="shot shot-sm")}</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec guide" id="watch" aria-labelledby="watch-h">
+  <div class="wrap g-split">
+    <div class="g-copy">
+      <h2 class="sec-h" id="watch-h">{S["watch_h"]}</h2>
+      <p class="sec-sub">{S["watch_p"]}</p>
+      {ticks(S["watch_ul"])}
+    </div>
+    <div class="g-media">
+      {shot("iphone-06-live-activity-watch.webp", S["watch_alt2"])}
+      <div class="wrist">{shot("watch-01-turn-by-turn.webp", S["watch_alt"], 280, 341, "w")}{shot("watch-02-world-map.webp", "", 280, 341, "w")}{shot("watch-03-quick-places.webp", "", 280, 341, "w")}</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt guide" id="studio" aria-labelledby="studio-h">
+  <div class="wrap">
+    <div class="g-copy g-wide">
+      <h2 class="sec-h" id="studio-h">{S["studio_h"]}</h2>
+      {ticks(S["studio_ul"])}
+    </div>
+    <div class="trio">{shot("iphone-02-make-your-own-map.webp", S["studio_alt1"])}{shot("iphone-08-make-it-yours.webp", S["studio_alt2"])}{shot("iphone-10-pick-your-ride.webp", S["studio_alt3"])}</div>
+  </div>
+</section>
+
+<section class="sec guide" id="trips" aria-labelledby="trips-h">
+  <div class="wrap g-split g-rev">
+    <div class="g-copy">
+      <h2 class="sec-h" id="trips-h">{S["trips_h"]}</h2>
+      <p class="sec-sub">{S["trips_p"]}</p>
+      {steps(S["trips_steps"])}
+      <p class="hint">{S["trips_note"]}</p>
+    </div>
+    <div class="g-media">{shot("iphone-09-trip-videos.webp", S["trips_alt"])}</div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="faq" aria-labelledby="faq-h2">
+  <div class="wrap narrow">
+    <h2 class="sec-h" id="faq-h2">{S["faq_h"]}</h2>
+    {qa}
+    <section class="links" aria-labelledby="links-h"><h2 id="links-h">{T["support_links"]}</h2>
+      <ul role="list" class="link-list">{links}</ul></section>
+    <section class="contact" id="contact"><h2>{T["contact_title"]}</h2><p>{fill(T["contact_text"], T)}</p>
+      <p><a class="btn" href="mailto:{SUPPORT_EMAIL}?subject=ROAMO%20support">{icon("mail")} {T["contact_btn"]}</a></p></section>
+    <p class="muted small">{S["shot_note"]}</p>
+  </div>
+</section>
 </main>"""
 
 

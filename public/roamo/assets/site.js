@@ -45,3 +45,34 @@
     });
   }
 })();
+
+/* Support page videos: muted, play while on screen, paused with reduced motion; button toggles. */
+(function () {
+  "use strict";
+  var vids = Array.prototype.slice.call(document.querySelectorAll("video[data-auto]"));
+  if (!vids.length) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  vids.forEach(function (v) {
+    var btn = v.parentNode.querySelector(".vbtn");
+    var userPaused = reduce;
+    function sync() {
+      var on = !v.paused;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.setAttribute("aria-label", btn.getAttribute(on ? "data-pause" : "data-play"));
+    }
+    v.addEventListener("play", sync);
+    v.addEventListener("pause", sync);
+    btn.addEventListener("click", function () {
+      if (v.paused) { userPaused = false; v.play(); } else { userPaused = true; v.pause(); }
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !userPaused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          else if (!e.isIntersecting && !v.paused) v.pause();
+        });
+      }, { threshold: 0.35 }).observe(v);
+    }
+    sync();
+  });
+})();

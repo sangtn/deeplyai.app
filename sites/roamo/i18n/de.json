@@ -314,7 +314,7 @@
     }
   ],
   "support_page_title": "Support",
-  "support_page_desc": "Hilfe zu ROAMO: Käufe wiederherstellen, Abo kündigen, Gratis-Welten, Sprache und Kontakt.",
+  "support_page_desc": "Hilfe zu ROAMO 1.0: erste Schritte, 22 Kartenwelten, CarPlay, Apple Watch, Fahrtvideos, Käufe und Kontakt.",
   "support_intro": "Schnelle Antworten auf die häufigsten Fragen. Kommst du nicht weiter? Schreib uns – wir lesen jede Nachricht.",
   "support_faq": [
     {
@@ -327,7 +327,7 @@
     },
     {
       "q": "Was kann ich gratis nutzen?",
-      "a": "Block World und Doodle Notebook sind für immer gratis – mit Suche, Orten in der Nähe und Navigation Abbiegung für Abbiegung. ROAMO Pro schaltet die übrigen 13 Welten frei."
+      "a": "Block World und Doodle Notebook sind für immer gratis – mit Suche, Orten in der Nähe und Navigation Abbiegung für Abbiegung. ROAMO Pro schaltet die übrigen 20 Welten frei."
     },
     {
       "q": "Warum sehe ich „Tageslimit des Kartendienstes erreicht“?",
@@ -362,5 +362,91 @@
   "footer_about": "Über uns",
   "footer_contact": "Kontakt",
   "support_links": "Nützliche Links",
-  "manage_subs": "Abos verwalten"
+  "manage_subs": "Abos verwalten",
+  "sup": {
+    "kicker": "ROAMO 1.0 Hilfe-Center",
+    "title": "Wie können wir helfen?",
+    "lead": "Schritt-für-Schritt-Anleitungen für ROAMO auf iPhone, iPad, CarPlay und Apple Watch sowie Antworten zu Käufen und Datenschutz.",
+    "topics": "Hilfethemen",
+    "t_start": "Erste Schritte",
+    "t_worlds": "Kartenwelten",
+    "t_carplay": "CarPlay",
+    "t_watch": "Sperrbildschirm & Watch",
+    "t_studio": "Personalisieren",
+    "t_trips": "Fahrtvideos",
+    "t_faq": "FAQ",
+    "t_contact": "Kontakt",
+    "film_cap": "ROAMO auf iPhone und CarPlay in der Welt Neon Night.",
+    "pause": "Video pausieren",
+    "play": "Video abspielen",
+    "shot_note": "Die Bildschirmfotos zeigen die englische Version der App.",
+    "start_h": "In einer Minute startklar",
+    "start_p": "ROAMO ist eine echte Navigations-App mit Abbiegehinweisen. Kein Konto nötig: öffnen und losfahren.",
+    "start_steps": [
+      "<b>Standort erlauben</b>, damit ROAMO zeigt, wo du bist, und dich führt.",
+      "<b>Suchen oder sprechen</b>: Adresse oder Ort eingeben, aufs Mikrofon tippen oder eine Kategorie in der Nähe wählen, etwa Tankstelle, Laden oder Café.",
+      "<b>Route ansehen</b> mit Auto, Fahrrad oder zu Fuß und die schnellste mit der kürzesten vergleichen.",
+      "Auf <b>Los</b> tippen. Große Abbiegekarten, dein Tempo neben dem Limit und Sprachansagen bringen dich ans Ziel."
+    ],
+    "tour_cap": "ROAMO in 30 Sekunden",
+    "worlds_h": "22 Kartenwelten, 2 davon gratis",
+    "worlds_p": "Tippe auf der Karte auf <b>Welt wechseln</b> und alles wird neu gezeichnet: Boden, Wasser, Straßen, Beschriftungen und die Farbe deiner Route. Block World und Doodle Notebook sind für immer gratis; ROAMO Pro schaltet alle 22 frei.",
+    "worlds_ul": [
+      "Wähle eine Tag- und eine Nachtwelt: Dunkle Welten wie Neon Night leuchten nach Sonnenuntergang.",
+      "Wechsle die Welt mitten in der Fahrt, auf dem iPhone oder in CarPlay.",
+      "Jede Welt kann mit ihrem eigenen Copiloten sprechen. Wähle eine Stimme unter Einstellungen › Copilot-Stimme: Klassisch ist gratis, die Figurenstimmen gibt es mit Pro."
+    ],
+    "worlds_alt1": "Die Liste der ROAMO-Kartenwelten",
+    "worlds_alt2": "Navigation mit Abbiegehinweisen in einer Nachtwelt",
+    "carplay_h": "ROAMO in CarPlay",
+    "carplay_p": "Deine Karte im Spiele-Look, Suche und Abbiegehinweise auf dem Autodisplay, synchron mit deinem iPhone.",
+    "carplay_steps": [
+      "Verbinde das iPhone per Kabel oder kabellos mit dem Auto.",
+      "Tippe im CarPlay-Home-Bildschirm auf <b>ROAMO</b>.",
+      "Suche mit der Tastatur des Autos oder wähle einen letzten oder favorisierten Ort und tippe auf <b>Los</b>.",
+      "Mit der Globus-Taste wechselst du während der Fahrt die Welt, mit <b>Ende</b> beendest du die Navigation."
+    ],
+    "carplay_note": "ROAMO erscheint nicht im Auto? Öffne auf dem iPhone Einstellungen › Allgemein › CarPlay, wähle dein Auto, tippe auf Anpassen und füge ROAMO hinzu.",
+    "watch_h": "Auf dem Sperrbildschirm und der Apple Watch",
+    "watch_p": "Während der Navigation begleitet dich die nächste Abbiegung auch außerhalb der App.",
+    "watch_ul": [
+      "<b>Live-Aktivität</b>: nächste Abbiegung und Ankunftszeit auf dem Sperrbildschirm und in der Dynamic Island. Erlaube sie in den iPhone-Einstellungen › ROAMO › Live-Aktivitäten.",
+      "<b>Widgets</b>: Füge ROAMO zum Home-Bildschirm hinzu, um mit einem Tippen nach Hause oder zur Arbeit zu starten.",
+      "<b>Apple Watch</b>: Abbiegekarten, Karte, Zuhause, Arbeit und Favoriten am Handgelenk. Installiere sie über die Watch-App auf dem iPhone unter Verfügbare Apps.",
+      "<b>Siri</b>: Sag „Mit ROAMO nach Hause navigieren“ oder „Mit ROAMO ein Café in der Nähe finden“."
+    ],
+    "watch_alt": "ROAMO auf der Apple Watch: nächste Abbiegung, Karte und Orte",
+    "watch_alt2": "ROAMO-Live-Aktivität auf dem Sperrbildschirm und der Apple Watch",
+    "studio_h": "Mach es zu deinem",
+    "studio_ul": [
+      "<b>World Studio</b> (Pro): Starte mit einer der 22 Welten und ändere Farben, nutze deine Fotos als Texturen und gestalte eigene Orts-Symbole. Tippe auf <b>Welt wechseln</b> und dann auf <b>Erstelle deine eigene Welt</b>.",
+      "<b>Zeiger</b>: Wähle einen Spiele-Zeiger für dein Auto oder mach einen eigenen aus einem Foto.",
+      "<b>App-Symbol</b>: Sechs alternative Symbole schaltest du beim Fahren frei, bei 10, 50, 100, 250, 500 und 1.000 km. Siehe Einstellungen › App-Symbol.",
+      "<b>Welt teilen</b>: Sende die .roamoworld-Datei per AirDrop, Nachrichten oder Dateien. Sie läuft nie über einen Server."
+    ],
+    "studio_alt1": "World Studio: deine eigene Karte aus deinen Fotos",
+    "studio_alt2": "Einstellungen: App-Symbole, Schriften und Pro-Status",
+    "studio_alt3": "Wähle deinen Zeiger",
+    "trips_h": "Mach aus Fahrten Videos",
+    "trips_p": "Jede navigierte Fahrt kann zur Wiederholung deiner Route in deiner Welt werden, fertig für TikTok, Reels oder Shorts.",
+    "trips_steps": [
+      "Fahrten werden während der Navigation aufgezeichnet und bleiben auf deinem iPhone. Ausschalten kannst du das unter Einstellungen › Fahrten aufzeichnen.",
+      "Tippe bei Ankunft auf <b>Fahrtvideo erstellen</b> oder öffne später Einstellungen › Fahrten & Videos.",
+      "Wähle ein Format (9:16, 1:1, 4:5 oder 16:9), eine Länge, einen Filter, Titel und Musik.",
+      "Sichere es in Fotos oder teile es. Mit Pro haben Videos kein Wasserzeichen und können deine eigene Musik nutzen."
+    ],
+    "trips_note": "Du kannst auch einen kurzen Clip der Frontkamera ohne Ton hinzufügen. Er wird nur aufgenommen, wenn du ihn einschaltest, und bleibt auf deinem iPhone.",
+    "trips_alt": "Der Fahrtvideo-Editor von ROAMO",
+    "faq_h": "Häufige Fragen",
+    "faq_extra": [
+      {
+        "q": "Auf welchen Geräten läuft ROAMO?",
+        "a": "iPhone und iPad mit iOS 17 oder neuer, CarPlay sowie Apple Watch mit watchOS 10 oder neuer. Ein einziger Kauf von ROAMO Pro gilt auf allen deinen Geräten mit derselben Apple-ID."
+      },
+      {
+        "q": "Werden meine Fahrten und Videos irgendwo hochgeladen?",
+        "a": "Nein. Fahrten, Fahrtvideos, deine eigenen Welten und gespeicherten Orte bleiben auf deinem Gerät. ROAMO hat kein Konto und keinen Server, der sie empfängt."
+      }
+    ]
+  }
 }

@@ -25,6 +25,13 @@ which the app links to (`https://deeplyai.app/roamo/privacy/`).
 app's `deeplyai.app/roamo/support/` link keeps working. The support URLs are in the main
 sitemap (`src/pages/sitemap.xml.ts`); `public/robots.txt` lists `roamo/sitemap.xml` for the rest.
 
+The support page is the ROAMO 1.0 help center (`support_body()` in `build.py`, strings under
+`sup` in `EN` and in each `i18n/<lang>.json`). Its media in `assets/support/` come from the ROAMO
+repo's `Final/` folder (App Store screenshots, App Preview, CarPlay ad, header film), resized for
+the web: screenshots as WebP 560 px wide (watch 280 px, iPad 1200 px) with sharp, videos as
+H.264 without sound (`-crf 26–32 -movflags +faststart`, `setsar=1`). Videos are muted, play only
+while on screen and never with reduced motion (`assets/site.js`). Screenshots are English only.
+
 Brand: the publisher is written **DeeplyAi**, as on the rest of deeplyai.app; `og:site_name` is
 DeeplyAi and the footer links back to deeplyai.app (all apps, About, Contact).
 
