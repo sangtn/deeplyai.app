@@ -1,0 +1,345 @@
+{
+  "lang_name": "Español",
+  "title": "ROAMO — Mundos de mapa estilo videojuego para iPhone",
+  "description": "ROAMO es navegación GPS para iPhone que convierte todo el mapa en un mundo estilo videojuego. 15 mundos, guía por voz giro a giro, sin cuenta, sin anuncios y sin rastreo.",
+  "skip": "Saltar al contenido",
+  "nav_worlds": "Mundos",
+  "nav_features": "Funciones",
+  "nav_privacy": "Privacidad",
+  "nav_pricing": "Precios",
+  "nav_faq": "Preguntas",
+  "nav_support": "Soporte",
+  "lang_label": "Idioma",
+  "badge_small": "Descárgalo en el",
+  "badge_big": "App Store",
+  "badge_aria": "Descarga ROAMO en el App Store",
+  "hero_kicker": "Navegación GPS para iPhone",
+  "hero_title": "Tu ciudad, <mark>convertida en un mundo de videojuego.</mark>",
+  "hero_sub": "ROAMO es una app de mapas de verdad, con búsqueda, rutas y guía por voz, donde cada calle, parque y río se redibuja con el estilo del tipo de juego que más te gusta.",
+  "hero_note": "2 mundos gratis para siempre · Sin cuenta · Sin anuncios",
+  "hero_req": "Requiere iOS 17 o posterior",
+  "switch_title": "Toca un mundo para cambiar el mapa",
+  "now_showing": "Mostrando: {world}",
+  "phone_aria": "Vista previa de ROAMO en el mundo {world}, con una ruta y una tarjeta de giro",
+  "phone_dist": "150 m",
+  "phone_street": "Gira a la derecha en Calle Mayor",
+  "phone_then": "Luego gira a la izquierda",
+  "phone_eta": "12 min",
+  "phone_trip": "7 km",
+  "phone_arrive": "Llegada 9:41",
+  "phone_speed": "48",
+  "phone_speed_unit": "km/h",
+  "phone_limit": "50",
+  "worlds_title": "15 mundos. Uno para cada momento.",
+  "worlds_sub": "Elige un mundo y cambia todo el mapa: suelo, agua, carreteras, etiquetas y hasta el color de tu ruta. Toca cualquier mundo para probarlo en el teléfono de arriba.",
+  "free": "Gratis",
+  "pro": "Pro",
+  "preview": "Ver",
+  "grp_gamers": "Para gamers",
+  "grp_cute": "Tierno y acogedor",
+  "grp_students": "Para estudiantes",
+  "grp_adventure": "Para aventureros",
+  "grp_seasonal": "De temporada",
+  "w_blockworld": "Bloques de césped, agua y grava.",
+  "w_neon": "Calles brillantes sobre una cuadrícula nocturna.",
+  "w_urbanheist": "Asfalto urbano y rutas amarillo fuga.",
+  "w_retrosunset": "Cuadrícula synthwave bajo un atardecer eterno.",
+  "w_arcade": "Líneas de escaneo y caminos pixelados.",
+  "w_hacker": "Una ciudad de terminal, verde sobre negro.",
+  "w_speedway": "Asfalto de circuito con pianos rojos y blancos.",
+  "w_candycloud": "Confites, corazones y calles pastel.",
+  "w_comicpop": "Trazos de tinta y puntos de trama.",
+  "w_galaxy": "Carreteras estrelladas por un cosmos de ensueño.",
+  "w_notebook": "Garabatos a mano sobre papel cuadriculado.",
+  "w_blueprint": "Líneas blancas nítidas sobre azul de plano.",
+  "w_frontier": "Papel envejecido y tinta, como un viejo mapa de senderos.",
+  "w_fantasy": "Pergamino, bosques y el camino del héroe.",
+  "w_snowday": "Nieve fresca, azules helados y rojos acogedores.",
+  "features_title": "Una app de navegación de verdad bajo la piel divertida",
+  "features_sub": "Todo lo que necesitas para ir de A a B, pensado para usar con una mano en el coche, en bici o a pie.",
+  "f_search_t": "Busca lo que sea",
+  "f_search_d": "Encuentra direcciones y lugares con autocompletado rápido.",
+  "f_voice_t": "Búsqueda por voz",
+  "f_voice_d": "Di adónde quieres ir. La voz se reconoce en tu dispositivo.",
+  "f_nearby_t": "Cerca, con un toque",
+  "f_nearby_d": "Gasolineras, carga eléctrica, comida, café, hoteles, parking y supermercados.",
+  "f_saved_t": "Casa, Trabajo y favoritos",
+  "f_saved_d": "Guarda tus sitios habituales y empieza una ruta al instante.",
+  "f_parking_t": "Recuerda dónde aparcaste",
+  "f_parking_d": "Un toque guarda dónde dejaste el coche para volver después.",
+  "f_pin_t": "Suelta un pin",
+  "f_pin_d": "Mantén pulsado el mapa para soltar un pin y crear una ruta hasta él.",
+  "f_routes_t": "En coche, bici o a pie",
+  "f_routes_d": "Compara la ruta más rápida y la más corta antes de salir.",
+  "f_turns_t": "Tarjetas de giro grandes",
+  "f_turns_d": "Indicaciones giro a giro claras que se leen de un vistazo.",
+  "f_prompts_t": "Avisos por voz",
+  "f_prompts_d": "Elige indicaciones habladas, tonos suaves o silencio.",
+  "f_speed_t": "Velocímetro y límites",
+  "f_speed_d": "Ve tu velocidad junto al límite de la vía.",
+  "f_reroute_t": "Recálculo automático",
+  "f_reroute_d": "¿Te pasaste un giro? ROAMO busca una nueva ruta solo.",
+  "f_night_t": "Tono nocturno",
+  "f_night_d": "El mapa se oscurece automáticamente al anochecer para cuidar tu vista.",
+  "f_3d_t": "Edificios en 3D",
+  "f_3d_d": "Los edificios se elevan en 3D en algunos mundos.",
+  "f_lang_t": "11 idiomas",
+  "f_lang_d": "Inglés, español, francés, alemán, portugués, italiano, japonés, coreano, chino, ruso y vietnamita.",
+  "privacy_kicker": "Promesa de privacidad",
+  "privacy_title": "Tus viajes no son asunto de nadie.",
+  "privacy_sub": "ROAMO no tiene servidores que recojan tus datos, ni cuentas, ni rastreadores. Está hecha para necesitar lo mínimo.",
+  "pp1_t": "Sin cuenta",
+  "pp1_d": "Abre la app y listo. Sin registro, sin correo, sin inicio de sesión.",
+  "pp2_t": "Sin analíticas ni anuncios",
+  "pp2_d": "Sin publicidad, sin analíticas y sin SDK de rastreo de ningún tipo.",
+  "pp3_t": "Tu ubicación se queda en tu teléfono",
+  "pp3_d": "Tu posición GPS se usa en tu dispositivo para guiarte. Nunca se guarda en ningún servidor.",
+  "pp4_t": "Solo lo que cada petición necesita",
+  "pp4_d": "Para encontrar un lugar o una ruta, solo se envía el texto de búsqueda o los puntos de inicio y destino al servicio de mapas ({geoapify}) para responder a esa petición.",
+  "privacy_label_note": "Etiqueta de privacidad del App Store",
+  "privacy_label": "Datos no recopilados",
+  "privacy_more": "Lee la política de privacidad completa",
+  "pricing_title": "Empieza gratis. Desbloquea todos los mundos.",
+  "pricing_sub": "Block World y Doodle Notebook son gratis para siempre. ROAMO Pro desbloquea los 15 mundos.",
+  "plan_free": "Gratis",
+  "plan_free_desc": "Block World + Doodle Notebook, gratis para siempre, con búsqueda y navegación completas.",
+  "plan_weekly": "Semanal",
+  "plan_monthly": "Mensual",
+  "plan_yearly": "Anual",
+  "plan_lifetime": "De por vida",
+  "per_week": "/ semana",
+  "per_month": "/ mes",
+  "per_year": "/ año",
+  "one_time": "pago único",
+  "best_badge": "Mejor precio",
+  "pro_includes": "Los 15 mundos",
+  "pricing_note": "Precios en dólares estadounidenses; el precio en tu App Store local puede variar. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes del final del periodo en curso. Gestiónalas o cancélalas cuando quieras en los ajustes de tu cuenta del App Store.",
+  "faq_title": "¿Dudas? Resueltas.",
+  "faq": [
+    {
+      "q": "¿ROAMO es gratis?",
+      "a": "Sí. Block World y Doodle Notebook son gratis para siempre, con búsqueda y navegación giro a giro. ROAMO Pro desbloquea los otros 13 mundos."
+    },
+    {
+      "q": "¿Necesito una cuenta?",
+      "a": "No. No hay registro ni inicio de sesión. Las compras las gestiona Apple a través de tu cuenta del App Store."
+    },
+    {
+      "q": "¿Qué dispositivos son compatibles?",
+      "a": "iPhone con iOS 17 o posterior."
+    },
+    {
+      "q": "¿ROAMO me rastrea?",
+      "a": "No. ROAMO no tiene anuncios, ni analíticas, ni SDK de rastreo, y su etiqueta de privacidad en el App Store es «Datos no recopilados»."
+    },
+    {
+      "q": "¿De dónde salen los datos del mapa?",
+      "a": "Datos del mapa © colaboradores de {osm}, teselas de {ofm} / {omt}, búsqueda y rutas con tecnología de {geoapify}, renderizado con {maplibre}."
+    },
+    {
+      "q": "¿ROAMO está relacionado con algún videojuego?",
+      "a": "No. ROAMO es una app independiente y no está afiliada a ningún editor de videojuegos. Los mundos son estilos originales inspirados en géneros de juegos."
+    }
+  ],
+  "faq_more": "Más ayuda en la página de soporte",
+  "cta_title": "¿Listo para explorar?",
+  "cta_sub": "Convierte tu próximo viaje en coche, en bici o a pie en un nivel.",
+  "footer_tag": "Mundos de mapa estilo videojuego para iPhone.",
+  "footer_legal": "Legal",
+  "footer_privacy": "Política de privacidad",
+  "footer_terms": "Términos de uso",
+  "footer_support": "Soporte",
+  "footer_credits": "Créditos del mapa",
+  "attr_osm": "Datos del mapa © colaboradores de {osm}",
+  "attr_tiles": "Teselas: {ofm} / {omt}",
+  "attr_geo": "Búsqueda y rutas con tecnología de {geoapify}",
+  "attr_engine": "Motor de mapas: {maplibre}",
+  "disclaimer": "ROAMO es una app independiente y no está afiliada a ningún editor de videojuegos.",
+  "trademark": "Apple, App Store y iPhone son marcas comerciales de Apple Inc.",
+  "updated": "Última actualización: 26 de noviembre de 2026",
+  "back": "Volver a ROAMO",
+  "translation_note": "Esta traducción se ofrece por comodidad. Si difiere de la versión en inglés, prevalece la versión en inglés.",
+  "privacy_page_title": "Política de privacidad",
+  "privacy_page_desc": "Cómo trata ROAMO tus datos: sin cuenta, sin analíticas, sin anuncios, sin rastreo. Tu ubicación se queda en tu dispositivo.",
+  "privacy_intro": "Esta política explica qué ocurre con tu información cuando usas ROAMO («la app»), publicada por DeeplyAI («nosotros»). En resumen: no recopilamos, almacenamos ni vendemos ningún dato personal.",
+  "privacy_sections": [
+    {
+      "h": "1. Resumen",
+      "ul": [
+        "Sin cuenta: ROAMO nunca te pide nombre, correo ni teléfono.",
+        "La app no incluye analíticas, publicidad ni SDK de rastreo.",
+        "No operamos servidores que reciban tus datos y nunca vendemos ni compartimos datos personales.",
+        "Tu ubicación se procesa en tu dispositivo. Al servicio de mapas solo se envía lo necesario para responder a una búsqueda o a una ruta.",
+        "La etiqueta de privacidad de la app en el App Store es «Datos no recopilados»."
+      ]
+    },
+    {
+      "h": "2. Ubicación",
+      "p": [
+        "Si permites el acceso a la ubicación, ROAMO usa la posición GPS de tu dispositivo para mostrar dónde estás, guiarte giro a giro, mostrar tu velocidad, recalcular la ruta y sugerirte lugares cercanos. Todo esto ocurre en tu iPhone. Nunca recibimos, guardamos ni registramos tu historial de ubicaciones.",
+        "Puedes cambiar o retirar el acceso a la ubicación en cualquier momento en Ajustes de iOS › Privacidad y seguridad › Localización › ROAMO. Las funciones que dependen de tu posición no funcionarán sin él."
+      ]
+    },
+    {
+      "h": "3. Qué se envía al servicio de mapas",
+      "p": [
+        "La búsqueda y las rutas las proporciona {geoapify}. Para responder a una petición, la app envía solo lo que esa petición necesita:"
+      ],
+      "ul": [
+        "Búsqueda: el texto que escribes o dictas, más un punto de referencia (tu posición o la zona del mapa) para que primero aparezcan resultados cercanos.",
+        "Cerca: la categoría que eliges (por ejemplo, «café») y el punto alrededor del que buscar.",
+        "Rutas: los puntos de inicio y destino de la ruta y el modo de viaje (coche, bici o a pie). Si te sales de la ruta, tu posición actual se envía como nuevo punto de inicio para calcular una ruta nueva."
+      ],
+      "p2": [
+        "Estas peticiones no están vinculadas a ninguna cuenta ni identificador tuyo. Geoapify las trata conforme a su propia política de privacidad: {geoapify_privacy}."
+      ]
+    },
+    {
+      "h": "4. Teselas del mapa",
+      "p": [
+        "Las imágenes del mapa (teselas) se descargan de {ofm}, con datos de {omt} y {osm}. Como cualquier web o servidor de internet, estos servicios reciben información técnica de conexión, como tu dirección IP y qué teselas se solicitan, lo que puede revelar la zona general que estás viendo. ROAMO no añade ningún identificador a estas peticiones. Consulta {ofm_privacy}."
+      ]
+    },
+    {
+      "h": "5. Búsqueda por voz y avisos de voz",
+      "p": [
+        "La búsqueda por voz usa el reconocimiento de voz de Apple en el dispositivo. Tu voz no se nos envía ni a nosotros ni al servicio de mapas; solo se usa el texto resultante como una búsqueda normal. Si tu idioma no tiene reconocimiento en el dispositivo, el botón de micrófono se oculta. Los avisos hablados giro a giro se generan en tu dispositivo. El acceso al micrófono solo se solicita cuando usas la búsqueda por voz y puedes cambiarlo en Ajustes de iOS."
+      ]
+    },
+    {
+      "h": "6. Datos guardados en tu dispositivo",
+      "p": [
+        "ROAMO guarda algunas cosas en local para que la app siga como la dejaste: tus lugares Casa, Trabajo y favoritos, el sitio donde aparcaste, el mundo elegido y tus ajustes (como voz, unidades e idioma). Estos datos se quedan en tu iPhone y se borran al eliminar la app. Pueden incluirse en tus propias copias de seguridad según tus ajustes de iOS; nosotros no podemos acceder a ellos."
+      ]
+    },
+    {
+      "h": "7. Compras",
+      "p": [
+        "Las suscripciones a ROAMO Pro y la compra de por vida las procesa por completo Apple a través del App Store. Nunca recibimos tu nombre, tus datos de pago ni tu Apple ID. La app solo comprueba con Apple, desde tu dispositivo, si Pro está activo. El tratamiento de las compras por parte de Apple se rige por la política de privacidad de Apple."
+      ]
+    },
+    {
+      "h": "8. Sin rastreo, sin publicidad, sin venta de datos",
+      "p": [
+        "ROAMO no contiene publicidad, analíticas ni SDK de terceros para rastreo o informes de fallos. No te rastreamos entre apps o webs, no creamos perfiles y no vendemos ni compartimos información personal tal como la definen leyes como el RGPD o la CCPA/CPRA."
+      ]
+    },
+    {
+      "h": "9. Menores",
+      "p": [
+        "ROAMO es una app de navegación para el público general y no está dirigida a menores de 13 años. Como la app no recopila datos personales, no recoge a sabiendas información de menores."
+      ]
+    },
+    {
+      "h": "10. Tus derechos",
+      "p": [
+        "Según dónde vivas, puedes tener derecho a acceder, rectificar o suprimir datos personales. Como no recopilamos ni conservamos datos personales tuyos, no hay nada a lo que acceder ni que borrar; los datos guardados en tu dispositivo están bajo tu control y se eliminan al borrar la app. Para solicitudes sobre datos tratados por Geoapify u OpenFreeMap, contacta directamente con esos servicios. Siempre puedes escribirnos con tus preguntas a {email_link}."
+      ]
+    },
+    {
+      "h": "11. Seguridad",
+      "p": [
+        "Todas las peticiones al servicio de mapas y a los servidores de teselas usan conexiones HTTPS cifradas."
+      ]
+    },
+    {
+      "h": "12. Cambios en esta política",
+      "p": [
+        "Si cambia la forma en que ROAMO trata los datos, actualizaremos esta página y la fecha de arriba antes de que el cambio llegue a la app."
+      ]
+    },
+    {
+      "h": "13. Contacto",
+      "p": [
+        "DeeplyAI — {email_link}"
+      ]
+    }
+  ],
+  "terms_page_title": "Términos de uso",
+  "terms_page_desc": "Términos de uso de la app ROAMO para iPhone, incluidas las suscripciones y el EULA estándar de Apple.",
+  "terms_intro": "ROAMO se te concede bajo el {eula} de Apple. Los términos breves de abajo lo complementan; si algo entra en conflicto, prevalece el EULA de Apple.",
+  "eula_name": "Contrato de licencia de usuario final estándar (EULA)",
+  "terms_sections": [
+    {
+      "h": "1. Seguridad al navegar",
+      "p": [
+        "ROAMO es una ayuda a la navegación. Respeta siempre las normas de tráfico, las señales y las condiciones locales, y no apartes la vista de la carretera. No manipules la app mientras conduces: configura la ruta antes de salir o pide a un pasajero que lo haga. Las rutas, límites de velocidad, tiempos de viaje e información de lugares proceden de datos de terceros y pueden estar incompletos, desactualizados o ser erróneos."
+      ]
+    },
+    {
+      "h": "2. Datos y servicios de mapas",
+      "p": [
+        "Datos del mapa © colaboradores de {osm}, disponibles bajo la Open Database License. Las teselas las proporciona {ofm} usando {omt}. La búsqueda y las rutas funcionan con {geoapify}. Estos servicios pueden cambiar, limitarse o no estar disponibles temporalmente; si se alcanza el límite diario del servicio, la búsqueda y las rutas pueden pausarse hasta que se restablezca."
+      ]
+    },
+    {
+      "h": "3. ROAMO Pro",
+      "ul": [
+        "Block World y Doodle Notebook son gratis. ROAMO Pro desbloquea todos los mundos.",
+        "Planes: Semanal $3.99, Mensual $6.99, Anual $39.99 y De por vida $79.99 (pago único). Precios en dólares estadounidenses; pueden variar según el país.",
+        "El pago se carga a tu Apple ID al confirmar la compra. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes del final del periodo en curso, y la renovación se cobra en las 24 horas previas al final del periodo.",
+        "Gestiona o cancela tu suscripción en los ajustes de tu cuenta del App Store. Los reembolsos los gestiona Apple según sus políticas."
+      ]
+    },
+    {
+      "h": "4. Uso aceptable",
+      "p": [
+        "No apliques ingeniería inversa, no revendas ni hagas un uso indebido de la app o de los servicios de mapas en los que se basa, ni la uses de forma contraria a la ley."
+      ]
+    },
+    {
+      "h": "5. Independencia",
+      "p": [
+        "ROAMO es una app independiente y no está afiliada a ningún editor de videojuegos. Los nombres y estilos de los mundos son originales."
+      ]
+    },
+    {
+      "h": "6. Exención y responsabilidad",
+      "p": [
+        "La app se ofrece «tal cual». En la medida en que lo permita la ley, DeeplyAI no se hace responsable de pérdidas o daños derivados del uso de la app, incluidas indicaciones inexactas, como se detalla en el EULA de Apple."
+      ]
+    },
+    {
+      "h": "7. Cambios y contacto",
+      "p": [
+        "Podemos actualizar estos términos; la fecha de arriba indica la versión más reciente. Preguntas: {email_link}."
+      ]
+    }
+  ],
+  "support_page_title": "Soporte",
+  "support_page_desc": "Ayuda de ROAMO: restaurar compras, cancelar la suscripción, mundos gratis, idioma y contacto.",
+  "support_intro": "Respuestas rápidas a las preguntas más habituales. ¿Sigues atascado? Escríbenos: leemos todos los mensajes.",
+  "support_faq": [
+    {
+      "q": "¿Cómo restauro mi compra?",
+      "a": "Abre ROAMO, toca el botón del engranaje para abrir Ajustes y toca <b>Restaurar compras</b>. Asegúrate de haber iniciado sesión en el App Store con el mismo Apple ID con el que compraste ROAMO Pro."
+    },
+    {
+      "q": "¿Cómo cancelo mi suscripción?",
+      "a": "Las suscripciones las gestiona Apple. En tu iPhone abre <b>Ajustes › [tu nombre] › Suscripciones › ROAMO</b> y toca <b>Cancelar suscripción</b>. Cancela al menos 24 horas antes de la fecha de renovación para que no se cobre el siguiente periodo. Eliminar la app no cancela la suscripción."
+    },
+    {
+      "q": "¿Qué puedo hacer gratis?",
+      "a": "Block World y Doodle Notebook son gratis para siempre, con búsqueda, lugares cercanos y navegación giro a giro. ROAMO Pro desbloquea los otros 13 mundos."
+    },
+    {
+      "q": "¿Por qué veo «Se alcanzó el límite diario del servicio de mapas»?",
+      "a": "La búsqueda y las rutas usan un servicio de mapas compartido con un límite diario de peticiones. Si se alcanza, inténtalo más tarde; el límite se restablece cada día. El mapa y tus lugares guardados siguen funcionando."
+    },
+    {
+      "q": "¿Cómo cambio el idioma?",
+      "a": "Abre ROAMO, toca el engranaje y elige un idioma en <b>Idioma</b>. «Predeterminado del sistema» sigue el idioma de tu iPhone. Puede que algún texto se actualice tras reiniciar ROAMO."
+    },
+    {
+      "q": "¿Cómo cambio entre millas y kilómetros o silencio la voz?",
+      "a": "En los Ajustes de ROAMO, dentro de <b>Navegación</b>, elige <b>Unidades</b> y <b>Voz</b> (voz, tonos o silencio). Ahí también puedes ocultar el velocímetro."
+    },
+    {
+      "q": "El punto azul no se mueve o aparece en un lugar equivocado.",
+      "a": "Comprueba que el acceso a la ubicación esté permitido en Ajustes de iOS › Privacidad y seguridad › Localización › ROAMO, preferiblemente con Ubicación exacta activada. Ir a una zona despejada ayuda al GPS a fijar la posición."
+    }
+  ],
+  "contact_title": "Contacto",
+  "contact_text": "Escribe a {email_link}. Incluye el modelo de tu iPhone, la versión de iOS y una breve descripción del problema. Solemos responder en dos días laborables.",
+  "contact_btn": "Escribir a soporte"
+}

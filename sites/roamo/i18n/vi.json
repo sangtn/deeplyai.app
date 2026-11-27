@@ -1,0 +1,345 @@
+{
+  "lang_name": "Tiếng Việt",
+  "title": "ROAMO — Bản đồ dẫn đường phong cách game cho iPhone",
+  "description": "ROAMO là ứng dụng dẫn đường GPS cho iPhone, biến cả bản đồ thành một “thế giới” phong cách game. 15 thế giới, chỉ đường từng ngã rẽ bằng giọng nói, không cần tài khoản, không quảng cáo, không theo dõi.",
+  "skip": "Chuyển đến nội dung",
+  "nav_worlds": "Thế giới",
+  "nav_features": "Tính năng",
+  "nav_privacy": "Quyền riêng tư",
+  "nav_pricing": "Bảng giá",
+  "nav_faq": "Hỏi đáp",
+  "nav_support": "Hỗ trợ",
+  "lang_label": "Ngôn ngữ",
+  "badge_small": "Tải về trên",
+  "badge_big": "App Store",
+  "badge_aria": "Tải ROAMO trên App Store",
+  "hero_kicker": "Dẫn đường GPS cho iPhone",
+  "hero_title": "Thành phố của bạn, <mark>hoá thành thế giới game.</mark>",
+  "hero_sub": "ROAMO là ứng dụng bản đồ thực thụ — tìm kiếm, chỉ đường, dẫn đường bằng giọng nói — nơi mọi con phố, công viên và dòng sông được vẽ lại theo phong cách thể loại game bạn yêu thích.",
+  "hero_note": "2 thế giới miễn phí mãi mãi · Không cần tài khoản · Không quảng cáo",
+  "hero_req": "Yêu cầu iOS 17 trở lên",
+  "switch_title": "Chạm vào một thế giới để đổi giao diện bản đồ",
+  "now_showing": "Đang hiển thị: {world}",
+  "phone_aria": "Xem trước ROAMO trong thế giới {world}, có tuyến đường và thẻ rẽ",
+  "phone_dist": "150 m",
+  "phone_street": "Rẽ phải vào đường Hoa Sữa",
+  "phone_then": "Sau đó rẽ trái",
+  "phone_eta": "12 phút",
+  "phone_trip": "7 km",
+  "phone_arrive": "Đến lúc 9:41",
+  "phone_speed": "48",
+  "phone_speed_unit": "km/h",
+  "phone_limit": "50",
+  "worlds_title": "15 thế giới. Tâm trạng nào cũng có.",
+  "worlds_sub": "Chọn một thế giới và cả bản đồ đổi theo — mặt đất, sông nước, đường sá, nhãn tên, cả màu tuyến đường. Chạm vào bất kỳ thế giới nào để thử ngay trên điện thoại phía trên.",
+  "free": "Miễn phí",
+  "pro": "Pro",
+  "preview": "Xem thử",
+  "grp_gamers": "Cho game thủ",
+  "grp_cute": "Dễ thương & ấm áp",
+  "grp_students": "Cho học sinh, sinh viên",
+  "grp_adventure": "Cho dân phiêu lưu",
+  "grp_seasonal": "Theo mùa",
+  "w_blockworld": "Những khối cỏ, nước và sỏi vuông vức.",
+  "w_neon": "Phố phường phát sáng trên lưới nửa đêm.",
+  "w_urbanheist": "Nhựa đường gai góc và tuyến đường vàng tẩu thoát.",
+  "w_retrosunset": "Lưới synthwave dưới hoàng hôn bất tận.",
+  "w_arcade": "Vạch quét và lối đi rực sáng từng điểm ảnh.",
+  "w_hacker": "Thành phố terminal chữ xanh nền đen.",
+  "w_speedway": "Mặt đường đua với vạch lề đỏ trắng.",
+  "w_candycloud": "Cốm đường, trái tim và phố màu pastel.",
+  "w_comicpop": "Nét mực đậm và chấm tram.",
+  "w_galaxy": "Con đường đầy sao giữa vũ trụ mộng mơ.",
+  "w_notebook": "Hình vẽ tay trên giấy kẻ ô.",
+  "w_blueprint": "Nét trắng sắc gọn trên nền xanh bản vẽ.",
+  "w_frontier": "Giấy cũ và mực, như tấm bản đồ đường mòn xưa.",
+  "w_fantasy": "Giấy da, rừng xanh và con đường của người hùng.",
+  "w_snowday": "Tuyết mới, xanh băng giá và đỏ ấm áp.",
+  "features_title": "Bên dưới lớp áo vui nhộn là một app dẫn đường thực thụ",
+  "features_sub": "Mọi thứ bạn cần để đi từ A đến B, thiết kế để dùng một tay khi lái xe, đạp xe hay đi bộ.",
+  "f_search_t": "Tìm ở bất cứ đâu",
+  "f_search_d": "Tìm địa chỉ và địa điểm với gợi ý tự động nhanh.",
+  "f_voice_t": "Tìm bằng giọng nói",
+  "f_voice_d": "Nói nơi bạn muốn đến. Giọng nói được nhận dạng ngay trên máy.",
+  "f_nearby_t": "Quanh đây chỉ một chạm",
+  "f_nearby_d": "Cây xăng, trạm sạc xe điện, quán ăn, cà phê, khách sạn, bãi đỗ xe và siêu thị.",
+  "f_saved_t": "Nhà, Công ty & yêu thích",
+  "f_saved_d": "Lưu những nơi hay đến và bắt đầu chỉ đường ngay lập tức.",
+  "f_parking_t": "Nhớ chỗ đỗ xe",
+  "f_parking_d": "Một chạm để lưu chỗ đỗ xe, lúc về chỉ việc đi bộ theo.",
+  "f_pin_t": "Thả ghim",
+  "f_pin_d": "Nhấn giữ bất kỳ đâu trên bản đồ để thả ghim và chỉ đường tới đó.",
+  "f_routes_t": "Ô tô, xe đạp hay đi bộ",
+  "f_routes_d": "So sánh tuyến nhanh nhất và ngắn nhất trước khi khởi hành.",
+  "f_turns_t": "Thẻ rẽ cỡ lớn",
+  "f_turns_d": "Chỉ đường từng ngã rẽ rõ ràng, liếc là đọc được.",
+  "f_prompts_t": "Nhắc bằng giọng nói",
+  "f_prompts_d": "Chọn giọng nói, tiếng chuông nhẹ hoặc tắt tiếng.",
+  "f_speed_t": "Đồng hồ tốc độ & giới hạn",
+  "f_speed_d": "Xem tốc độ của bạn ngay cạnh biển giới hạn tốc độ.",
+  "f_reroute_t": "Tự động tìm đường lại",
+  "f_reroute_d": "Lỡ ngã rẽ? ROAMO tự động tìm tuyến mới.",
+  "f_night_t": "Tông màu ban đêm",
+  "f_night_d": "Bản đồ tự dịu đi sau khi mặt trời lặn, dễ chịu cho mắt.",
+  "f_3d_t": "Toà nhà 3D",
+  "f_3d_d": "Toà nhà dựng lên 3D ở một số thế giới.",
+  "f_lang_t": "11 ngôn ngữ",
+  "f_lang_d": "Tiếng Anh, Tây Ban Nha, Pháp, Đức, Bồ Đào Nha, Ý, Nhật, Hàn, Trung, Nga và Việt.",
+  "privacy_kicker": "Cam kết quyền riêng tư",
+  "privacy_title": "Bạn đi đâu là chuyện của bạn.",
+  "privacy_sub": "ROAMO không có máy chủ thu thập dữ liệu của bạn, không có tài khoản, không có trình theo dõi. Ứng dụng được làm ra để cần ít nhất có thể.",
+  "pp1_t": "Không cần tài khoản",
+  "pp1_d": "Mở app là đi. Không đăng ký, không email, không đăng nhập.",
+  "pp2_t": "Không phân tích, không quảng cáo",
+  "pp2_d": "Không quảng cáo, không phân tích và không có SDK theo dõi nào.",
+  "pp3_t": "Vị trí ở lại trên điện thoại",
+  "pp3_d": "Vị trí GPS chỉ được dùng trên máy để dẫn đường. Không bao giờ lưu trên bất kỳ máy chủ nào.",
+  "pp4_t": "Chỉ gửi đúng thứ cần",
+  "pp4_d": "Khi tìm địa điểm hay tuyến đường, chỉ nội dung tìm kiếm hoặc điểm đầu và điểm cuối của tuyến được gửi tới dịch vụ bản đồ ({geoapify}) để trả lời đúng yêu cầu đó.",
+  "privacy_label_note": "Nhãn quyền riêng tư trên App Store",
+  "privacy_label": "Không thu thập dữ liệu",
+  "privacy_more": "Đọc toàn bộ chính sách quyền riêng tư",
+  "pricing_title": "Bắt đầu miễn phí. Mở khoá mọi thế giới.",
+  "pricing_sub": "Block World và Doodle Notebook miễn phí mãi mãi. ROAMO Pro mở khoá cả 15 thế giới.",
+  "plan_free": "Miễn phí",
+  "plan_free_desc": "Block World + Doodle Notebook, miễn phí mãi mãi, đầy đủ tìm kiếm và dẫn đường.",
+  "plan_weekly": "Theo tuần",
+  "plan_monthly": "Theo tháng",
+  "plan_yearly": "Theo năm",
+  "plan_lifetime": "Trọn đời",
+  "per_week": "/ tuần",
+  "per_month": "/ tháng",
+  "per_year": "/ năm",
+  "one_time": "trả một lần",
+  "best_badge": "Tiết kiệm nhất",
+  "pro_includes": "Cả 15 thế giới",
+  "pricing_note": "Giá niêm yết bằng đô la Mỹ; giá trên App Store tại nước bạn có thể khác. Gói đăng ký tự động gia hạn trừ khi được huỷ ít nhất 24 giờ trước khi kỳ hiện tại kết thúc. Bạn có thể quản lý hoặc huỷ bất cứ lúc nào trong cài đặt tài khoản App Store.",
+  "faq_title": "Thắc mắc? Có lời giải.",
+  "faq": [
+    {
+      "q": "ROAMO có miễn phí không?",
+      "a": "Có. Block World và Doodle Notebook miễn phí mãi mãi, kèm tìm kiếm và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 13 thế giới còn lại."
+    },
+    {
+      "q": "Có cần tài khoản không?",
+      "a": "Không. Không đăng ký, không đăng nhập. Việc mua do Apple xử lý qua tài khoản App Store của bạn."
+    },
+    {
+      "q": "Hỗ trợ những thiết bị nào?",
+      "a": "iPhone chạy iOS 17 trở lên."
+    },
+    {
+      "q": "ROAMO có theo dõi tôi không?",
+      "a": "Không. ROAMO không có quảng cáo, không phân tích, không SDK theo dõi, và nhãn quyền riêng tư trên App Store là “Không thu thập dữ liệu”."
+    },
+    {
+      "q": "Dữ liệu bản đồ lấy từ đâu?",
+      "a": "Dữ liệu bản đồ © những người đóng góp {osm}, ô bản đồ từ {ofm} / {omt}, tìm kiếm và chỉ đường do {geoapify} cung cấp, hiển thị bằng {maplibre}."
+    },
+    {
+      "q": "ROAMO có liên quan đến trò chơi nào không?",
+      "a": "Không. ROAMO là ứng dụng độc lập và không liên kết với bất kỳ nhà phát hành game nào. Các thế giới là phong cách nguyên bản, lấy cảm hứng từ các thể loại game."
+    }
+  ],
+  "faq_more": "Xem thêm trợ giúp ở trang hỗ trợ",
+  "cta_title": "Sẵn sàng lên đường?",
+  "cta_sub": "Biến chuyến lái xe, đạp xe hay đi bộ tiếp theo thành một màn chơi.",
+  "footer_tag": "Bản đồ thế giới phong cách game cho iPhone.",
+  "footer_legal": "Pháp lý",
+  "footer_privacy": "Chính sách quyền riêng tư",
+  "footer_terms": "Điều khoản sử dụng",
+  "footer_support": "Hỗ trợ",
+  "footer_credits": "Nguồn bản đồ",
+  "attr_osm": "Dữ liệu bản đồ © những người đóng góp {osm}",
+  "attr_tiles": "Ô bản đồ: {ofm} / {omt}",
+  "attr_geo": "Tìm kiếm & chỉ đường do {geoapify} cung cấp",
+  "attr_engine": "Công cụ bản đồ: {maplibre}",
+  "disclaimer": "ROAMO là ứng dụng độc lập và không liên kết với bất kỳ nhà phát hành game nào.",
+  "trademark": "Apple, App Store và iPhone là nhãn hiệu của Apple Inc.",
+  "updated": "Cập nhật lần cuối: 26 tháng 11 năm 2026",
+  "back": "Quay lại ROAMO",
+  "translation_note": "Bản dịch này chỉ nhằm thuận tiện cho bạn đọc. Nếu có khác biệt, bản tiếng Anh được ưu tiên áp dụng.",
+  "privacy_page_title": "Chính sách quyền riêng tư",
+  "privacy_page_desc": "Cách ROAMO xử lý dữ liệu của bạn: không tài khoản, không phân tích, không quảng cáo, không theo dõi. Vị trí ở lại trên thiết bị của bạn.",
+  "privacy_intro": "Chính sách này giải thích điều gì xảy ra với thông tin của bạn khi dùng ROAMO (“ứng dụng”), do DeeplyAI (“chúng tôi”) phát hành. Tóm lại: chúng tôi không thu thập, lưu trữ hay bán bất kỳ dữ liệu cá nhân nào.",
+  "privacy_sections": [
+    {
+      "h": "1. Tóm tắt",
+      "ul": [
+        "Không tài khoản: ROAMO không bao giờ hỏi tên, email hay số điện thoại của bạn.",
+        "Ứng dụng không tích hợp phân tích, quảng cáo hay SDK theo dõi.",
+        "Chúng tôi không vận hành máy chủ nhận dữ liệu của bạn và không bao giờ bán hay chia sẻ dữ liệu cá nhân.",
+        "Vị trí của bạn được xử lý trên thiết bị. Chỉ thông tin cần để trả lời một yêu cầu tìm kiếm hoặc chỉ đường mới được gửi tới dịch vụ bản đồ.",
+        "Nhãn quyền riêng tư của ứng dụng trên App Store là “Không thu thập dữ liệu”."
+      ]
+    },
+    {
+      "h": "2. Vị trí",
+      "p": [
+        "Nếu bạn cho phép truy cập vị trí, ROAMO dùng vị trí GPS của thiết bị để hiển thị nơi bạn đang ở, dẫn đường từng ngã rẽ, hiện tốc độ, tìm đường lại và gợi ý địa điểm gần đây. Tất cả diễn ra trên iPhone của bạn. Chúng tôi không bao giờ nhận, lưu hay ghi lại lịch sử vị trí của bạn.",
+        "Bạn có thể thay đổi hoặc thu hồi quyền truy cập vị trí bất cứ lúc nào tại Cài đặt iOS › Quyền riêng tư & Bảo mật › Dịch vụ định vị › ROAMO. Khi không có quyền này, các tính năng cần vị trí sẽ không hoạt động."
+      ]
+    },
+    {
+      "h": "3. Những gì được gửi tới dịch vụ bản đồ",
+      "p": [
+        "Tìm kiếm và chỉ đường do {geoapify} cung cấp. Để trả lời một yêu cầu, ứng dụng chỉ gửi đúng những gì yêu cầu đó cần:"
+      ],
+      "ul": [
+        "Tìm kiếm: nội dung bạn gõ hoặc nói, kèm một điểm tham chiếu (vị trí của bạn hoặc vùng bản đồ) để ưu tiên kết quả gần.",
+        "Quanh đây: danh mục bạn chọn (ví dụ “cà phê”) và điểm làm tâm tìm kiếm.",
+        "Chỉ đường: điểm đầu và điểm cuối của tuyến cùng phương tiện (ô tô, xe đạp hoặc đi bộ). Khi bạn đi lệch tuyến, vị trí hiện tại được gửi làm điểm xuất phát mới để tính tuyến mới."
+      ],
+      "p2": [
+        "Các yêu cầu này không gắn với bất kỳ tài khoản hay mã định danh nào của bạn. Geoapify xử lý chúng theo chính sách quyền riêng tư của họ: {geoapify_privacy}."
+      ]
+    },
+    {
+      "h": "4. Ô bản đồ",
+      "p": [
+        "Hình ảnh bản đồ (ô bản đồ) được tải từ {ofm}, dùng dữ liệu {omt} và {osm}. Như mọi website hay máy chủ trên internet, các dịch vụ này nhận thông tin kết nối thông thường như địa chỉ IP và những ô bản đồ được yêu cầu, từ đó có thể biết khu vực chung bạn đang xem. ROAMO không gắn thêm mã định danh nào vào các yêu cầu này. Xem {ofm_privacy}."
+      ]
+    },
+    {
+      "h": "5. Tìm bằng giọng nói và nhắc bằng giọng nói",
+      "p": [
+        "Tìm bằng giọng nói dùng tính năng nhận dạng giọng nói trên thiết bị của Apple. Giọng nói của bạn không được gửi tới chúng tôi hay dịch vụ bản đồ; chỉ văn bản nhận dạng được dùng như một lần tìm kiếm bình thường. Nếu ngôn ngữ của bạn chưa hỗ trợ nhận dạng trên thiết bị, nút micro sẽ được ẩn. Lời nhắc dẫn đường bằng giọng nói được tạo ngay trên thiết bị. Quyền micro chỉ được hỏi khi bạn dùng tìm bằng giọng nói và có thể đổi trong Cài đặt iOS."
+      ]
+    },
+    {
+      "h": "6. Dữ liệu lưu trên thiết bị",
+      "p": [
+        "ROAMO lưu một vài thứ ngay trên máy để ứng dụng giữ nguyên như lúc bạn rời đi: địa điểm Nhà, Công ty và yêu thích, chỗ đỗ xe đã lưu, thế giới đã chọn và các cài đặt (như giọng nói, đơn vị và ngôn ngữ). Dữ liệu này ở lại trên iPhone và bị xoá khi bạn xoá ứng dụng. Tuỳ cài đặt iOS, dữ liệu có thể nằm trong bản sao lưu thiết bị của chính bạn; chúng tôi không thể truy cập."
+      ]
+    },
+    {
+      "h": "7. Mua hàng",
+      "p": [
+        "Gói đăng ký ROAMO Pro và gói mua trọn đời do Apple xử lý hoàn toàn qua App Store. Chúng tôi không bao giờ nhận tên, thông tin thanh toán hay Apple ID của bạn. Ứng dụng chỉ kiểm tra với Apple, ngay trên thiết bị, xem Pro có đang hoạt động không. Việc Apple xử lý giao dịch tuân theo chính sách quyền riêng tư của Apple."
+      ]
+    },
+    {
+      "h": "8. Không theo dõi, không quảng cáo, không bán dữ liệu",
+      "p": [
+        "ROAMO không chứa quảng cáo, phân tích hay SDK bên thứ ba để theo dõi hoặc báo cáo sự cố. Chúng tôi không theo dõi bạn qua các ứng dụng hay website, không lập hồ sơ người dùng và không bán hay chia sẻ thông tin cá nhân theo định nghĩa của các luật như GDPR hay CCPA/CPRA."
+      ]
+    },
+    {
+      "h": "9. Trẻ em",
+      "p": [
+        "ROAMO là ứng dụng dẫn đường dành cho mọi người và không hướng tới trẻ em dưới 13 tuổi. Vì ứng dụng không thu thập dữ liệu cá nhân nên không cố ý thu thập thông tin của trẻ em."
+      ]
+    },
+    {
+      "h": "10. Quyền của bạn",
+      "p": [
+        "Tuỳ nơi bạn sống, bạn có thể có quyền truy cập, chỉnh sửa hoặc xoá dữ liệu cá nhân. Vì chúng tôi không thu thập hay lưu giữ dữ liệu cá nhân của bạn, phía chúng tôi không có gì để cung cấp hay xoá; dữ liệu trên thiết bị nằm trong tầm kiểm soát của bạn và bị xoá cùng ứng dụng. Với dữ liệu do Geoapify hoặc OpenFreeMap xử lý, vui lòng liên hệ trực tiếp các dịch vụ đó. Bạn luôn có thể gửi câu hỏi cho chúng tôi tại {email_link}."
+      ]
+    },
+    {
+      "h": "11. Bảo mật",
+      "p": [
+        "Mọi yêu cầu tới dịch vụ bản đồ và máy chủ ô bản đồ đều dùng kết nối HTTPS được mã hoá."
+      ]
+    },
+    {
+      "h": "12. Thay đổi chính sách",
+      "p": [
+        "Nếu cách ROAMO xử lý dữ liệu thay đổi, chúng tôi sẽ cập nhật trang này và ngày ở trên cùng trước khi thay đổi có hiệu lực trong ứng dụng."
+      ]
+    },
+    {
+      "h": "13. Liên hệ",
+      "p": [
+        "DeeplyAI — {email_link}"
+      ]
+    }
+  ],
+  "terms_page_title": "Điều khoản sử dụng",
+  "terms_page_desc": "Điều khoản sử dụng ứng dụng ROAMO cho iPhone, gồm gói đăng ký và EULA tiêu chuẩn của Apple.",
+  "terms_intro": "ROAMO được cấp phép cho bạn theo {eula} của Apple. Các điều khoản ngắn dưới đây bổ sung cho thoả thuận đó; nếu có mâu thuẫn, EULA của Apple được ưu tiên.",
+  "eula_name": "Thoả thuận cấp phép người dùng cuối tiêu chuẩn (EULA)",
+  "terms_sections": [
+    {
+      "h": "1. An toàn khi dẫn đường",
+      "p": [
+        "ROAMO là công cụ hỗ trợ dẫn đường. Luôn tuân thủ luật giao thông, biển báo và điều kiện thực tế, và tập trung nhìn đường. Đừng thao tác ứng dụng khi đang lái; hãy đặt tuyến trước khi xuất phát hoặc nhờ người ngồi cạnh. Tuyến đường, giới hạn tốc độ, thời gian di chuyển và thông tin địa điểm đến từ dữ liệu bên thứ ba và có thể thiếu, cũ hoặc sai."
+      ]
+    },
+    {
+      "h": "2. Dữ liệu và dịch vụ bản đồ",
+      "p": [
+        "Dữ liệu bản đồ © những người đóng góp {osm}, cấp phép theo Open Database License. Ô bản đồ do {ofm} cung cấp, dùng {omt}. Tìm kiếm và chỉ đường do {geoapify} cung cấp. Các dịch vụ này có thể thay đổi, bị giới hạn hoặc tạm ngưng; khi chạm giới hạn trong ngày của dịch vụ, tìm kiếm và chỉ đường có thể tạm dừng cho tới khi được đặt lại."
+      ]
+    },
+    {
+      "h": "3. ROAMO Pro",
+      "ul": [
+        "Block World và Doodle Notebook miễn phí. ROAMO Pro mở khoá mọi thế giới.",
+        "Các gói: Theo tuần $3.99, Theo tháng $6.99, Theo năm $39.99 và Trọn đời $79.99 (trả một lần). Giá tính bằng đô la Mỹ và có thể khác theo quốc gia.",
+        "Khoản thanh toán được trừ vào Apple ID khi bạn xác nhận mua. Gói đăng ký tự động gia hạn trừ khi được huỷ ít nhất 24 giờ trước khi kỳ hiện tại kết thúc; phí gia hạn được trừ trong vòng 24 giờ trước khi kỳ kết thúc.",
+        "Quản lý hoặc huỷ gói đăng ký trong cài đặt tài khoản App Store. Việc hoàn tiền do Apple xử lý theo chính sách của Apple."
+      ]
+    },
+    {
+      "h": "4. Sử dụng hợp lệ",
+      "p": [
+        "Không dịch ngược, bán lại hoặc lạm dụng ứng dụng hay các dịch vụ bản đồ mà ứng dụng sử dụng, và không dùng ứng dụng trái pháp luật."
+      ]
+    },
+    {
+      "h": "5. Tính độc lập",
+      "p": [
+        "ROAMO là ứng dụng độc lập và không liên kết với bất kỳ nhà phát hành game nào. Tên và phong cách các thế giới là nguyên bản."
+      ]
+    },
+    {
+      "h": "6. Miễn trừ và trách nhiệm",
+      "p": [
+        "Ứng dụng được cung cấp “nguyên trạng”. Trong phạm vi pháp luật cho phép, DeeplyAI không chịu trách nhiệm cho mất mát hay thiệt hại phát sinh từ việc sử dụng ứng dụng, kể cả chỉ đường không chính xác, như mô tả chi tiết trong EULA của Apple."
+      ]
+    },
+    {
+      "h": "7. Thay đổi và liên hệ",
+      "p": [
+        "Chúng tôi có thể cập nhật các điều khoản này; ngày ở trên cùng cho biết phiên bản mới nhất. Thắc mắc: {email_link}."
+      ]
+    }
+  ],
+  "support_page_title": "Hỗ trợ",
+  "support_page_desc": "Trợ giúp ROAMO: khôi phục giao dịch mua, huỷ gói đăng ký, thế giới miễn phí, đổi ngôn ngữ và liên hệ.",
+  "support_intro": "Giải đáp nhanh những câu hỏi thường gặp. Vẫn chưa xong? Hãy viết cho chúng tôi — mọi thư đều được đọc.",
+  "support_faq": [
+    {
+      "q": "Làm sao khôi phục giao dịch mua?",
+      "a": "Mở ROAMO, chạm nút bánh răng để vào Cài đặt, rồi chạm <b>Khôi phục giao dịch mua</b>. Hãy chắc rằng bạn đang đăng nhập App Store bằng đúng Apple ID đã dùng để mua ROAMO Pro."
+    },
+    {
+      "q": "Làm sao huỷ gói đăng ký?",
+      "a": "Gói đăng ký do Apple quản lý. Trên iPhone, mở <b>Cài đặt › [tên bạn] › Đăng ký › ROAMO</b> rồi chạm <b>Huỷ đăng ký</b>. Hãy huỷ ít nhất 24 giờ trước ngày gia hạn để không bị tính phí kỳ tiếp theo. Xoá ứng dụng không huỷ gói đăng ký."
+    },
+    {
+      "q": "Tôi được dùng miễn phí những gì?",
+      "a": "Block World và Doodle Notebook miễn phí mãi mãi, có tìm kiếm, địa điểm quanh đây và chỉ đường từng ngã rẽ. ROAMO Pro mở khoá 13 thế giới còn lại."
+    },
+    {
+      "q": "Vì sao hiện “Đã đạt giới hạn dịch vụ bản đồ trong ngày”?",
+      "a": "Tìm kiếm và chỉ đường dùng chung một dịch vụ bản đồ có giới hạn số yêu cầu mỗi ngày. Khi chạm giới hạn, hãy thử lại sau; giới hạn được đặt lại hằng ngày. Bản đồ và các địa điểm đã lưu vẫn dùng bình thường."
+    },
+    {
+      "q": "Làm sao đổi ngôn ngữ?",
+      "a": "Mở ROAMO, chạm nút bánh răng và chọn ngôn ngữ ở mục <b>Ngôn ngữ</b>. “Mặc định hệ thống” sẽ theo ngôn ngữ của iPhone. Một số chữ có thể chỉ cập nhật sau khi khởi động lại ROAMO."
+    },
+    {
+      "q": "Làm sao chuyển dặm/km hoặc tắt giọng nói?",
+      "a": "Trong Cài đặt của ROAMO, mục <b>Dẫn đường</b>, chọn <b>Đơn vị</b> và <b>Giọng nói</b> (giọng nói, tiếng chuông hoặc tắt tiếng). Bạn cũng có thể ẩn đồng hồ tốc độ tại đây."
+    },
+    {
+      "q": "Chấm xanh không di chuyển hoặc hiện sai chỗ.",
+      "a": "Kiểm tra quyền truy cập vị trí tại Cài đặt iOS › Quyền riêng tư & Bảo mật › Dịch vụ định vị › ROAMO, nên bật Vị trí chính xác. Ra chỗ thoáng sẽ giúp GPS bắt vị trí tốt hơn."
+    }
+  ],
+  "contact_title": "Liên hệ",
+  "contact_text": "Gửi email tới {email_link}. Vui lòng ghi rõ đời iPhone, phiên bản iOS và mô tả ngắn về vấn đề. Chúng tôi thường trả lời trong vòng hai ngày làm việc.",
+  "contact_btn": "Gửi email hỗ trợ"
+}
