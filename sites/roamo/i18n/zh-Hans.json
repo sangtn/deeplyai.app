@@ -161,7 +161,7 @@
   "translation_note": "本译文仅为方便阅读而提供。如与英文版本有出入，以英文版本为准。",
   "privacy_page_title": "隐私政策",
   "privacy_page_desc": "ROAMO 如何处理你的数据：无需账户、无分析、无广告、无追踪。位置只留在你的设备上。",
-  "privacy_intro": "本政策说明你在使用由 DeeplyAI（“我们”）发布的 ROAMO（“本应用”）时，你的信息会如何处理。简而言之：我们不收集、不存储、也不出售任何个人数据。",
+  "privacy_intro": "本政策说明你在使用由 DeeplyAi（“我们”）发布的 ROAMO（“本应用”）时，你的信息会如何处理。简而言之：我们不收集、不存储、也不出售任何个人数据。",
   "privacy_sections": [
     {
       "h": "1. 概要",
@@ -251,7 +251,7 @@
     {
       "h": "13. 联系我们",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. 免责与责任限制",
       "p": [
-        "本应用按“现状”提供。在法律允许的范围内，DeeplyAI 不对因使用本应用（包括导航不准确）造成的任何损失或损害承担责任，详见 Apple EULA。"
+        "本应用按“现状”提供。在法律允许的范围内，DeeplyAi 不对因使用本应用（包括导航不准确）造成的任何损失或损害承担责任，详见 Apple EULA。"
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "发邮件给支持团队",
   "grp_style": "时尚",
   "w_wasteland": "世界末日后的尘土之路与锈蚀金属。",
-  "w_luxury": "绗缝皮革、大理石与镶金街道。"
+  "w_luxury": "绗缝皮革、大理石与镶金街道。",
+  "footer_company": "更多 DeeplyAi 应用",
+  "footer_apps": "全部应用",
+  "footer_about": "关于我们",
+  "footer_contact": "联系我们",
+  "support_links": "实用链接",
+  "manage_subs": "管理订阅"
 }

@@ -161,7 +161,7 @@
   "translation_note": "Questa traduzione è fornita per comodità. In caso di discrepanze, prevale la versione inglese.",
   "privacy_page_title": "Informativa sulla privacy",
   "privacy_page_desc": "Come ROAMO gestisce i tuoi dati: nessun account, nessuna analisi, niente pubblicità, nessun tracciamento. La posizione resta sul tuo dispositivo.",
-  "privacy_intro": "Questa informativa spiega cosa succede alle tue informazioni quando usi ROAMO («l’app»), pubblicata da DeeplyAI («noi»). In breve: non raccogliamo, conserviamo né vendiamo alcun dato personale.",
+  "privacy_intro": "Questa informativa spiega cosa succede alle tue informazioni quando usi ROAMO («l’app»), pubblicata da DeeplyAi («noi»). In breve: non raccogliamo, conserviamo né vendiamo alcun dato personale.",
   "privacy_sections": [
     {
       "h": "1. In sintesi",
@@ -251,7 +251,7 @@
     {
       "h": "13. Contatti",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Esclusione di garanzia e responsabilità",
       "p": [
-        "L’app è fornita «così com’è». Nei limiti consentiti dalla legge, DeeplyAI non è responsabile di perdite o danni derivanti dall’uso dell’app, comprese indicazioni inesatte, come ulteriormente descritto nell’EULA di Apple."
+        "L’app è fornita «così com’è». Nei limiti consentiti dalla legge, DeeplyAi non è responsabile di perdite o danni derivanti dall’uso dell’app, comprese indicazioni inesatte, come ulteriormente descritto nell’EULA di Apple."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Scrivi all’assistenza",
   "grp_style": "Di stile",
   "w_wasteland": "Strade polverose e metallo arrugginito dopo la fine del mondo.",
-  "w_luxury": "Pelle trapuntata, marmo e strade bordate d’oro."
+  "w_luxury": "Pelle trapuntata, marmo e strade bordate d’oro.",
+  "footer_company": "Altro da DeeplyAi",
+  "footer_apps": "Tutte le app",
+  "footer_about": "Chi siamo",
+  "footer_contact": "Contatti",
+  "support_links": "Link utili",
+  "manage_subs": "Gestisci abbonamenti"
 }

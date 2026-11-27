@@ -161,7 +161,7 @@
   "translation_note": "Esta tradução é oferecida por conveniência. Se houver divergência com a versão em inglês, prevalece a versão em inglês.",
   "privacy_page_title": "Política de Privacidade",
   "privacy_page_desc": "Como o ROAMO trata seus dados: sem conta, sem análises, sem anúncios, sem rastreamento. Sua localização fica no seu aparelho.",
-  "privacy_intro": "Esta política explica o que acontece com suas informações quando você usa o ROAMO (“o app”), publicado pela DeeplyAI (“nós”). Resumindo: não coletamos, armazenamos nem vendemos nenhum dado pessoal.",
+  "privacy_intro": "Esta política explica o que acontece com suas informações quando você usa o ROAMO (“o app”), publicado pela DeeplyAi (“nós”). Resumindo: não coletamos, armazenamos nem vendemos nenhum dado pessoal.",
   "privacy_sections": [
     {
       "h": "1. Resumo",
@@ -251,7 +251,7 @@
     {
       "h": "13. Contato",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Isenção e responsabilidade",
       "p": [
-        "O app é fornecido “no estado em que se encontra”. Na medida permitida por lei, a DeeplyAI não se responsabiliza por perdas ou danos decorrentes do uso do app, incluindo instruções imprecisas, conforme descrito no EULA da Apple."
+        "O app é fornecido “no estado em que se encontra”. Na medida permitida por lei, a DeeplyAi não se responsabiliza por perdas ou danos decorrentes do uso do app, incluindo instruções imprecisas, conforme descrito no EULA da Apple."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Escrever ao suporte",
   "grp_style": "Estiloso",
   "w_wasteland": "Estradas empoeiradas e metal enferrujado depois do fim do mundo.",
-  "w_luxury": "Couro matelassê, mármore e ruas com detalhes dourados."
+  "w_luxury": "Couro matelassê, mármore e ruas com detalhes dourados.",
+  "footer_company": "Mais da DeeplyAi",
+  "footer_apps": "Todos os apps",
+  "footer_about": "Sobre",
+  "footer_contact": "Contato",
+  "support_links": "Links úteis",
+  "manage_subs": "Gerenciar assinaturas"
 }

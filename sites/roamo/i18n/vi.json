@@ -161,7 +161,7 @@
   "translation_note": "Bản dịch này chỉ nhằm thuận tiện cho bạn đọc. Nếu có khác biệt, bản tiếng Anh được ưu tiên áp dụng.",
   "privacy_page_title": "Chính sách quyền riêng tư",
   "privacy_page_desc": "Cách ROAMO xử lý dữ liệu của bạn: không tài khoản, không phân tích, không quảng cáo, không theo dõi. Vị trí ở lại trên thiết bị của bạn.",
-  "privacy_intro": "Chính sách này giải thích điều gì xảy ra với thông tin của bạn khi dùng ROAMO (“ứng dụng”), do DeeplyAI (“chúng tôi”) phát hành. Tóm lại: chúng tôi không thu thập, lưu trữ hay bán bất kỳ dữ liệu cá nhân nào.",
+  "privacy_intro": "Chính sách này giải thích điều gì xảy ra với thông tin của bạn khi dùng ROAMO (“ứng dụng”), do DeeplyAi (“chúng tôi”) phát hành. Tóm lại: chúng tôi không thu thập, lưu trữ hay bán bất kỳ dữ liệu cá nhân nào.",
   "privacy_sections": [
     {
       "h": "1. Tóm tắt",
@@ -251,7 +251,7 @@
     {
       "h": "13. Liên hệ",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Miễn trừ và trách nhiệm",
       "p": [
-        "Ứng dụng được cung cấp “nguyên trạng”. Trong phạm vi pháp luật cho phép, DeeplyAI không chịu trách nhiệm cho mất mát hay thiệt hại phát sinh từ việc sử dụng ứng dụng, kể cả chỉ đường không chính xác, như mô tả chi tiết trong EULA của Apple."
+        "Ứng dụng được cung cấp “nguyên trạng”. Trong phạm vi pháp luật cho phép, DeeplyAi không chịu trách nhiệm cho mất mát hay thiệt hại phát sinh từ việc sử dụng ứng dụng, kể cả chỉ đường không chính xác, như mô tả chi tiết trong EULA của Apple."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Gửi email hỗ trợ",
   "grp_style": "Phong cách",
   "w_wasteland": "Đường bụi mù và kim loại hoen gỉ sau ngày tận thế.",
-  "w_luxury": "Da trần trám, đá cẩm thạch và những con phố viền vàng."
+  "w_luxury": "Da trần trám, đá cẩm thạch và những con phố viền vàng.",
+  "footer_company": "Thêm từ DeeplyAi",
+  "footer_apps": "Tất cả ứng dụng",
+  "footer_about": "Giới thiệu",
+  "footer_contact": "Liên hệ",
+  "support_links": "Liên kết hữu ích",
+  "manage_subs": "Quản lý gói đăng ký"
 }

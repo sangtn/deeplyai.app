@@ -161,7 +161,7 @@
   "translation_note": "Diese Übersetzung dient nur der Orientierung. Bei Abweichungen gilt die englische Fassung.",
   "privacy_page_title": "Datenschutzerklärung",
   "privacy_page_desc": "Wie ROAMO mit deinen Daten umgeht: kein Konto, keine Analyse, keine Werbung, kein Tracking. Dein Standort bleibt auf deinem Gerät.",
-  "privacy_intro": "Diese Erklärung beschreibt, was mit deinen Informationen geschieht, wenn du ROAMO („die App“) nutzt, herausgegeben von DeeplyAI („wir“). Kurz gesagt: Wir erheben, speichern oder verkaufen keine personenbezogenen Daten.",
+  "privacy_intro": "Diese Erklärung beschreibt, was mit deinen Informationen geschieht, wenn du ROAMO („die App“) nutzt, herausgegeben von DeeplyAi („wir“). Kurz gesagt: Wir erheben, speichern oder verkaufen keine personenbezogenen Daten.",
   "privacy_sections": [
     {
       "h": "1. Zusammenfassung",
@@ -251,7 +251,7 @@
     {
       "h": "13. Kontakt",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Gewährleistung und Haftung",
       "p": [
-        "Die App wird „wie besehen“ bereitgestellt. Soweit gesetzlich zulässig, haftet DeeplyAI nicht für Verluste oder Schäden aus der Nutzung der App, einschließlich ungenauer Wegbeschreibungen, wie in der Apple-EULA näher beschrieben."
+        "Die App wird „wie besehen“ bereitgestellt. Soweit gesetzlich zulässig, haftet DeeplyAi nicht für Verluste oder Schäden aus der Nutzung der App, einschließlich ungenauer Wegbeschreibungen, wie in der Apple-EULA näher beschrieben."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Support anschreiben",
   "grp_style": "Stylish",
   "w_wasteland": "Staubige Straßen und rostiges Metall nach dem Weltuntergang.",
-  "w_luxury": "Gestepptes Leder, Marmor und goldgesäumte Straßen."
+  "w_luxury": "Gestepptes Leder, Marmor und goldgesäumte Straßen.",
+  "footer_company": "Mehr von DeeplyAi",
+  "footer_apps": "Alle Apps",
+  "footer_about": "Über uns",
+  "footer_contact": "Kontakt",
+  "support_links": "Nützliche Links",
+  "manage_subs": "Abos verwalten"
 }

@@ -16,14 +16,22 @@ public/roamo/       BUILD OUTPUT, committed: Astro copies it as-is, so rebuild b
 ```
 
 Pages: `index.html` (EN) and `<lang>/index.html` for es, fr, de, pt-BR, it, ja, ko, zh-Hans, ru, vi;
-each language has `privacy.html`, `terms.html`, `support.html` **and** the folder form
-`privacy/`, `terms/`, `support/`, which the app links to (`https://deeplyai.app/roamo/privacy/`).
-`public/robots.txt` lists `roamo/sitemap.xml`.
+each language has `privacy.html`, `terms.html` **and** the folder form `privacy/`, `terms/`,
+which the app links to (`https://deeplyai.app/roamo/privacy/`).
+
+**Support** sits at the site root like the other DeeplyAi app pages (`cartv-support.html`):
+`https://deeplyai.app/roam-support.html` (EN) and `roam-support.<lang>.html`. The old
+`roamo/[<lang>/]support.html` and `support/` are redirect stubs (noindex, keep `#hash`), so the
+app's `deeplyai.app/roamo/support/` link keeps working. The support URLs are in the main
+sitemap (`src/pages/sitemap.xml.ts`); `public/robots.txt` lists `roamo/sitemap.xml` for the rest.
+
+Brand: the publisher is written **DeeplyAi**, as on the rest of deeplyai.app; `og:site_name` is
+DeeplyAi and the footer links back to deeplyai.app (all apps, About, Contact).
 
 ## Build
 
 ```bash
-python3 sites/roamo/build.py        # rewrites public/roamo/
+python3 sites/roamo/build.py        # rewrites public/roamo/ and public/roam-support*.html
 python3 sites/roamo/check_links.py  # must print OK
 npm run build                       # Astro copies public/roamo/ to dist/roamo/
 ```

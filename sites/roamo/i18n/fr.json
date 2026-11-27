@@ -161,7 +161,7 @@
   "translation_note": "Cette traduction est fournie pour plus de commodité. En cas de divergence avec la version anglaise, la version anglaise prévaut.",
   "privacy_page_title": "Politique de confidentialité",
   "privacy_page_desc": "Comment ROAMO traite vos données : sans compte, sans statistiques, sans pub, sans pistage. Votre position reste sur votre appareil.",
-  "privacy_intro": "Cette politique explique ce que deviennent vos informations lorsque vous utilisez ROAMO (« l’app »), publiée par DeeplyAI (« nous »). En bref : nous ne collectons, ne stockons et ne vendons aucune donnée personnelle.",
+  "privacy_intro": "Cette politique explique ce que deviennent vos informations lorsque vous utilisez ROAMO (« l’app »), publiée par DeeplyAi (« nous »). En bref : nous ne collectons, ne stockons et ne vendons aucune donnée personnelle.",
   "privacy_sections": [
     {
       "h": "1. En résumé",
@@ -251,7 +251,7 @@
     {
       "h": "13. Contact",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Exclusion de garantie et responsabilité",
       "p": [
-        "L’app est fournie « en l’état ». Dans la mesure permise par la loi, DeeplyAI ne saurait être tenue responsable des pertes ou dommages liés à l’utilisation de l’app, y compris des indications inexactes, comme précisé dans le CLUF d’Apple."
+        "L’app est fournie « en l’état ». Dans la mesure permise par la loi, DeeplyAi ne saurait être tenue responsable des pertes ou dommages liés à l’utilisation de l’app, y compris des indications inexactes, comme précisé dans le CLUF d’Apple."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Écrire à l’assistance",
   "grp_style": "Stylé",
   "w_wasteland": "Routes poussiéreuses et métal rouillé après la fin du monde.",
-  "w_luxury": "Cuir matelassé, marbre et rues bordées d’or."
+  "w_luxury": "Cuir matelassé, marbre et rues bordées d’or.",
+  "footer_company": "Plus de DeeplyAi",
+  "footer_apps": "Toutes les apps",
+  "footer_about": "À propos",
+  "footer_contact": "Contact",
+  "support_links": "Liens utiles",
+  "manage_subs": "Gérer les abonnements"
 }

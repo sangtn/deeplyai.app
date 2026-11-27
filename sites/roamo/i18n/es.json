@@ -161,7 +161,7 @@
   "translation_note": "Esta traducción se ofrece por comodidad. Si difiere de la versión en inglés, prevalece la versión en inglés.",
   "privacy_page_title": "Política de privacidad",
   "privacy_page_desc": "Cómo trata ROAMO tus datos: sin cuenta, sin analíticas, sin anuncios, sin rastreo. Tu ubicación se queda en tu dispositivo.",
-  "privacy_intro": "Esta política explica qué ocurre con tu información cuando usas ROAMO («la app»), publicada por DeeplyAI («nosotros»). En resumen: no recopilamos, almacenamos ni vendemos ningún dato personal.",
+  "privacy_intro": "Esta política explica qué ocurre con tu información cuando usas ROAMO («la app»), publicada por DeeplyAi («nosotros»). En resumen: no recopilamos, almacenamos ni vendemos ningún dato personal.",
   "privacy_sections": [
     {
       "h": "1. Resumen",
@@ -251,7 +251,7 @@
     {
       "h": "13. Contacto",
       "p": [
-        "DeeplyAI — {email_link}"
+        "DeeplyAi — {email_link}"
       ]
     }
   ],
@@ -296,7 +296,7 @@
     {
       "h": "6. Exención y responsabilidad",
       "p": [
-        "La app se ofrece «tal cual». En la medida en que lo permita la ley, DeeplyAI no se hace responsable de pérdidas o daños derivados del uso de la app, incluidas indicaciones inexactas, como se detalla en el EULA de Apple."
+        "La app se ofrece «tal cual». En la medida en que lo permita la ley, DeeplyAi no se hace responsable de pérdidas o daños derivados del uso de la app, incluidas indicaciones inexactas, como se detalla en el EULA de Apple."
       ]
     },
     {
@@ -344,5 +344,11 @@
   "contact_btn": "Escribir a soporte",
   "grp_style": "Con estilo",
   "w_wasteland": "Caminos polvorientos y metal oxidado tras el fin del mundo.",
-  "w_luxury": "Cuero acolchado, mármol y calles con ribetes dorados."
+  "w_luxury": "Cuero acolchado, mármol y calles con ribetes dorados.",
+  "footer_company": "Más de DeeplyAi",
+  "footer_apps": "Todas las apps",
+  "footer_about": "Acerca de",
+  "footer_contact": "Contacto",
+  "support_links": "Enlaces útiles",
+  "manage_subs": "Gestionar suscripciones"
 }

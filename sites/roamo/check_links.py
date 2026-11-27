@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Sanity checks for public/roamo (stdlib only). Exit code 1 on any problem.
 
-- every page exists for every language
+- every page exists for every language (support: public/roam-support[.<lang>].html;
+  roamo/[<lang>/]support[/] are redirects to it)
 - every relative href/src resolves to a file (and #anchors exist)
 - no root-absolute paths ("/..."), so dist/ works under a sub-path
 - <html lang> is set and matches the folder
@@ -15,6 +16,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 DIST = Path(os.environ.get("ROAMO_OUT", Path(__file__).resolve().parents[2] / "public" / "roamo")).resolve()
+PUBLIC = DIST.parent  # site root: roam-support.html and roam-support.<lang>.html live here
 LANGS = ["en", "es", "fr", "de", "pt-BR", "it", "ja", "ko", "zh-Hans", "ru", "vi"]
 PAGES = ["index.html", "privacy.html", "terms.html", "support.html",
          "privacy/index.html", "terms/index.html", "support/index.html"]
@@ -51,6 +53,11 @@ for lang in LANGS:
         if not (base / page).is_file():
             errors.append(f"missing page: {(base / page).relative_to(DIST)}")
 
+for lang in LANGS:
+    f = PUBLIC / ("roam-support.html" if lang == "en" else f"roam-support.{lang}.html")
+    if not f.is_file():
+        errors.append(f"missing page: {f.name}")
+
 css_urls = re.findall(r"url\(([^)]+)\)", (DIST / "assets/site.css").read_text())
 for u in css_urls:
     if u.startswith(("data:", "http")):
@@ -58,12 +65,15 @@ for u in css_urls:
     if not (DIST / "assets" / u.strip("'\"")).is_file():
         errors.append(f"site.css: broken url({u})")
 
-pages = sorted(DIST.rglob("*.html"))
+pages = sorted(DIST.rglob("*.html")) + sorted(PUBLIC.glob("roam-support*.html"))
 parsed = {f: parse(f) for f in pages}
 checked = 0
 for f, p in parsed.items():
-    rel = f.relative_to(DIST)
-    first = rel.parts[0]
+    rel = f.relative_to(PUBLIC)
+    if rel.parts[0] == DIST.name:
+        first = rel.parts[1]
+    else:  # roam-support.<lang>.html
+        first = f.name.split(".")[1] if f.name.count(".") == 2 else "en"
     want = first if first in LANGS else "en"
     if p.lang != want:
         errors.append(f"{rel}: <html lang={p.lang!r}>, expected {want!r}")

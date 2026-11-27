@@ -15,6 +15,7 @@ opened straight from disk (file://).
 import html
 import json
 import os
+import posixpath
 import shutil
 import sys
 from pathlib import Path
@@ -23,9 +24,16 @@ from pathlib import Path
 # Constants — change these in ONE place.
 # --------------------------------------------------------------------------
 APP_STORE_URL = "https://apps.apple.com/app/roamo/id0000000000"  # PLACEHOLDER until the listing is live
-SUPPORT_EMAIL = "info@deeplyai.app"                                # DeeplyAI mailbox used across deeplyai.app
+SUPPORT_EMAIL = "info@deeplyai.app"                                # DeeplyAi mailbox used across deeplyai.app
 SITE_URL = os.environ.get("SITE_URL", "https://deeplyai.app/roamo/").rstrip("/") + "/"
-PUBLISHER = "DeeplyAI"
+# The DeeplyAi site root that holds roamo/ (https://deeplyai.app/).
+ROOT_URL = os.environ.get("ROOT_URL", SITE_URL.rstrip("/").rsplit("/", 1)[0] + "/")
+# Support lives at the site root with the other app support pages (cartv-support.html):
+# roam-support.html (EN) and roam-support.<lang>.html. The old roamo/[<lang>/]support[/]
+# URLs, which the app links to, become redirects.
+SUPPORT_FILE = "roam-support"
+MANAGE_SUBS_URL = "https://apps.apple.com/account/subscriptions"
+PUBLISHER = "DeeplyAi"
 BUNDLE_ID = "com.deeplyai.roamo"
 UPDATED_ISO = "2026-11-26"
 APPLE_EULA = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
@@ -34,6 +42,7 @@ ROOT = Path(__file__).resolve().parent
 # Output goes straight into the Astro site's public/ folder, so it is served at
 # https://deeplyai.app/roamo/ (override with ROAMO_OUT=/some/dir for a preview).
 DIST = Path(os.environ.get("ROAMO_OUT", ROOT.parents[1] / "public" / "roamo")).resolve()
+PUBLIC = DIST.parent  # site root; the support pages are written here
 ASSETS = ROOT / "assets"
 
 # (code used in folder names + hreflang, Open Graph locale)
@@ -189,7 +198,7 @@ EN = {
     # ---- Privacy policy ----
     "privacy_page_title": "Privacy Policy",
     "privacy_page_desc": "How ROAMO handles your data: no account, no analytics, no ads, no tracking. Location stays on your device.",
-    "privacy_intro": "This policy explains what happens to your information when you use ROAMO (“the app”), published by DeeplyAI (“we”). The short version: we do not collect, store or sell any personal data.",
+    "privacy_intro": "This policy explains what happens to your information when you use ROAMO (“the app”), published by DeeplyAi (“we”). The short version: we do not collect, store or sell any personal data.",
     "privacy_sections": [
         {"h": "1. Summary", "ul": [
             "No account: ROAMO never asks for your name, email or phone number.",
@@ -227,7 +236,7 @@ EN = {
         {"h": "12. Changes to this policy", "p": [
             "If the way ROAMO handles data changes, we will update this page and the date at the top before the change takes effect in the app."]},
         {"h": "13. Contact", "p": [
-            "DeeplyAI — {email_link}"]},
+            "DeeplyAi — {email_link}"]},
     ],
     # ---- Terms ----
     "terms_page_title": "Terms of Use",
@@ -249,7 +258,7 @@ EN = {
         {"h": "5. Independence", "p": [
             "ROAMO is an independent app and is not affiliated with any game publisher. World names and styles are original."]},
         {"h": "6. Disclaimer and liability", "p": [
-            "The app is provided “as is”. To the extent permitted by law, DeeplyAI is not liable for any loss or damage arising from the use of the app, including inaccurate directions, as further described in the Apple EULA."]},
+            "The app is provided “as is”. To the extent permitted by law, DeeplyAi is not liable for any loss or damage arising from the use of the app, including inaccurate directions, as further described in the Apple EULA."]},
         {"h": "7. Changes and contact", "p": [
             "We may update these terms; the date at the top shows the latest version. Questions: {email_link}."]},
     ],
@@ -269,6 +278,10 @@ EN = {
     "contact_title": "Contact us",
     "contact_text": "Email {email_link}. Please include your iPhone model, iOS version and a short description of the problem. We usually reply within two business days.",
     "contact_btn": "Email support",
+    "support_links": "Useful links",
+    "manage_subs": "Manage subscriptions",
+    "footer_company": "More from DeeplyAi",
+    "footer_apps": "All apps", "footer_about": "About", "footer_contact": "Contact",
 }
 
 LINKS = {
@@ -331,11 +344,26 @@ def lang_dir(code):
     return "" if code == DEFAULT_LANG else code + "/"
 
 
-def page_file(page):
-    return "index.html" if page == "index" else page + ".html"
+def support_file(code):
+    return f"{SUPPORT_FILE}.html" if code == DEFAULT_LANG else f"{SUPPORT_FILE}.{code}.html"
+
+
+def url_of(code, page):
+    """Where a page lives, relative to the site root (public/)."""
+    if page == "support":
+        return support_file(code)
+    return "roamo/" + lang_dir(code) + ("index.html" if page == "index" else page + ".html")
+
+
+def rel(here, target):
+    """Relative link from the page at `here` to `target` (both relative to the site root)."""
+    r = posixpath.relpath(target, posixpath.dirname(here) or ".")
+    return "" if r == "." else r
 
 
 def canonical(code, page):
+    if page == "support":
+        return ROOT_URL + support_file(code)
     return SITE_URL + lang_dir(code) + ("" if page == "index" else page + "/")
 
 
@@ -448,7 +476,7 @@ def head(T, code, og_locale, page, title, desc, prefix):
             "inLanguage": [c for c, _ in LANGS],
             "isAccessibleForFree": True,
             "identifier": BUNDLE_ID,
-            "publisher": {"@type": "Organization", "name": PUBLISHER, "email": SUPPORT_EMAIL},
+            "publisher": {"@type": "Organization", "name": PUBLISHER, "url": ROOT_URL, "email": SUPPORT_EMAIL},
             "offers": [
                 {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD"},
                 {"@type": "Offer", "name": "ROAMO Pro Weekly", "price": "3.99", "priceCurrency": "USD"},
@@ -457,6 +485,18 @@ def head(T, code, og_locale, page, title, desc, prefix):
                 {"@type": "Offer", "name": "ROAMO Pro Lifetime", "price": "79.99", "priceCurrency": "USD"},
             ],
         }
+    elif page == "support":
+        data = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "inLanguage": code,
+            "mainEntity": [{"@type": "Question", "name": strip_tags(x["q"]),
+                            "acceptedAnswer": {"@type": "Answer", "text": strip_tags(fill(x["a"], T))}}
+                           for x in T["support_faq"]],
+        }
+    else:
+        data = None
+    if data:
         jsonld = ('<script type="application/ld+json">'
                   + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>")
     app_id = APP_STORE_URL.rsplit("/id", 1)[-1]
@@ -478,7 +518,7 @@ def head(T, code, og_locale, page, title, desc, prefix):
 <link rel="icon" type="image/png" sizes="192x192" href="{prefix}assets/icon-192.png">
 <link rel="apple-touch-icon" href="{prefix}assets/icon-180.png">
 {smart_banner}<meta property="og:type" content="website">
-<meta property="og:site_name" content="ROAMO">
+<meta property="og:site_name" content="DeeplyAi">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{canonical(code, page)}">
@@ -497,11 +537,11 @@ def head(T, code, og_locale, page, title, desc, prefix):
 </head>"""
 
 
-def lang_switcher(T, code, page, prefix):
+def lang_switcher(T, code, page, here):
     items = []
     for c, _ in LANGS:
         name = TRANSLATIONS[c]["lang_name"]
-        href = prefix + lang_dir(c) + page_file(page)
+        href = rel(here, url_of(c, page)) or posixpath.basename(here)
         cur = ' aria-current="true"' if c == code else ""
         items.append(f'<li><a href="{href}" hreflang="{c}" lang="{c}"{cur}>{esc(name)}</a></li>')
     return (f'<details class="langs"><summary aria-label="{esc(T["lang_label"])}: {esc(T["lang_name"])}">'
@@ -509,41 +549,43 @@ def lang_switcher(T, code, page, prefix):
             f'<ul role="list">{"".join(items)}</ul></details>')
 
 
-def header(T, code, page, prefix):
-    home = prefix + lang_dir(code) + "index.html"
+def header(T, code, page, prefix, here):
+    home = rel(here, url_of(code, "index"))
     sec = "" if page == "index" else home
     nav = "".join(
         f'<li><a href="{sec}#{a}">{T[k]}</a></li>'
         for a, k in [("worlds", "nav_worlds"), ("features", "nav_features"), ("privacy", "nav_privacy"),
                      ("pricing", "nav_pricing"), ("faq", "nav_faq")])
-    nav += f'<li><a href="{prefix}{lang_dir(code)}support.html">{T["nav_support"]}</a></li>'
+    cur = ' aria-current="page"' if page == "support" else ""
+    nav += f'<li><a href="{rel(here, url_of(code, "support"))}"{cur}>{T["nav_support"]}</a></li>'
     return f"""<body>
 <a class="skip" href="#main">{T["skip"]}</a>
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="{home}"><img src="{prefix}assets/logo-72.png" width="36" height="36" alt=""><span>ROAMO</span></a>
     <nav class="mainnav" aria-label="ROAMO"><ul role="list">{nav}</ul></nav>
-    {lang_switcher(T, code, page, prefix)}
+    {lang_switcher(T, code, page, here)}
   </div>
 </header>"""
 
 
-def footer(T, code, prefix):
-    d = prefix + lang_dir(code)
+def footer(T, code, prefix, here):
+    u = lambda page: rel(here, url_of(code, page))
+    logo = lambda tone: rel(here, f"assets/images/brand/logo-{tone}.svg")
     note = f'<p class="tnote">{T["translation_note"]}</p>' if T["translation_note"] else ""
     return f"""<footer class="foot">
   <div class="wrap foot-grid">
     <div>
-      <a class="logo" href="{d}index.html"><img src="{prefix}assets/logo-72.png" width="36" height="36" alt=""><span>ROAMO</span></a>
+      <a class="logo" href="{u("index")}"><img src="{prefix}assets/logo-72.png" width="36" height="36" alt=""><span>ROAMO</span></a>
       <p class="muted">{T["footer_tag"]}</p>
       {badge(T, "badge-sm")}
     </div>
     <div>
       <h2 class="foot-h">{T["footer_legal"]}</h2>
       <ul role="list" class="foot-list">
-        <li><a href="{d}privacy.html">{T["footer_privacy"]}</a></li>
-        <li><a href="{d}terms.html">{T["footer_terms"]}</a></li>
-        <li><a href="{d}support.html">{T["footer_support"]}</a></li>
+        <li><a href="{u("privacy")}">{T["footer_privacy"]}</a></li>
+        <li><a href="{u("terms")}">{T["footer_terms"]}</a></li>
+        <li><a href="{u("support")}">{T["footer_support"]}</a></li>
         <li><a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a></li>
       </ul>
     </div>
@@ -554,6 +596,15 @@ def footer(T, code, prefix):
         <li>{fill(T["attr_tiles"])}</li>
         <li>{fill(T["attr_geo"])}</li>
         <li>{fill(T["attr_engine"])}</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="foot-h">{T["footer_company"]}</h2>
+      <a class="dai" href="{ROOT_URL}" aria-label="DeeplyAi"><picture><source srcset="{logo("white")}" media="(prefers-color-scheme: dark)"><img src="{logo("black")}" width="132" height="29" alt="DeeplyAi" loading="lazy"></picture></a>
+      <ul role="list" class="foot-list">
+        <li><a href="{ROOT_URL}apps/">{T["footer_apps"]}</a></li>
+        <li><a href="{ROOT_URL}about.html">{T["footer_about"]}</a></li>
+        <li><a href="{ROOT_URL}contact.html">{T["footer_contact"]}</a></li>
       </ul>
     </div>
   </div>
@@ -615,7 +666,7 @@ def world_button(T, w, prefix, kind):
             f'<span class="card-d">{T["w_" + wid]}</span></span></button></li>')
 
 
-def index_body(T, code, prefix):
+def index_body(T, code, prefix, here):
     chips = "".join(world_button(T, w, prefix, "chip") for w in WORLDS)
     groups = ""
     for g in GROUPS:
@@ -642,7 +693,7 @@ def index_body(T, code, prefix):
                   f'<p class="incl">{icon("check")} {T["pro_includes"]}</p>'
                   + "</li>")
     faq = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"])}</div></details>' for x in T["faq"])
-    d = prefix + lang_dir(code)
+    u = lambda page: rel(here, url_of(code, page))
     return f"""<main id="main">
 <section class="hero">
   <div class="wrap hero-grid">
@@ -687,7 +738,7 @@ def index_body(T, code, prefix):
       <h2 class="sec-h" id="privacy-h">{T["privacy_title"]}</h2>
       <p class="sec-sub">{T["privacy_sub"]}</p>
       <div class="label-card"><small>{T["privacy_label_note"]}</small><strong>{icon("check")} {T["privacy_label"]}</strong></div>
-      <p><a class="more" href="{d}privacy.html">{T["privacy_more"]} →</a></p>
+      <p><a class="more" href="{u("privacy")}">{T["privacy_more"]} →</a></p>
     </div>
     <ul role="list" class="pps">{pps}</ul>
   </div>
@@ -698,7 +749,7 @@ def index_body(T, code, prefix):
     <h2 class="sec-h" id="pricing-h">{T["pricing_title"]}</h2>
     <p class="sec-sub">{T["pricing_sub"]}</p>
     <ul role="list" class="plans">{plans}</ul>
-    <p class="fine">{T["pricing_note"]} <a href="{d}terms.html">{T["footer_terms"]}</a> · <a href="{d}privacy.html">{T["footer_privacy"]}</a></p>
+    <p class="fine">{T["pricing_note"]} <a href="{u("terms")}">{T["footer_terms"]}</a> · <a href="{u("privacy")}">{T["footer_privacy"]}</a></p>
   </div>
 </section>
 
@@ -706,7 +757,7 @@ def index_body(T, code, prefix):
   <div class="wrap narrow">
     <h2 class="sec-h" id="faq-h">{T["faq_title"]}</h2>
     {faq}
-    <p><a class="more" href="{d}support.html">{T["faq_more"]} →</a></p>
+    <p><a class="more" href="{u("support")}">{T["faq_more"]} →</a></p>
   </div>
 </section>
 
@@ -737,8 +788,8 @@ def sections_html(T, sections):
     return out
 
 
-def doc_body(T, code, page, prefix):
-    d = prefix + lang_dir(code)
+def doc_body(T, code, page, prefix, here):
+    u = lambda p: rel(here, url_of(code, p))
     note = f'<p class="tnote">{T["translation_note"]}</p>' if T["translation_note"] else ""
     if page == "privacy":
         title, inner = T["privacy_page_title"], f'<p class="lead">{fill(T["privacy_intro"], T)}</p>' + sections_html(T, T["privacy_sections"])
@@ -748,12 +799,18 @@ def doc_body(T, code, page, prefix):
         title = T["support_page_title"]
         qa = "".join(f'<details class="qa"><summary>{x["q"]}</summary><div>{fill(x["a"], T)}</div></details>'
                      for x in T["support_faq"])
+        links = (f'<li><a href="{u("privacy")}">{T["footer_privacy"]}</a></li>'
+                 f'<li><a href="{u("terms")}">{T["footer_terms"]}</a></li>'
+                 f'<li><a href="{MANAGE_SUBS_URL}" rel="noopener">{T["manage_subs"]}</a></li>'
+                 f'<li><a href="{APP_STORE_URL}" rel="noopener">{T["badge_aria"]}</a></li>')
         inner = (f'<p class="lead">{T["support_intro"]}</p>{qa}'
+                 f'<section class="links" aria-labelledby="links-h"><h2 id="links-h">{T["support_links"]}</h2>'
+                 f'<ul role="list" class="link-list">{links}</ul></section>'
                  f'<section class="contact" id="contact"><h2>{T["contact_title"]}</h2><p>{fill(T["contact_text"], T)}</p>'
                  f'<p><a class="btn" href="mailto:{SUPPORT_EMAIL}?subject=ROAMO%20support">{icon("mail")} {T["contact_btn"]}</a></p></section>')
     return f"""<main id="main" class="doc">
   <div class="wrap narrow">
-    <p><a class="back" href="{d}index.html">← {T["back"]}</a></p>
+    <p><a class="back" href="{u("index")}">← {T["back"]}</a></p>
     <h1>{title}</h1>
     <p class="muted">{T["updated"]}</p>
     {note}
@@ -765,20 +822,45 @@ def doc_body(T, code, page, prefix):
 # --------------------------------------------------------------------------
 # Build
 # --------------------------------------------------------------------------
-def render(code, og_locale, page, depth):
+def render(code, og_locale, page, here):
+    """`here`: where the file is written, relative to the site root (public/)."""
     T = TRANSLATIONS[code]
-    prefix = "../" * depth
+    prefix = rel(here, "roamo/index.html").rsplit("index.html", 1)[0]  # path to roamo/ ("" inside it)
     if page == "index":
-        title, desc, body = T["title"], T["description"], index_body(T, code, prefix)
+        title, desc, body = T["title"], T["description"], index_body(T, code, prefix, here)
     else:
         title = f'{T[page + "_page_title"]} — ROAMO'
         desc = T[page + "_page_desc"]
-        body = doc_body(T, code, page, prefix)
-    return head(T, code, og_locale, page, title, desc, prefix) + "\n" + header(T, code, page, prefix) + "\n" + body + "\n" + footer(T, code, prefix)
+        body = doc_body(T, code, page, prefix, here)
+    return (head(T, code, og_locale, page, title, desc, prefix) + "\n" + header(T, code, page, prefix, here)
+            + "\n" + body + "\n" + footer(T, code, prefix, here))
 
 
-def write(rel, text):
-    p = DIST / rel
+def redirect(code, here, target):
+    """Stub kept at an old URL (the app links to roamo/support/): sends visitors to `target`."""
+    to = rel(here, target)
+    url = canonical(code, "support")
+    return f"""<!doctype html>
+<html lang="{code}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROAMO Support</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{url}">
+<meta http-equiv="refresh" content="0; url={to}">
+<script>location.replace("{to}" + location.hash);</script>
+</head>
+<body>
+<p><a href="{to}">{esc(url)}</a></p>
+</body>
+</html>
+"""
+
+
+def write(path, text):
+    """`path` is relative to the site root (public/)."""
+    p = PUBLIC / path
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text, encoding="utf-8")
 
@@ -786,6 +868,8 @@ def write(rel, text):
 def sitemap():
     rows = []
     for page in PAGES:
+        if page == "support":
+            continue  # outside /roamo/: listed in the main sitemap (src/pages/sitemap.xml.ts)
         for c, _ in LANGS:
             alts = "".join(f'<xhtml:link rel="alternate" hreflang="{a}" href="{canonical(a, page)}"/>' for a, _ in LANGS)
             alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{canonical(DEFAULT_LANG, page)}"/>'
@@ -800,21 +884,27 @@ def main():
     TRANSLATIONS = load_translations()
     if DIST.exists():
         shutil.rmtree(DIST)
+    for old in PUBLIC.glob(SUPPORT_FILE + "*.html"):
+        old.unlink()
     shutil.copytree(ASSETS, DIST / "assets")
     with open(DIST / "assets" / "site.css", "a", encoding="utf-8") as f:
         f.write(worlds_css())
     count = 0
     for code, og in LANGS:
-        base = lang_dir(code)
-        base_depth = 0 if code == DEFAULT_LANG else 1
+        base = "roamo/" + lang_dir(code)
         for page in PAGES:
             if page == "index":
-                write(base + "index.html", render(code, og, page, base_depth)); count += 1
+                write(base + "index.html", render(code, og, page, base + "index.html")); count += 1
+            elif page == "support":
+                target = url_of(code, "support")
+                write(target, render(code, og, page, target)); count += 1
+                for old in (base + "support.html", base + "support/index.html"):
+                    write(old, redirect(code, old, target))
             else:
                 # flat file (used by internal links, works from file://) + clean folder URL
-                write(base + page + ".html", render(code, og, page, base_depth)); count += 1
-                write(base + page + "/index.html", render(code, og, page, base_depth + 1)); count += 1
-    write("sitemap.xml", sitemap())
+                for f in (base + page + ".html", base + page + "/index.html"):
+                    write(f, render(code, og, page, f)); count += 1
+    write("roamo/sitemap.xml", sitemap())
     # robots.txt lives at the site root (public/robots.txt) and points to this sitemap.
     for w in WARNINGS:
         print("WARNING:", w, file=sys.stderr)
